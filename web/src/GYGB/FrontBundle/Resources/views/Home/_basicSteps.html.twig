@@ -1,0 +1,9 @@
+ <div id="step-choices">
+    {% for step in basicSteps %}
+        <a href="#" class="step-choice">
+            <div class="step-choice button">
+                <div class="choice-text">{{ step.step }}</div>
+            </div>
+        </a>
+    {% endfor %}
+ </div>

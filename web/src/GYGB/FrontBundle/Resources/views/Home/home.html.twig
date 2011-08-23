@@ -1,0 +1,46 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+    <div class="block" id="whats-your-step">
+        <span style="margin: 10px; font-size: 2em; width: 324px; float: right;">What's your step?</span>
+        {#<div style="width: 100%; font-size: 24px; text-align: center; font-weight: bold;">Tell us what you've done to save energy and money:</div><br/>#}
+
+        {% render "GYGBFrontBundle:Steps:stepsTaken" %} 
+        
+        {% include "GYGBFrontBundle:Home:_customStepForm.html.twig" with {'customStepForm' : customStepForm, 'basicSteps' : basicSteps } %}
+
+        {% render "GYGBFrontBundle:Steps:recentSteps" %}  
+        
+        <div id="step-breakdown" stlye="width: 400px; float: left">
+            <div class="category-column button">
+                <img src="{{ asset('images/bicycle.png') }}" /><span class="category-title">Transportation</span>23 steps
+            </div>
+            <div class="category-column button">
+                <img src="{{ asset('images/apple.png') }}" /><span class="category-title">Food</span>24 steps
+            </div>
+            <div class="category-column button">
+                <img src="{{ asset('images/recycle-bin.png') }}" /><span class="category-title">Waste</span>57 steps
+            </div>
+            <div class="category-column button">
+                <img src="{{ asset('images/battery.png') }}" /><span class="category-title">Energy</span>50 steps
+            </div>
+         </div>
+
+        <img src="{{ asset('images/foot/foot-green.png') }}" style="opacity: .3" />
+
+    </div>
+       
+         
+    <div class="block" id="about">
+        <h1>About</h1>
+        <div id="campaign-summary">
+            Get Your Green Back - Tompkins is a broad coalition of individuals and organizations that has come together to support every houseohold and business in Tompkins County to find ways to save money on the energy-related costs of the heat and electricity we consume, the food we buy, the transportation we use, and the waster we have to get ride of.
+        </div>
+    </div> 
+
+    <div id="stepTakenBool" style="display: none;">
+        {% if stepTaken %}true{% endif %}
+    </div>
+
+    <div style="clear: both"></div>
+{% endblock %}

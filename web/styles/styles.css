@@ -1,0 +1,380 @@
+.button {
+    webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+
+    box-shadow: 0 1px 1px rgba(0,0,0, 0.5);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0, 0.5);
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0, 0.5);
+
+    border: 1px solid darkGreen;
+    background: green;
+    color: white;
+    margin: 2px;
+}
+
+.button:hover {
+    background: darkGreen;
+}
+
+.submit {
+    float: right;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+div#tag-line {
+    font-size: 3em;
+    letter-spacing: -2px;
+    float: left;
+    margin-left: 55px;
+    font-family: Helvetica;
+}
+
+div#tag-line a {
+    color: black;
+}
+
+div#tag-line span#logo {
+    color: green;
+    font-weight: bold;
+}
+
+div#header img#money-bag {
+    float: right;
+    margin-right: 30px;
+}
+
+div.stepbox-container {
+    text-align: center;
+    width: 50%;
+}
+
+div#step-choices {
+    margin: 0 auto;
+}
+
+div.step-choice {
+    width: 106px;
+    height: 106px;
+    margin: 5px;
+    padding: 5px;
+    float: left;
+    text-align: center;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background: url("/GYGB/web/images/foot-black-small-15op.png") no-repeat scroll 14px 14px white;
+}
+
+a.step-choice {
+    font-weight: bold;
+}
+
+a.step-choice:hover {
+    text-decoration: none;
+}
+
+div.step-choice {
+    color: black;
+}
+
+div.step-choice div.choice-text {
+    margin-top: 31px;
+}
+
+div.step-choice:hover {
+    background: url("/GYGB/web/images/foot-green-small-50op.png") no-repeat scroll 14px 14px white;
+}
+
+div#your-step {
+    width: 234px;
+    float: right;
+}
+
+div#steps-taken-counter {
+    font-size: 2em;
+    margin: 10px 0 0 100px;
+    color: black;
+}
+
+span.step-digit {
+    color: white;
+    padding: 4px 2px;
+    margin: 1px;
+    font-family: courier;
+    border: none;
+}
+
+div#custom-step {
+    width: 385px;
+    padding: 10px;
+    overflow: auto;
+    float: right;
+    background: lightblue;
+    -moz-border-radius: 7px;
+}
+
+div#custom-step form input, 
+div#custom-step form textarea {
+
+    width: 99%;
+}
+
+div#custom-step form input[type="submit"] {
+    width: auto;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+div#custom-step .category-selections {
+    width: 220px;
+    margin: 0 auto;
+}
+
+div#custom-step .savings-selections {
+    width: 117px;
+    margin: 0 auto;
+    overflow: auto;
+    clear: both;
+    font-size: 18px;
+}
+
+
+div#custom-step .category-selection,
+div#custom-step .savings-selection {
+    float: left;
+    margin: 5px;
+    background: #eee;
+    -moz-border-radius: 7px;
+    padding: 5px;
+}
+
+div#custom-step .category-selection.selected,
+div#custom-step .savings-selection.selected {
+    background: green;
+    color: white;
+}
+
+div#custom-step .category-selection:hover,
+div#custom-step .savings-selection:hover {
+    background: green;
+    cursor: pointer;
+    color: white;
+}
+
+div#custom-step .savings-selections a {
+    color: black;
+    text-decoration: none;
+}
+
+div#custom-step form div label {
+    float: left;
+    margin-top: 5px;
+}
+
+div#custom-step form textarea,
+div#custom-step form input[type="text"] {
+    font-size: 19px;
+    font-family: courier;
+}
+
+div#about {
+    margin: 80px 0 10px 0;
+}
+
+div#about div#campaign-summary{
+    font-size: 22px;
+    text-align: center;
+    line-height: 25px;
+}
+
+
+div.recent-step,
+div.step {
+    padding: 8px 8px 8px 36px;
+    margin: 0 6px;
+    border-bottom: 1px solid #ccc;
+    color: black;
+}
+
+div.recent-step.first,
+div.step.first {
+    border-top: 1px solid #ccc;
+}
+
+div.recent-step span.savings,
+div.step span.savings {
+    color: white;
+    padding: 3px;
+    -moz-border-radius: 2px;
+    background: darkGreen;
+    text-align: center;
+    width: 25px;
+    
+    display: block;
+    float: left;
+    margin-right: 5px;
+}
+
+div.step span.count {
+    display: block;
+    float: left;
+    padding: 3px;
+    -moz-border-radius: 2px;
+    background: #666;
+    color: white;
+    font-family: courier;
+    margin-right: 5px;
+}
+
+div.recent-step span.date,
+div.step span.date {
+    color: #666;
+    font-size: 12px;
+    float: right;
+    margin-top: 5px;
+}
+
+.button.step-digit {
+    -moz-border-radius: 0px;
+    background: #777;
+}
+
+.button.step-digit:hover {
+    background: #777;
+}
+
+div.category-column {
+    width: 210px;
+    height: 80px;
+    background: #eee;
+    -moz-border-radius: 7px;
+    margin: 5px;
+    padding: 4px;
+    float: left;
+    text-align: center;
+    border: 1px solid white;
+    color: black;
+}
+
+div.category-column:hover {
+    cursor: pointer;
+    background: #dedede;
+}
+
+div.category-column span.category-title {
+    color: green;
+    display: block;
+    clear: right;
+    font-weight: bold;
+    margin-top: 21px;
+}
+
+div.category-column img {
+    float: left;
+}
+
+div.step.transportation {
+    background: url("/GYGB/web/images/bicycle-small.png") no-repeat scroll 4px;    
+}
+div.step.general {
+    background: url("/GYGB/web/images/globe-small.png") no-repeat scroll 4px;    
+}
+div.step.waste {
+    background: url("/GYGB/web/images/recycle-bin-small.png") no-repeat scroll 4px;    
+}
+div.step.energy {
+    background: url("/GYGB/web/images/battery-small.png") no-repeat scroll 4px;    
+}
+div.step.food {
+    background: url("/GYGB/web/images/apple-small.png") no-repeat scroll 4px;    
+}
+
+
+div#steps-taken:hover ,
+div#steps:hover {
+    cursor: pointer;
+}
+
+div#steps-taken a:hover {
+    text-decoration: none;
+}
+
+a.step-box-link:hover {
+    text-decoration: none;
+}
+
+div.step:hover {
+    background-color: #eee;
+}
+
+div#step-list {
+    float: right;
+}
+
+
+/* Steps */
+#filters {
+    width: 210px;
+    float: left;
+}
+
+#filters div.category-column {
+    float: none !important; 
+    height: 23px;
+    width: 195px;
+}
+
+#filters div.category-column span.category-title {
+    marign: 0;
+    display: inline;
+    clear: none;
+}
+
+#filters div.category-column.current {
+    background: #ccc;
+}
+
+#sort-options {
+    float: right;
+    width: 30%;
+    text-align: center;
+}
+
+#sort-options a {
+    color: green;
+    text-decoration: none;
+    border-right: 1px solid #666;
+    padding: 0 6px 0 3px;
+}
+
+#sort-options a.last {
+    border: none;
+}
+
+#sort-options a.current {
+    color: black;
+}
+    
+#sort-options a:hover {
+    text-decoration: underline;
+}
+
+#search-steps {
+    width: 25%;
+    float: right;
+}
+
+#search-steps div {
+    float: left;
+}
+
+#search-steps label {
+    display: none;
+}

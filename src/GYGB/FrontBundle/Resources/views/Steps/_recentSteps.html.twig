@@ -1,0 +1,22 @@
+
+    <div id="steps" style="width: 52%; float: left; margin-bottom: 20px;">
+        <form>
+        <fieldset style="-moz-border-radius: 7px; padding: 4px 0;">
+        {#<legend style="font-size: 20px; color: green; font-weight: bold; margin-left: 27%; padding: 0 5px;">Recent Steps Taken</legend>#}
+                
+        {% for recentStep in recentSteps %}
+            <a class="step-box-link" href="{{ path('steps') }}">
+            <div class="step {{ recentStep.step.category }}">
+                {% if recentStep.step.savingsLabel %}<span class="savings">{{ recentStep.step.savingsLabel }}</span>{% endif %}
+                <span class="step">{{ recentStep.name }}</span>{% if not recentStep.step.stepStartsWithI %}:{% endif %}
+                <span class="step">{{ recentStep.step.abbrvStep }}</span>
+                <span class="date">{{ recentStep.datetimeSubmitted|date("F j, Y g:i") }}</span>
+            </div>
+            </a>
+        {% endfor %}
+            <div class="step" style="border-bottom: none; text-align: center;">
+                <span class="step" style=""><a href="{{ path('steps') }}" style="color: #0066cc;">See more steps &rarr;</a></span>
+            </div>
+        </fieldset>
+        </form>
+    </div>

@@ -1,0 +1,23 @@
+        
+        <div id="step-breakdown" stlye="width: 400px; float: left">
+            <a href="{{ path('steps', {'category' : 'transportation' }) }}">
+                <div class="category-column button">
+                    <img src="{{ asset('images/bicycle.png') }}" /><span class="category-title">Transportation</span>{{ categoryTotals['transportation'] }} Steps
+                </div>
+            </a>
+            <a href="{{ path('steps', {'category' : 'food' }) }}">            
+                <div class="category-column button">
+                    <img src="{{ asset('images/apple.png') }}" /><span class="category-title">Food</span>{{ categoryTotals['food'] }} Steps
+                </div>
+            </a>
+            <a href="{{ path('steps', {'category' : 'waste' }) }}">            
+                <div class="category-column button">
+                    <img src="{{ asset('images/recycle-bin.png') }}" /><span class="category-title">Waste</span>{{ categoryTotals['waste'] }} Steps
+                </div>
+            </a>
+            <a href="{{ path('steps', {'category' : 'energy' }) }}">            
+                <div class="category-column button">
+                    <img src="{{ asset('images/battery.png') }}" /><span class="category-title">Energy</span>{{ categoryTotals['energy'] }} Steps
+                </div>
+            </a>
+         </div>

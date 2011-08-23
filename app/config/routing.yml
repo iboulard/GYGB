@@ -1,0 +1,15 @@
+homeDefault:
+  pattern:  /
+  defaults: { _controller: GYGBFrontBundle:Home:home, stepTaken: false }
+
+home:
+  pattern:  /home/{stepTaken}
+  defaults: { _controller: GYGBFrontBundle:Home:home, stepTaken: false }
+  
+steps:
+  pattern: /steps/{category}/{sort}/{savings}/{id}
+  defaults: { _controller: GYGBFrontBundle:Steps:steps, category: all, sort: popular, savings: all, id: null}
+
+  
+  
+  

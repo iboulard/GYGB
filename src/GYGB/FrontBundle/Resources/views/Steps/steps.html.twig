@@ -1,0 +1,62 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+    <h1 style="text-align: center; font-size: 24px; margin: 10px 0;">Steps</h1>
+         <div id="filters">
+            <a href="{{ path('steps') }}">
+                <div class="category-column button">
+                    <span class="category-title">View All</span> ({{ totalSteps }})
+                </div>
+            </a>
+            
+            <span style="border-bottom: 1px solid #ccc; width: 100%; display: block; margin: 0 0 15px 2px;">&nbsp;</span>
+         
+            {% for c in categoryNames %}
+                <a href="{{ path('steps', {'category' : category ~ " " ~ c, 'sort' : sort, 'savings': savings }) }}">
+                    <div class="category-column button {% if currentCategories[c] is defined %}current{% endif %}">
+                        <img src="{{ asset('images/' ~ categoryIcons[c] ~ '-small.png') }}" /><span class="category-title">{{ c|capitalize }}</span> ({{ categoryTotals[c] }})
+                    </div>
+                </a>
+            {% endfor %}
+
+            <span style="border-bottom: 1px solid #ccc; width: 100%; display: block; margin: 0 0 15px 2px;">&nbsp;</span>
+
+            <a href="{{ path('steps', {'category' : category, 'sort' : sort, 'savings': 'low' }) }}">
+                <div class="category-column button {% if savings == "low" %}current{% endif %}">
+                    <span class="category-title">$</span> Low Savings
+                </div>
+            </a>
+            <a href="{{ path('steps', {'category' : category, 'sort' : sort, 'savings': 'medium' }) }}">
+                <div class="category-column button {% if savings == "medium" %}current{% endif %}">
+                    <span class="category-title">$$</span> Medium Savings
+                </div>
+            </a>
+            <a href="{{ path('steps', {'category' : category, 'sort' : sort, 'savings': 'high' }) }}">
+                <div class="category-column button {% if savings == "high" %}current{% endif %}">
+                    <span class="category-title">$$$</span> High Savings
+                </div>
+            </a>
+         </div>
+
+         <br/>
+
+         <div id="search-steps">
+            <form action="{{ path('steps') }}" method="post" {{ form_enctype(stepSearchForm) }}>
+                {{ form_errors(stepSearchForm) }}
+
+                {{ form_row(stepSearchForm.terms) }}
+
+                {{ form_rest(stepSearchForm) }}
+                <input class="button submit" value="Search" type="submit" />
+            </form>
+
+         </div>
+
+         <div id="sort-options">
+            <a href="{{ path('steps', {'category' : category, 'sort' : 'recent', 'savings': savings }) }}" class="{% if sort == 'recent' %}current{% endif%}">Recent</a>
+            <a href="{{ path('steps', {'category' : category, 'sort' : 'popular', 'savings': savings }) }}" class="last {% if sort == 'popular' %}current{% endif%}">Popular</a>
+         </div>
+
+        {% render "GYGBFrontBundle:Steps:stepList" with {'category' : category, 'sort' : sort, 'terms' : terms, 'savings' : savings, 'id' : id } %}   
+
+{% endblock %}
