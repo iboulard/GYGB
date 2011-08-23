@@ -91,7 +91,7 @@ class StepsController extends Controller
     $categoryNames = array('food', 'transportation', 'energy', 'waste', 'general');
     $currentCategories = explode(' ', $category);
     
-    print_r($currentCategories);
+    //print_r($currentCategories);
     
     $categoryIcons = array('food' => 'apple', 'transportation' => 'bicycle', 'energy' => 'battery', 'waste' => 'recycle-bin', 'general' => 'globe');
     
