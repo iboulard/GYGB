@@ -10,6 +10,14 @@ steps:
   pattern: /steps/{category}/{sort}/{savings}/{id}
   defaults: { _controller: GYGBFrontBundle:Steps:steps, category: all, sort: popular, savings: all, id: null}
 
-  
+# ADMIN =====================
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin  
   
   

@@ -56,6 +56,8 @@ Get Your Greenback - TODO
 		
 		- $$$ saved graph
 		
+		- fix post problem
+		
 		
 	2.	Steps
 	

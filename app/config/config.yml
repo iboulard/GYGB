@@ -16,6 +16,18 @@ framework:
         default_locale: %locale%
         auto_start:     true
 
+services:
+    gygb.back.admin.step:
+      class: GYGB\BackBundle\Admin\StepAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: Step Data, label: Steps }
+      arguments: [null, GYGB\BackBundle\Entity\Step, GYGBBackBundle:StepAdmin]
+    gygb.back.admin.stepsubmission:
+      class: GYGB\BackBundle\Admin\StepSubmissionAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: Step Data, label: Step Submissions }
+      arguments: [null, GYGB\BackBundle\Entity\StepSubmission, GYGBBackBundle:StepSubmissionAdmin]
+
 # Twig Configuration
 twig:
     debug:            %kernel.debug%
@@ -56,4 +68,4 @@ swiftmailer:
 
 jms_security_extra:
     secure_controllers:  true
-    secure_all_services: false
+    secure_all_services: false      

@@ -11,7 +11,7 @@ class StepsController extends Controller
 
   public function stepsTakenAction($extendLayout = false)
   {
-    $stepRepository = $this->getDoctrine()->getRepository('GYGBFrontBundle:Step');
+    $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
     $em = $this->getDoctrine()->getEntityManager();
 
     $stepCount = (string) $stepRepository->getNumberOfSteps($em);
@@ -40,7 +40,7 @@ class StepsController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
-    $stepSubmissionRepository = $this->getDoctrine()->getRepository('GYGBFrontBundle:StepSubmission');
+    $stepSubmissionRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:StepSubmission');
     $recentSteps = $stepSubmissionRepository->getRecentSteps('12', $em);
 
     return $this->render('GYGBFrontBundle:Steps:_recentSteps.html.twig', array(
@@ -60,7 +60,7 @@ class StepsController extends Controller
   public function stepListAction($category = 'all', $sort = 'popular', $savings = 'all', $terms = null, $id = null)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $stepRepository = $this->getDoctrine()->getRepository('GYGBFrontBundle:Step');
+    $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
 
     if(isset($terms))
     {
@@ -86,14 +86,16 @@ class StepsController extends Controller
 
   public function stepsAction($category = 'all', $sort = 'popular', $savings = 'all', $id = null)
   {
-    $stepRepository = $this->getDoctrine()->getRepository('GYGBFrontBundle:Step');
+    $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
     $request = $this->getRequest();
     $categoryNames = array('food', 'transportation', 'energy', 'waste', 'general');
+    $categoryIcons = array('food' => 'apple', 'transportation' => 'bicycle', 'energy' => 'battery', 'waste' => 'recycle-bin', 'general' => 'globe');
+    
+    
     $currentCategories = explode(' ', $category);
     
-    //print_r($currentCategories);
+    print_r($currentCategories);
     
-    $categoryIcons = array('food' => 'apple', 'transportation' => 'bicycle', 'energy' => 'battery', 'waste' => 'recycle-bin', 'general' => 'globe');
     
     
     // get step counts (total, and category totals)
@@ -135,7 +137,7 @@ class StepsController extends Controller
 
   public function getCategoryTotals()
   {
-    $stepRepository = $this->getDoctrine()->getRepository('GYGBFrontBundle:Step');
+    $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
 
     $allSteps = $stepRepository->findAll();
     $categoryTotals = array('all' => 0, 'transportation' => 0, 'food' => 0, 'waste' => 0, 'energy' => 0, 'general' => 0);

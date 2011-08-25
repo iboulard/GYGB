@@ -12,7 +12,7 @@ class HomeController extends Controller
   public function homeAction($stepTaken)
   {
     // get repository, entity manager, and request
-    $stepRepository = $this->getDoctrine()->getRepository('GYGBFrontBundle:Step');
+    $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
     $em = $this->getDoctrine()->getEntityManager();
     $categoryNames = array('food', 'transportation', 'energy', 'waste', 'general');
     $categoryIcons = array('food' => 'apple', 'transportation' => 'bicycle', 'energy' => 'battery', 'waste' => 'recycle-bin', 'general' => 'globe');
@@ -47,7 +47,7 @@ class HomeController extends Controller
         }
         else
         {
-          $step = new \GYGB\FrontBundle\Entity\Step();
+          $step = new \GYGB\BackBundle\Entity\Step();
           $step->setStep($data['step']);
           $step->setCount('1');
           $step->setCategory($data['category']);
@@ -57,7 +57,7 @@ class HomeController extends Controller
         $em->persist($step);
         $em->flush();
 
-        $stepSubmission = new \GYGB\FrontBundle\Entity\StepSubmission();
+        $stepSubmission = new \GYGB\BackBundle\Entity\StepSubmission();
         $stepSubmission->setName($data['name']);
         $stepSubmission->setDatetimeSubmitted(new \DateTime());
         $stepSubmission->setStep($step);
@@ -84,7 +84,7 @@ class HomeController extends Controller
       $em->persist($step);
       $em->flush();
 
-      $stepSubmission = new \GYGB\FrontBundle\Entity\StepSubmission();
+      $stepSubmission = new \GYGB\BackBundle\Entity\StepSubmission();
       //$stepSubmission->setName($data['name']);
       $stepSubmission->setDatetimeSubmitted(new \DateTime());
       $stepSubmission->setStep($step);
