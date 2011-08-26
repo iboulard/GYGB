@@ -1,0 +1,3 @@
+[submodule "vendor/bundles/CCETC/CCETCAdminExtensionBundle"]
+	path = vendor/bundles/CCETC/CCETCAdminExtensionBundle
+	url = git://github.com/CCETC/CCETCAdminExtensionBundle.git

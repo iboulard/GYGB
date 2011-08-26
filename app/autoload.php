@@ -17,6 +17,7 @@ $loader->registerNamespaces(array(
     'GJGB' => __DIR__.'/../src/',  
     'Knp'          => __DIR__.'/../vendor/bundles',
     'Sonata'          => __DIR__.'/../vendor/bundles',
+    'CCETC'          => __DIR__.'/../vendor/bundles',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',
