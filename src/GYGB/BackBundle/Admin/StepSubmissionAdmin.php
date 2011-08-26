@@ -25,7 +25,7 @@ class StepSubmissionAdmin extends Admin
     $listMapper
             ->add('name', 'string', array('name' => 'Submitted By'))
             ->add('datetimeSubmitted', 'datetime', array('name' => 'Date Submitted'))
-            ->add('step', null, array('name' => 'Step'))
+            ->add('Step', null, array('name' => 'Step'))
             
             // add custom action links
             ->add('_action', 'actions', array(

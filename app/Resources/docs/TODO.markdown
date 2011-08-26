@@ -1,21 +1,7 @@
 Get Your Greenback - TODO
 =========================
 
-	00.
-	
-		- filter by multiple categories
-		
-			- build current categories array
-			
-			- build category links in controller
-		
-		- sort by recent
-		
-			- group by step, order by max(ss.datetimeSubmitted)
-		
-//		- doctrine default value
-
-	0.	Users
+#	0.	Users
 	
 		- anyone can submit step: name, step, category, savings
 					
@@ -32,7 +18,7 @@ Get Your Greenback - TODO
 			- include all steps in counts (simpler, no one will count)
 
 
-	1.	Home
+#	1.	Home
 	
 //		- link path steps to step page
 
@@ -46,7 +32,7 @@ Get Your Greenback - TODO
 		
 			- labels in fields
 			
-			- autocomplete for what step
+//			- autocomplete for what step
 			
 //			- what step starts with I
 		
@@ -59,34 +45,32 @@ Get Your Greenback - TODO
 		- fix post problem
 		
 		
-	2.	Steps
+#	2.	Steps
 	
-		- view all unique steps
+//		- view all unique steps
 		
-			- filter by category
+//			- filter by category
 			
-				- multiple categories
+//				- multiple categories
 			
-			- sort by count, recent activity
+//			- sort by count, recent activity
 			
-				- recent
+//				- recent
 				
-					- most recent date of a submission
+//					- most recent date of a submission
 					
 //			- filter by savings
 			
 		- incorporate external links
-							
-		- search step text
+	
+			- suggest steps that highlight orgs
+	
+//		- search step text
 		
 //				- LIKE %terms%				
 			
-			- incorporate category? popularity?
+//			- save searches
 			
-			- save searches
-			
-			- autocomplete with suggestions?
-
 		- should the step page show anything about step submissions?
 		
 			- click on step, show more details
@@ -97,7 +81,9 @@ Get Your Greenback - TODO
 
 					- include user's e-mails if they allow it?
 			
-	3.	Administration
+			- handle bigger steps
+		
+#	3.	Administration
 	
 		-	step approval
 		
@@ -106,6 +92,6 @@ Get Your Greenback - TODO
 		-	showcased steps
 		
 		
-	4.	Degradation
+#	4.	Degradation
 	
 		- make sure everything works with javascript

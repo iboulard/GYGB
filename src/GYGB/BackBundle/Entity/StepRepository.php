@@ -47,7 +47,7 @@ class StepRepository extends EntityRepository
   public function findRecentlyUpdated($em)
   {
     $query = $em->createQuery(
-                    "SELECT s, ss FROM GYGBBackBundle:Step s JOIN s.submissions ss"
+                    "SELECT s, ss FROM GYGBBackBundle:Step s JOIN s.submissions ss ORDER BY ss.datetimeSubmitted DESC"
     );
 
     return $query->getResult();
@@ -89,7 +89,8 @@ class StepRepository extends EntityRepository
     }
     else if(isset($sort) && $sort == 'recent')
     {
-      $query->orderBy('s.step', 'DESC');
+      $query->join('s.submissions', 'ss');
+      $query->orderBy('ss.datetimeSubmitted', 'DESC');
     }
     
     return $query->getQuery()->getResult();

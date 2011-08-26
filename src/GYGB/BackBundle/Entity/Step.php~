@@ -54,7 +54,7 @@ class Step
   
   /** @ORM\OneToMany(targetEntity="StepSubmission", mappedBy="Step", cascade={"persist", "remove"}) */
   protected $submissions;
-
+  
   function onPrePersist()
   {
     $this->category = 'general';

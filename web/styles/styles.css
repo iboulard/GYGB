@@ -25,9 +25,15 @@ a {
     text-decoration: none;
 }
 
+
 a:hover {
     text-decoration: underline;
 }
+
+a.block-link:hover {
+    text-decoration: none;
+}
+
 
 div#tag-line {
     font-size: 3em;

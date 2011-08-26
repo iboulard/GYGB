@@ -7,8 +7,8 @@ home:
   defaults: { _controller: GYGBFrontBundle:Home:home, stepTaken: false }
   
 steps:
-  pattern: /steps/{category}/{sort}/{savings}/{id}
-  defaults: { _controller: GYGBFrontBundle:Steps:steps, category: all, sort: popular, savings: all, id: null}
+  pattern: /steps/{categories}/{sort}/{savings}/{id}
+  defaults: { _controller: GYGBFrontBundle:Steps:steps, categories: all, sort: popular, savings: all, id: null}
 
 # ADMIN =====================
 admin:

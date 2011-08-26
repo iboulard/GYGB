@@ -20,6 +20,16 @@ class HomeController extends Controller
     
     $basicSteps = $stepRepository->getBasicSteps();
 
+    $allStepObjects = $stepRepository->findAll();
+    $allSteps = array();
+    $allStepInfo = array();
+    foreach($allStepObjects as $step)
+    {
+      $allStepInfo[$step->getStep()] = array('category' => $step->getCategory(), 'savings' => $step->getSavings(), 'step' => $step->getStep());
+      $allSteps[] = $step->getStep();
+    }
+    
+    
     $customStepForm = $this->createFormBuilder()
             ->add('name', 'text', array('label' => 'Your Name', 'required' => false))
             ->add('category', 'hidden', array('required' => false))
@@ -105,6 +115,8 @@ class HomeController extends Controller
         'stepTaken' => $stepTaken,
         'categoryNames' => $categoryNames,
         'categoryIcons' => $categoryIcons,
+        'allSteps' => $allSteps,
+        'allStepInfo' => $allStepInfo
     ));
   }
 

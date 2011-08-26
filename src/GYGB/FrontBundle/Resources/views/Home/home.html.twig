@@ -1,6 +1,42 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
+
+<script>
+        var stepInfo = new Object;
+
+        {% for s in allStepInfo %}
+            stepInfo["{{s.step}}"] = new Object;
+            stepInfo["{{s.step}}"]['category'] = "{{ s.category }}";
+            stepInfo["{{s.step}}"]['savings'] = "{{ s.savings }}";
+            stepInfo["{{s.step}}"]['step'] = "{{ s.step }}";
+        {% endfor %}
+
+        $(function() {
+		var availableTags = [
+		{% for step in allSteps %}
+                        "{{ step | raw }}",
+                {% endfor %}
+                ];
+		$( "#form_step" ).autocomplete({
+			source: availableTags,
+                        select: function(event, ui) {
+                            var category = stepInfo[ui.item.value]['category'];
+                            
+                            $("div.category-selection").removeClass("selected");
+                            var catBox = $("div#" + category + ".category-selection");
+                            catBox.addClass("selected");
+                            
+                            var savings = stepInfo[ui.item.value]['savings'];
+
+                            $("div.savings-selection").removeClass("selected");
+                            var savingsBox = $("div#" + savings + ".savings-selection");
+                            savingsBox.addClass("selected");
+                        }
+		});
+	});
+</script>
+
     <div class="block" id="whats-your-step">
         <span style="margin: 10px; font-size: 2em; width: 324px; float: right;">What's your step?</span>
         {#<div style="width: 100%; font-size: 24px; text-align: center; font-weight: bold;">Tell us what you've done to save energy and money:</div><br/>#}

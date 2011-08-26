@@ -3,7 +3,7 @@
 {% block content %}
     <h1 style="text-align: center; font-size: 24px; margin: 10px 0;">Steps</h1>
          <div id="filters">
-            <a href="{{ path('steps') }}">
+            <a class="block-link" href="{{ path('steps') }}">
                 <div class="category-column button">
                     <span class="category-title">View All</span> ({{ totalSteps }})
                 </div>
@@ -11,8 +11,10 @@
             
             <span style="border-bottom: 1px solid #ccc; width: 100%; display: block; margin: 0 0 15px 2px;">&nbsp;</span>
          
+
+            
             {% for c in categoryNames %}
-                <a href="{{ path('steps', {'category' : category ~ " " ~ c, 'sort' : sort, 'savings': savings }) }}">
+                <a class="block-link" href="{{ path('steps', {'categories' : categoryLinks[c], 'sort' : sort, 'savings': savings }) }}">
                     <div class="category-column button {% if currentCategories[c] is defined %}current{% endif %}">
                         <img src="{{ asset('images/' ~ categoryIcons[c] ~ '-small.png') }}" /><span class="category-title">{{ c|capitalize }}</span> ({{ categoryTotals[c] }})
                     </div>
@@ -21,17 +23,17 @@
 
             <span style="border-bottom: 1px solid #ccc; width: 100%; display: block; margin: 0 0 15px 2px;">&nbsp;</span>
 
-            <a href="{{ path('steps', {'category' : category, 'sort' : sort, 'savings': 'low' }) }}">
+            <a class="block-link" href="{{ path('steps', {'categories' : categories, 'sort' : sort, 'savings': 'low' }) }}">
                 <div class="category-column button {% if savings == "low" %}current{% endif %}">
                     <span class="category-title">$</span> Low Savings
                 </div>
             </a>
-            <a href="{{ path('steps', {'category' : category, 'sort' : sort, 'savings': 'medium' }) }}">
+            <a class="block-link" href="{{ path('steps', {'categories' : categories, 'sort' : sort, 'savings': 'medium' }) }}">
                 <div class="category-column button {% if savings == "medium" %}current{% endif %}">
                     <span class="category-title">$$</span> Medium Savings
                 </div>
             </a>
-            <a href="{{ path('steps', {'category' : category, 'sort' : sort, 'savings': 'high' }) }}">
+            <a class="block-link" href="{{ path('steps', {'categories' : categories, 'sort' : sort, 'savings': 'high' }) }}">
                 <div class="category-column button {% if savings == "high" %}current{% endif %}">
                     <span class="category-title">$$$</span> High Savings
                 </div>
@@ -53,10 +55,10 @@
          </div>
 
          <div id="sort-options">
-            <a href="{{ path('steps', {'category' : category, 'sort' : 'recent', 'savings': savings }) }}" class="{% if sort == 'recent' %}current{% endif%}">Recent</a>
-            <a href="{{ path('steps', {'category' : category, 'sort' : 'popular', 'savings': savings }) }}" class="last {% if sort == 'popular' %}current{% endif%}">Popular</a>
+            <a href="{{ path('steps', {'categories' : categories, 'sort' : 'recent', 'savings': savings }) }}" class="{% if sort == 'recent' %}current{% endif%}">Recent</a>
+            <a href="{{ path('steps', {'categories' : categories, 'sort' : 'popular', 'savings': savings }) }}" class="last {% if sort == 'popular' %}current{% endif%}">Popular</a>
          </div>
 
-        {% render "GYGBFrontBundle:Steps:stepList" with {'category' : category, 'sort' : sort, 'terms' : terms, 'savings' : savings, 'id' : id } %}   
+        {% render "GYGBFrontBundle:Steps:stepList" with {'categories' : categories, 'sort' : sort, 'terms' : terms, 'savings' : savings, 'id' : id } %}   
 
 {% endblock %}

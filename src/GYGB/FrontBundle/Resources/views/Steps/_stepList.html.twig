@@ -5,7 +5,7 @@
         {#<legend style="font-size: 20px; color: green; font-weight: bold; margin-left: 27%; padding: 0 5px;">Steps Taken</legend>#}
                 
         {% for step in steps %}
-            <a href="{{ path('steps', {'category' : category, 'sort' : sort, 'savings': savings, 'id' : step.id }) }}">
+            <a class="block-link" href="{{ path('steps', {'categories' : categories, 'sort' : sort, 'savings': savings, 'id' : step.id }) }}">
                 <div class="step {{ step.category }} {% if loop.first %}first{% endif %}">
                     {% if step.savingsLabel %}<span class="savings">{{ step.savingsLabel }}</span>{% endif %}
                     <span class="count">{{ step.count }}</span>

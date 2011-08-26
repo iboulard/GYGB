@@ -36,7 +36,7 @@ class StepSubmission
     private $datetimeSubmitted;
 
     /** @ORM\ManyToOne(targetEntity="Step", inversedBy="StepSubmission") */
-    protected $step;
+    protected $Step;
   
 
     /**
@@ -92,13 +92,13 @@ class StepSubmission
     }
 
     /**
-     * Set step
+     * Set Step
      *
-     * @param GYGB\BackBundle\Entity\Step $step
+     * @param GYGB\BackBundle\Entity\Step $Step
      */
-    public function setStep(\GYGB\BackBundle\Entity\Step $step)
+    public function setStep(\GYGB\BackBundle\Entity\Step $Step)
     {
-        $this->step = $step;
+        $this->Step = $Step;
     }
 
     /**
@@ -108,6 +108,6 @@ class StepSubmission
      */
     public function getStep()
     {
-        return $this->step;
+        return $this->Step;
     }
 }
