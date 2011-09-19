@@ -8,5 +8,6 @@ div.step-form img {
 }
 
 div#custom-step {
-        width: 405px;
+        overflow: hidden;
 }
+
