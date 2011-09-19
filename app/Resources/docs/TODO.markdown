@@ -1,6 +1,70 @@
 Get Your Greenback - TODO
 =========================
 
+
+#	000. Meeting Changes
+
+//	z. step cat filters for recent
+	
+//	x. popular filter
+
+//	z. form submissions
+	
+		
+	
+//	z. header messages... POST?
+
+//	a. home
+
+//		- Commit your organization
+		
+//			- link instaed of button
+			
+//			- logo
+			
+//		- name problem with two forms
+
+//		- logos off screen
+		
+//		- swap about with recent steps
+		
+//		- category names in blocks
+		
+	
+//	b. Steps
+	
+//		- options border
+		
+//		- menu?
+		
+	
+//	c. Static Home
+	
+//		- fix
+		
+	d. upload to server
+	
+		- add to git
+		
+		- add domain
+		
+	e.	browser test	
+	
+	
+	
+#	x.	incomplete from design weekend
+
+		- logo upload
+		
+		- double forms on home page: avoid having to add hidden fields on eacah
+
+#	00.
+
+		-  StepRepository, line 90 order by count of steps:
+			SELECT Step.id, step, StepSubmission.id, name FROM Step JOIN StepSubmission WHERE Step.id = StepSubmission.step_id Group By Step.id ORDER BY count(Step.id) DESC
+		
+		- step translation: use colon if step contains my, or similar words
+
 #	0.	Users
 	
 		- anyone can submit step: name, step, category, savings
@@ -86,6 +150,28 @@ Get Your Greenback - TODO
 #	3.	Administration
 	
 		-	step approval
+		
+			- db
+			
+				- approval interface
+				
+					- finish approve action
+					
+					- batch approve action
+					
+//					- count confusing?
+				
+			- front end
+			
+//				- mark as unapproved
+				
+//				- only show approved
+				
+				- show from session
+				
+					- store in session
+					
+					- add session steps to recent steps, step list results, and counts?
 		
 		-	basic steps
 		

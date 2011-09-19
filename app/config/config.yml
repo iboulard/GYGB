@@ -30,6 +30,15 @@ services:
         - { name: sonata.admin, manager_type: orm, group: Step Data, label: Step Submissions }
       arguments: [null, GYGB\BackBundle\Entity\StepSubmission, GYGBBackBundle:StepSubmissionAdmin]
 
+    errorReports:
+      class: CCETC\ErrorReportBundle\Resources\config\Config
+      arguments: [haggertypat@gmail.com]   
+
+    adminSettings:
+      class: Sonata\AdminBundle\Resources\config\Settings
+      arguments: [Get Your GreenBack, haggertypat@gmail.com]
+
+
 # Twig Configuration
 twig:
     debug:            %kernel.debug%
@@ -71,3 +80,22 @@ swiftmailer:
 jms_security_extra:
     secure_controllers:  true
     secure_all_services: false      
+    
+# FOS user bundle
+fos_user:
+  db_driver: orm
+  firewall_name: main
+  user_class: GYGB\BackBundle\Entity\User
+  from_email:
+    address: noreply@ccetompkins.org
+    sender_name:    Get Your GreenBack
+  registration:
+    confirmation:
+      enabled:    true
+      template:   FOSUserBundle:Registration:email.txt.twig
+    #form:
+    #  type:               fos_user_registration
+    #  handler:            fos_user.registration.form.handler.default
+    #  name:               fos_user_registration_form
+    #  validation_groups:  [Registration]
+    

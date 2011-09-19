@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class StepSubmission
 {
+
     /**
      * @var integer $id
      *
@@ -20,24 +21,32 @@ class StepSubmission
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string $name
      *
      * @ORM\Column(name="name", type="string", length=255, nullable="true")
      */
     private $name;
-
+    /**
+     * @var integer $website
+     *
+     * @ORM\Column(name="website", type="string", length="255", nullable="true")
+     */
+    private $website;
+    /**
+     * @var integer $type
+     *
+     * @ORM\Column(name="type", type="string", length="255", nullable="true")
+     */
+    private $type;
     /**
      * @var datetime $datetimeSubmitted
      *
      * @ORM\Column(name="datetimeSubmitted", type="datetime")
      */
     private $datetimeSubmitted;
-
     /** @ORM\ManyToOne(targetEntity="Step", inversedBy="StepSubmission") */
     protected $Step;
-  
 
     /**
      * Get id
@@ -49,7 +58,7 @@ class StepSubmission
         return $this->id;
     }
 
-     /**
+    /**
      * Set name
      *
      * @param string $name
@@ -66,10 +75,11 @@ class StepSubmission
      */
     public function getName()
     {
-        if(!isset($this->name)) return 'Anonymous';
-        else return $this->name;
+        if(!isset($this->name))
+            return 'Anonymous';
+        else
+            return $this->name;
     }
-
 
     /**
      * Set datetimeSubmitted
@@ -109,5 +119,51 @@ class StepSubmission
     public function getStep()
     {
         return $this->Step;
+    }
+
+    public function __toString()
+    {
+        return $this->getName() . ' - ' . $this->getStep();
+    }
+
+
+    /**
+     * Set website
+     *
+     * @param string $website
+     */
+    public function setWebsite($website)
+    {
+        $this->website = $website;
+    }
+
+    /**
+     * Get website
+     *
+     * @return string 
+     */
+    public function getWebsite()
+    {
+        return $this->website;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

@@ -1,12 +1,14 @@
 
-    <div id="step-list" style="width: 52%; margin: 15px 0 20px 0;">
+    <div id="step-list" style="width: 50%; margin: 15px 0 20px 0;">
         <form>
         <fieldset style="-moz-border-radius: 7px; padding: 4px 0;">
         {#<legend style="font-size: 20px; color: green; font-weight: bold; margin-left: 27%; padding: 0 5px;">Steps Taken</legend>#}
                 
         {% for step in steps %}
-            <a class="block-link" href="{{ path('steps', {'categories' : categories, 'sort' : sort, 'savings': savings, 'id' : step.id }) }}">
-                <div class="step {{ step.category }} {% if loop.first %}first{% endif %}">
+{#            <a class="block-link" href="{{ path('steps', {'categories' : categories, 'sort' : sort, 'savings': savings, 'id' : step.id }) }}"> #}
+            <a class="block-link" href="">
+
+                <div class="step {{ step.category }} {% if loop.first %}first{% endif %} {% if loop.last %}last{% endif %}">
                     {% if step.savingsLabel %}<span class="savings">{{ step.savingsLabel }}</span>{% endif %}
                     <span class="count">{{ step.count }}</span>
                     <span class="step">{{ step.step }}</span>

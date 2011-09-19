@@ -15,15 +15,17 @@ class StepRepository extends EntityRepository
 
   public function getNumberOfSteps($em)
   {
-    $query = $em->createQuery('SELECT SUM(s.count) FROM GYGBBackBundle:Step s');
-    $count = $query->getSingleScalarResult();
-
-    return $count;
+      // TODO: approval, add WHERE s.approved=true
+    $query = $em->createQuery('SELECT ss.id FROM GYGBBackBundle:StepSubmission ss JOIN ss.Step s');
+    $count = $query->getResult();
+    
+    return count($count);
   }
 
   public function getBasicSteps()
   {
-    $steps = $this->findByIsBasic('1');
+    // TODO: approval, add 'approved' => '1'  
+    $steps = $this->findBy(array('isBasic' => '1'));
 
     $basicSteps = array();
 
@@ -37,6 +39,7 @@ class StepRepository extends EntityRepository
 
   public function findStepsFromTerms($terms, $em)
   {
+      // TODO: approval, add WHERE s.approved = true
     $query = $em->createQuery(
                     "SELECT s FROM GYGBBackBundle:Step s WHERE s.step LIKE '%" . $terms . "%'"
     );
@@ -44,9 +47,13 @@ class StepRepository extends EntityRepository
     return $query->getResult();
   }
 
+  /*
+   * TODO: this method does not filter AT ALL, it was moved to findByFiltersAndSorts
+   */
   public function findRecentlyUpdated($em)
   {
-    $query = $em->createQuery(
+     // TODO: approval, add WHERE s.approved = true
+     $query = $em->createQuery(
                     "SELECT s, ss FROM GYGBBackBundle:Step s JOIN s.submissions ss ORDER BY ss.datetimeSubmitted DESC"
     );
 
@@ -85,13 +92,18 @@ class StepRepository extends EntityRepository
     
     if(isset($sort) && $sort == 'popular')
     {
-      $query->orderBy('s.count', 'DESC');
+        $query->join('s.submissions', 'ss');
+        $query->groupBy('s.id');
+//        $query->orderBy('count(s.id)', 'DESC');
     }
     else if(isset($sort) && $sort == 'recent')
     {
       $query->join('s.submissions', 'ss');
       $query->orderBy('ss.datetimeSubmitted', 'DESC');
     }
+    
+    // TODO: approval, uncomment
+    //$query->andWhere('s.approved = true');
     
     return $query->getQuery()->getResult();
   }

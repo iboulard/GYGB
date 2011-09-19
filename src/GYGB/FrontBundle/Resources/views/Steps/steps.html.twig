@@ -1,13 +1,36 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
-    <h1 style="text-align: center; font-size: 24px; margin: 10px 0;">Steps</h1>
-         <div id="filters">
+      <div style="width: 100%; float: left; margin-top: 15px;">
+         <div style="width: 100%; background: #666; float: left; height: 40px; border-radius: 7px 7px 7px 0">
+                
+
+                 <div id="search-steps">
+                    <form action="{{ path('steps') }}" method="post" {{ form_enctype(stepSearchForm) }}>
+                        {{ form_errors(stepSearchForm) }}
+
+                        {{ form_row(stepSearchForm.terms) }}
+
+                        {{ form_rest(stepSearchForm) }}
+                        <input class="button submit" value="Search" type="submit" />
+                    </form>
+
+                 </div>
+
+                 <div id="sort-options">
+                    <a href="{{ path('steps', {'categories' : categories, 'sort' : 'recent', 'savings': savings }) }}" class="button {% if sort == 'recent' %}current{% endif%}">Recent</a>
+                    <a href="{{ path('steps', {'categories' : categories, 'sort' : 'popular', 'savings': savings }) }}" class="button last {% if sort == 'popular' %}current{% endif%}">Popular</a>
+                 </div>
+         </div>
+
+ 
+        <div id="filters">
             <a class="block-link" href="{{ path('steps') }}">
-                <div class="category-column button">
+                <div class="category-column button {% if savings == "all" and currentCategories['all'] is defined %}current{% endif %}">
                     <span class="category-title">View All</span> ({{ totalSteps }})
                 </div>
             </a>
+            
             
             <span style="border-bottom: 1px solid #ccc; width: 100%; display: block; margin: 0 0 15px 2px;">&nbsp;</span>
          
@@ -42,23 +65,17 @@
 
          <br/>
 
-         <div id="search-steps">
-            <form action="{{ path('steps') }}" method="post" {{ form_enctype(stepSearchForm) }}>
-                {{ form_errors(stepSearchForm) }}
-
-                {{ form_row(stepSearchForm.terms) }}
-
-                {{ form_rest(stepSearchForm) }}
-                <input class="button submit" value="Search" type="submit" />
-            </form>
-
-         </div>
-
-         <div id="sort-options">
-            <a href="{{ path('steps', {'categories' : categories, 'sort' : 'recent', 'savings': savings }) }}" class="{% if sort == 'recent' %}current{% endif%}">Recent</a>
-            <a href="{{ path('steps', {'categories' : categories, 'sort' : 'popular', 'savings': savings }) }}" class="last {% if sort == 'popular' %}current{% endif%}">Popular</a>
-         </div>
-
         {% render "GYGBFrontBundle:Steps:stepList" with {'categories' : categories, 'sort' : sort, 'terms' : terms, 'savings' : savings, 'id' : id } %}   
+        
+        <div id="ads">
+                {% for a in orgAds %}
+                        <div style="margin: 0 auto; {% if a.width is defined %}width: {{ a.width }}px{% else %}90px{% endif %}">
+                        <a href="{{ a.website }}">
+                                <img style="{% if a.width is defined %}width: {{ a.width }}px{% endif %}" src="{{ asset('images/logos/'~a.logo) }}" />
+                        </a>
+                        </div>
+                {% endfor %}
+        </div>
 
+     </div>
 {% endblock %}

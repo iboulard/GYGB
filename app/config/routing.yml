@@ -1,14 +1,47 @@
+#homeDefault:
+#  pattern:  /
+#  defaults: { _controller: GYGBFrontBundle:Home:staticHome }
+
 homeDefault:
   pattern:  /
   defaults: { _controller: GYGBFrontBundle:Home:home, stepTaken: false }
 
 home:
   pattern:  /home/{stepTaken}
-  defaults: { _controller: GYGBFrontBundle:Home:home, stepTaken: false }
+  defaults: { _controller: GYGBFrontBundle:Home:home, stepTaken: false, formSubmitted: null }
+
+orgForm:
+  pattern:  /home/false/organization
+  defaults: { _controller: GYGBFrontBundle:Home:home, stepTaken: false, formSubmitted: organization }
+
+stepForm:
+  pattern:  /home/true/step
+  defaults: { _controller: GYGBFrontBundle:Home:home, stepTaken: false, formSubmitted: step }
+
+
+basic:
+  pattern:  /basic
+  defaults: { _controller: GYGBFrontBundle:Home:staticHome }
+
+  
   
 steps:
   pattern: /steps/{categories}/{sort}/{savings}/{id}
-  defaults: { _controller: GYGBFrontBundle:Steps:steps, categories: all, sort: popular, savings: all, id: null}
+  defaults: { _controller: GYGBFrontBundle:Steps:steps, categories: all, sort: recent, savings: all, id: null}
+
+help:
+  pattern: /help
+  defaults: { _controller: CCETCErrorReportBundle:ErrorReport:errorReport, includeBreadcrumb: false, flash: message, redirect: home, baseLayout: "::layout.html.twig", formRoute: help }
+
+
+adminHelp:
+  pattern: /adminHelp
+  defaults: { _controller: CCETCErrorReportBundle:ErrorReport:errorReport, includeBreadcrumb: true, flash: sonata_flash_success, redirect: sonata_admin_dashboard, baseLayout: SonataAdminBundle::standard_layout.html.twig, formRoute: adminHelp }
+  
+adminHome:
+  pattern: /admin/dashboard
+  defaults: { _controller: SonataAdminBundle:Core:dashboard }
+
 
 # ADMIN =====================
 admin:
@@ -20,4 +53,25 @@ _sonata_admin:
     type: sonata_admin
     prefix: /admin  
   
+    
+    
+# FOSUser Bundle
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /change-password  
   

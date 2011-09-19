@@ -23,7 +23,8 @@ class AppKernel extends Kernel
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\BluePrintBundle\SonataBluePrintBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
-            new CCETC\AdminExtensionBundle\CCETCAdminExtensionBundle(),
+            new CCETC\ErrorReportBundle\CCETCErrorReportBundle(),
+            new FOS\UserBundle\FOSUserBundle(),            
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

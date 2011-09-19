@@ -23,15 +23,21 @@
     </head>
 
     <body>
+        {% if(app.session.hasFlash('message')) %}
+                <div class="header-message">{{ app.session.getFlash('message') }}</div>
+        {% endif %}
         <div id="page-container">
-            <div id="header">
-                <div id="tag-line">
-                    <a href="{{ path('home')}}">Take a step to <span id="logo">Get Your GreenBack</span></a>.
-                </div>
-                <img id="money-bag" src="{{ asset('images/dollar.png') }}" />
+    
+            <div id="header" style="">
+                <a href="{{ path('home') }}"><img id="logo" src="{{ asset('images/logo.png') }}" /></a>
+                {% if onStaticHome is not defined %} 
+                {% include "GYGBFrontBundle:Home:_about.html.twig" %}  {% endif %}
+                {% if onStepsPage is defined %}<span style="float: left; margin: 30px 0 0 10px;"><a href="{{ path('home') }}">&larr; Home</a></span>{% endif %}
             </div>
 
             <div id="content">
+                {#<a href="{{ path('home') }}"><img id="logo" src="{{ asset('images/logo.png') }}" /></a>#}
+
                 {% block content %}
                 {% endblock %}
 

@@ -1,0 +1,21 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+<div class="staticAbout">
+    {% include "GYGBFrontBundle:Home:_about.html.twig" %}  
+</div>       
+
+<div style="margin: 15px 0; padding: 30px 0 15px 0; width: 100%; border-top: 1px solid #ddd;">
+        <div style="width: 400px; font-size: 30px; color: #666; margin: 0 auto;">
+                Check back soon for more!
+        </div>
+</div>
+
+<div id="partners" style="border-top: 1px solid #ddd;">
+            <h2>Founding Partners</h2>
+ 
+        
+    {% include "GYGBFrontBundle:Home:_logos.html.twig" with {'logoBlocks' : partnerBlocks } %}
+</div>    
+
+{% endblock %}

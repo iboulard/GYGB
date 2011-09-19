@@ -1,3 +1,13 @@
+/* green hex: #4a793c */
+
+h2 {
+/*     border-bottom: 1px solid #ddd;
+     width: 400px;*/
+     font-size: 38px;
+     margin: 20px 0;
+     padding: 0 3px;
+}
+
 .button {
     webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -7,14 +17,17 @@
     -moz-box-shadow: 0 1px 1px rgba(0,0,0, 0.5);
     -webkit-box-shadow: 0 1px 1px rgba(0,0,0, 0.5);
 
-    border: 1px solid darkGreen;
-    background: green;
+    border: 1px solid #4a793c;
+    background: #4a793c;
     color: white;
     margin: 2px;
+    
+    padding: 3px 6px;
 }
 
 .button:hover {
-    background: darkGreen;
+    background: #325228;
+    text-decoration: none;
 }
 
 .submit {
@@ -23,6 +36,7 @@
 
 a {
     text-decoration: none;
+    color: #0066CC;
 }
 
 
@@ -32,29 +46,6 @@ a:hover {
 
 a.block-link:hover {
     text-decoration: none;
-}
-
-
-div#tag-line {
-    font-size: 3em;
-    letter-spacing: -2px;
-    float: left;
-    margin-left: 55px;
-    font-family: Helvetica;
-}
-
-div#tag-line a {
-    color: black;
-}
-
-div#tag-line span#logo {
-    color: green;
-    font-weight: bold;
-}
-
-div#header img#money-bag {
-    float: right;
-    margin-right: 30px;
 }
 
 div.stepbox-container {
@@ -117,33 +108,44 @@ span.step-digit {
     border: none;
 }
 
-div#custom-step {
+div.step-form {
     width: 385px;
     padding: 10px;
     overflow: auto;
-    float: right;
-    background: lightblue;
-    -moz-border-radius: 7px;
+    -moz-border-radius: 7px;  
+        webkit-border-radius: 7px;
+    border-radius: 7px;
+
 }
 
-div#custom-step form input, 
-div#custom-step form textarea {
+div#custom-step {
+    float: right;
+    background: #ddd;
+}
+
+div#org-form {
+    float: left;
+    background: #ddd;
+}
+
+div.step-form form input, 
+div.step-form form textarea {
 
     width: 99%;
 }
 
-div#custom-step form input[type="submit"] {
+div.step-form form input[type="submit"] {
     width: auto;
     font-size: 22px;
     cursor: pointer;
 }
 
-div#custom-step .category-selections {
-    width: 220px;
-    margin: 0 auto;
+div.step-form .category-selections {
+        width: 100%;
+        float: left;
 }
 
-div#custom-step .savings-selections {
+div.step-form .savings-selections {
     width: 117px;
     margin: 0 auto;
     overflow: auto;
@@ -152,46 +154,47 @@ div#custom-step .savings-selections {
 }
 
 
-div#custom-step .category-selection,
-div#custom-step .savings-selection {
+div.step-form .category-selection,
+div.step-form .savings-selection {
     float: left;
     margin: 5px;
     background: #eee;
     -moz-border-radius: 7px;
+        webkit-border-radius: 7px;
+    border-radius: 7px;
+
     padding: 5px;
 }
 
-div#custom-step .category-selection.selected,
-div#custom-step .savings-selection.selected {
-    background: green;
+div.step-form .category-selection.selected,
+div.step-form .category-selection.selected span.category-name,
+div.step-form .savings-selection.selected,
+div.step-form .savings-selection.selected span.category-name {
+    background: #4a793c;
     color: white;
 }
 
-div#custom-step .category-selection:hover,
-div#custom-step .savings-selection:hover {
-    background: green;
+div.step-form .category-selection:hover,
+div.step-form .savings-selection:hover {
+    background: #4a793c;
     cursor: pointer;
     color: white;
 }
 
-div#custom-step .savings-selections a {
+div.step-form .savings-selections a {
     color: black;
     text-decoration: none;
 }
 
-div#custom-step form div label {
+div.step-form form div label {
     float: left;
     margin-top: 5px;
 }
 
-div#custom-step form textarea,
-div#custom-step form input[type="text"] {
+div.step-form form textarea,
+div.step-form form input[type="text"] {
     font-size: 19px;
     font-family: courier;
-}
-
-div#about {
-    margin: 80px 0 10px 0;
 }
 
 div#about div#campaign-summary{
@@ -207,19 +210,22 @@ div.step {
     margin: 0 6px;
     border-bottom: 1px solid #ccc;
     color: black;
+    overflow: hidden;
 }
 
 div.recent-step.first,
 div.step.first {
-    border-top: 1px solid #ccc;
 }
+
+div.step.last {
+        border: none;
+}
+
 
 div.recent-step span.savings,
 div.step span.savings {
-    color: white;
+    color: #4a793c;
     padding: 3px;
-    -moz-border-radius: 2px;
-    background: darkGreen;
     text-align: center;
     width: 25px;
     
@@ -233,6 +239,9 @@ div.step span.count {
     float: left;
     padding: 3px;
     -moz-border-radius: 2px;
+    webkit-border-radius: 2px;
+    border-radius: 2px;
+
     background: #666;
     color: white;
     font-family: courier;
@@ -249,6 +258,9 @@ div.step span.date {
 
 .button.step-digit {
     -moz-border-radius: 0px;
+        webkit-border-radius: 0px;
+    border-radius: 0px;
+
     background: #777;
 }
 
@@ -259,26 +271,37 @@ div.step span.date {
 div.category-column {
     width: 210px;
     height: 80px;
-    background: #eee;
+    background: #666;
     -moz-border-radius: 7px;
+        webkit-border-radius: 7px;
+    border-radius: 7px;
+
     margin: 5px;
     padding: 4px;
     float: left;
     text-align: center;
-    border: 1px solid white;
-    color: black;
+    border: none;
+    color: white;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-shadow:none;
+
 }
 
 div.category-column:hover {
     cursor: pointer;
-    background: #dedede;
+    background: #ddd;
+    color: black;
+}
+
+div.category-column:hover span.category-title {
+        color: black;
 }
 
 div.category-column span.category-title {
-    color: green;
+    color: white;
     display: block;
     clear: right;
-    font-weight: bold;
     margin-top: 21px;
 }
 
@@ -317,11 +340,11 @@ a.step-box-link:hover {
 }
 
 div.step:hover {
-    background-color: #eee;
+    background-color: #ffffbb;
 }
 
 div#step-list {
-    float: right;
+    float: left;
 }
 
 
@@ -329,12 +352,19 @@ div#step-list {
 #filters {
     width: 210px;
     float: left;
+    margin: 0 20px 0 0;
+    padding: 1px;
+    background: #666;
+    border-radius: 0 0 7px 7px;
+        webkit-border-radius: 0 0 7px 7px;
+    -moz-border-radius: 0 0 7px 7px;
+
 }
 
 #filters div.category-column {
     float: none !important; 
     height: 23px;
-    width: 195px;
+    width: 187px;
 }
 
 #filters div.category-column span.category-title {
@@ -343,38 +373,60 @@ div#step-list {
     clear: none;
 }
 
+#filters div.category-column.current span.category-title {
+        color: black;
+}
+
 #filters div.category-column.current {
-    background: #ccc;
+    background: #ddd;
+    color: black;
+}
+
+#filters a {
+        color: #4a793c;
 }
 
 #sort-options {
     float: right;
     width: 30%;
     text-align: center;
+    margin-top: 11px;
 }
 
-#sort-options a {
-    color: green;
+#sort-options a,
+div#all-link a {
+    color: white;
     text-decoration: none;
-    border-right: 1px solid #666;
-    padding: 0 6px 0 3px;
+    border: none;
+    background: #666;
+    -moz-box-shadow: none;
+        box-shadow: none;
+    -webkit-box-shadow: none;
+
+    padding: 3px 5px;
 }
 
 #sort-options a.last {
     border: none;
 }
 
+div#all-link a.current,
 #sort-options a.current {
     color: black;
+    background: #ddd;
 }
-    
+
+div#all-link a:hover,
 #sort-options a:hover {
-    text-decoration: underline;
+        background: #ddd;
+        color: black;
 }
 
 #search-steps {
     width: 25%;
     float: right;
+    margin-right: 30px;
+    margin-top: 7px;
 }
 
 #search-steps div {
@@ -383,4 +435,88 @@ div#step-list {
 
 #search-steps label {
     display: none;
+}
+
+#search-steps .button {
+        background: #ddd;
+        color: black;
+        border: none;
+        cursor: pointer;
+}
+
+
+/* STATIC HOME */
+div#organizations,
+div#partners {
+        width: 100%;
+        float: left;
+}
+
+div#org-form {
+        clear: right;
+        display: none;
+}
+
+
+div#partners img,
+div#organizations img,
+div#ads img {
+        width: 90px;
+        margin: 5px;
+}
+
+img#logo {
+        width: 452px;
+        float: left;
+}
+
+div#about {
+    margin: 10px 0 10px 0;
+    font-size: 28px;
+    width: 47%;
+    float: right;
+    text-align: center;
+    line-height: 37px;
+}
+
+a#commit-your-organization {
+        margin: 0 50px 10px 0; float: right;
+}
+
+a.commitLinkClicked {
+        color: black;
+        text-decoration: none;
+}
+
+a.commitLinkClicked:hover {
+        text-decoration: none;
+}
+
+div.header-message {
+    text-align: center;
+    background: #ffffbb;
+    padding: 8px 0;
+    font-size: 20px;
+}
+
+div#ads {
+        float: right; width: 23%; margin: 20px 0pt; padding: 4px;
+}
+
+div.category-selection span.category-name {
+        display: block;
+        float: right;
+        margin: 5px;
+        color: black;
+}
+
+div.category-selection:hover span.category-name {
+        color: white;
+}
+
+div.staticAbout #about {
+        width: 675px;
+        float: none;
+        margin: 30px auto;
+    
 }

@@ -14,7 +14,8 @@ class StepsController extends Controller
     $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
     $em = $this->getDoctrine()->getEntityManager();
 
-    $stepCount = (string) $stepRepository->getNumberOfSteps($em);
+    $stepCount = (int) $stepRepository->getNumberOfSteps($em);
+    $stepCount = (string) $stepCount;
     $stepDigits = array();
 
     for($i = 0; $i < strlen($stepCount); $i++)
@@ -40,9 +41,21 @@ class StepsController extends Controller
   {
     $em = $this->getDoctrine()->getEntityManager();
 
+    if($this->getRequest()->getSession()->get('steps'))
+    {
+        $sessionStepCount = count($this->getRequest()->getSession()->get('steps'));
+    }
+    else
+    {
+        $sessionStepCount = 0;
+    }
+    
+    //$numberToRetrieve = 4 - $sessionStepCount;
+    $numberToRetrieve = 4;        
+    
     $stepSubmissionRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:StepSubmission');
-    $recentSteps = $stepSubmissionRepository->getRecentSteps('12', $em);
-
+    $recentSteps = $stepSubmissionRepository->getRecentSteps($numberToRetrieve, $em);
+ 
     return $this->render('GYGBFrontBundle:Steps:_recentSteps.html.twig', array(
         'recentSteps' => $recentSteps
     ));
@@ -66,10 +79,6 @@ class StepsController extends Controller
     {
       $steps = $stepRepository->findStepsFromTerms($terms, $em);
     }
-    /*else if(isset($sort) && $sort == 'recent')
-    {
-      $steps = $stepRepository->findRecentlyUpdated($em);
-    }*/
     else
     {
       $steps = $stepRepository->findByFiltersAndSorts($em, $categories, $sort, $savings);
@@ -130,21 +139,23 @@ class StepsController extends Controller
   }
   
   
-  public function stepsAction($categories = 'all', $sort = 'popular', $savings = 'all', $id = null)
+  public function stepsAction($categories = 'all', $sort = 'recent', $savings = 'all', $id = null)
   {
     $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
+    $organizationRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Organization');
     $request = $this->getRequest();
     $categoryNames = array('food', 'transportation', 'energy', 'waste', 'general');
     $categoryIcons = array('food' => 'apple', 'transportation' => 'bicycle', 'energy' => 'battery', 'waste' => 'recycle-bin', 'general' => 'globe');
    
     $currentCategories = $this->getCurrentCategoryArray($categories);
+   
     $categoryLinks = $this->getCategoryLinksArray($currentCategories, $categoryNames);
     
     // get step counts (total, and category totals)
     $categoryTotals = $this->getCategoryTotals();
     $totalSteps = $categoryTotals['all'];
 
-    
+    $orgAds = $organizationRepository->getCategoryAds($currentCategories);
     
     // build Search form
     $stepSearchForm = $this->createFormBuilder()
@@ -187,7 +198,7 @@ class StepsController extends Controller
     {
       $terms = null;
     }
-      
+          
     return $this->render('GYGBFrontBundle:Steps:steps.html.twig', array(
         'categories' => $categories,
         'categoryNames' => $categoryNames,
@@ -200,7 +211,9 @@ class StepsController extends Controller
         'categoryTotals' => $categoryTotals,
         'stepSearchForm' => $stepSearchForm->createView(),
         'terms' => $terms,
-        'id' => $id
+        'id' => $id,
+        'orgAds' => $orgAds,
+        'onStepsPage' => true
     ));
   }
 

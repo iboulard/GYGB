@@ -15,7 +15,10 @@ class StepSubmissionRepository extends EntityRepository
 
   public function getRecentSteps($numberToGet, $em)
   {
+      // TODO: approval, uncomment approved line
     $query = $this->createQueryBuilder('ss')
+            ->join("ss.Step", "s")
+//            ->andWhere('s.approved = true')
             ->orderBy('ss.datetimeSubmitted', 'DESC')
             ->getQuery();
     $query->setMaxResults($numberToGet);

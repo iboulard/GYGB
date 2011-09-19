@@ -1,7 +1,7 @@
 {#<h2>or share your own step</h2>    #}
 
-<div id="custom-step">
-    <form action="{{ path('home') }}" method="post" {{ form_enctype(customStepForm) }}>
+<div id="custom-step" class="step-form">
+    <form action="{{ path('stepForm') }}" method="post" {{ form_enctype(customStepForm) }}>
         {{ form_errors(customStepForm) }}
 
         {{ form_row(customStepForm.name) }}
@@ -12,8 +12,8 @@
         What area was your step in?
         <div class="category-selections">
             {% for category in categoryNames %}
-               <a href="#" title="{{ category }}">
-                <div class="category-selection" id="{{ category }}"><img src="{{ asset('images/' ~ categoryIcons[category] ~ '-small.png') }}" /></div>
+               <a href="#" title="{{ category|capitalize }}">
+                <div class="category-selection" id="{{ category }}"><img src="{{ asset('images/' ~ categoryIcons[category] ~ '-small.png') }}" /><span class="category-name">{{ category|capitalize }}</span></div>
                </a>
             {% endfor %}
         </div>

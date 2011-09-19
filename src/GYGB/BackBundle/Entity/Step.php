@@ -34,17 +34,17 @@ class Step
    */
   private $isBasic;
   /**
+   * @var smallint $approved
+   *
+   * @ORM\Column(name="approved", type="boolean", nullable="true")
+   */
+  private $approved;
+  /**
    * @var integer $savings
    *
    * @ORM\Column(name="savings", type="string", length="255", nullable="true")
    */
   private $savings;
-  /**
-   * @var integer $count
-   *
-   * @ORM\Column(name="count", type="integer")
-   */
-  private $count;
   /**
    * @var integer $category
    *
@@ -109,32 +109,6 @@ class Step
   {
     return $this->datetimeSubmitted;
   }
-
-  /**
-   * Set count
-   *
-   * @param integer $count
-   */
-  public function setCount($count)
-  {
-    $this->count = $count;
-  }
-
-  /**
-   * Get count
-   *
-   * @return integer 
-   */
-  public function getCount()
-  {
-    return $this->count;
-  }
-
-  public function __construct()
-  {
-    $this->submissions = new \Doctrine\Common\Collections\ArrayCollection();
-  }
-
   /**
    * Add submissions
    *
@@ -275,4 +249,51 @@ class Step
     return $this->getStep();
   }
 
+    public function __construct()
+    {
+        $this->submissions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add submissions
+     *
+     * @param GYGB\BackBundle\Entity\StepSubmission $submissions
+     */
+    public function addStepSubmission(\GYGB\BackBundle\Entity\StepSubmission $submissions)
+    {
+        $this->submissions[] = $submissions;
+    }
+    
+    public function getCount()
+    {
+        return count($this->submissions);
+/*        if($this->getApproved())
+        {
+            return count($this->submissions);        
+        }
+        else
+        {
+            return null;
+        }
+*/    }
+
+    /**
+     * Set approved
+     *
+     * @param boolean $approved
+     */
+    public function setApproved($approved)
+    {
+        $this->approved = $approved;
+    }
+
+    /**
+     * Get approved
+     *
+     * @return boolean 
+     */
+    public function getApproved()
+    {
+        return $this->approved;
+    }
 }

@@ -1,3 +1,24 @@
 [submodule "vendor/bundles/CCETC/CCETCAdminExtensionBundle"]
 	path = vendor/bundles/CCETC/CCETCAdminExtensionBundle
 	url = git://github.com/CCETC/CCETCAdminExtensionBundle.git
+[submodule "vendor/bundles/Sonata/AdminBundle"]
+	path = vendor/bundles/Sonata/AdminBundle
+	url = git://github.com/CCETC/SonataAdminBundle.git
+[submodule "vendor/bundles/Sonata/jQueryBundle"]
+	path = vendor/bundles/Sonata/jQueryBundle
+	url = git://github.com/sonata-project/SonatajQueryBundle.git
+[submodule "vendor/bundles/Sonata/BluePrintBundle"]
+	path = vendor/bundles/Sonata/BluePrintBundle
+	url = git://github.com/sonata-project/SonataBluePrintBundle.git
+[submodule "vendor/bundles/Knp/Bundle/MenuBundle"]
+	path = vendor/bundles/Knp/Bundle/MenuBundle
+	url = git://github.com/knplabs/KnpMenuBundle.git
+[submodule "vendor/knp-menu"]
+	path = vendor/knp-menu
+	url = https://github.com/knplabs/KnpMenu.git
+[submodule "vendor/bundles/CCETC/ErrorReportBundle"]
+	path = vendor/bundles/CCETC/ErrorReportBundle
+	url = git://github.com/CCETC/CCETCErrorReportBundle.git
+[submodule "vendor/bundles/FOS/UserBundle"]
+	path = vendor/bundles/FOS/UserBundle
+	url = git://github.com/CCETC/FOSUserBundle.git
