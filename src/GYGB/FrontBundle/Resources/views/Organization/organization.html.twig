@@ -1,0 +1,34 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+
+    <div id="org-form" class="box-form">
+        <form action="{{ path('organization') }}" method="post" {{ form_enctype(orgForm) }}>
+            {{ form_errors(orgForm) }}
+
+            {{ form_row(orgForm.name) }}
+
+            {{ form_row(orgForm.email) }}
+
+            {{ form_row(orgForm.website) }}
+
+            {{ form_row(orgForm.logo) }}
+
+            <br/>
+            Does your organization work in one of these areas?
+            <div class="category-selections">
+                {% for category in categoryNames %}
+                   <a href="#" title="{{ category|capitalize }}">
+                    <div class="category-selection" id="{{ category }}"><img src="{{ asset('images/' ~ categoryIcons[category] ~ '-small.png') }}" /><span class="category-name">{{ category|capitalize }}</span></div>
+                   </a>
+                {% endfor %}
+            </div>
+
+            {{ form_rest(orgForm) }}
+            <input class="button submit" value="Join" type="submit" />
+        </form>
+
+
+    </div>
+
+{% endblock content %}

@@ -16,8 +16,8 @@ $(document).ready(function() {
         }, 1500);
     }
     
-var headerMessage = $('div.header-message');
-headerMessage.delay(3500).fadeOut(1000);
+    var headerMessage = $('div.header-message');
+    headerMessage.delay(3500).fadeOut(1000);
     
     
     $('div.category-selection').live("click", function(e){
@@ -26,13 +26,6 @@ headerMessage.delay(3500).fadeOut(1000);
         $(this).addClass('selected');
         
         $('input#form_category').val($(this).attr('id'));
-    });
-    
-    $('a#commit-your-organization').live("click", function(e){
-        e.preventDefault();
-        $('a#commit-your-organization').removeClass('button');
-        $('a#commit-your-organization').addClass('commitLinkClicked');
-        $("div#org-form").show();
     });
     
     $('div.savings-selection').live("click", function(e){

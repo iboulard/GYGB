@@ -1,94 +1,6 @@
 Get Your Greenback - TODO
 =========================
 
-
-#	000. Meeting Changes
-
-//	z. step cat filters for recent
-	
-//	x. popular filter
-
-//	z. form submissions
-	
-		
-	
-//	z. header messages... POST?
-
-//	a. home
-
-//		- Commit your organization
-		
-//			- link instaed of button
-			
-//			- logo
-			
-//		- name problem with two forms
-
-//		- logos off screen
-		
-//		- swap about with recent steps
-		
-//		- category names in blocks
-		
-	
-//	b. Steps
-	
-//		- options border
-		
-//		- menu?
-		
-	
-//	c. Static Home
-	
-//		- fix
-		
-//	d. upload to server
-	
-//		- add to git
-		
-	e.	browser test	
-	
-
-		ie 7
-		
-			form overflow
-			
-			cat boxes
-			
-			org form float
-			
-			home float
-	
-#	x.	incomplete from design weekend
-
-		- logo upload
-		
-		- double forms on home page: avoid having to add hidden fields on eacah
-
-#	00.
-
-		-  StepRepository, line 90 order by count of steps:
-			SELECT Step.id, step, StepSubmission.id, name FROM Step JOIN StepSubmission WHERE Step.id = StepSubmission.step_id Group By Step.id ORDER BY count(Step.id) DESC
-		
-		- step translation: use colon if step contains my, or similar words
-
-#	0.	Users
-	
-		- anyone can submit step: name, step, category, savings
-					
-		- can also ask for e-mail to create account
-		
-			- send e-mail to have them set a password?
-			
-		- users can view their steps
-		
-		- save new steps to session and display them during session
-		
-			- only display approved steps in lists
-			
-			- include all steps in counts (simpler, no one will count)
-
-
 #	1.	Home
 	
 //		- link path steps to step page
@@ -97,21 +9,15 @@ Get Your Greenback - TODO
 				
 				- would rather they see more, but would be confusing
 		
-		- incorporate new user and step fields
+//		- simplify interface
 		
-		- simplify interface
-		
-			- labels in fields
+//			- labels in fields
 			
 //			- autocomplete for what step
 			
 //			- what step starts with I
 		
-		- minimize steps to path submission
-		
-		- more information
-		
-		- $$$ saved graph
+//		- minimize steps to path submission
 		
 		- fix post problem
 		
@@ -132,9 +38,9 @@ Get Your Greenback - TODO
 					
 //			- filter by savings
 			
-		- incorporate external links
+//		- incorporate external links
 	
-			- suggest steps that highlight orgs
+//			- suggest steps that highlight orgs
 	
 //		- search step text
 		
@@ -152,8 +58,20 @@ Get Your Greenback - TODO
 
 					- include user's e-mails if they allow it?
 			
-			- handle bigger steps
+			- handle bigger steps?
+	
+		- check filters
 		
+			- popular
+			
+				-  StepRepository, line 90 order by count of steps:
+			SELECT Step.id, step, StepSubmission.id, name FROM Step JOIN StepSubmission WHERE Step.id = StepSubmission.step_id Group By Step.id ORDER BY count(Step.id) DESC
+
+		
+		- step translation: use colon if step contains my, or similar words
+
+
+	
 #	3.	Administration
 	
 		-	step approval
@@ -180,11 +98,43 @@ Get Your Greenback - TODO
 					
 					- add session steps to recent steps, step list results, and counts?
 		
-		-	basic steps
 		
-		-	showcased steps
+#	4.	Organizations		
+	
+		- move to own page
+		
+		- logo upload
+		
+		- admin interface
 		
 		
-#	4.	Degradation
+#	5.	Users
+	
+		- anyone can submit step: name, step, category, savings
+					
+		- can also ask for e-mail to create account
+		
+			- send e-mail to have them set a password?
+			
+		- users can view their steps
+		
+		- save new steps to session and display them during session
+		
+			- only display approved steps in lists
+			
+			- include all steps in counts (simpler, no one will count)
+		
+		
+#	6.	Degradation
 	
 		- make sure everything works with javascript
+		
+#	7.	Ideas
+
+		- $$ saved graph
+		
+		- map
+		
+			- click to add your location
+			
+		- showcased steps?

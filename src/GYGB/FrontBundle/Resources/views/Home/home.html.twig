@@ -2,7 +2,8 @@
 
 {% block content %}
 
-<script>
+    <script>
+        // build an array of steps for the autocomplete on the form
         var stepInfo = new Object;
 
         {% for s in allStepInfo %}
@@ -13,66 +14,60 @@
         {% endfor %}
 
         $(function() {
-		var availableTags = [
-		{% for step in allSteps %}
+                var availableTags = [
+                {% for step in allSteps %}
                         "{{ step | raw }}",
                 {% endfor %}
                 ];
-		$( "#form_step" ).autocomplete({
-			source: availableTags,
+                $( "#form_step" ).autocomplete({
+                        source: availableTags,
                         select: function(event, ui) {
                             var category = stepInfo[ui.item.value]['category'];
-                            
+
                             $("div.category-selection").removeClass("selected");
                             var catBox = $("div#" + category + ".category-selection");
                             catBox.addClass("selected");
-                            
+
                             var savings = stepInfo[ui.item.value]['savings'];
 
                             $("div.savings-selection").removeClass("selected");
                             var savingsBox = $("div#" + savings + ".savings-selection");
                             savingsBox.addClass("selected");
                         }
-		});
-	});
-</script>
+                });
+        });
+    </script>
 
     
-    <div style="width: 100%; float: left; border-bottom: 1px solid #ddd; padding: 15px 0;">
-    <div style="padding: 0 10px;">
-    <div class="block" id="whats-your-step">
-        <span style="margin: 10px; font-size: 2em; width: 324px; float: right;">What's your step?</span>
-        {#<div style="width: 100%; font-size: 24px; text-align: center; font-weight: bold;">Tell us what you've done to save energy and money:</div><br/>#}
+    <div id="step-submission-container">
+        <div id="whats-your-step">
+            <span id="whats-your-step-heading">What's your step?</span>
 
-        
-        {% include "GYGBFrontBundle:Home:_customStepForm.html.twig" with {'customStepForm' : customStepForm, 'basicSteps' : basicSteps, 'categoryNames' : categoryNames, 'categoryIcons' : categoryIcons } %}
-
-
-       {# {% render "GYGBFrontBundle:Steps:categoryBoxes" %}   #}
-    </div>
-        {% render "GYGBFrontBundle:Steps:stepsTaken" %} 
-        {% render "GYGBFrontBundle:Steps:recentSteps" %}  
-     </div>
-     </div>
-       
-        <div id="partners" style="border-bottom: 1px solid #ddd;">
-            <h2>Founding Partners</h2>
- 
-            {% include "GYGBFrontBundle:Home:_logos.html.twig" with {'logoBlocks' : partnerBlocks } %}
+            {% include "GYGBFrontBundle:Home:_stepForm.html.twig" with {'stepForm' : stepForm, 'basicSteps' : basicSteps, 'categoryNames' : categoryNames, 'categoryIcons' : categoryIcons } %}
         </div>
 
-        <div id="organizations">
-            <h2>Community Organizations</h2>
+        {% render "GYGBFrontBundle:Steps:stepsTakenCounter" %} 
+        {% render "GYGBFrontBundle:Steps:recentStepList" %}  
+    </div>
 
-            {% include "GYGBFrontBundle:Home:_logos.html.twig" with {'logoBlocks' : orgBlocks } %}
-        </div> 
-    
-    {% include "GYGBFrontBundle:Home:_orgForm.html.twig" with {'orgForm' : orgForm, 'basicSteps' : basicSteps, 'categoryNames' : categoryNames, 'categoryIcons' : categoryIcons } %}
-       
+    <div id="partners">
+        <h1>Founding Partners</h1>
 
+        {% include "GYGBFrontBundle:Home:_logos.html.twig" with {'logoBlocks' : partnerBlocks } %}
+    </div>
+
+    <div id="organizations">
+        <h1>Community Organizations</h1>
+
+        {% include "GYGBFrontBundle:Home:_logos.html.twig" with {'logoBlocks' : orgBlocks } %}
+
+        <a id="join-the-campaign" href="{{ path('organization') }}">Part of an organization? Join the campaign.</a>
+
+    </div> 
+
+    {# hidden div to include a bool that triggers some javascript when a step is submitted #}
     <div id="stepTakenBool" style="display: none;">
         {% if stepTaken %}true{% endif %}
     </div>
 
-    <div style="clear: both"></div>
-{% endblock %}
+{% endblock content %}

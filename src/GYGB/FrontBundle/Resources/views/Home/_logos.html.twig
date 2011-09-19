@@ -1,7 +1,7 @@
-    {% for lb in logoBlocks %}
-        <div style="width: {{ lb.width }}px; margin: 15px auto; overflow: auto;">
-                {% for l in lb.logos %}
-                        <img style="display: block; float: left; {% if((l.width) is defined) %}width: {{ l.width }}px;{% endif %}" src="{{ asset('images/logos/'~l.logo) }}" />
-                {% endfor %}
-        </div>
-    {% endfor %}
+{% for lb in logoBlocks %}
+    <div class="logo-block" style="width: {{ lb.width }}px;">
+        {% for l in lb.logos %}
+                <img style="{% if((l.width) is defined) %}width: {{ l.width }}px;{% endif %}" src="{{ asset('images/logos/'~l.logo) }}" />
+        {% endfor %}
+    </div>
+{% endfor %}

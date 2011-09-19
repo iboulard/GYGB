@@ -8,15 +8,11 @@ homeDefault:
 
 home:
   pattern:  /home/{stepTaken}
-  defaults: { _controller: GYGBFrontBundle:Home:home, stepTaken: false, formSubmitted: null }
+  defaults: { _controller: GYGBFrontBundle:Home:home, stepTaken: false }
 
-orgForm:
-  pattern:  /home/false/organization
-  defaults: { _controller: GYGBFrontBundle:Home:home, stepTaken: false, formSubmitted: organization }
-
-stepForm:
-  pattern:  /home/true/step
-  defaults: { _controller: GYGBFrontBundle:Home:home, stepTaken: false, formSubmitted: step }
+organization:
+  pattern:  /organization
+  defaults: { _controller: GYGBFrontBundle:Organization:organization }
 
 
 basic:

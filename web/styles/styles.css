@@ -1,11 +1,45 @@
-/* green hex: #4a793c */
+/* 
+        logo green hex: #4a793c
+*/
 
-h2 {
-/*     border-bottom: 1px solid #ddd;
-     width: 400px;*/
-     font-size: 38px;
-     margin: 20px 0;
-     padding: 0 3px;
+/* general tags ============================================================= */
+body {
+    font-family: Trebuchet,"Trebuchet MS",Verdana,sans-serif;
+    background: #ffffff;
+}
+
+h1 {
+    font-size: 38px;
+    margin: 20px 0;
+    padding: 0 3px;
+}
+/* end general tags ========================================================= */
+
+
+
+/* layout =================================================================== */
+
+#page-container {
+    width: 960px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 5px 25px
+}
+
+#header {
+    padding: 10px 0;
+    overflow: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+/* end layout =============================================================== */
+
+/* general tags ============================================================= */
+div.header-message {
+    text-align: center;
+    background: #ffffbb;
+    padding: 8px 0;
+    font-size: 20px;
 }
 
 .button {
@@ -21,7 +55,7 @@ h2 {
     background: #4a793c;
     color: white;
     margin: 2px;
-    
+
     padding: 3px 6px;
 }
 
@@ -48,153 +82,25 @@ a.block-link:hover {
     text-decoration: none;
 }
 
-div.stepbox-container {
-    text-align: center;
-    width: 50%;
-}
+/* end general tags ========================================================= */
 
-div#step-choices {
-    margin: 0 auto;
-}
 
-div.step-choice {
-    width: 106px;
-    height: 106px;
-    margin: 5px;
-    padding: 5px;
+/* home ===================================================================== */
+div#step-submission-container {
+    width: 100%;
     float: left;
-    text-align: center;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    background: url("/GYGB/web/images/foot-black-small-15op.png") no-repeat scroll 14px 14px white;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
 }
 
-a.step-choice {
-    font-weight: bold;
+div#partners {
+    border-bottom: 1px solid #ddd;
 }
 
-a.step-choice:hover {
-    text-decoration: none;
-}
-
-div.step-choice {
-    color: black;
-}
-
-div.step-choice div.choice-text {
-    margin-top: 31px;
-}
-
-div.step-choice:hover {
-    background: url("/GYGB/web/images/foot-green-small-50op.png") no-repeat scroll 14px 14px white;
-}
-
-div#your-step {
-    width: 234px;
-    float: right;
-}
-
-div#steps-taken-counter {
-    font-size: 2em;
-    margin: 10px 0 0 100px;
-    color: black;
-}
-
-span.step-digit {
-    color: white;
-    padding: 4px 2px;
-    margin: 1px;
-    font-family: courier;
-    border: none;
-}
-
-div.step-form {
-    width: 385px;
-    padding: 10px;
-    overflow: auto;
-    -moz-border-radius: 7px;  
-        webkit-border-radius: 7px;
-    border-radius: 7px;
-
-}
-
-div#custom-step {
-    float: right;
-    background: #ddd;
-}
-
-div#org-form {
+div#organizations,
+div#partners {
+    width: 100%;
     float: left;
-    background: #ddd;
-}
-
-div.step-form form input, 
-div.step-form form textarea {
-
-    width: 99%;
-}
-
-div.step-form form input[type="submit"] {
-    width: auto;
-    font-size: 22px;
-    cursor: pointer;
-}
-
-div.step-form .category-selections {
-        width: 100%;
-        float: left;
-}
-
-div.step-form .savings-selections {
-    width: 117px;
-    margin: 0 auto;
-    overflow: auto;
-    clear: both;
-    font-size: 18px;
-}
-
-
-div.step-form .category-selection,
-div.step-form .savings-selection {
-    float: left;
-    margin: 5px;
-    background: #eee;
-    -moz-border-radius: 7px;
-        webkit-border-radius: 7px;
-    border-radius: 7px;
-
-    padding: 5px;
-}
-
-div.step-form .category-selection.selected,
-div.step-form .category-selection.selected span.category-name,
-div.step-form .savings-selection.selected,
-div.step-form .savings-selection.selected span.category-name {
-    background: #4a793c;
-    color: white;
-}
-
-div.step-form .category-selection:hover,
-div.step-form .savings-selection:hover {
-    background: #4a793c;
-    cursor: pointer;
-    color: white;
-}
-
-div.step-form .savings-selections a {
-    color: black;
-    text-decoration: none;
-}
-
-div.step-form form div label {
-    float: left;
-    margin-top: 5px;
-}
-
-div.step-form form textarea,
-div.step-form form input[type="text"] {
-    font-size: 19px;
-    font-family: courier;
 }
 
 div#about div#campaign-summary{
@@ -204,8 +110,237 @@ div#about div#campaign-summary{
 }
 
 
-div.recent-step,
-div.step {
+div#about {
+    margin: 10px 0 10px 0;
+    font-size: 28px;
+    width: 47%;
+    float: right;
+    text-align: center;
+    line-height: 37px;
+}
+
+a#join-the-campaign {
+    margin: 0 50px 10px 0; float: right;
+}
+
+
+div.static-about #about {
+    width: 675px;
+    float: none;
+    margin: 30px auto;
+
+}
+
+/* end home ================================================================= */
+
+
+/* whats your step ========================================================== */
+div#whats-your-step {
+    width: 405px;
+    clear: right;
+    float: right;
+    margin-bottom: 10px;
+}
+
+div#whats-your-step h1 {
+    margin: 30px 0 15px 0;
+    text-align: center;
+    font-size: 2em;
+}
+
+div#whats-your-step span#whats-your-step-heading {
+    margin: 10px;
+    font-size: 2em;
+    width: 324px;
+    float: right;
+}
+
+/* step form */
+div#step-form {
+    float: right;
+    background: #ddd;
+}
+
+div.box-form {
+    width: 385px;
+    padding: 10px;
+    overflow: auto;
+    -moz-border-radius: 7px;  
+    webkit-border-radius: 7px;
+    border-radius: 7px;
+
+}
+
+div.box-form form input, 
+div.box-form form textarea {
+    width: 99%;
+}
+
+div.box-form form input[type="submit"] {
+    width: auto;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+div.box-form .category-selections {
+    width: 100%;
+    float: left;
+}
+
+div.box-form .savings-selections {
+    width: 117px;
+    margin: 0 auto;
+    overflow: auto;
+    clear: both;
+    font-size: 18px;
+}
+
+div.box-form .category-selection,
+div.box-form .savings-selection {
+    float: left;
+    margin: 5px;
+    background: #eee;
+    -moz-border-radius: 7px;
+    webkit-border-radius: 7px;
+    border-radius: 7px;
+    padding: 5px;
+}
+
+div.box-form .category-selection.selected,
+div.box-form .category-selection.selected span.category-name,
+div.box-form .savings-selection.selected,
+div.box-form .savings-selection.selected span.category-name {
+    background: #4a793c;
+    color: white;
+}
+
+div.box-form .category-selection:hover,
+div.box-form .savings-selection:hover {
+    background: #4a793c;
+    cursor: pointer;
+    color: white;
+}
+
+div.box-form .savings-selections a {
+    color: black;
+    text-decoration: none;
+}
+
+div.box-form form div label {
+    float: left;
+    margin-top: 5px;
+}
+
+div.box-form form textarea,
+div.box-form form input[type="text"] {
+    font-size: 19px;
+    font-family: courier;
+}
+
+div.category-selection span.category-name {
+    display: block;
+    float: right;
+    margin: 5px;
+    color: black;
+}
+
+div.category-selection:hover span.category-name {
+    color: white;
+}
+
+div.box-form .box-form-label {
+    float: left;
+    margin-top: 6px;
+}
+
+/* end step form ============================================================ */
+
+/* steps taken ============================================================== */
+div#steps-taken {
+    margin: 0 0 20px 16px;
+    float: left;
+    width: 48%;
+}
+
+div#steps-taken-counter {
+    font-size: 2em;
+    margin: 10px 0 0 100px;
+    color: black;
+    float: left;
+}
+
+div#steps-taken-counter span.step-digit {
+    color: white;
+    padding: 4px 2px;
+    margin: 1px;
+    font-family: courier;
+    border: none;
+}
+
+div#steps-taken-counter span.step-digit {
+    -moz-border-radius: 0px;
+    webkit-border-radius: 0px;
+    border-radius: 0px;
+    background: #777;
+}
+
+div#steps-taken-counter .step-digit:hover {
+    background: #777;
+}
+
+/* end steps taken ========================================================== */
+
+/* step list ================================================================ */
+
+div.step-list#all-step-list {
+    width: 50%;
+    margin: 15px 0 20px 0;
+    float: left;
+}
+
+div.step-list#recent-step-list {
+    width: 52%;
+    float: left;
+    margin-bottom: 20px;
+    background: white;
+    border-radius: 10px;
+}
+
+div.step-list div.step.transportation {
+    background: url("/GYGB/web/images/bicycle-small.png") no-repeat scroll 4px;    
+}
+div.step-list div.step.general {
+    background: url("/GYGB/web/images/globe-small.png") no-repeat scroll 4px;    
+}
+div.step-list div.step.waste {
+    background: url("/GYGB/web/images/recycle-bin-small.png") no-repeat scroll 4px;    
+}
+div.step-list div.step.energy {
+    background: url("/GYGB/web/images/battery-small.png") no-repeat scroll 4px;    
+}
+div.step-list div.step.food {
+    background: url("/GYGB/web/images/apple-small.png") no-repeat scroll 4px;    
+}
+
+div.step-list#recent-step-list:hover {
+    cursor: pointer;
+}
+
+div.step-list a.step-link:hover,
+div.step-list a:hover {
+    text-decoration: none;
+}
+
+div.step-list#all-step-list div.step:hover {
+    cursor: default;
+}
+
+div.step-list#recent-step-list div.step:hover {
+    background-color: #ffffbb; 
+    cursor: pointer;
+}
+
+div.step-list div.step {
     padding: 8px 8px 8px 36px;
     margin: 0 6px;
     border-bottom: 1px solid #ccc;
@@ -213,28 +348,25 @@ div.step {
     overflow: hidden;
 }
 
-div.recent-step.first,
-div.step.first {
+div.step-list div.step.first {
 }
 
-div.step.last {
-        border: none;
+div.step-list div.step.last {
+    border: none;
 }
 
-
-div.recent-step span.savings,
-div.step span.savings {
+div.step-list div.step span.savings {
     color: #4a793c;
     padding: 3px;
     text-align: center;
     width: 25px;
-    
+
     display: block;
     float: left;
     margin-right: 5px;
 }
 
-div.step span.count {
+div.step-list div.step span.count {
     display: block;
     float: left;
     padding: 3px;
@@ -248,150 +380,31 @@ div.step span.count {
     margin-right: 5px;
 }
 
-div.recent-step span.date,
-div.step span.date {
+div.step-list div.step span.date {
     color: #666;
     font-size: 12px;
     float: right;
     margin-top: 5px;
 }
 
-.button.step-digit {
-    -moz-border-radius: 0px;
-        webkit-border-radius: 0px;
-    border-radius: 0px;
+/* end step list  =========================================================== */
 
-    background: #777;
+
+/* steps  =================================================================== */
+div#step-page-container {
+    width: 100%;
+    float: left;
+    margin-top: 15px;
 }
 
-.button.step-digit:hover {
-    background: #777;
-}
-
-div.category-column {
-    width: 210px;
-    height: 80px;
+div#step-option-container {
+    width: 100%;
     background: #666;
-    -moz-border-radius: 7px;
-        webkit-border-radius: 7px;
-    border-radius: 7px;
-
-    margin: 5px;
-    padding: 4px;
     float: left;
-    text-align: center;
-    border: none;
-    color: white;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    -webkit-box-shadow:none;
-
+    height: 40px;
+    border-radius: 7px 7px 7px 0;
 }
 
-div.category-column:hover {
-    cursor: pointer;
-    background: #ddd;
-    color: black;
-}
-
-div.category-column:hover span.category-title {
-        color: black;
-}
-
-div.category-column span.category-title {
-    color: white;
-    display: block;
-    clear: right;
-    margin-top: 21px;
-}
-
-div.category-column img {
-    float: left;
-}
-
-div.step.transportation {
-    background: url("/GYGB/web/images/bicycle-small.png") no-repeat scroll 4px;    
-}
-div.step.general {
-    background: url("/GYGB/web/images/globe-small.png") no-repeat scroll 4px;    
-}
-div.step.waste {
-    background: url("/GYGB/web/images/recycle-bin-small.png") no-repeat scroll 4px;    
-}
-div.step.energy {
-    background: url("/GYGB/web/images/battery-small.png") no-repeat scroll 4px;    
-}
-div.step.food {
-    background: url("/GYGB/web/images/apple-small.png") no-repeat scroll 4px;    
-}
-
-
-div#steps-taken:hover ,
-div#steps:hover {
-    cursor: pointer;
-}
-
-div#steps-taken a:hover {
-    text-decoration: none;
-}
-
-a.step-box-link:hover {
-    text-decoration: none;
-}
-
-div#step-list div.step:hover {
-/*    background-color: #ffffbb; */
-        cursor: default;
-}
-
-div#steps div.step:hover {
-    background-color: #ffffbb; 
-        cursor: pointer;
-}
-
-
-div#step-list {
-    float: left;
-}
-
-
-/* Steps */
-#filters {
-    width: 210px;
-    float: left;
-    margin: 0 20px 0 0;
-    padding: 1px;
-    background: #666;
-    border-radius: 0 0 7px 7px;
-        webkit-border-radius: 0 0 7px 7px;
-    -moz-border-radius: 0 0 7px 7px;
-
-}
-
-#filters div.category-column {
-    float: none !important; 
-    height: 23px;
-    width: 187px;
-}
-
-#filters div.category-column span.category-title {
-    marign: 0;
-    display: inline;
-    clear: none;
-}
-
-#filters div.category-column.current span.category-title {
-        color: black;
-}
-
-#filters div.category-column.current {
-    background: #ddd;
-    color: black;
-}
-
-#filters a {
-        color: #4a793c;
-}
 
 #sort-options {
     float: right;
@@ -407,7 +420,7 @@ div#all-link a {
     border: none;
     background: #666;
     -moz-box-shadow: none;
-        box-shadow: none;
+    box-shadow: none;
     -webkit-box-shadow: none;
 
     padding: 3px 5px;
@@ -425,8 +438,8 @@ div#all-link a.current,
 
 div#all-link a:hover,
 #sort-options a:hover {
-        background: #ddd;
-        color: black;
+    background: #ddd;
+    color: black;
 }
 
 #search-steps {
@@ -445,85 +458,114 @@ div#all-link a:hover,
 }
 
 #search-steps .button {
-        background: #ddd;
-        color: black;
-        border: none;
-        cursor: pointer;
+    background: #ddd;
+    color: black;
+    border: none;
+    cursor: pointer;
 }
 
 
-/* STATIC HOME */
-div#organizations,
-div#partners {
-        width: 100%;
-        float: left;
+#filters {
+    width: 210px;
+    float: left;
+    margin: 0 20px 0 0;
+    padding: 1px;
+    background: #666;
+    border-radius: 0 0 7px 7px;
+    webkit-border-radius: 0 0 7px 7px;
+    -moz-border-radius: 0 0 7px 7px;
+
 }
 
-div#org-form {
-        clear: right;
-        display: none;
+#filters a {
+    color: #4a793c;
 }
 
-
-div#partners img,
-div#organizations img,
-div#ads img {
-        width: 90px;
-        margin: 5px;
-}
-
-img#logo {
-        width: 452px;
-        float: left;
-}
-
-div#about {
-    margin: 10px 0 10px 0;
-    font-size: 28px;
-    width: 47%;
-    float: right;
+#filters div.category-filter {
+    background: #666;
+    -moz-border-radius: 7px;
+    webkit-border-radius: 7px;
+    border-radius: 7px;
+    margin: 5px;
+    padding: 4px;
     text-align: center;
-    line-height: 37px;
+    border: none;
+    color: white;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-shadow:none;
+    float: none; 
+    height: 23px;
+    width: 187px;
 }
 
-a#commit-your-organization {
-        margin: 0 50px 10px 0; float: right;
+#filters div.category-filter.current {
+    background: #ddd;
+    color: black;
 }
 
-a.commitLinkClicked {
-        color: black;
-        text-decoration: none;
+
+#filters div.category-filter:hover {
+    cursor: pointer;
+    background: #ddd;
+    color: black;
 }
 
-a.commitLinkClicked:hover {
-        text-decoration: none;
+#filters div.category-filter.current span.category-filter-label,
+#filters div.category-filter:hover span.category-filter-label {
+    color: black;
 }
 
-div.header-message {
-    text-align: center;
-    background: #ffffbb;
-    padding: 8px 0;
-    font-size: 20px;
+#filters div.category-filter span.category-filter-label {
+    color: white;
+    display: block;
+    clear: right;
+    margin-top: 21px;
+    display: inline;
+    clear: none;
+}
+
+#filters div.category-filter img {
+    float: left;
 }
 
 div#ads {
-        float: right; width: 23%; margin: 20px 0pt; padding: 4px;
+    float: right; width: 23%; margin: 20px 0pt; padding: 4px;
 }
 
-div.category-selection span.category-name {
-        display: block;
-        float: right;
-        margin: 5px;
-        color: black;
+div#ads img {
+    width: 90px;
+    margin: 5px;
 }
 
-div.category-selection:hover span.category-name {
-        color: white;
+div#ads div.logo-container {
+    margin: 0 auto; 
 }
 
-div.staticAbout #about {
-        width: 675px;
-        float: none;
-        margin: 30px auto;
-    
+/* end setps  ================================================================*/
+
+
+/* organizations  ============================================================*/
+div#org-form {
+    clear: right;
+    background: #ddd;
+    margin: 20px auto;
+    width: 385px;
 }
+/* end organizations  ========================================================*/
+
+
+/* logos  ====================================================================*/
+div.logo-block {
+    margin: 15px auto;
+    overflow: auto;
+}
+
+div.logo-block img {
+    display: block;
+    float: left; 
+    width: 90px;
+    margin: 5px;
+}
+
+/* end logos =================================================================*/

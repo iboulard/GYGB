@@ -1,0 +1,17 @@
+<div class="step-list" id="all-step-list">
+    <form>
+        {% for step in steps %}
+          {#<a class="step-link" href="{{ path('steps', {'categories' : categories, 'sort' : sort, 'savings': savings, 'id' : step.id }) }}"> #}
+            <a class="step-link" href="">
+                <div class="step {{ step.category }} {% if loop.first %}first{% endif %} {% if loop.last %}last{% endif %}">
+                    {% if step.savingsLabel %}<span class="savings">{{ step.savingsLabel }}</span>{% endif %}
+                    <span class="count">{{ step.count }}</span>
+                    <span class="step">{{ step.step }}</span>
+                    {% if id is defined and id == step.id %}
+                        <div style="height: 50px;">Additional Information</div>
+                    {% endif %}
+               </div>
+            </a>
+        {% endfor %}
+    </form>
+</div>
