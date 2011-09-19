@@ -6,3 +6,7 @@ div.step-form .category-selection{
 div.step-form img {
         float: left;
 }
+
+div#custom-step {
+        width: 405px;
+}

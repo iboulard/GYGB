@@ -40,7 +40,7 @@
                 <a href="{{ path('home') }}"><img id="logo" src="{{ asset('images/logo.png') }}" /></a>
                 {% if onStaticHome is not defined %} 
                 {% include "GYGBFrontBundle:Home:_about.html.twig" %}  {% endif %}
-                {% if onStepsPage is defined %}<span style="float: left; clear: both; margin: 0 0 0 10px;"><a href="{{ path('home') }}">&larr; Home</a></span>{% endif %}
+                {% if onStepsPage is defined %}<span style="float: left; clear: both; margin: 0 0 0 10px; width: 200px;"><a href="{{ path('home') }}">&larr; Home</a></span>{% endif %}
             </div>
 
             <div id="content">
