@@ -10,6 +10,14 @@
             <link rel="stylesheet" href="{{ asset('styles/layout.css') }}" type="text/css">
             <link rel="stylesheet" href="{{ asset('styles/styles.css') }}" type="text/css">
             <link type="text/css" href="{{ asset('bundles/sonatajquery/themes/flick/jquery-ui-1.8.6.custom.css') }}" rel="Stylesheet" />	
+                <!--[if lte IE 7]>
+                        <link rel="stylesheet" type="text/css" href="{{ asset('styles/ie7.css') }}" />
+                <![endif]-->
+                <!--[if lte IE 6]>
+                        <link rel="stylesheet" type="text/css" href="{{ asset('styles/ie6.css') }}" />
+                <![endif]-->
+
+
         {% endblock %}
 
         {% block javascripts %}
@@ -32,7 +40,7 @@
                 <a href="{{ path('home') }}"><img id="logo" src="{{ asset('images/logo.png') }}" /></a>
                 {% if onStaticHome is not defined %} 
                 {% include "GYGBFrontBundle:Home:_about.html.twig" %}  {% endif %}
-                {% if onStepsPage is defined %}<span style="float: left; margin: 30px 0 0 10px;"><a href="{{ path('home') }}">&larr; Home</a></span>{% endif %}
+                {% if onStepsPage is defined %}<span style="float: left; clear: both; margin: 0 0 0 10px;"><a href="{{ path('home') }}">&larr; Home</a></span>{% endif %}
             </div>
 
             <div id="content">

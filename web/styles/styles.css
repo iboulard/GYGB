@@ -339,9 +339,16 @@ a.step-box-link:hover {
     text-decoration: none;
 }
 
-div.step:hover {
-    background-color: #ffffbb;
+div#step-list div.step:hover {
+/*    background-color: #ffffbb; */
+        cursor: default;
 }
+
+div#steps div.step:hover {
+    background-color: #ffffbb; 
+        cursor: pointer;
+}
+
 
 div#step-list {
     float: left;

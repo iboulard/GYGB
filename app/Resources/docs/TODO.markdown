@@ -42,15 +42,22 @@ Get Your Greenback - TODO
 	
 //		- fix
 		
-	d. upload to server
+//	d. upload to server
 	
-		- add to git
-		
-		- add domain
+//		- add to git
 		
 	e.	browser test	
 	
-	
+
+		ie 7
+		
+			form overflow
+			
+			cat boxes
+			
+			org form float
+			
+			home float
 	
 #	x.	incomplete from design weekend
 
