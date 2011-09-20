@@ -1,14 +1,13 @@
-div.step-form .category-selection{
+div.box-form .category-selection{
         width: 150px;
         height: 30px;
 }
 
-div.step-form img {
+div.box-form img {
         float: left;
 }
 
-div#custom-step,
-div#org-form {
+div.box-form {
         overflow: hidden;
 }
 
