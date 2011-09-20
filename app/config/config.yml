@@ -29,6 +29,11 @@ services:
       tags:
         - { name: sonata.admin, manager_type: orm, group: Step Data, label: Step Submissions }
       arguments: [null, GYGB\BackBundle\Entity\StepSubmission, GYGBBackBundle:StepSubmissionAdmin]
+    gygb.back.admin.organization:
+      class: GYGB\BackBundle\Admin\OrganizationAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: Step Data, label: Organizations }
+      arguments: [null, GYGB\BackBundle\Entity\Organization, GYGBBackBundle:OrganizationAdmin]
 
     errorReports:
       class: CCETC\ErrorReportBundle\Resources\config\Config

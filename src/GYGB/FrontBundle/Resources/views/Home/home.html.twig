@@ -43,27 +43,35 @@
         <div id="whats-your-step">
             <span id="whats-your-step-heading">What's your step?</span>
 
-            {% include "GYGBFrontBundle:Home:_stepForm.html.twig" with {'stepForm' : stepForm, 'basicSteps' : basicSteps, 'categoryNames' : categoryNames, 'categoryIcons' : categoryIcons } %}
+            {% include "GYGBFrontBundle:Home:_stepForm.html.twig" with {'stepForm' : stepForm, 'categoryNames' : categoryNames, 'categoryIcons' : categoryIcons } %}
         </div>
 
         {% render "GYGBFrontBundle:Home:stepsTakenCounter" %} 
         {% render "GYGBFrontBundle:Home:recentStepList" %}  
     </div>
 
-    <div id="partners">
+    <div id="founders">
         <h1>Founding Partners</h1>
 
-        {% include "GYGBFrontBundle:Home:_logos.html.twig" with {'logoBlocks' : partnerBlocks } %}
+        {% include "GYGBFrontBundle:Home:_logos.html.twig" with {'logoBlocks' : founderBlocks } %}
     </div>
+
+    <div id="sponsors">
+        <h1>Sponsoring Partners</h1>
+
+        {% include "GYGBFrontBundle:Home:_logos.html.twig" with {'logoBlocks' : sponsorBlocks } %}
+
+        <a id="join-the-campaign" href="{{ path('organization') }}">Part of an organization? Join the campaign.</a>
+
+    </div> 
 
     <div id="organizations">
         <h1>Community Organizations</h1>
 
         {% include "GYGBFrontBundle:Home:_logos.html.twig" with {'logoBlocks' : orgBlocks } %}
 
-        <a id="join-the-campaign" href="{{ path('organization') }}">Part of an organization? Join the campaign.</a>
-
     </div> 
+
 
     {# hidden div to include a bool that triggers some javascript when a step is submitted #}
     <div id="stepTakenBool" style="display: none;">

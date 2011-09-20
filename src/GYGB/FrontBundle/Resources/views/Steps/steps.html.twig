@@ -23,23 +23,23 @@
 
         <div id="filters">
             <a href="{{ path('steps') }}">
-                <div class="category-filter button {% if savings == "all" and currentCategories['all'] is defined %}current{% endif %}">
+                <div class="category-filter button {% if savings == "all" and selectedCategoryFilters['all'] is defined %}current{% endif %}">
                     <span class="category-filter-label">View All</span> ({{ totalSteps }})
                 </div>
             </a>
 
 
-            <span style="border-bottom: 1px solid #ccc; width: 100%; display: block; margin: 0 0 15px 2px;">&nbsp;</span>
+            <span class="page-break">&nbsp;</span>
 
             {% for c in categoryNames %}
-                <a href="{{ path('steps', {'categories' : categoryLinks[c], 'sort' : sort, 'savings': savings }) }}">
-                    <div class="category-filter button {% if currentCategories[c] is defined %}current{% endif %}">
+                <a href="{{ path('steps', {'categories' : categoryFilterHREFs[c], 'sort' : sort, 'savings': savings }) }}">
+                    <div class="category-filter button {% if selectedCategoryFilters[c] is defined %}current{% endif %}">
                         <img src="{{ asset('images/' ~ categoryIcons[c] ~ '-small.png') }}" /><span class="category-filter-label">{{ c|capitalize }}</span> ({{ categoryTotals[c] }})
                     </div>
                 </a>
             {% endfor %}
 
-            <span style="border-bottom: 1px solid #ccc; width: 100%; display: block; margin: 0 0 15px 2px;">&nbsp;</span>
+            <span class="page-break">&nbsp;</span>
 
             <a href="{{ path('steps', {'categories' : categories, 'sort' : sort, 'savings': 'low' }) }}">
                 <div class="category-filter button {% if savings == "low" %}current{% endif %}">
@@ -62,15 +62,8 @@
 
         {% render "GYGBFrontBundle:Steps:allStepList" with {'categories' : categories, 'sort' : sort, 'terms' : terms, 'savings' : savings, 'id' : id } %}   
 
-        <div id="ads">
-            {% for a in orgAds %}
-                <div class="logo-container" style="{% if a.width is defined %}width: {{ a.width }}px{% else %}90px{% endif %}">
-                    <a href="{{ a.website }}">
-                        <img style="{% if a.width is defined %}width: {{ a.width }}px{% endif %}" src="{{ asset('images/logos/'~a.logo) }}" />
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
+        {% render "GYGBFrontBundle:Steps:organizationAds" with {'selectedCategoryFilters' : selectedCategoryFilters } %}   
+
 
     </div>
 {% endblock %}

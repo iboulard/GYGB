@@ -8,24 +8,20 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class StepsController extends Controller
 {
-
     public function stepsAction($categories = 'all', $sort = 'recent', $savings = 'all', $id = null)
     {
-        $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
-        $organizationRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Organization');
         $request = $this->getRequest();
+        
+        $terms = null;
+        
+        $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
+        
         $categoryNames = array('food', 'transportation', 'energy', 'waste', 'general');
         $categoryIcons = array('food' => 'apple', 'transportation' => 'bicycle', 'energy' => 'battery', 'waste' => 'recycle-bin', 'general' => 'globe');
-
-        $currentCategories = $this->getCurrentCategoryArray($categories);
-
-        $categoryLinks = $this->getCategoryLinksArray($currentCategories, $categoryNames);
-
-        // get step counts (total, and category totals)
+        $selectedCategoryFilters = $this->getSelectedCategoryFiltersArray($categories);
+        $categoryFilterHREFs = $this->getCategoryFilterHREFsArray($selectedCategoryFilters, $categoryNames);
         $categoryTotals = $this->getCategoryTotals();
         $totalSteps = $categoryTotals['all'];
-
-        $orgAds = $organizationRepository->getCategoryAds($currentCategories);
 
         // build Search form
         $stepSearchForm = $this->createFormBuilder()
@@ -64,17 +60,13 @@ class StepsController extends Controller
                 $em->flush();
             }
         }
-        else
-        {
-            $terms = null;
-        }
-
+       
         return $this->render('GYGBFrontBundle:Steps:steps.html.twig', array(
             'categories' => $categories,
             'categoryNames' => $categoryNames,
             'categoryIcons' => $categoryIcons,
-            'currentCategories' => $currentCategories,
-            'categoryLinks' => $categoryLinks,
+            'selectedCategoryFilters' => $selectedCategoryFilters,
+            'categoryFilterHREFs' => $categoryFilterHREFs,
             'sort' => $sort,
             'savings' => $savings,
             'totalSteps' => $totalSteps,
@@ -82,7 +74,6 @@ class StepsController extends Controller
             'stepSearchForm' => $stepSearchForm->createView(),
             'terms' => $terms,
             'id' => $id,
-            'orgAds' => $orgAds,
             'onStepsPage' => true
         ));
     }
@@ -110,25 +101,52 @@ class StepsController extends Controller
         ));
     }
 
-    public function getCurrentCategoryArray($categories)
+    public function organizationAdsAction($selectedCategoryFilters)
     {
-        $currentCategories = array();
+        $organizationRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Organization');
+        $organizationAds = $organizationRepository->getCategoryAds($selectedCategoryFilters);
+        
+        return $this->render('GYGBFrontBundle:Steps:_organizationAds.html.twig', array(
+            'organizationAds' => $organizationAds
+        ));
+    }
+
+
+    
+    public function getSelectedCategoryFiltersArray($categories)
+    {
+        $selectedCategoryFilters = array();
 
         foreach(array_unique(explode(' ', $categories)) as $currentCategory)
         {
-            $currentCategories[$currentCategory] = true;
+            $selectedCategoryFilters[$currentCategory] = true;
         }
 
-        return $currentCategories;
+        return $selectedCategoryFilters;
     }
 
-    public function getCategoryLinksArray($currentCategories, $categoryNames)
+    /**
+     * Build an array of HREFs for each category filter.
+     * When a filter is clicked, that category is added to the category list
+     * in the url, if not there, and removed if already there.
+     * 
+     * 
+     * @param type $selectedCategoryFilters
+     * @param array $categoryNames the names of the categories
+     * @return associative
+     *      ex element: 'food' => 'food waste' (if waste is selected, adds food)
+     *      ex element: 'food' => 'waste' (if food and waste  are selected, removes food) 
+     *      ex element: 'food' => 'all' (if food is the only selected filter)
+     */
+    public function getCategoryFilterHREFsArray($selectedCategoryFilters, $categoryNames)
     {
-        $categoryLinks = array();
+        $categoryFilterHREFs = array();
 
+        // build a string with all selected category filter names
         $baseCurrentCategoryString = "";
-        foreach($currentCategories as $category => $bool)
+        foreach($selectedCategoryFilters as $category => $bool)
         {
+            // "all" comes in the array so ignore it
             if($category != "all")
                 $baseCurrentCategoryString .= $category . " ";
         }
@@ -137,10 +155,11 @@ class StepsController extends Controller
         {
             $currentCategoryString = $baseCurrentCategoryString;
             $cLink = $baseCurrentCategoryString;
-
-            if(isset($currentCategories[$c]))
+            
+            if(isset($selectedCategoryFilters[$c]))
             {
                 $currentCategoryString = str_replace($c, "", $currentCategoryString);
+                // clean up white spaces
                 $currentCategoryString = str_replace("  ", " ", $currentCategoryString);
             }
             else
@@ -148,13 +167,14 @@ class StepsController extends Controller
                 $currentCategoryString .= $c . " ";
             }
 
+            // if currentCategoryString is empty, make the filter link to all
             if(trim($currentCategoryString) == "")
-                $categoryLinks[$c] = 'all';
+                $categoryFilterHREFs[$c] = 'all';
             else
-                $categoryLinks[$c] = trim(rtrim($currentCategoryString, ' '));
+                $categoryFilterHREFs[$c] = trim(rtrim($currentCategoryString, ' '));
         }
-
-        return $categoryLinks;
+        
+        return $categoryFilterHREFs;
     }
 
     public function getCategoryTotals()

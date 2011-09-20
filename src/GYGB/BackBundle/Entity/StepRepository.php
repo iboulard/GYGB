@@ -13,99 +13,61 @@ use Doctrine\ORM\EntityRepository;
 class StepRepository extends EntityRepository
 {
 
-  public function getNumberOfSteps($em)
-  {
-      // TODO: approval, add WHERE s.approved=true
-    $query = $em->createQuery('SELECT ss.id FROM GYGBBackBundle:StepSubmission ss JOIN ss.Step s');
-    $count = $query->getResult();
-    
-    return count($count);
-  }
-
-  public function getBasicSteps()
-  {
-    // TODO: approval, add 'approved' => '1'  
-    $steps = $this->findBy(array('isBasic' => '1'));
-
-    $basicSteps = array();
-
-    foreach($steps as $step)
+    public function findStepsFromTerms($terms, $em)
     {
-      $basicSteps[] = $step;
+        // TODO: approval, add WHERE s.approved = true
+        $query = $em->createQuery(
+                        "SELECT s FROM GYGBBackBundle:Step s WHERE s.step LIKE '%" . $terms . "%'"
+        );
+
+        return $query->getResult();
     }
 
-    return $basicSteps;
-  }
-
-  public function findStepsFromTerms($terms, $em)
-  {
-      // TODO: approval, add WHERE s.approved = true
-    $query = $em->createQuery(
-                    "SELECT s FROM GYGBBackBundle:Step s WHERE s.step LIKE '%" . $terms . "%'"
-    );
-
-    return $query->getResult();
-  }
-
-  /*
-   * TODO: this method does not filter AT ALL, it was moved to findByFiltersAndSorts
-   */
-  public function findRecentlyUpdated($em)
-  {
-     // TODO: approval, add WHERE s.approved = true
-     $query = $em->createQuery(
-                    "SELECT s, ss FROM GYGBBackBundle:Step s JOIN s.submissions ss ORDER BY ss.datetimeSubmitted DESC"
-    );
-
-    return $query->getResult();
-  }
-
-  public function findByFiltersAndSorts($em, $category, $sort, $savings)
-  {
-    $query = $this->createQueryBuilder('s');
-    
-    if(isset($savings) && $savings != 'all')
+    public function findByFiltersAndSorts($em, $category, $sort, $savings)
     {
-      $query->andWhere('s.savings = :savings');
-      $query->setParameter('savings', $savings);
-    }
+        $query = $this->createQueryBuilder('s');
 
-    if(isset($category) && $category != 'all')
-    {
-      // categories are a space delimited string
-      // add a "where category = x OR category = y"
-      $categories = explode(' ', $category);
-      $categoryWhere = '';
-      
-      $i = 0;
-      foreach($categories as $c)
-      {
-        $categoryWhere .= 's.category = :category'.$i.' OR ';
-        $query->setParameter('category'.$i, $c);
-        
-        $i++;
-      }
-      
-      $categoryWhere = rtrim($categoryWhere, ' OR ');
-      $query->andWhere($categoryWhere);   
-    }
-    
-    if(isset($sort) && $sort == 'popular')
-    {
-        $query->join('s.submissions', 'ss');
-        $query->groupBy('s.id');
+        if(isset($savings) && $savings != 'all')
+        {
+            $query->andWhere('s.savings = :savings');
+            $query->setParameter('savings', $savings);
+        }
+
+        if(isset($category) && $category != 'all')
+        {
+            // categories are a space delimited string
+            // add a "where category = x OR category = y"
+            $categories = explode(' ', $category);
+            $categoryWhere = '';
+            $i = 0;
+            foreach($categories as $c)
+            {
+                $categoryWhere .= 's.category = :category' . $i . ' OR ';
+                $query->setParameter('category' . $i, $c);
+
+                $i++;
+            }
+
+            $categoryWhere = rtrim($categoryWhere, ' OR ');
+            $query->andWhere($categoryWhere);
+        }
+
+        if(isset($sort) && $sort == 'popular')
+        {
+            $query->join('s.submissions', 'ss');
+            $query->groupBy('s.id');
 //        $query->orderBy('count(s.id)', 'DESC');
+        }
+        else if(isset($sort) && $sort == 'recent')
+        {
+            $query->join('s.submissions', 'ss');
+            $query->orderBy('ss.datetimeSubmitted', 'DESC');
+        }
+
+        // TODO: approval, uncomment
+        //$query->andWhere('s.approved = true');
+
+        return $query->getQuery()->getResult();
     }
-    else if(isset($sort) && $sort == 'recent')
-    {
-      $query->join('s.submissions', 'ss');
-      $query->orderBy('ss.datetimeSubmitted', 'DESC');
-    }
-    
-    // TODO: approval, uncomment
-    //$query->andWhere('s.approved = true');
-    
-    return $query->getQuery()->getResult();
-  }
 
 }

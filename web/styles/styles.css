@@ -74,6 +74,13 @@ a:hover {
     text-decoration: underline;
 }
 
+span.page-break {
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    display: block;
+    margin: 0 0 15px 2px;
+}
+
 /* end general tags ========================================================= */
 
 
@@ -85,12 +92,15 @@ div#step-submission-container {
     padding: 15px 0;
 }
 
-div#partners {
+div#sponsors,
+div#founders {
     border-bottom: 1px solid #ddd;
 }
 
+
 div#organizations,
-div#partners {
+div#sponsors,
+div#founders {
     width: 100%;
     float: left;
 }

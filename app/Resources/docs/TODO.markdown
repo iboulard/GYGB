@@ -4,11 +4,7 @@ Get Your Greenback - TODO
 #	1.	Home
 	
 //		- link path steps to step page
-
-			- link recent steps?
-				
-				- would rather they see more, but would be confusing
-		
+						
 //		- simplify interface
 		
 //			- labels in fields
@@ -19,8 +15,11 @@ Get Your Greenback - TODO
 		
 //		- minimize steps to path submission
 		
-		- fix post problem
+//		- fix post problem
+
+		- link recent steps blocks
 		
+		- submit video
 		
 #	2.	Steps
 	
@@ -68,7 +67,7 @@ Get Your Greenback - TODO
 			SELECT Step.id, step, StepSubmission.id, name FROM Step JOIN StepSubmission WHERE Step.id = StepSubmission.step_id Group By Step.id ORDER BY count(Step.id) DESC
 
 		
-		- step translation: use colon if step contains my, or similar words
+//		- step translation: use colon if step contains my, or similar words
 
 
 	
@@ -103,9 +102,25 @@ Get Your Greenback - TODO
 	
 		- move to own page
 		
+			- why join?
+			
+				- ads!
+			
+			- what do they have to do?
+			
+				- pay
+				
+				- share step
+			
+			- give them account?
+			
+				- might as well
+		
 		- logo upload
 		
 		- admin interface
+		
+			- add logos?
 		
 		
 #	5.	Users

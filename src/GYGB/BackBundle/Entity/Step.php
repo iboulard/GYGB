@@ -40,13 +40,13 @@ class Step
    */
   private $approved;
   /**
-   * @var integer $savings
+   * @var string $savings
    *
    * @ORM\Column(name="savings", type="string", length="255", nullable="true")
    */
   private $savings;
   /**
-   * @var integer $category
+   * @var string $category
    *
    * @ORM\Column(name="category", type="string", length="255", nullable="true")
    */
@@ -151,7 +151,7 @@ class Step
 
   public function getAbbrvStep()
   {
-    if($this->stepStartsWithI())
+    if($this->stepIsAbbreviated())
     {
       return substr($this->getStep(), 2);
     }
@@ -161,9 +161,26 @@ class Step
     }
   }
 
+  public function stepIsAbbreviated()
+  {
+    if($this->stepStartsWithI() && !$this->stepContainsPronoun())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+  }
+  
   public function stepStartsWithI()
   {
     return substr($this->getStep(), 0, 2) === 'I ';
+  }
+  
+  public function stepContainsPronoun()
+  {
+      return strstr($this->getStep(), " my ");
   }
 
   /**

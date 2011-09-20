@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Organization
 {
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     /**
      * @var integer $id
      *
@@ -20,14 +25,12 @@ class Organization
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string $name
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
-
     /**
      * @var string $website
      *
@@ -59,20 +62,29 @@ class Organization
      */
     private $width;
     /**
-     * @var string $type
+     * @var boolean $sponsor
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="sponsor", type="boolean")
      */
-    private $type;
-
-    
+    private $sponsor;
+    /**
+     * @var boolean $founder
+     *
+     * @ORM\Column(name="founder", type="boolean")
+     */
+    private $founder;
+    /**
+     * @var boolean $organization
+     *
+     * @ORM\Column(name="organization", type="boolean")
+     */
+    private $organization;
     /**
      * @var boolean $approved
      *
      * @ORM\Column(name="approved", type="boolean")
      */
     private $approved;
-
 
     /**
      * Get id
@@ -224,23 +236,64 @@ class Organization
         return $this->width;
     }
 
+
     /**
-     * Set type
+     * Set sponsor
      *
-     * @param string $type
+     * @param boolean $sponsor
      */
-    public function setType($type)
+    public function setSponsor($sponsor)
     {
-        $this->type = $type;
+        $this->sponsor = $sponsor;
     }
 
     /**
-     * Get type
+     * Get sponsor
      *
-     * @return string 
+     * @return boolean 
      */
-    public function getType()
+    public function getSponsor()
     {
-        return $this->type;
+        return $this->sponsor;
+    }
+
+    /**
+     * Set founder
+     *
+     * @param boolean $founder
+     */
+    public function setFounder($founder)
+    {
+        $this->founder = $founder;
+    }
+
+    /**
+     * Get founder
+     *
+     * @return boolean 
+     */
+    public function getFounder()
+    {
+        return $this->founder;
+    }
+
+    /**
+     * Set organization
+     *
+     * @param boolean $organization
+     */
+    public function setOrganization($organization)
+    {
+        $this->organization = $organization;
+    }
+
+    /**
+     * Get organization
+     *
+     * @return boolean 
+     */
+    public function getOrganization()
+    {
+        return $this->organization;
     }
 }

@@ -12,8 +12,10 @@ class OrganizationController extends Controller
     {
         $organizationRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Organization');
         $em = $this->getDoctrine()->getEntityManager();
+        
         $categoryNames = array('food', 'transportation', 'energy', 'waste', 'general');
         $categoryIcons = array('food' => 'apple', 'transportation' => 'bicycle', 'energy' => 'battery', 'waste' => 'recycle-bin', 'general' => 'globe');
+        
         $request = $this->get('request');
 
         $orgForm = $this->createFormBuilder()
@@ -39,22 +41,14 @@ class OrganizationController extends Controller
                 $org->setName($data['name']);
                 $org->setWebsite($data['website']);
                 $org->setEmail($data['email']);
-                if($data['category'] == "") $cat = 'general';
-                else $cat = $data['category'];
                 $org->setCategory($cat);
                 $org->setType('organization');
                 //$org->setLogo($data['logo']);
-
-
+                if($data['category'] == "") $cat = 'general';
+                else $cat = $data['category'];
+                
                 $em->persist($org);
                 $em->flush();
-
-                $data = array();
-                $data['name'] = '';
-                $data['website'] = '';
-                $data['email'] = '';
-                $data['category'] = '';
-                $orgForm->setData($data);
 
                 $this->getRequest()->getSession()->setFlash('message', 'Thanks for committing to our campaign! Your organization will appear once our team confirms you.');
                 return $this->redirect($this->generateUrl('home'));

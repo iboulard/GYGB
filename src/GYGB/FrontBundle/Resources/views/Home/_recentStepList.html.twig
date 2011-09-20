@@ -4,7 +4,7 @@
             <a class="step-link" href="{{ path('steps') }}">
                 <div class="step {{ recentStep.step.category }} {% if loop.first %}first{% endif %}">
                     {% if recentStep.step.savingsLabel %}<span class="savings">{{ recentStep.step.savingsLabel }}</span>{% endif %}
-                    <span class="step" style="width: 200px;">{{ recentStep.name }}{% if not recentStep.step.stepStartsWithI %}:{% endif %}
+                    <span class="step" style="width: 200px;">{{ recentStep.name }}{% if not recentStep.step.stepIsAbbreviated %}:{% endif %}
                     {{ recentStep.step.abbrvStep }}</span>
                     <span class="date">{{ recentStep.datetimeSubmitted|date("F j, Y g:i") }}</span>
                 </div>

@@ -13,28 +13,26 @@ use Doctrine\ORM\EntityRepository;
 class StepSubmissionRepository extends EntityRepository
 {
 
-  public function getRecentSteps($numberToGet, $em)
-  {
-      // TODO: approval, uncomment approved line
-    $query = $this->createQueryBuilder('ss')
-            ->join("ss.Step", "s")
+    public function getRecentStepSubmissions($numberToGet, $em)
+    {
+        // TODO: approval, uncomment approved line
+        $query = $this->createQueryBuilder('ss')
+                ->join("ss.Step", "s")
 //            ->andWhere('s.approved = true')
-            ->orderBy('ss.datetimeSubmitted', 'DESC')
-            ->getQuery();
-    $query->setMaxResults($numberToGet);
+                ->orderBy('ss.datetimeSubmitted', 'DESC')
+                ->getQuery();
+        $query->setMaxResults($numberToGet);
 
-    return $query->getResult();
-  }
-  
-  public function getStepList($category = null)
-  {
-    $query = $this->getEntityManager()
-        ->createQuery('
-            SELECT s, ss FROM GYGBBackBundle:StepSubmission ss
-            JOIN ss.step s
-       ');
-    
-    return $query->getResult();
-  }
+        return $query->getResult();
+    }
+
+    public function getNumberOfStepSubmissions($em)
+    {
+        // TODO: approval, add WHERE s.approved=true
+        $query = $em->createQuery('SELECT ss.id FROM GYGBBackBundle:StepSubmission ss JOIN ss.Step s');
+        $count = $query->getResult();
+
+        return count($count);
+    }
 
 }
