@@ -35,7 +35,10 @@
         <div id="page-container">
     
             <div id="header" {% if onStaticHome is defined %}class="static-header"{% endif %}>
-                <a href="{{ path('home') }}"><img id="logo" src="{{ asset('images/logo.png') }}" /></a>
+                {% if onStaticHome is defined %}<img id="logo" src="{{ asset('images/logo.png') }}" />
+                {% else %}<a href="{{ path('home') }}"><img id="logo" src="{{ asset('images/logo.png') }}" /></a>
+                {% endif %}
+
                 {% if onStaticHome is not defined %} 
                     {% include "::_about.html.twig" %}  {% endif %}
                 {% if onStepsPage is defined %}
