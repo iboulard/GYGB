@@ -29,4 +29,6 @@ https://github.com/CCETC/ErrorReportBundle
 
 	$ git submodules update
 	
-###4. Fill out fields in ``app/parameters.ini``
+###4. Create ``app/config/parameters.ini`` from ``app/config/parameters.ini.dist``
+
+###5. Create ``app/config/config_dev.yml`` from ``app/config/config_dev.yml.dist``

@@ -110,49 +110,6 @@ class StepsController extends Controller
         ));
     }
 
-    public function stepsTakenCounterAction($extendLayout = false)
-    {
-        $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $stepCount = (int) $stepRepository->getNumberOfSteps($em);
-        $stepCount = (string) $stepCount;
-        $stepDigits = array();
-
-        for($i = 0; $i < strlen($stepCount); $i++)
-        {
-            $stepDigits[] = $stepCount[$i];
-        }
-
-        return $this->render('GYGBFrontBundle:Steps:_stepsTakenCounter.html.twig', array(
-            'stepDigits' => $stepDigits,
-        ));
-    }
-
-    public function recentStepListAction()
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        if($this->getRequest()->getSession()->get('steps'))
-        {
-            $sessionStepCount = count($this->getRequest()->getSession()->get('steps'));
-        }
-        else
-        {
-            $sessionStepCount = 0;
-        }
-
-        //$numberToRetrieve = 4 - $sessionStepCount;
-        $numberToRetrieve = 4;
-
-        $stepSubmissionRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:StepSubmission');
-        $recentSteps = $stepSubmissionRepository->getRecentSteps($numberToRetrieve, $em);
-
-        return $this->render('GYGBFrontBundle:Steps:_recentStepList.html.twig', array(
-            'recentSteps' => $recentSteps
-        ));
-    }
-
     public function getCurrentCategoryArray($categories)
     {
         $currentCategories = array();

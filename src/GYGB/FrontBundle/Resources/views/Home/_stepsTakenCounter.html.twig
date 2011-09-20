@@ -1,0 +1,9 @@
+<div id="steps-taken">
+    <a href="{{ path('steps') }}">
+        <div id="steps-taken-counter">
+            {# this all has to be on one line or it looks wrong in the browser: #}
+            {% for c in stepDigits %}<span class="button step-digit {% if loop.last %}last{% endif %} ">{{ c }}</span>{% endfor %}
+            Steps Taken
+        </div>
+    </a>
+</div>
