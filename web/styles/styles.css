@@ -17,6 +17,10 @@
     border-bottom: 1px solid #ddd;
 }
 
+#header.static-header {
+    border: none;
+}
+
 /* end layout =============================================================== */
 
 /* general tags ============================================================= */
@@ -126,11 +130,17 @@ a#join-the-campaign {
 }
 
 
+div.static-about {
+    background: #4a793c;
+    border-radius: 10px;
+}
+
 div.static-about #about {
     width: 675px;
     float: none;
-    margin: 30px auto;
-
+    margin: 0 auto;
+    padding: 15px 0;
+    color: white;
 }
 
 /* end home ================================================================= */

@@ -19,7 +19,7 @@ class OrganizationRepository extends EntityRepository
 
         if(isset($categories['all']))
         {
-            foreach($this->findBy(array('type' => 'organization', 'approved' => true)) as $o)
+            foreach($this->findBy(array('organization' => true, 'approved' => true)) as $o)
             {
                 $orgs[] = $o;
             }
@@ -29,7 +29,7 @@ class OrganizationRepository extends EntityRepository
 
             foreach($categories as $c => $index)
             {
-                foreach($this->findBy(array('category' => $c, 'type' => 'organization', 'approved' => true)) as $o)
+                foreach($this->findBy(array('category' => $c, 'organization' => true, 'approved' => true)) as $o)
                 {
                     $orgs[] = $o;
                 }

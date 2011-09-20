@@ -34,7 +34,7 @@
 
         <div id="page-container">
     
-            <div id="header">
+            <div id="header" {% if onStaticHome is defined %}class="static-header"{% endif %}>
                 <a href="{{ path('home') }}"><img id="logo" src="{{ asset('images/logo.png') }}" /></a>
                 {% if onStaticHome is not defined %} 
                     {% include "::_about.html.twig" %}  {% endif %}
