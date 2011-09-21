@@ -21,13 +21,13 @@ https://github.com/CCETC/ErrorReportBundle
 
 	$ git clone git@github.com:CCETC/GYGB.git
 
-###2. Install vendors:
-
-	$ bin/vendors install
-
-###3. Install submodules
+###2. Install submodules
 
 	$ git submodules update --init
+
+###3. Install vendors:
+
+	$ bin/vendors install
 	
 ###4. Create ``app/config/parameters.ini`` from ``app/config/parameters.ini.dist``
 
