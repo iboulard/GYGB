@@ -1,5 +1,13 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ app.php [QSA,L]
-</IfModule>
+RewriteEngine On
+
+RewriteCond %{HTTP_HOST}    ^www.getyourgreenbacktompkins\.org [nocase]
+RewriteRule (.*)    http://getyourgreenbacktompkins.org%{REQUEST_URI} [redirect,last]
+
+RewriteCond %{HTTP_HOST}    ^getyourgreenbacktompkins\.com [nocase]
+RewriteRule (.*)    http://getyourgreenbacktompkins.org%{REQUEST_URI} [redirect,last]
+
+RewriteCond %{HTTP_HOST}    ^www.getyourgreenbacktompkins\.com [nocase]
+RewriteRule (.*)    http://getyourgreenbacktompkins.org%{REQUEST_URI} [redirect,last]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ app.php [QSA,L]
