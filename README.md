@@ -19,7 +19,7 @@ https://github.com/CCETC/ErrorReportBundle
 #Installation
 ###1. Clone repository:
 
-	$ git clone git@github.com:username/Spoon-Knife.git
+	$ git clone git@github.com:CCETC/GYGB.git
 
 ###2. Install vendors:
 
