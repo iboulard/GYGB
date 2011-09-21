@@ -2,6 +2,11 @@
 #  pattern:  /
 #  defaults: { _controller: GYGBFrontBundle:Home:staticHome }
 
+#home:
+#  pattern:  /home
+#  defaults: { _controller: GYGBFrontBundle:Home:staticHome }
+
+
 homeDefault:
   pattern:  /
   defaults: { _controller: GYGBFrontBundle:Home:home, stepTaken: false }
