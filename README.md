@@ -19,16 +19,17 @@ https://github.com/CCETC/ErrorReportBundle
 #Installation
 ###1. Clone repository:
 
-	$ git clone git@github.com:username/Spoon-Knife.git
+	$ git clone git@github.com:CCETC/GYGB.git
 
-###2. Install vendors:
+###2. Install submodules
+
+	$ git submodules update --init
+
+###3. Create ``app/config/parameters.ini`` from ``app/config/parameters.ini.dist``
+
+###4. Create ``app/config/config_dev.yml`` from ``app/config/config_dev.yml.dist``
+
+###5. Install vendors:
 
 	$ bin/vendors install
-
-###3. Update submodules
-
-	$ git submodules update
 	
-###4. Create ``app/config/parameters.ini`` from ``app/config/parameters.ini.dist``
-
-###5. Create ``app/config/config_dev.yml`` from ``app/config/config_dev.yml.dist``
