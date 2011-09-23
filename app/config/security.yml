@@ -13,20 +13,16 @@ security:
             security: false
 
         main:
-            pattern:      .*
+            pattern:      ^/
             form_login:
                 provider:       fos_userbundle
-                login_path:     /login
-                use_forward:    false
-                check_path:     /login_check
-                failure_path:   null
             logout:       true
             anonymous:    true
 
     access_control:
         # URL of FOSUserBundle which need to be available to anonymous users
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         # Secured part of the site
         # This config requires being logged for the whole site and having the admin role for the admin part.

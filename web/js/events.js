@@ -17,7 +17,7 @@ $(document).ready(function() {
     }
     
     var headerMessage = $('div.header-message');
-    headerMessage.delay(3500).fadeOut(1000);
+    headerMessage.delay(5000).fadeOut(1000);
     
     
     $('div.category-selection').live("click", function(e){
