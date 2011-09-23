@@ -359,15 +359,12 @@ div.step-list#recent-step-list:hover {
     cursor: pointer;
 }
 
-div.step-list a.step-link:hover,
-div.step-list a:hover {
+div.step-list-container a.step-link:hover,
+div.step-list-container a:hover {
     text-decoration: none;
 }
 
-div.step-list#all-step-list div.step:hover {
-    cursor: default;
-}
-
+div.step-list#all-step-list div.step:hover,
 div.step-list#recent-step-list div.step:hover {
     background-color: #ffffbb; 
     cursor: pointer;
@@ -418,6 +415,15 @@ div.step-list div.step span.date {
     font-size: 12px;
     float: right;
     margin-top: 5px;
+}
+
+div.step-list-container {
+    clear: both;
+}
+
+div.step-list-search-results {
+    width: 100%; text-align: center; padding: 5px; background: #ffffbb; float: left;
+    margin: 5px 0 10px 0;
 }
 
 /* end step list  =========================================================== */
@@ -577,6 +583,51 @@ div#ads div.logo-container {
 
 /* end setps  ================================================================*/
 
+/* step details ==============================================================*/
+div.step-details-container {
+}
+
+div.step-details-container h2 {
+    margin: 15px 0;
+}
+
+div.step-details-container div.step-description {
+    margin: 0 0 15px 0;
+}
+
+div.step-details-container div.step-submissions {
+    
+    
+}
+
+div.step-details-container div.step-submissions div.step-submission {
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 0;
+}
+
+div.step-details-container div.step-submissions div.step-submission span.name {
+    
+}
+
+div.step-details-container div.step-submissions div.step-submission span.date {
+    color: #666;
+    font-size: 12px;
+    float: right;
+}
+
+div.step-details-container div.step-submissions div.step-submission span.story {
+    float: left;
+    background: #eee;
+    width: 400px;
+    padding: 3px 6px;
+    border-radius: 7px;
+    margin: 0 auto;
+}
+
+
+/* end step details ==========================================================*/
 
 /* organizations  ============================================================*/
 div#org-form {

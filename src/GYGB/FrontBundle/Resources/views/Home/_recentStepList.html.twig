@@ -1,7 +1,7 @@
 <div class="step-list" id="recent-step-list">
     <form>
         {% for recentStep in recentSteps %}
-            <a class="step-link" href="{{ path('steps') }}">
+            <a class="step-link" href="{{ path('stepId', {'id': recentStep.step.id }) }}">
                 <div class="step {{ recentStep.step.category }} {% if loop.first %}first{% endif %}">
                     {% if recentStep.step.savingsLabel %}<span class="savings">{{ recentStep.step.savingsLabel }}</span>{% endif %}
                     <span class="step" style="width: 200px;">{{ recentStep.name }}{% if not recentStep.step.stepIsAbbreviated %}:{% endif %}

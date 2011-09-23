@@ -1,17 +1,16 @@
 <div class="step-list" id="all-step-list">
-    <form>
+    {% if terms is defined and terms != "" %}
+        <div class="step-list-search-results">Your search for <i>{{ terms }}</i> returned {{ steps|length }} {{ resultNoun }}.</div>
+    {% endif %}
+    <div class="step-list-container">
         {% for step in steps %}
-          {#<a class="step-link" href="{{ path('steps', {'categories' : categories, 'sort' : sort, 'savings': savings, 'id' : step.id }) }}"> #}
-            <a class="step-link" href="">
+            <a class="step-link" href="{{ path('stepId', {'id' : step.id }) }}"> 
                 <div class="step {{ step.category }} {% if loop.first %}first{% endif %} {% if loop.last %}last{% endif %}">
                     {% if step.savingsLabel %}<span class="savings">{{ step.savingsLabel }}</span>{% endif %}
                     <span class="count">{{ step.count }}</span>
                     <span class="step">{{ step.step }}</span>
-                    {% if id is defined and id == step.id %}
-                        <div style="height: 50px;">Additional Information</div>
-                    {% endif %}
                </div>
             </a>
         {% endfor %}
-    </form>
+    </div>
 </div>

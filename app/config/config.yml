@@ -39,7 +39,7 @@ services:
       class: CCETC\ErrorReportBundle\Resources\config\Config
       arguments: [haggertypat@gmail.com]   
 
-    applicationSettings:
+    adminSettings:
       class: Sonata\AdminBundle\Resources\config\Settings
       arguments: [Get Your GreenBack, haggertypat@gmail.com]
 
@@ -52,7 +52,10 @@ services:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
-
+    globals:
+      adminTitle: "Get Your GreenBack"
+      adminEmail: "haggertypat@gmail.com"
+      
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%

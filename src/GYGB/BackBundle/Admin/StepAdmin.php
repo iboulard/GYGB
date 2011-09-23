@@ -113,7 +113,7 @@ class StepAdmin extends Admin
                 ->add('category', 'choice', array('choices' => Step::getCategoryChoices(), 'expanded' => false, 'multiple' => false))
                 ->add('savings', 'choice', array('choices' => Step::getSavingsChoices(), 'expanded' => false, 'multiple' => false))
                 ->add('approved')
-
+                ->add('count')
         ;
     }
 

@@ -94,4 +94,9 @@ class User extends BaseUser
         return $this->lastName;
     }
 
+    public function getName()
+    {
+        return $this->firstName.' '.$this->lastName;
+    }
+    
 }

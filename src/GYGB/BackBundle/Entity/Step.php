@@ -28,6 +28,12 @@ class Step
    */
   private $step;
   /**
+   * @var text $description
+   *
+   * @ORM\Column(name="description", type="text")
+   */
+  private $description;
+  /**
    * @var smallint $isBasic
    *
    * @ORM\Column(name="isBasic", type="boolean", nullable="true")
@@ -51,6 +57,12 @@ class Step
    * @ORM\Column(name="category", type="string", length="255", nullable="true")
    */
   private $category;
+  /**
+   * @var string $count
+   *
+   * @ORM\Column(name="count", type="integer")
+   */
+  private $count;
   
   /** @ORM\OneToMany(targetEntity="StepSubmission", mappedBy="Step", cascade={"persist", "remove"}) */
   protected $submissions;
@@ -280,19 +292,6 @@ class Step
     {
         $this->submissions[] = $submissions;
     }
-    
-    public function getCount()
-    {
-        return count($this->submissions);
-/*        if($this->getApproved())
-        {
-            return count($this->submissions);        
-        }
-        else
-        {
-            return null;
-        }
-*/    }
 
     /**
      * Set approved
@@ -312,5 +311,45 @@ class Step
     public function getApproved()
     {
         return $this->approved;
+    }
+
+    /**
+     * Set count
+     *
+     * @param string $count
+     */
+    public function setCount($count)
+    {
+        $this->count = $count;
+    }
+
+    /**
+     * Get count
+     *
+     * @return string 
+     */
+    public function getCount()
+    {
+        return $this->count;
+    }
+
+    /**
+     * Set description
+     *
+     * @param text $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * Get description
+     *
+     * @return text 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

@@ -15,15 +15,19 @@
             </div>
 
             <div id="sort-options">
-                <a href="{{ path('steps', {'categories' : categories, 'sort' : 'recent', 'savings': savings }) }}" class="button {% if sort == 'recent' %}current{% endif%}">Recent</a>
-                <a href="{{ path('steps', {'categories' : categories, 'sort' : 'popular', 'savings': savings }) }}" class="button last {% if sort == 'popular' %}current{% endif%}">Popular</a>
+                <a href="{{ path('steps', {'categories' : categories, 'sort' : 'recent', 'savings': savings }) }}" class="button {% if sort == 'recent' and id == "" %}current{% endif%}">Recent</a>
+                <a href="{{ path('steps', {'categories' : categories, 'sort' : 'popular', 'savings': savings }) }}" class="button last {% if sort == 'popular' and id == "" %}current{% endif%}">Popular</a>
             </div>
         </div>
 
-
         <div id="filters">
             <a href="{{ path('steps') }}">
-                <div class="category-filter button {% if savings == "all" and selectedCategoryFilters['all'] is defined %}current{% endif %}">
+                <div class="category-filter button {%
+                    if savings == "all"
+                    and selectedCategoryFilters['all'] is defined
+                    and (terms == "" or terms is not defined)
+                    and (id == "" or id is not defined ) %}
+                        current{% endif %}">
                     <span class="category-filter-label">View All</span> ({{ totalSteps }})
                 </div>
             </a>
@@ -60,10 +64,13 @@
 
         <br/>
 
-        {% render "GYGBFrontBundle:Steps:allStepList" with {'categories' : categories, 'sort' : sort, 'terms' : terms, 'savings' : savings, 'id' : id } %}   
-
-        {% render "GYGBFrontBundle:Steps:organizationAds" with {'selectedCategoryFilters' : selectedCategoryFilters } %}   
-
+        {% if id is defined and id != "" %}
+            {% render "GYGBFrontBundle:Steps:stepDetails" with {'id' : id } %}
+            {% render "GYGBFrontBundle:Steps:organizationAds" with {'selectedCategoryFilters' : idCategory } %}   
+        {% else %}
+            {% render "GYGBFrontBundle:Steps:allStepList" with {'categories' : categories, 'sort' : sort, 'terms' : terms, 'savings' : savings, 'id' : id } %}   
+            {% render "GYGBFrontBundle:Steps:organizationAds" with {'selectedCategoryFilters' : selectedCategoryFilters } %}   
+        {% endif %}
 
     </div>
 {% endblock %}

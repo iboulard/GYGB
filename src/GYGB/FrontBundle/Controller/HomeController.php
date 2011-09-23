@@ -19,9 +19,8 @@ class HomeController extends Controller
         ));
     }
 
-    public function homeAction($stepTaken)
+    public function homeAction($highlightStep)
     {
-
         $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
         $organizationRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Organization');
         
@@ -43,6 +42,7 @@ class HomeController extends Controller
 
         $stepForm = $this->createFormBuilder()
                 ->add('name', 'text', array('label' => 'Your Name', 'required' => false))
+                ->add('story', 'textarea', array('label' => 'Tell a story! How did it go?', 'required' => false))
                 ->add('category', 'hidden', array('required' => false))
                 ->add('savings', 'hidden', array('required' => false))
                 ->add('step', 'text', array('label' => 'What step did you take?'))
@@ -54,9 +54,7 @@ class HomeController extends Controller
         // process step form
         if($request->getMethod() == 'POST')
         {
-            $stepTaken = false;
-            $newStep = false;
-
+            $highlightStep = false;
             $stepForm->bindRequest($request);
 
             if($stepForm->isValid())
@@ -66,6 +64,7 @@ class HomeController extends Controller
 
                 $step = $stepRepository->findOneByStep($data['step']);
 
+                // add step if new
                 if(!$step)
                 {
                     $step = new \GYGB\BackBundle\Entity\Step();
@@ -73,9 +72,26 @@ class HomeController extends Controller
                     $step->setApproved(false);
                     $step->setCategory($data['category']);
                     $step->setSavings($data['savings']);
-                    $newStep = true;
+                    $step->setCount(1);
+                }
+                else
+                {
+                    $step->setCount($step->getCount() + 1);
                 }
                
+                // unapproved steps and new steps (that are inherently unapproved) should not be highlighted
+                if(!$step || $step->getApproved() == false)
+                {
+                    $this->getRequest()->getSession()->setFlash('message', 'Thanks for taking a step to save money and energy! Your step will appear when our team approves it.');
+                    $highlightStep = false;                    
+                }
+                else
+                {
+                    $highlightStep = true;
+                    $this->getRequest()->getSession()->setFlash('message', 'Thanks for taking a step to save money and energy!');
+                }
+                
+                
                 $em->persist($step);
                 $em->flush();
 
@@ -84,26 +100,10 @@ class HomeController extends Controller
                 $stepSubmission->setDatetimeSubmitted(new \DateTime());
                 $stepSubmission->setStep($step);
                 $stepSubmission->setType('member');
+                if(trim($data['story']) != "") $stepSubmission->setStory($data['story']);
 
                 $em->persist($stepSubmission);
                 $em->flush();
-                $stepTaken = true;
-
-                // save the step to the session if a new step
-                /*        if($newStep)
-                  {
-                  // the steps are stored in an array, do not override old steps
-                  if($this->getRequest()->getSession()->get('steps'))
-                  {
-                  $sessionSteps = $this->getRequest()->getSession()->get('steps');
-                  }
-                  else
-                  {
-                  $sessionSteps = array();
-                  }
-                  $sessionSteps[] = $stepSubmission;
-                  $this->getRequest()->getSession()->set('steps', $sessionSteps);
-                  } */
 
                 // reset the form values
                 $data = array();
@@ -111,15 +111,13 @@ class HomeController extends Controller
                 $data['name'] = '';
                 $stepForm->setData($data);
                 
-                $this->getRequest()->getSession()->setFlash('message', 'Thanks for taking a step to save money and energy!');
-
-                return $this->redirect($this->generateUrl('home', array('stepTaken' => $stepTaken)));
+                return $this->redirect($this->generateUrl('home', array('highlightStep' => $highlightStep)));
             }
         }
 
         return $this->render('GYGBFrontBundle:Home:home.html.twig', array(
             'stepForm' => $stepForm->createView(),
-            'stepTaken' => $stepTaken,
+            'highlightStep' => $highlightStep,
             'categoryNames' => $categoryNames,
             'categoryIcons' => $categoryIcons,
             'allSteps' => $allSteps,

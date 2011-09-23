@@ -15,10 +15,9 @@ class StepSubmissionRepository extends EntityRepository
 
     public function getRecentStepSubmissions($numberToGet, $em)
     {
-        // TODO: approval, uncomment approved line
         $query = $this->createQueryBuilder('ss')
                 ->join("ss.Step", "s")
-//            ->andWhere('s.approved = true')
+                ->andWhere('s.approved = true')
                 ->orderBy('ss.datetimeSubmitted', 'DESC')
                 ->getQuery();
         $query->setMaxResults($numberToGet);
@@ -28,8 +27,7 @@ class StepSubmissionRepository extends EntityRepository
 
     public function getNumberOfStepSubmissions($em)
     {
-        // TODO: approval, add WHERE s.approved=true
-        $query = $em->createQuery('SELECT ss.id FROM GYGBBackBundle:StepSubmission ss JOIN ss.Step s');
+        $query = $em->createQuery('SELECT ss.id FROM GYGBBackBundle:StepSubmission ss JOIN ss.Step s WHERE s.approved=true');
         $count = $query->getResult();
 
         return count($count);

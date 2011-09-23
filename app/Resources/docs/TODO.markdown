@@ -19,7 +19,6 @@ Get Your Greenback - TODO
 
 		- link recent steps blocks
 		
-		- submit video
 		
 #	2.	Steps
 	
@@ -59,13 +58,10 @@ Get Your Greenback - TODO
 			
 			- handle bigger steps?
 	
-		- check filters
+//		- check filters
 		
-			- popular
+//			- popular
 			
-				-  StepRepository, line 90 order by count of steps:
-			SELECT Step.id, step, StepSubmission.id, name FROM Step JOIN StepSubmission WHERE Step.id = StepSubmission.step_id Group By Step.id ORDER BY count(Step.id) DESC
-
 		
 //		- step translation: use colon if step contains my, or similar words
 
@@ -73,29 +69,19 @@ Get Your Greenback - TODO
 	
 #	3.	Administration
 	
-		-	step approval
+//		-	step approval
 		
-			- db
+//			- db
 			
-				- approval interface
-				
-					- finish approve action
-					
-					- batch approve action
-					
 //					- count confusing?
 				
-			- front end
+//			- front end
 			
 //				- mark as unapproved
 				
 //				- only show approved
-				
-				- show from session
-				
-					- store in session
-					
-					- add session steps to recent steps, step list results, and counts?
+	
+		-	users
 		
 		
 #	4.	Organizations		
@@ -153,3 +139,7 @@ Get Your Greenback - TODO
 			- click to add your location
 			
 		- showcased steps?
+		
+		- videos
+		
+		- story

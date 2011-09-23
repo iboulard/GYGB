@@ -40,6 +40,12 @@ class StepSubmission
      */
     private $type;
     /**
+     * @var text $story
+     *
+     * @ORM\Column(name="story", type="text", nullable="true")
+     */
+    private $story;
+    /**
      * @var datetime $datetimeSubmitted
      *
      * @ORM\Column(name="datetimeSubmitted", type="datetime")
@@ -165,5 +171,25 @@ class StepSubmission
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set story
+     *
+     * @param text $story
+     */
+    public function setStory($story)
+    {
+        $this->story = $story;
+    }
+
+    /**
+     * Get story
+     *
+     * @return text 
+     */
+    public function getStory()
+    {
+        return $this->story;
     }
 }

@@ -5,17 +5,19 @@ namespace GYGB\FrontBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class StepsController extends Controller
 {
+
     public function stepsAction($categories = 'all', $sort = 'recent', $savings = 'all', $id = null)
     {
         $request = $this->getRequest();
-        
+
         $terms = null;
-        
+
         $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
-        
+
         $categoryNames = array('food', 'transportation', 'energy', 'waste', 'general');
         $categoryIcons = array('food' => 'apple', 'transportation' => 'bicycle', 'energy' => 'battery', 'waste' => 'recycle-bin', 'general' => 'globe');
         $selectedCategoryFilters = $this->getSelectedCategoryFiltersArray($categories);
@@ -60,7 +62,18 @@ class StepsController extends Controller
                 $em->flush();
             }
         }
-       
+
+        if(isset($id))
+        {
+            $idStep = $stepRepository->findOneBy(array('id' => $id));
+            if(!$idStep) throw new NotFoundHttpException("We can't find this step!");
+            $idCategory = array($idStep->getCategory() => true);
+        }
+        else
+        {
+            $idCategory = array();
+        }
+
         return $this->render('GYGBFrontBundle:Steps:steps.html.twig', array(
             'categories' => $categories,
             'categoryNames' => $categoryNames,
@@ -74,7 +87,8 @@ class StepsController extends Controller
             'stepSearchForm' => $stepSearchForm->createView(),
             'terms' => $terms,
             'id' => $id,
-            'onStepsPage' => true
+            'onStepsPage' => true,
+            'idCategory' => $idCategory
         ));
     }
 
@@ -92,27 +106,58 @@ class StepsController extends Controller
             $steps = $stepRepository->findByFiltersAndSorts($em, $categories, $sort, $savings);
         }
 
+        if(count($steps) == 1)
+        {
+            $stepNoun = "step";
+            $resultNoun = "result";
+        }
+        else
+        {
+            $stepNoun = "steps";
+            $resultNoun = "results";
+        }
+
         return $this->render('GYGBFrontBundle:Steps:_allStepList.html.twig', array(
             'steps' => $steps,
             'categories' => $categories,
             'savings' => $savings,
             'sort' => $sort,
-            'id' => $id
+            'id' => $id,
+            'terms' => $terms,
+            'resultNoun' => $resultNoun,
+            'stepNoun' => $stepNoun,
         ));
     }
 
+    public function stepDetailsAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
+        $stepSubmission = $this->getDoctrine()->getRepository('GYGBBackBundle:StepSubmission');
+
+        $step = $stepRepository->findOneBy(array('id' => $id));
+        
+        if(!$step)
+        {
+            throw new NotFoundHttpException('We can\'t find this step!');
+        }
+
+        return $this->render('GYGBFrontBundle:Steps:_stepDetails.html.twig', array(
+            'step' => $step
+        ));
+    }
+    
+    
     public function organizationAdsAction($selectedCategoryFilters)
     {
         $organizationRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Organization');
         $organizationAds = $organizationRepository->getCategoryAds($selectedCategoryFilters);
-        
+
         return $this->render('GYGBFrontBundle:Steps:_organizationAds.html.twig', array(
             'organizationAds' => $organizationAds
         ));
     }
 
-
-    
     public function getSelectedCategoryFiltersArray($categories)
     {
         $selectedCategoryFilters = array();
@@ -155,7 +200,7 @@ class StepsController extends Controller
         {
             $currentCategoryString = $baseCurrentCategoryString;
             $cLink = $baseCurrentCategoryString;
-            
+
             if(isset($selectedCategoryFilters[$c]))
             {
                 $currentCategoryString = str_replace($c, "", $currentCategoryString);
@@ -173,7 +218,7 @@ class StepsController extends Controller
             else
                 $categoryFilterHREFs[$c] = trim(rtrim($currentCategoryString, ' '));
         }
-        
+
         return $categoryFilterHREFs;
     }
 
@@ -181,7 +226,7 @@ class StepsController extends Controller
     {
         $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
 
-        $allSteps = $stepRepository->findAll();
+        $allSteps = $stepRepository->findBy(array('approved' => true));
         $categoryTotals = array('all' => 0, 'transportation' => 0, 'food' => 0, 'waste' => 0, 'energy' => 0, 'general' => 0);
         $totalSteps = 0;
         foreach($allSteps as $step)

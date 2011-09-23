@@ -5,8 +5,7 @@ $(document).ready(function() {
         $('textarea[name="form[step]"]').val($(this).children('div.choice-text').html());
     });
    
-   
-    if($.trim($('div#stepTakenBool').html()) == 'true')
+    if($.trim($('div#highlightStepBool').html()) == 'true')
     {
         var firstStep = $('div.step:first');
         firstStep.animate({

@@ -15,9 +15,8 @@ class StepRepository extends EntityRepository
 
     public function findStepsFromTerms($terms, $em)
     {
-        // TODO: approval, add WHERE s.approved = true
         $query = $em->createQuery(
-                        "SELECT s FROM GYGBBackBundle:Step s WHERE s.step LIKE '%" . $terms . "%'"
+                        "SELECT s FROM GYGBBackBundle:Step s WHERE s.approved = true and s.step LIKE '%" . $terms . "%'"
         );
 
         return $query->getResult();
@@ -56,7 +55,7 @@ class StepRepository extends EntityRepository
         {
             $query->join('s.submissions', 'ss');
             $query->groupBy('s.id');
-//        $query->orderBy('count(s.id)', 'DESC');
+            $query->orderBy('s.count', 'DESC');
         }
         else if(isset($sort) && $sort == 'recent')
         {
@@ -64,8 +63,7 @@ class StepRepository extends EntityRepository
             $query->orderBy('ss.datetimeSubmitted', 'DESC');
         }
 
-        // TODO: approval, uncomment
-        //$query->andWhere('s.approved = true');
+        $query->andWhere('s.approved = true');
 
         return $query->getQuery()->getResult();
     }
