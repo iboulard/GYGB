@@ -1,0 +1,33 @@
+<div class="step-list" id="all-step-list">
+    <div class="step-list-container">
+        <a class="step-link" href="{{ path('steps') }}"> 
+            <div class="step {{ step.category }} last highlight">
+                {% if step.savingsLabel %}<span class="savings">{{ step.savingsLabel }}</span>{% endif %}
+                <span class="count">{{ step.count }}</span>
+                <span class="step">{{ step.step }}</span>
+           </div>
+        </a>
+    </div>
+    <div class="step-details-container">
+        {% if step.description is defined and step.description != "" %}    
+            <h2>Learn More</h2>
+            <div class="step-description">
+                {{ step.description|raw }}
+            </div>
+        {% endif %}
+
+        <h2>Who has taken this step?</h2>
+        <div class="step-submissions">
+            {% for submission in step.submissions %}
+                <div class="step-submission {% if loop.first %}first{% endif %}">
+                    <span class="name">{{ submission.name }}{% if submission.story is defined and submission.story != "" %}:{% endif %}
+                    </span>
+                    {% if submission.story is defined and submission.story != "" %}
+                        <span class="story">"{{ submission.story }}"</span>
+                    {% endif %}
+                    <span class="date">{{ submission.datetimesubmitted|date("F j, Y g:i") }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

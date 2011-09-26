@@ -31,7 +31,7 @@ class HomeController extends Controller
         
         $request = $this->get('request');
 
-        $allStepObjects = $stepRepository->findAll();
+        $allStepObjects = $stepRepository->findBy(array('type' => 'individual'));
         $allSteps = array();
         $allStepInfo = array();
         foreach($allStepObjects as $step)
@@ -42,7 +42,7 @@ class HomeController extends Controller
 
         $stepForm = $this->createFormBuilder()
                 ->add('name', 'text', array('label' => 'Your Name', 'required' => false))
-                ->add('story', 'textarea', array('label' => 'Tell a story! How did it go?', 'required' => false))
+                ->add('story', 'textarea', array('label' => 'How did it go? Tell a story!', 'required' => false))
                 ->add('category', 'hidden', array('required' => false))
                 ->add('savings', 'hidden', array('required' => false))
                 ->add('step', 'text', array('label' => 'What step did you take?'))
@@ -73,6 +73,7 @@ class HomeController extends Controller
                     $step->setCategory($data['category']);
                     $step->setSavings($data['savings']);
                     $step->setCount(1);
+                    $step->setType('individual');
                 }
                 else
                 {
@@ -99,7 +100,6 @@ class HomeController extends Controller
                 $stepSubmission->setName($data['name']);
                 $stepSubmission->setDatetimeSubmitted(new \DateTime());
                 $stepSubmission->setStep($step);
-                $stepSubmission->setType('member');
                 if(trim($data['story']) != "") $stepSubmission->setStory($data['story']);
 
                 $em->persist($stepSubmission);
@@ -130,10 +130,10 @@ class HomeController extends Controller
     
     public function stepsTakenCounterAction($extendLayout = false)
     {
-        $stepSubmissionRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:StepSubmission');
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $stepCount = (int) $stepSubmissionRepository->getNumberOfStepSubmissions($em);
+        $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
+        $stepTotals = $stepRepository->findCategoryTotals();
+        
+        $stepCount = (int) $stepTotals['all'];
         $stepCount = (string) $stepCount;
         $stepDigits = array();
 

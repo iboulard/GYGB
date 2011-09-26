@@ -17,7 +17,7 @@ Get Your Greenback - TODO
 		
 //		- fix post problem
 
-		- link recent steps blocks
+//		- link recent steps blocks
 		
 		
 #	2.	Steps
@@ -46,17 +46,18 @@ Get Your Greenback - TODO
 			
 //			- save searches
 			
-		- should the step page show anything about step submissions?
+//		- should the step page show anything about step submissions?
 		
-			- click on step, show more details
+/			- click on step, show more details
 			
-				- show resources
+//				- description
 				
-				- show recent submissions
-
-					- include user's e-mails if they allow it?
-			
-			- handle bigger steps?
+//				- recent steps
+				
+//				- links?
+				
+//				- format better
+				
 	
 //		- check filters
 		
@@ -86,23 +87,23 @@ Get Your Greenback - TODO
 		
 #	4.	Organizations		
 	
-		- move to own page
+//		- move to own page
 		
-			- why join?
+//			- why join?
 			
-				- ads!
+//				- ads!
 			
-			- what do they have to do?
+//			- what do they have to do?
 			
-				- pay
+//				- pay
 				
-				- share step
+//				- share step
 			
 			- give them account?
 			
 				- might as well
 		
-		- logo upload
+//		- logo upload
 		
 		- admin interface
 		
@@ -142,4 +143,4 @@ Get Your Greenback - TODO
 		
 		- videos
 		
-		- story
+//		- story

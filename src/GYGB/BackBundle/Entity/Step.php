@@ -30,15 +30,9 @@ class Step
   /**
    * @var text $description
    *
-   * @ORM\Column(name="description", type="text")
+   * @ORM\Column(name="description", type="text", nullable="true")
    */
   private $description;
-  /**
-   * @var smallint $isBasic
-   *
-   * @ORM\Column(name="isBasic", type="boolean", nullable="true")
-   */
-  private $isBasic;
   /**
    * @var smallint $approved
    *
@@ -63,6 +57,13 @@ class Step
    * @ORM\Column(name="count", type="integer")
    */
   private $count;
+      /**
+     * @var integer $type
+     *
+     * @ORM\Column(name="type", type="string", length="255", nullable="true")
+     */
+    private $type;
+
   
   /** @ORM\OneToMany(targetEntity="StepSubmission", mappedBy="Step", cascade={"persist", "remove"}) */
   protected $submissions;
@@ -140,27 +141,7 @@ class Step
   {
     return $this->submissions;
   }
-
-  /**
-   * Set isBasic
-   *
-   * @param boolean $isBasic
-   */
-  public function setIsBasic($isBasic)
-  {
-    $this->isBasic = $isBasic;
-  }
-
-  /**
-   * Get isBasic
-   *
-   * @return boolean 
-   */
-  public function getIsBasic()
-  {
-    return $this->isBasic;
-  }
-
+  
   public function getAbbrvStep()
   {
     if($this->stepIsAbbreviated())
@@ -351,5 +332,25 @@ class Step
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

@@ -8,10 +8,9 @@
 
         {{ form_row(stepForm.story) }}
 
-        <br/>
         <span class="box-form-label">What area was your step in?</span>
         
-        <div class="category-selections">
+        <div class="category-selections" id="step">
             {% for category in categoryNames %}
                 <a href="#" title="{{ category|capitalize }}">
                     <div class="category-selection" id="{{ category }}">

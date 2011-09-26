@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class StepsController extends Controller
 {
 
-    public function stepsAction($categories = 'all', $sort = 'recent', $savings = 'all', $id = null)
+    public function stepsAction($categories = 'all', $sort = 'recent', $savings = 'all', $id = null, $type = 'all')
     {
         $request = $this->getRequest();
 
@@ -22,7 +22,7 @@ class StepsController extends Controller
         $categoryIcons = array('food' => 'apple', 'transportation' => 'bicycle', 'energy' => 'battery', 'waste' => 'recycle-bin', 'general' => 'globe');
         $selectedCategoryFilters = $this->getSelectedCategoryFiltersArray($categories);
         $categoryFilterHREFs = $this->getCategoryFilterHREFsArray($selectedCategoryFilters, $categoryNames);
-        $categoryTotals = $this->getCategoryTotals();
+        $categoryTotals = $stepRepository->findCategoryTotals();
         $totalSteps = $categoryTotals['all'];
 
         // build Search form
@@ -82,6 +82,7 @@ class StepsController extends Controller
             'categoryFilterHREFs' => $categoryFilterHREFs,
             'sort' => $sort,
             'savings' => $savings,
+            'type' => $type,
             'totalSteps' => $totalSteps,
             'categoryTotals' => $categoryTotals,
             'stepSearchForm' => $stepSearchForm->createView(),
@@ -92,7 +93,7 @@ class StepsController extends Controller
         ));
     }
 
-    public function allStepListAction($categories = 'all', $sort = 'popular', $savings = 'all', $terms = null, $id = null)
+    public function allStepListAction($categories = 'all', $sort = 'popular', $savings = 'all', $terms = null, $id = null, $type = 'all')
     {
         $em = $this->getDoctrine()->getEntityManager();
         $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
@@ -103,7 +104,7 @@ class StepsController extends Controller
         }
         else
         {
-            $steps = $stepRepository->findByFiltersAndSorts($em, $categories, $sort, $savings);
+            $steps = $stepRepository->findByFiltersAndSorts($em, $categories, $sort, $savings, $type);
         }
 
         if(count($steps) == 1)
@@ -122,6 +123,7 @@ class StepsController extends Controller
             'categories' => $categories,
             'savings' => $savings,
             'sort' => $sort,
+            'type' => $type,
             'id' => $id,
             'terms' => $terms,
             'resultNoun' => $resultNoun,
@@ -221,21 +223,5 @@ class StepsController extends Controller
 
         return $categoryFilterHREFs;
     }
-
-    public function getCategoryTotals()
-    {
-        $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
-
-        $allSteps = $stepRepository->findBy(array('approved' => true));
-        $categoryTotals = array('all' => 0, 'transportation' => 0, 'food' => 0, 'waste' => 0, 'energy' => 0, 'general' => 0);
-        $totalSteps = 0;
-        foreach($allSteps as $step)
-        {
-            $categoryTotals['all'] += $step->getCount();
-            $categoryTotals[$step->getCategory()] += $step->getCount();
-        }
-
-        return $categoryTotals;
-    }
-
+ 
 }

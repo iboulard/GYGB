@@ -12,17 +12,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class StepRepository extends EntityRepository
 {
-
-    public function findStepsFromTerms($terms, $em)
+    public function findCategoryTotals()
     {
-        $query = $em->createQuery(
-                        "SELECT s FROM GYGBBackBundle:Step s WHERE s.approved = true and s.step LIKE '%" . $terms . "%'"
-        );
+        $allSteps = $this->findBy(array('approved' => true));
+        $categoryTotals = array('all' => 0, 'transportation' => 0, 'food' => 0, 'waste' => 0, 'energy' => 0, 'general' => 0);
+        $totalSteps = 0;
+        foreach($allSteps as $step)
+        {
+            $categoryTotals['all'] += $step->getCount();
+            $categoryTotals[$step->getCategory()] += $step->getCount();
+        }
 
-        return $query->getResult();
+        return $categoryTotals;
     }
-
-    public function findByFiltersAndSorts($em, $category, $sort, $savings)
+    
+    public function findByFiltersAndSorts($em, $category, $sort, $savings, $type)
     {
         $query = $this->createQueryBuilder('s');
 
@@ -51,6 +55,12 @@ class StepRepository extends EntityRepository
             $query->andWhere($categoryWhere);
         }
 
+        if(isset($type) && $type != 'all')
+        {
+            $query->andWhere("s.type = :type");
+            $query->setParameter('type', $type);
+        }
+        
         if(isset($sort) && $sort == 'popular')
         {
             $query->join('s.submissions', 'ss');

@@ -31,9 +31,8 @@ stepId:
         id:  \d+
   
 steps:
-  pattern: /steps/{categories}/{sort}/{savings}/{id}
-  defaults: { _controller: GYGBFrontBundle:Steps:steps, categories: all, sort: recent, savings: all, id: null}
-
+  pattern: /steps/{categories}/{sort}/{savings}/{type}
+  defaults: { _controller: GYGBFrontBundle:Steps:steps, categories: all, sort: recent, savings: all, type: all}
 
 help:
   pattern: /help

@@ -25,12 +25,4 @@ class StepSubmissionRepository extends EntityRepository
         return $query->getResult();
     }
 
-    public function getNumberOfStepSubmissions($em)
-    {
-        $query = $em->createQuery('SELECT ss.id FROM GYGBBackBundle:StepSubmission ss JOIN ss.Step s WHERE s.approved=true');
-        $count = $query->getResult();
-
-        return count($count);
-    }
-
 }

@@ -24,7 +24,9 @@ class OrganizationAdmin extends Admin
                 ->add('email', null, array('label' => 'E-mail'))
                 ->add('approved', null, array('label' => 'Approved'))
                 ->add('category', null, array('label' => 'Category'))
-                ->add('type', null, array('label' => 'Type'))
+                ->add('organization', null, array('label' => 'Organization'))
+                ->add('sponsor', null, array('label' => 'Sponsor'))
+                ->add('founder', null, array('label' => 'Founding Partner'))
         ;
 
         $showGroups = array(
@@ -35,7 +37,7 @@ class OrganizationAdmin extends Admin
                     'email',
                     'approved',
                     'category',
-                    'type'
+                    'organization', 'sponsor', 'founder'
                 )
             ),
         );
@@ -100,13 +102,9 @@ class OrganizationAdmin extends Admin
                     ),
                     'field_type' => 'choice'
                 ))
-                ->add('type', 'doctrine_orm_choice', array('label' => 'Type',
-                    'field_options' => array(
-                        'required' => false,
-                        'choices' => Organization::getTypeChoices()
-                    ),
-                    'field_type' => 'choice'
-                ))
+                ->add('organization', null, array('label' => 'Organization'))
+                ->add('sponsor', null, array('label' => 'Sponser'))
+                ->add('founder', null, array('label' => 'Founding Partner'))
         ;
     }
 
@@ -117,7 +115,9 @@ class OrganizationAdmin extends Admin
                 ->add('email')
                 ->add('website')
                 ->add('category', 'choice', array('choices' => Step::getCategoryChoices(), 'expanded' => false, 'multiple' => false))
-                ->add('type', 'choice', array('choices' => Organization::getTypeChoices(), 'expanded' => false, 'multiple' => false))
+                ->add('founder')
+                ->add('organization')
+                ->add('sponsor')
                 ->add('approved')
         ;
     }

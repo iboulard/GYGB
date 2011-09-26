@@ -15,8 +15,8 @@
             </div>
 
             <div id="sort-options">
-                <a href="{{ path('steps', {'categories' : categories, 'sort' : 'recent', 'savings': savings }) }}" class="button {% if sort == 'recent' and id == "" %}current{% endif%}">Recent</a>
-                <a href="{{ path('steps', {'categories' : categories, 'sort' : 'popular', 'savings': savings }) }}" class="button last {% if sort == 'popular' and id == "" %}current{% endif%}">Popular</a>
+                <a href="{{ path('steps', {'categories' : categories, 'sort' : 'recent', 'savings': savings, 'type': type }) }}" class="button {% if sort == 'recent' and id == "" %}current{% endif%}">Recent</a>
+                <a href="{{ path('steps', {'categories' : categories, 'sort' : 'popular', 'savings': savings, 'type': type }) }}" class="button last {% if sort == 'popular' and id == "" %}current{% endif%}">Popular</a>
             </div>
         </div>
 
@@ -36,28 +36,41 @@
             <span class="page-break">&nbsp;</span>
 
             {% for c in categoryNames %}
-                <a href="{{ path('steps', {'categories' : categoryFilterHREFs[c], 'sort' : sort, 'savings': savings }) }}">
+                <a href="{{ path('steps', {'categories' : categoryFilterHREFs[c], 'sort' : sort, 'savings': savings, 'type': type }) }}">
                     <div class="category-filter button {% if selectedCategoryFilters[c] is defined %}current{% endif %}">
-                        <img src="{{ asset('images/' ~ categoryIcons[c] ~ '-small.png') }}" /><span class="category-filter-label">{{ c|capitalize }}</span> ({{ categoryTotals[c] }})
+                        <img src="{{ asset('images/' ~ categoryIcons[c] ~ '-small.png') }}" /><span class="category-filter-label">{{ c|capitalize }}</span> {#({{ categoryTotals[c] }})#}
                     </div>
                 </a>
             {% endfor %}
 
             <span class="page-break">&nbsp;</span>
 
-            <a href="{{ path('steps', {'categories' : categories, 'sort' : sort, 'savings': 'low' }) }}">
+            <a href="{{ path('steps', {'categories' : categories, 'sort' : sort, 'savings': 'low', 'type': type }) }}">
                 <div class="category-filter button {% if savings == "low" %}current{% endif %}">
                     <span class="category-filter-label">$</span> Low Savings
                 </div>
             </a>
-            <a href="{{ path('steps', {'categories' : categories, 'sort' : sort, 'savings': 'medium' }) }}">
+            <a href="{{ path('steps', {'categories' : categories, 'sort' : sort, 'savings': 'medium', 'type': type }) }}">
                 <div class="category-filter button {% if savings == "medium" %}current{% endif %}">
                     <span class="category-filter-label">$$</span> Medium Savings
                 </div>
             </a>
-            <a href="{{ path('steps', {'categories' : categories, 'sort' : sort, 'savings': 'high' }) }}">
+            <a href="{{ path('steps', {'categories' : categories, 'sort' : sort, 'savings': 'high', 'type': type }) }}">
                 <div class="category-filter button {% if savings == "high" %}current{% endif %}">
                     <span class="category-filter-label">$$$</span> High Savings
+                </div>
+            </a>
+
+            <span class="page-break">&nbsp;</span>
+
+            <a href="{{ path('steps', {'categories' : categories, 'sort' : sort, 'savings': savings, 'type': 'organization' }) }}">
+                <div class="category-filter button {% if type == "organization" %}current{% endif %}">
+                    Organization Steps
+                </div>
+            </a>
+            <a href="{{ path('steps', {'categories' : categories, 'sort' : sort, 'savings': savings, 'type': 'individual' }) }}">
+                <div class="category-filter button {% if type == "individual" %}current{% endif %}">
+                    Individual Steps
                 </div>
             </a>
         </div>
@@ -68,7 +81,7 @@
             {% render "GYGBFrontBundle:Steps:stepDetails" with {'id' : id } %}
             {% render "GYGBFrontBundle:Steps:organizationAds" with {'selectedCategoryFilters' : idCategory } %}   
         {% else %}
-            {% render "GYGBFrontBundle:Steps:allStepList" with {'categories' : categories, 'sort' : sort, 'terms' : terms, 'savings' : savings, 'id' : id } %}   
+            {% render "GYGBFrontBundle:Steps:allStepList" with {'categories' : categories, 'sort' : sort, 'terms' : terms, 'savings' : savings, 'id' : id, 'type' : type } %}   
             {% render "GYGBFrontBundle:Steps:organizationAds" with {'selectedCategoryFilters' : selectedCategoryFilters } %}   
         {% endif %}
 

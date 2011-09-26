@@ -34,12 +34,6 @@ class StepSubmission
      */
     private $website;
     /**
-     * @var integer $type
-     *
-     * @ORM\Column(name="type", type="string", length="255", nullable="true")
-     */
-    private $type;
-    /**
      * @var text $story
      *
      * @ORM\Column(name="story", type="text", nullable="true")
@@ -151,26 +145,6 @@ class StepSubmission
     public function getWebsite()
     {
         return $this->website;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string 
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**

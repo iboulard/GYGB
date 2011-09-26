@@ -188,7 +188,16 @@ div.box-form {
     -moz-border-radius: 7px;  
     webkit-border-radius: 7px;
     border-radius: 7px;
+    box-shadow: -2px 5px 10px #999;
+    -moz-box-shadow: -2px 5px 10px #999;
+    -webkit-box-shadow: -2px 5px 10px #999;
+}
 
+div.box-form h2 {
+    font-size: 20px;
+    text-align: center;
+    margin: 10px 0;
+    display: block;
 }
 
 div.box-form form input, 
@@ -204,7 +213,9 @@ div.box-form form input[type="submit"] {
 
 div.box-form .category-selections {
     width: 100%;
-    float: left;
+    clear: both;
+    overflow: auto;
+    
 }
 
 div.box-form .category-selections a {
@@ -261,7 +272,7 @@ div.box-form .savings-selections a {
 
 div.box-form form div label {
     float: left;
-    margin-top: 5px;
+    margin-top: 12px;
 }
 
 div.box-form form textarea,
@@ -283,7 +294,7 @@ div.category-selection:hover span.category-name {
 
 div.box-form .box-form-label {
     float: left;
-    margin-top: 6px;
+    margin-top: 12px;
 }
 
 /* end step form ============================================================ */
@@ -365,6 +376,7 @@ div.step-list-container a:hover {
 }
 
 div.step-list#all-step-list div.step:hover,
+div.step-list#all-step-list div.step.highlight, 
 div.step-list#recent-step-list div.step:hover {
     background-color: #ffffbb; 
     cursor: pointer;
@@ -372,7 +384,6 @@ div.step-list#recent-step-list div.step:hover {
 
 div.step-list div.step {
     padding: 8px 8px 8px 36px;
-    margin: 0 6px;
     border-bottom: 1px solid #ccc;
     color: black;
     overflow: hidden;
@@ -589,6 +600,7 @@ div.step-details-container {
 
 div.step-details-container h2 {
     margin: 15px 0;
+    font-size: 26px;
 }
 
 div.step-details-container div.step-description {
@@ -607,8 +619,12 @@ div.step-details-container div.step-submissions div.step-submission {
     padding: 5px 0;
 }
 
+div.step-details-container div.step-submissions div.step-submission.first {
+    border-top: 1px solid #ccc;
+}
+
 div.step-details-container div.step-submissions div.step-submission span.name {
-    
+    float: left;
 }
 
 div.step-details-container div.step-submissions div.step-submission span.date {
@@ -618,12 +634,12 @@ div.step-details-container div.step-submissions div.step-submission span.date {
 }
 
 div.step-details-container div.step-submissions div.step-submission span.story {
-    float: left;
-    background: #eee;
+    float: right;
+    background: #FFFFBB;
     width: 400px;
     padding: 3px 6px;
     border-radius: 7px;
-    margin: 0 auto;
+    margin: 0 0 10px 0;
 }
 
 
