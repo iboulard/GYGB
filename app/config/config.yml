@@ -34,6 +34,11 @@ services:
       tags:
         - { name: sonata.admin, manager_type: orm, group: Step Data, label: Organizations }
       arguments: [null, GYGB\BackBundle\Entity\Organization, GYGBBackBundle:OrganizationAdmin]
+    ccetc.useradmin.admin.user:
+      class: CCETC\UserAdminBundle\Admin\UserAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: User Data, label: Users }
+      arguments: [null, GYGB\BackBundle\Entity\User, CCETCUserAdminBundle:UserAdmin]
 
     errorReports:
       class: CCETC\ErrorReportBundle\Resources\config\Config

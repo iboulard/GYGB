@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Sonata\BluePrintBundle\SonataBluePrintBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new CCETC\ErrorReportBundle\CCETCErrorReportBundle(),
+            new CCETC\UserAdminBundle\CCETCUserAdminBundle(),
             new FOS\UserBundle\FOSUserBundle(),            
         );
 

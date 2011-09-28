@@ -22,3 +22,6 @@
 [submodule "vendor/bundles/FOS/UserBundle"]
 	path = vendor/bundles/FOS/UserBundle
 	url = git://github.com/CCETC/FOSUserBundle.git
+[submodule "vendor/bundles/CCETC/UserAdminBundle"]
+	path = vendor/bundles/CCETC/UserAdminBundle
+	url = git://github.com/CCETC/CCETCUserAdminBundle.git
