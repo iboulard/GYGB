@@ -25,3 +25,6 @@
 [submodule "vendor/bundles/CCETC/UserAdminBundle"]
 	path = vendor/bundles/CCETC/UserAdminBundle
 	url = git://github.com/CCETC/CCETCUserAdminBundle.git
+[submodule "CCETCUserAdminBundle"]
+	path = CCETCUserAdminBundle
+	url = git@github.com:CCETC/CCETCUserAdminBundle.git
