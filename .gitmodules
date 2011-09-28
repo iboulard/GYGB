@@ -16,9 +16,6 @@
 [submodule "vendor/knp-menu"]
 	path = vendor/knp-menu
 	url = https://github.com/knplabs/KnpMenu.git
-[submodule "vendor/bundles/CCETC/ErrorReportBundle"]
-	path = vendor/bundles/CCETC/ErrorReportBundle
-	url = git://github.com/CCETC/CCETCErrorReportBundle.git
 [submodule "vendor/bundles/FOS/UserBundle"]
 	path = vendor/bundles/FOS/UserBundle
 	url = git://github.com/CCETC/FOSUserBundle.git
@@ -28,3 +25,6 @@
 [submodule "CCETCUserAdminBundle"]
 	path = CCETCUserAdminBundle
 	url = git@github.com:CCETC/CCETCUserAdminBundle.git
+[submodule "vendor/bundles/CCETC/ErrorReportBundle"]
+	path = vendor/bundles/CCETC/ErrorReportBundle
+	url = git@github.com:CCETC/CCETCErrorReportBundle.git
