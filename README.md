@@ -23,7 +23,7 @@ https://github.com/CCETC/ErrorReportBundle
 
 ###2. Install submodules
 
-	$ git submodules update --init
+	$ git submodule update --init
 
 ###3. Create ``app/config/parameters.ini`` from ``app/config/parameters.ini.dist``
 
