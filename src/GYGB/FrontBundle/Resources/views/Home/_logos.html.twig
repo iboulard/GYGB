@@ -1,7 +1,9 @@
 {% for lb in logoBlocks %}
     <div class="logo-block" style="width: {{ lb.width }}px;">
         {% for l in lb.logos %}
+            {% if l.website is defined %}<a target="_blank" href="{{ l.website}}">{% endif %}
                 <img style="{% if((l.width) is defined) %}width: {{ l.width }}px;{% endif %}" src="{{ asset('images/logos/'~l.logo) }}" />
+            {% if l.website is defined %}</a>{% endif %}
         {% endfor %}
     </div>
 {% endfor %}

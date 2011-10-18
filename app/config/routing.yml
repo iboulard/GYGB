@@ -27,6 +27,10 @@ about:
   pattern: /about
   defaults: { _controller: GYGBFrontBundle:About:about }
 
+coalition:
+  pattern: /coalition
+  defaults: { _controller: GYGBFrontBundle:Coalition:coalition }
+
 findAStep:
   pattern: /find-a-step
   defaults: { _controller: GYGBFrontBundle:FindAStep:findAStep }
