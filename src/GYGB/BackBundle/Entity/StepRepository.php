@@ -12,7 +12,22 @@ use Doctrine\ORM\EntityRepository;
  */
 class StepRepository extends EntityRepository
 {
-    public function findCategoryTotals()
+
+    public function findCategoryStepTotals()
+    {
+        $allSteps = $this->findBy(array('approved' => true));
+        $categoryTotals = array('all' => 0, 'transportation' => 0, 'food' => 0, 'waste' => 0, 'energy' => 0, 'general' => 0);
+        $totalSteps = 0;
+        foreach($allSteps as $step)
+        {
+            $categoryTotals['all'] += 1;
+            $categoryTotals[$step->getCategory()] += 1;
+        }
+
+        return $categoryTotals;
+    }
+
+    public function findCategoryStepSubmissionTotals()
     {
         $allSteps = $this->findBy(array('approved' => true));
         $categoryTotals = array('all' => 0, 'transportation' => 0, 'food' => 0, 'waste' => 0, 'energy' => 0, 'general' => 0);
@@ -25,15 +40,35 @@ class StepRepository extends EntityRepository
 
         return $categoryTotals;
     }
-    
+
+    public function findByTerms($em, $terms)
+    {
+        $query = $this->createQueryBuilder('s');
+        $query->andWhere('s.actionTitle LIKE :title');
+        $query->setParameter('title', '%' . $terms . '%');
+
+        return $query->getQuery()->getResult();
+    }
+
     public function findByFiltersAndSorts($em, $category, $sort, $savings, $type)
     {
         $query = $this->createQueryBuilder('s');
 
         if(isset($savings) && $savings != 'all')
         {
-            $query->andWhere('s.savings = :savings');
-            $query->setParameter('savings', $savings);
+            $savings = explode(' ', $savings);
+            $savingsWhere = '';
+            $i = 0;
+            foreach($savings as $s)
+            {
+                $savingsWhere .= 's.savings = :savings' . $i . ' OR ';
+                $query->setParameter('savings' . $i, $s);
+
+                $i++;
+            }
+
+            $savingsWhere = rtrim($savingsWhere, ' OR ');
+            $query->andWhere($savingsWhere);
         }
 
         if(isset($category) && $category != 'all')
@@ -57,10 +92,21 @@ class StepRepository extends EntityRepository
 
         if(isset($type) && $type != 'all')
         {
-            $query->andWhere("s.type = :type");
-            $query->setParameter('type', $type);
+            $type = explode(' ', $type);
+            $typeWhere = '';
+            $i = 0;
+            foreach($type as $t)
+            {
+                $typeWhere .= 's.:type = 1' . $i . ' OR ';
+                $query->setParameter('type' . $i, $t);
+
+                $i++;
+            }
+
+            $typeWhere = rtrim($typeWhere, ' OR ');
+            $query->andWhere($typeWhere);
         }
-        
+
         if(isset($sort) && $sort == 'popular')
         {
             $query->join('s.submissions', 'ss');

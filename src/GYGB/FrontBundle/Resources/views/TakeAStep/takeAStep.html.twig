@@ -1,0 +1,55 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+<div id="take-a-step-page-container">
+    {% if step is defined and step != "" %}
+        <div class="step-list take-a-step-box">
+         
+            <div class="step-container">
+                <div class="step {{ step.category}}">
+                    <span class="savings">{{ step.savingsLabel }}</span>
+                    <span class="count">{{ step.count }}</span>
+                    <span class="step">{{ step.actionTitle }}</span>
+                </div>
+            </div>
+           
+            <span class="description">{{ step.description|raw }}</a>
+        </div>
+
+        <div class="share-this-step">
+            Have you taken this step? <a class="button" href="{{ path('shareAStep', {'id':step.id}) }}">Share it! &rarr;</a>
+        </div>
+
+        <br/>
+
+        <h1>Who has taken this step?</h1>
+        {% if step.submissions|length > 0 %}
+            <div class="step-submissions">
+                {% for submission in step.submissions %}
+                    <div class="step-submission {% if loop.first %}first {% endif %}{% if loop.last %}last {% endif %}">
+                        <span class="name">{{ submission.name }}{% if submission.story is defined and submission.story != "" %}:{% endif %} 
+                        </span>
+                        {% if submission.story is defined and submission.story != "" %}
+                            <span class="story">"{{ submission.story }}"</span>
+                        {% endif %}
+                        <span class="date">{{ submission.datetimesubmitted|date("F j, Y g:i") }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div style="background: #ffffcc; font-size: 20px; padding: 15px; text-align: center; border: 1px solid #ccc;">
+                No one has taken this step!  <a href="{{ path('shareAStep', {'id':step.id}) }}">Be the first.</a>
+            </div>
+        {% endif %}
+
+{#        <h1>Need Help?</h1> #}
+
+
+
+    {% else %}
+        Before taking a step, <a href="{{ path('findAStep') }}">find a step</a>.
+    {% endif %}
+
+</div>
+    
+{% endblock content %}

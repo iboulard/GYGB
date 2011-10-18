@@ -1,0 +1,32 @@
+<div class="step-list" id="all-step-list">
+    {% if terms is defined and terms != "" %}
+        <div class="step-list-search-results">Your search for <i>{{ terms }}</i> returned {{ steps|length }} {{ resultNoun }}.</div>
+    {% endif %}
+    <div class="step-list-container">
+        {% if steps|length == 0 and terms == "" %}
+            <div class="step-list-search-results">There are no steps that match your filters.</div>
+        {% else %}
+            {% for step in steps %}
+                <div id="{{ loop.index }}" class="step-container {{ step.category }} {{ step.savings }} {% if step.organization %}organization{%endif%} {% if step.individual %}individual{%endif%} {% if loop.first %}first{% endif %} {% if loop.last %}last{% endif %}">
+                    <div class="step {{ step.category }}">
+                        {% if step.savingsLabel %}<span class="savings">{{ step.savingsLabel }}</span>{% endif %}
+                        <span class="count">{{ step.count }}</span>
+                        <span class="step">
+                            <a class="step-link" href="{{ path('takeAStep', {'id' : step.id }) }}"> 
+                                {{ step.actionTitle }}
+                            </a>
+                        </span>
+                        <a class="take-this-step button" href="{{ path('takeAStep', {'id' : step.id }) }}">Take this step</a>
+                    </div>
+                   {# {% if id is defined and id == step.id %}
+                        {% render "GYGBFrontBundle:FindAStep:stepDetails" with {'id' : step.id, 'hidden' : false } %}           
+                    {% else %}
+                        {% render "GYGBFrontBundle:FindAStep:stepDetails" with {'id' : step.id, 'hidden' : true } %}           
+                    {% endif %}
+                    #}
+               </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+                

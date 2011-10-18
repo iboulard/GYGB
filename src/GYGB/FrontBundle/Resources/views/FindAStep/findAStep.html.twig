@@ -1,0 +1,110 @@
+{% extends '::layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/libraries/jquery.tinysort.min.js') }}" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+    <div id="step-page-container">
+        <div id="step-option-container">
+            <div id="search-steps">
+                <form action="{{ path('findAStep') }}" method="post" {{ form_enctype(stepSearchForm) }}>
+                    {{ form_errors(stepSearchForm) }}
+
+                    {{ form_row(stepSearchForm.terms) }}
+
+                    {{ form_rest(stepSearchForm) }}
+                    <input class="button submit" value="Search" type="submit" />
+                </form>
+            </div>
+
+            <div id="sort-options">
+                <a href="#" id="recent" class="button current">Recent</a>
+                <a href="#" id="popular" class="button last">Popular</a>
+            </div>
+        </div>
+
+        <div id="filters">
+           {#
+            <a href="{{ path('findAStep') }}">
+                <div class="filter button {%
+                    if savings == "all"
+                    and selectedCategoryFilters['all'] is defined
+                    and (terms == "" or terms is not defined) %}
+                        current{% endif %}">
+                    <span class="filter-label">View All</span> ({{ totalSteps }})
+                </div>
+            </a>
+
+
+            <span class="page-break">&nbsp;</span>
+            #}
+            
+            <div class="filter-group">
+                <div class="filter-group-heading">
+                    Categories
+                    <a class="see-all" id="category" href="#">see all</a>
+                </div>
+            {% for c in categoryNames %}
+                <a href="#">
+                    <div id="{{ c }}" class="filter category {% if terms == "" %}current{% endif %}">
+                        <input type="checkbox" checked="true" /><img src="{{ asset('images/' ~ c ~ '.png') }}" /><span class="filter-label">{{ c|capitalize }}</span> {#({{ categoryTotals[c] }})#}
+                    </div>
+                </a>
+            {% endfor %}
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-group-heading">
+                Savings
+                    <a class="see-all" id="savings" href="#">see all</a>
+                </div>
+                <a href="#">
+                    <div id="low" class="filter savings {% if terms == "" %}current{% endif %}">
+                        <input type="checkbox" checked="true" /><span class="filter-label"><span class="savings">$</span> Low</span>
+                    </div>
+                </a>
+                <a href="#">
+                    <div id="medium" class="filter savings {% if terms == "" %}current{% endif %}">
+                        <input type="checkbox" checked="true" /><span class="filter-label"><span class="savings">$$</span> Medium</span>
+                    </div>
+                </a>
+                <a href="#">
+                    <div id="high" class="filter savings {% if terms == "" %}current{% endif %}">
+                        <input type="checkbox" checked="true" /><span class="filter-label"><span class="savings">$$$</span> High</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-group-heading">
+                    Who
+                    <a class="see-all" id="type" href="#">see all</a>
+                </div>
+
+                <a href="#">
+                    <div id="organization" class="filter type {% if terms == "" %}current{% endif %}">
+                        <input type="checkbox" checked="true" /><span class="filter-label">Organizations</span>
+                    </div>
+                </a>
+                <a href="#">
+                    <div id="individual" class="filter type {% if terms == "" %}current{% endif %}">
+                        <input type="checkbox" checked="true" /><span class="filter-label">Individuals</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <br/>
+
+        {% render "GYGBFrontBundle:FindAStep:allStepList" with {'terms' : terms} %}   
+
+        {% if id is defined and id != "" %}
+            {% render "GYGBFrontBundle:FindAStep:organizationAds" %}   
+        {% else %}
+            {% render "GYGBFrontBundle:FindAStep:organizationAds" %}   
+        {% endif %}
+
+    </div>
+{% endblock %}

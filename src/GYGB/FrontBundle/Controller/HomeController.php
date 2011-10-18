@@ -10,11 +10,11 @@ class HomeController extends Controller
 {
     public function staticHomeAction()
     {
+        $em = $this->getDoctrine()->getEntityManager();
         $organizationRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Organization');
 
         return $this->render('GYGBFrontBundle:Home:staticHome.html.twig', array(
-            'partnerBlocks' => $this->getOrganizationLogoBlocks($organizationRepository->findBy(array('founder' => true, 'approved' => true))),
-            'sponsorBlocks' => $this->getOrganizationLogoBlocks($organizationRepository->findBy(array('sponsor' => true, 'approved' => true))),
+            'foundersAndSponsors' => $this->getOrganizationLogoBlocks($organizationRepository->findFoundersAndSponsors($em)),
             'onStaticHome' => 'true'
         ));
     }
@@ -31,7 +31,7 @@ class HomeController extends Controller
         
         $request = $this->get('request');
 
-        $allStepObjects = $stepRepository->findBy(array('type' => 'individual'));
+        $allStepObjects = $stepRepository->findBy(array('individual' => true));
         $allSteps = array();
         $allStepInfo = array();
         foreach($allStepObjects as $step)
@@ -73,7 +73,7 @@ class HomeController extends Controller
                     $step->setCategory($data['category']);
                     $step->setSavings($data['savings']);
                     $step->setCount(1);
-                    $step->setType('individual');
+                    $step->setIndividual(true);
                 }
                 else
                 {
@@ -122,16 +122,17 @@ class HomeController extends Controller
             'categoryIcons' => $categoryIcons,
             'allSteps' => $allSteps,
             'allStepInfo' => $allStepInfo,
-            'founderBlocks' => $this->getOrganizationLogoBlocks($organizationRepository->findBy(array('founder' => true, 'approved' => true))),
-            'sponsorBlocks' => $this->getOrganizationLogoBlocks($organizationRepository->findBy(array('sponsor' => true, 'approved' => true))),
-            'orgBlocks' => $this->getOrganizationLogoBlocks($organizationRepository->findBy(array('organization' => true, 'approved' => true)))
+//            'founderBlocks' => $this->getOrganizationLogoBlocks($organizationRepository->findBy(array('founder' => true, 'approved' => true))),
+//            'sponsorBlocks' => $this->getOrganizationLogoBlocks($organizationRepository->findBy(array('sponsor' => true, 'approved' => true))),
+//            'orgBlocks' => $this->getOrganizationLogoBlocks($organizationRepository->findBy(array('organization' => true, 'approved' => true)))
+            'foundersAndSponsors' => $this->getOrganizationLogoBlocks($organizationRepository->findFoundersAndSponsors($em))
         ));
     }
     
     public function stepsTakenCounterAction($extendLayout = false)
     {
         $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
-        $stepTotals = $stepRepository->findCategoryTotals();
+        $stepTotals = $stepRepository->findCategoryStepSubmissionTotals();
         
         $stepCount = (int) $stepTotals['all'];
         $stepCount = (string) $stepCount;
@@ -186,7 +187,8 @@ class HomeController extends Controller
         $curCount = 0;
         $curLogos = array();
         $logoBlocks = array();
-        $defaultWidth = 100;
+        $defaultWidth = 55.0;
+        $defaultPadding = 10; //left and right
         $pageWidth = 960;
 
         foreach($organizations as $l)
@@ -195,13 +197,14 @@ class HomeController extends Controller
 
             if($l->getWidth())
             {
-                $thisWidth = (int) $l->getWidth() + 10;
-                $tempCount += $thisWidth;
+                $thisWidth = (int)((double) $l->getWidth() * $defaultWidth);
+                $l->setWidth($thisWidth);
+                $tempCount += $thisWidth + $defaultPadding;
             }
             else
             {
                 $thisWidth = $defaultWidth;
-                $tempCount += $thisWidth;
+                $tempCount += $thisWidth + $defaultPadding;
             }
 
             // if this partner makes the block to big
@@ -215,7 +218,7 @@ class HomeController extends Controller
                 // reset and add
                 $curLogos = array();
                 $curLogos[] = $l;
-                $curCount = $thisWidth;
+                $curCount = $thisWidth + $defaultPadding;
             }
             else
             {

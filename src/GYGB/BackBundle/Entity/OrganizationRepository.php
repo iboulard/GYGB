@@ -37,5 +37,15 @@ class OrganizationRepository extends EntityRepository
         }
         return $orgs;
     }
+    
+    public function findFoundersAndSponsors($em)
+    {
+        $query = $em->createQuery(
+                    "SELECT o FROM GYGBBackBundle:Organization o WHERE o.founder = true OR o.sponsor = true"
+            );
+        
+        $organizations = $query->getResult();
+        return $organizations;
+    }
 
 }

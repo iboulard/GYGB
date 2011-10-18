@@ -1,81 +1,29 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
-
-    <script>
-        // build an array of steps for the autocomplete on the form
-        var stepInfo = new Object;
-
-        {% for s in allStepInfo %}
-            stepInfo["{{s.step}}"] = new Object;
-            stepInfo["{{s.step}}"]['category'] = "{{ s.category }}";
-            stepInfo["{{s.step}}"]['savings'] = "{{ s.savings }}";
-            stepInfo["{{s.step}}"]['step'] = "{{ s.step }}";
-        {% endfor %}
-
-        $(function() {
-                var availableTags = [
-                {% for step in allSteps %}
-                        "{{ step | raw }}",
-                {% endfor %}
-                ];
-                $( "#form_step" ).autocomplete({
-                        source: availableTags,
-                        select: function(event, ui) {
-                            var category = stepInfo[ui.item.value]['category'];
-
-                            $("div.category-selection").removeClass("selected");
-                            var catBox = $("div#" + category + ".category-selection");
-                            catBox.addClass("selected");
-
-                            var savings = stepInfo[ui.item.value]['savings'];
-
-                            $("div.savings-selection").removeClass("selected");
-                            var savingsBox = $("div#" + savings + ".savings-selection");
-                            savingsBox.addClass("selected");
-                        }
-                });
-        });
-    </script>
-
     
+    {#
     <div id="step-submission-container">
-        <div id="whats-your-step">
-            <span id="whats-your-step-heading">What's your step?</span>
-
-            {% include "GYGBFrontBundle:Home:_stepForm.html.twig" with {'stepForm' : stepForm, 'categoryNames' : categoryNames, 'categoryIcons' : categoryIcons } %}
+      
+        <div style="float: right; width: 40%;">
+            <a href="{{ path("findAStep") }}">Take a Step &rarr;</a>
         </div>
 
         {% render "GYGBFrontBundle:Home:stepsTakenCounter" %} 
         {% render "GYGBFrontBundle:Home:recentStepList" %}  
-    </div>
+    </div>#}
+
+    <h2>1. Find a Step</h2>
+    <h2>2. Take a Step and save</h2>
+    <h2>3. Share a step and win</h2>
 
     <div class="about-container">
-        {% include "::_about.html.twig" %}  
+        {% include "GYGBFrontBundle:Home:_about.html.twig" %}  
     </div>
-
-    <div id="founders">
-        <h1>Founding Partners</h1>
-
-        {% include "GYGBFrontBundle:Home:_logos.html.twig" with {'logoBlocks' : founderBlocks } %}
+    
+    <div id="founders-and-sponsors">
+        {% include "GYGBFrontBundle:Home:_logos.html.twig" with {'logoBlocks' : foundersAndSponsors } %}
     </div>
-
-    <div id="sponsors">
-        <h1>Sponsoring Partners</h1>
-
-        {% include "GYGBFrontBundle:Home:_logos.html.twig" with {'logoBlocks' : sponsorBlocks } %}
-
-    </div> 
-
-    <div id="organizations">
-        <h1>Community Organizations</h1>
-
-        {% include "GYGBFrontBundle:Home:_logos.html.twig" with {'logoBlocks' : orgBlocks } %}
-
-        <a id="join-the-campaign" href="{{ path('organization') }}">Part of an organization? Join the campaign.</a>
-
-    </div> 
-
 
     {# hidden div to include a bool that triggers some javascript when a step is submitted #}
     <div id="highlightStepBool" style="display: none;">

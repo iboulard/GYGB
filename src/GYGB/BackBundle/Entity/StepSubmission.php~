@@ -34,6 +34,12 @@ class StepSubmission
      */
     private $website;
     /**
+     * @var integer $email
+     *
+     * @ORM\Column(name="email", type="string", length="255", nullable="true")
+     */
+    private $email;
+    /**
      * @var text $story
      *
      * @ORM\Column(name="story", type="text", nullable="true")
@@ -165,5 +171,25 @@ class StepSubmission
     public function getStory()
     {
         return $this->story;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 }

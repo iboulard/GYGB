@@ -24,9 +24,15 @@ class Step
   /**
    * @var text $step
    *
-   * @ORM\Column(name="step", type="text")
+   * @ORM\Column(name="step", type="text", nullable="true")
    */
   private $step;
+  /**
+   * @var text $actionTitle
+   *
+   * @ORM\Column(name="actionTitle", type="text")
+   */
+  private $actionTitle;
   /**
    * @var text $description
    *
@@ -57,12 +63,42 @@ class Step
    * @ORM\Column(name="count", type="integer")
    */
   private $count;
-      /**
-     * @var integer $type
-     *
-     * @ORM\Column(name="type", type="string", length="255", nullable="true")
-     */
-    private $type;
+  /**
+   * @var smallint $individual
+   *
+   * @ORM\Column(name="individual", type="boolean", nullable="true")
+   */
+  private $individual;     
+  /**
+   * @var smallint $organization
+   *
+   * @ORM\Column(name="organization", type="boolean", nullable="true")
+   */
+  private $organization;     
+  /**
+   * @var smallint $renter
+   *
+   * @ORM\Column(name="renter", type="boolean", nullable="true")
+   */
+  private $renter;     
+  /**
+   * @var smallint $landlord
+   *
+   * @ORM\Column(name="landlord", type="boolean", nullable="true")
+   */
+  private $landlord;     
+  /**
+   * @var smallint $homeowner
+   *
+   * @ORM\Column(name="homeowner", type="boolean", nullable="true")
+   */
+  private $homeowner;     
+  /**
+   * @var smallint $student
+   *
+   * @ORM\Column(name="student", type="boolean", nullable="true")
+   */
+  private $student;     
 
   
   /** @ORM\OneToMany(targetEntity="StepSubmission", mappedBy="Step", cascade={"persist", "remove"}) */
@@ -332,5 +368,27 @@ class Step
     public function getDescription()
     {
         return $this->description;
+    }
+
+    
+
+    /**
+     * Set actionTitle
+     *
+     * @param text $actionTitle
+     */
+    public function setActionTitle($actionTitle)
+    {
+        $this->actionTitle = $actionTitle;
+    }
+
+    /**
+     * Get actionTitle
+     *
+     * @return text 
+     */
+    public function getActionTitle()
+    {
+        return $this->actionTitle;
     }
 }

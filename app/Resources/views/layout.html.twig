@@ -49,27 +49,28 @@
         {% if(app.session.hasFlash('message')) %}
             <div class="header-message">{{ app.session.getFlash('message') }}</div>
         {% endif %}
+        {% if(app.session.hasFlash('error-message')) %}
+            <div class="header-error-message">{{ app.session.getFlash('error-message') }}</div>
+        {% endif %}
 
         <div id="page-container">
     
-            <div id="header" {% if onStaticHome is defined %}class="static-header"{% endif %}>
-                <a href="{{ path('home') }}"><img id="logo" src="{{ asset('images/logo.png') }}" /></a>
+            <div id="header">
+                <a href="{{ path('home') }}"><img id="logo" src="{{ asset('images/logoa.png') }}" /></a>
                 
-                {% if onStepsPage is defined %}
-                    <span style="float: left; clear: both; margin: 10px 0 0 10px; width: 200px;">
-                            <a href="{{ path('home') }}">&larr; Home</a>
-                    </span>
-                {% endif %}
-            </div>
+                <img id="logob" src="{{ asset('images/logob.png') }}" />
 
+                <div id="menu">
+                    {{ knp_menu_render('GYGBFrontBundle:Builder:mainMenu') }}
+                </div>
+            </div>
+           
             <div id="content">
                 {% block content %}{% endblock %}
 
                 <div style="clear: both;"></div>
             </div>
 
-            <div id="footer">
-            </div>
         </div>
 
     </body>

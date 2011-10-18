@@ -1,0 +1,82 @@
+<div id="step-form" class="box-form">
+    <form action="{{ path('shareAStep') }}" method="post" {{ form_enctype(stepForm) }}>
+        {{ form_errors(stepForm) }}
+
+        {% if selectedStep.step is defined %}
+           <h2 style="margin: 10px 0;">Your Step:</h2>
+           <div class="step-container" style="background: #ffffcc; border: none;">
+                <div class="step {{ selectedStep.category}}">
+                    <span class="savings">{{ selectedStep.savingsLabel }}</span>
+                    <span class="step">{{ selectedStep.actionTitle }}</span>
+                </div>
+            </div>
+        {% endif %}
+
+        <div style="{% if selectedStep.step is defined %}display: none;{% endif %}">
+            <h2 style="margin: 10px 0;">What step did you take?</h2>
+                <div class="select-a-step">
+                    Select a step:<br/><br/>
+
+                    {{ form_row(stepForm.step_dropdown) }}
+                    <br/>
+
+                    <a href="#" class="share-your-own">or share your own step</a>
+                </div>
+
+                <div class="share-your-own-container">
+                <fieldset style="border: 1px solid #aaa; border-radius: 6px; padding: 10px;">
+                <legend style="text-align: center; padding: 0 10px;">Share your own step</legend>
+                    {{ form_row(stepForm.step) }}
+                    {{ form_row(stepForm.action) }}
+                    {{ form_row(stepForm.description) }}
+
+                    <span class="box-form-label">What area was your step in?</span>
+
+                    <div class="category-selections" id="step">
+                        {% for category in categoryNames %}
+                            <a href="#" title="{{ category|capitalize }}">
+                                <div class="category-selection" id="{{ category }}">
+                                    <img src="{{ asset('images/' ~ category ~ '.png') }}" />
+                                    <span class="category-name">{{ category|capitalize }}</span>
+                                </div>
+                           </a>
+                        {% endfor %}
+                    </div>
+
+
+                    <span class="box-form-label">How much money did you save?</span>
+
+                    <div class="savings-selections">
+                        <a href="#" title="small amount">
+                            <div class="savings-selection" id="low">$</div>
+                        </a>
+                        <a href="#" title="medium amount">
+                            <div class="savings-selection" id="medium">$$</div>
+                        </a>
+                        <a href="#" title="large amount">
+                            <div class="savings-selection" id="high">$$$</div>
+                        </a>
+                    </div>
+
+                    <a href="#" class="share-your-own-cancel">cancel</a>
+               </fieldset>
+               </div>
+           </div>
+        
+        <h2>Tell a story.</h2>
+
+            {{ form_row(stepForm.story) }}
+
+          <h2>Who are you?</h2>
+                    {{ form_row(stepForm.name) }}
+                    {{ form_row(stepForm.email) }}
+
+
+            
+        {{ form_rest(stepForm) }}
+        <br/>
+        <input class="button submit" value="Share" type="submit" />
+    </form>
+
+  
+</div>

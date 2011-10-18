@@ -1,0 +1,20 @@
+<div class="step-details-container" {% if hidden %}style="display: none;"{% endif %}>
+    {% if step.description is defined and step.description != "" %}    
+        <div class="step-description">
+            {{ step.description|raw }}
+        </div>
+    {% endif %}
+
+    <div class="step-submissions">
+        {% for submission in step.submissions %}
+            <div class="step-submission {% if loop.first %}first {% endif %}{% if loop.last %}last {% endif %}">
+                <span class="name">{{ submission.name }}{% if submission.story is defined and submission.story != "" %}:{% endif %}
+                </span>
+                {% if submission.story is defined and submission.story != "" %}
+                    <span class="story">"{{ submission.story }}"</span>
+                {% endif %}
+                <span class="date">{{ submission.datetimesubmitted|date("F j, Y g:i") }}</span>
+            </div>
+        {% endfor %}
+    </div>
+</div>

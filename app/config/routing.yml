@@ -1,39 +1,52 @@
-#homeDefault:
-#  pattern:  /
-#  defaults: { _controller: GYGBFrontBundle:Home:staticHome }
-
-#home:
-#  pattern:  /home
-#  defaults: { _controller: GYGBFrontBundle:Home:staticHome }
-
-
 homeDefault:
   pattern:  /
-  defaults: { _controller: GYGBFrontBundle:Home:home, highlightStep: false }
+  defaults: { _controller: GYGBFrontBundle:Home:staticHome }
 
 home:
-  pattern:  /home/{highlightStep}
-  defaults: { _controller: GYGBFrontBundle:Home:home, highlightStep: false }
+  pattern:  /home
+  defaults: { _controller: GYGBFrontBundle:Home:staticHome }
+
+#homeDefault:
+#  pattern:  /
+#  defaults: { _controller: GYGBFrontBundle:Home:home, highlightStep: false }
+
+#home:
+#  pattern:  /home/{highlightStep}
+#  defaults: { _controller: GYGBFrontBundle:Home:home, highlightStep: false }
+
+#basic:
+#  pattern:  /basic
+#  defaults: { _controller: GYGBFrontBundle:Home:staticHome }
+
 
 organization:
   pattern:  /organization
   defaults: { _controller: GYGBFrontBundle:Organization:organization }
 
+about:
+  pattern: /about
+  defaults: { _controller: GYGBFrontBundle:About:about }
 
-basic:
-  pattern:  /basic
-  defaults: { _controller: GYGBFrontBundle:Home:staticHome }
+findAStep:
+  pattern: /find-a-step
+  defaults: { _controller: GYGBFrontBundle:FindAStep:findAStep }
 
-stepId:
-  pattern:  /steps/{id}
-  defaults: { _controller: GYGBFrontBundle:Steps:steps, categories: all, sort: recent, savings: all}
-  requirements:
-        id:  \d+
+takeAStep:
+  pattern: /take-a-step/{id}
+  defaults: { _controller: GYGBFrontBundle:TakeAStep:takeAStep, id: null }
+
+shareAStep:
+  pattern: /share-a-step/{id}
+  defaults: { _controller: GYGBFrontBundle:ShareAStep:ShareAStep, id: null }
+
+
+
+#stepId:
+#  pattern:  /steps/{id}
+#  defaults: { _controller: GYGBFrontBundle:Steps:steps, categories: all, sort: recent, savings: all}
+#  requirements:
+#        id:  \d+
   
-steps:
-  pattern: /steps/{categories}/{sort}/{savings}/{type}
-  defaults: { _controller: GYGBFrontBundle:Steps:steps, categories: all, sort: recent, savings: all, type: all}
-
 help:
   pattern: /help
   defaults: { _controller: CCETCErrorReportBundle:ErrorReport:errorReport, includeBreadcrumb: false, flash: message, redirect: home, baseLayout: "::layout.html.twig", formRoute: help }

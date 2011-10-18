@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="about-container">
-        {% include "::_about.html.twig" %}  
+        {% include "GYGBFrontBundle:Home:_about.html.twig" %}  
     </div>       
 
     <div style="margin: 0 0 15px 0; padding: 30px 0 15px 0; width: 100%;">
@@ -11,16 +11,8 @@
         </div>
     </div>
 
-    <div id="founders" style="border-top: 1px solid #ddd;">
-        <h1>Founding Partners</h1>
-
-        {% include "GYGBFrontBundle:Home:_logos.html.twig" with {'logoBlocks' : partnerBlocks } %}
-    </div>    
-
-    <div id="sponsors" style="border-bottom: none;">
-        <h1>Sponsoring Partners</h1>
-
-        {% include "GYGBFrontBundle:Home:_logos.html.twig" with {'logoBlocks' : sponsorBlocks } %}
+    <div id="founders-and-sponsors">
+        {% include "GYGBFrontBundle:Home:_logos.html.twig" with {'logoBlocks' : foundersAndSponsors } %}
     </div>
 
 {% endblock %}

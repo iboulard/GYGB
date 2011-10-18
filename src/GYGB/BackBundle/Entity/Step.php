@@ -24,9 +24,15 @@ class Step
   /**
    * @var text $step
    *
-   * @ORM\Column(name="step", type="text")
+   * @ORM\Column(name="step", type="text", nullable="true")
    */
   private $step;
+  /**
+   * @var text $actionTitle
+   *
+   * @ORM\Column(name="actionTitle", type="text")
+   */
+  private $actionTitle;
   /**
    * @var text $description
    *
@@ -57,12 +63,42 @@ class Step
    * @ORM\Column(name="count", type="integer")
    */
   private $count;
-      /**
-     * @var integer $type
-     *
-     * @ORM\Column(name="type", type="string", length="255", nullable="true")
-     */
-    private $type;
+  /**
+   * @var smallint $individual
+   *
+   * @ORM\Column(name="individual", type="boolean", nullable="true")
+   */
+  private $individual;     
+  /**
+   * @var smallint $organization
+   *
+   * @ORM\Column(name="organization", type="boolean", nullable="true")
+   */
+  private $organization;     
+  /**
+   * @var smallint $renter
+   *
+   * @ORM\Column(name="renter", type="boolean", nullable="true")
+   */
+  private $renter;     
+  /**
+   * @var smallint $landlord
+   *
+   * @ORM\Column(name="landlord", type="boolean", nullable="true")
+   */
+  private $landlord;     
+  /**
+   * @var smallint $homeowner
+   *
+   * @ORM\Column(name="homeowner", type="boolean", nullable="true")
+   */
+  private $homeowner;     
+  /**
+   * @var smallint $student
+   *
+   * @ORM\Column(name="student", type="boolean", nullable="true")
+   */
+  private $student;     
 
   
   /** @ORM\OneToMany(targetEntity="StepSubmission", mappedBy="Step", cascade={"persist", "remove"}) */
@@ -334,23 +370,145 @@ class Step
         return $this->description;
     }
 
+    
+
     /**
-     * Set type
+     * Set actionTitle
      *
-     * @param string $type
+     * @param text $actionTitle
      */
-    public function setType($type)
+    public function setActionTitle($actionTitle)
     {
-        $this->type = $type;
+        $this->actionTitle = $actionTitle;
     }
 
     /**
-     * Get type
+     * Get actionTitle
      *
-     * @return string 
+     * @return text 
      */
-    public function getType()
+    public function getActionTitle()
     {
-        return $this->type;
+        return $this->actionTitle;
+    }
+
+    /**
+     * Set individual
+     *
+     * @param boolean $individual
+     */
+    public function setIndividual($individual)
+    {
+        $this->individual = $individual;
+    }
+
+    /**
+     * Get individual
+     *
+     * @return boolean 
+     */
+    public function getIndividual()
+    {
+        return $this->individual;
+    }
+
+    /**
+     * Set organization
+     *
+     * @param boolean $organization
+     */
+    public function setOrganization($organization)
+    {
+        $this->organization = $organization;
+    }
+
+    /**
+     * Get organization
+     *
+     * @return boolean 
+     */
+    public function getOrganization()
+    {
+        return $this->organization;
+    }
+
+    /**
+     * Set renter
+     *
+     * @param boolean $renter
+     */
+    public function setRenter($renter)
+    {
+        $this->renter = $renter;
+    }
+
+    /**
+     * Get renter
+     *
+     * @return boolean 
+     */
+    public function getRenter()
+    {
+        return $this->renter;
+    }
+
+    /**
+     * Set landlord
+     *
+     * @param boolean $landlord
+     */
+    public function setLandlord($landlord)
+    {
+        $this->landlord = $landlord;
+    }
+
+    /**
+     * Get landlord
+     *
+     * @return boolean 
+     */
+    public function getLandlord()
+    {
+        return $this->landlord;
+    }
+
+    /**
+     * Set homeowner
+     *
+     * @param boolean $homeowner
+     */
+    public function setHomeowner($homeowner)
+    {
+        $this->homeowner = $homeowner;
+    }
+
+    /**
+     * Get homeowner
+     *
+     * @return boolean 
+     */
+    public function getHomeowner()
+    {
+        return $this->homeowner;
+    }
+
+    /**
+     * Set student
+     *
+     * @param boolean $student
+     */
+    public function setStudent($student)
+    {
+        $this->student = $student;
+    }
+
+    /**
+     * Get student
+     *
+     * @return boolean 
+     */
+    public function getStudent()
+    {
+        return $this->student;
     }
 }

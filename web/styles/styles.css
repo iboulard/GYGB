@@ -1,5 +1,8 @@
 /* 
         logo green hex: #4a793c
+        red: #b7253a
+        light link: #C9DDFF;
+        link: #B7253A
 */
 
 /* layout =================================================================== */
@@ -19,14 +22,46 @@
     padding: 10px 0;
     overflow: auto;
     border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
 }
 
-#header.static-header {
-    border: none;
-}
-
-#header img {
+#header img#logo {
     float: left; 
+    width: 375px;
+}
+
+#header img#logob {
+    float: left;
+    margin: 75px 0 0 100px;
+}
+
+#menu {
+    float: right;
+    margin-top: 20px;
+}
+
+#menu li {
+    float: left;
+    margin: 5px;
+    display: block;
+    padding: 3px 6px;
+}
+
+#menu li.current {
+    background: #B7253A;
+    border-radius: 3px;
+    color: white;
+}
+
+#menu li a {
+    color: #B7253A;
+}
+
+#menu li.current a {
+    color: white;
+}
+#menu li.current a:hover {
+    text-decoration: none;
 }
 
 /* end layout =============================================================== */
@@ -48,6 +83,18 @@ div.header-message {
     background: #ffffbb;
     padding: 8px 0;
     font-size: 20px;
+}
+
+div.header-error-message {
+    text-align: center;
+    background: #aa0000;
+    padding: 8px 0;
+    font-size: 20px;
+    color: white;
+}
+
+p {
+    margin: 10px 0;
 }
 
 .button {
@@ -97,13 +144,6 @@ span.page-break {
 
 
 /* home ===================================================================== */
-div#step-submission-container {
-    width: 100%;
-    float: left;
-    border-bottom: 1px solid #ddd;
-    padding: 15px 0;
-}
-
 div#sponsors,
 div#founders {
     border-bottom: 1px solid #ddd;
@@ -131,35 +171,46 @@ div.about-container {
 }
 
 div.about-container #about {
-    width: 727px;
+    width: 855px;
     float: none;
     margin: 0 auto;
-    padding: 35px 0;
+    padding: 23px 0;
     color: white;
 }
 
 div#about {
     margin: 10px 0 10px 0;
-    font-size: 28px;
+    font-size: 20px;
+    line-height: 30px;
     width: 47%;
     float: right;
     text-align: center;
-    line-height: 37px;
 }
 
 a#join-the-campaign {
     margin: 0 50px 10px 0; float: right;
 }
 
+div#founders-and-sponsors {
+    width: 100%;
+    float: left;
+}
+
 /* end home ================================================================= */
 
 
 /* whats your step ========================================================== */
+div#step-submission-container {
+    width: 100%;
+    float: left;
+    padding: 15px 0;
+    text-align: center;
+}
+
 div#whats-your-step {
-    width: 405px;
+    width: 550px;
     clear: right;
-    float: right;
-    margin-bottom: 10px;
+    margin: 0 auto 10px auto;
 }
 
 div#whats-your-step h1 {
@@ -168,11 +219,10 @@ div#whats-your-step h1 {
     font-size: 2em;
 }
 
-div#whats-your-step span#whats-your-step-heading {
+span#whats-your-step-heading {
     margin: 10px;
-    font-size: 2em;
-    width: 324px;
-    float: right;
+    font-size: 24px;
+    display: block;
 }
 
 /* step form */
@@ -182,8 +232,8 @@ div#step-form {
 }
 
 div.box-form {
-    width: 385px;
-    padding: 10px;
+    width: 500px;
+    padding: 15px 25px;
     overflow: auto;
     -moz-border-radius: 7px;  
     webkit-border-radius: 7px;
@@ -195,14 +245,19 @@ div.box-form {
 
 div.box-form h2 {
     font-size: 20px;
-    text-align: center;
-    margin: 10px 0;
+    text-align: left;
+    margin: 30px 0 0 0;
     display: block;
 }
 
 div.box-form form input, 
 div.box-form form textarea {
     width: 99%;
+}
+
+div.box-form select#form_step_dropdown {
+    width: 90%;
+    font-size: 14px;
 }
 
 div.box-form form input[type="submit"] {
@@ -239,10 +294,14 @@ div.box-form .savings-selections {
     font-size: 18px;
 }
 
+div.box-form .savings-selection {
+    font-family: arial;
+}
+
 div.box-form .category-selection,
 div.box-form .savings-selection {
     float: left;
-    margin: 5px;
+    margin: 5px 2px;
     background: #eee;
     -moz-border-radius: 7px;
     webkit-border-radius: 7px;
@@ -286,6 +345,7 @@ div.category-selection span.category-name {
     float: right;
     margin: 5px;
     color: black;
+    font-size: 13px;
 }
 
 div.category-selection:hover span.category-name {
@@ -295,6 +355,20 @@ div.category-selection:hover span.category-name {
 div.box-form .box-form-label {
     float: left;
     margin-top: 12px;
+}
+
+a.share-your-own {
+    margin: 10px 0;
+    display: block;
+}
+
+a.share-your-own-cancel {
+    font-size: 12px;
+    float: right;
+}
+
+div.share-your-own-container {
+    display: none;
 }
 
 /* end step form ============================================================ */
@@ -350,53 +424,67 @@ div.step-list#recent-step-list {
     border-radius: 10px;
 }
 
-div.step-list div.step.transportation {
-    background: url("/GYGB/web/images/bicycle-small.png") no-repeat scroll 4px;    
+div.step-container div.step.transportation {
+    background: url("/GYGB/web/images/transportation.png") no-repeat scroll 4px;    
 }
-div.step-list div.step.general {
-    background: url("/GYGB/web/images/globe-small.png") no-repeat scroll 4px;    
+div.step-container div.step.general {
+    background: url("/GYGB/web/images/general.png") no-repeat scroll 4px;    
 }
-div.step-list div.step.waste {
-    background: url("/GYGB/web/images/recycle-bin-small.png") no-repeat scroll 4px;    
+div.step-container div.step.waste {
+    background: url("/GYGB/web/images/waste.png") no-repeat scroll 4px;    
 }
-div.step-list div.step.energy {
-    background: url("/GYGB/web/images/battery-small.png") no-repeat scroll 4px;    
+div.step-container div.step.energy {
+    background: url("/GYGB/web/images/energy.png") no-repeat scroll 4px;    
 }
-div.step-list div.step.food {
-    background: url("/GYGB/web/images/apple-small.png") no-repeat scroll 4px;    
+div.step-container div.step.food {
+    background: url("/GYGB/web/images/food.png") no-repeat scroll 4px;    
 }
 
 div.step-list#recent-step-list:hover {
     cursor: pointer;
 }
 
-div.step-list-container a.step-link:hover,
-div.step-list-container a:hover {
+div.step-list-container a.step-link:hover {
     text-decoration: none;
 }
 
-div.step-list#all-step-list div.step:hover,
-div.step-list#all-step-list div.step.highlight, 
-div.step-list#recent-step-list div.step:hover {
+div.step-list-container a.step-link {
+    color: black;
+}
+
+div.step-list#all-step-list div.step-container:hover,
+div.step-list#all-step-list div.step-container.highlight, 
+div.step-list#recent-step-list div.step-container:hover {
     background-color: #ffffbb; 
     cursor: pointer;
 }
 
-div.step-list div.step {
-    padding: 8px 8px 8px 36px;
+div.step-container {
     border-bottom: 1px solid #ccc;
+    overflow: auto;
+    background: white;
+}
+
+div.step-container.category-hidden,
+div.step-container.type-hidden,
+div.step-container.savings-hidden {
+    display: none;
+}
+
+
+div.step-container div.step {
+    padding: 8px 8px 8px 36px;
     color: black;
     overflow: hidden;
 }
 
-div.step-list div.step.first {
+div.step-container.first {
 }
 
-div.step-list div.step.last {
-    border: none;
+div.step-container.last {
 }
 
-div.step-list div.step span.savings {
+div.step-container div.step span.savings {
     color: #4a793c;
     padding: 3px;
     text-align: center;
@@ -405,9 +493,10 @@ div.step-list div.step span.savings {
     display: block;
     float: left;
     margin-right: 5px;
+    font-family: arial;
 }
 
-div.step-list div.step span.count {
+div.step-container div.step span.count {
     display: block;
     float: left;
     padding: 3px;
@@ -421,7 +510,13 @@ div.step-list div.step span.count {
     margin-right: 5px;
 }
 
-div.step-list div.step span.date {
+div.step-container div.step span.step {
+  /*  float: left; */
+    padding: 3px;
+}
+
+
+div.step-container div.step span.date {
     color: #666;
     font-size: 12px;
     float: right;
@@ -444,15 +539,12 @@ div.step-list-search-results {
 div#step-page-container {
     width: 100%;
     float: left;
-    margin-top: 15px;
 }
 
 div#step-option-container {
     width: 100%;
-    background: #666;
     float: left;
     height: 40px;
-    border-radius: 7px 7px 7px 0;
 }
 
 
@@ -465,10 +557,10 @@ div#step-option-container {
 
 #sort-options a,
 div#all-link a {
-    color: white;
+    color: black;
     text-decoration: none;
     border: none;
-    background: #666;
+    background: white;
     -moz-box-shadow: none;
     box-shadow: none;
     -webkit-box-shadow: none;
@@ -482,8 +574,8 @@ div#all-link a {
 
 div#all-link a.current,
 #sort-options a.current {
-    color: black;
-    background: #ddd;
+    color: white;
+    background: #666;
 }
 
 div#all-link a:hover,
@@ -520,62 +612,91 @@ div#all-link a:hover,
     float: left;
     margin: 0 20px 0 0;
     padding: 1px;
-    background: #666;
-    border-radius: 0 0 7px 7px;
-    webkit-border-radius: 0 0 7px 7px;
-    -moz-border-radius: 0 0 7px 7px;
-
 }
 
 #filters a {
     color: #4a793c;
 }
 
-#filters div.category-filter {
+#filters div.filter-group {
+    border: 1px solid #ccc;
+    border-radius: 0 0 7px 7px;
+    margin-bottom: 10px;
+}
+
+#filters div.filter-group div.filter-group-heading {
     background: #666;
-    -moz-border-radius: 7px;
-    webkit-border-radius: 7px;
-    border-radius: 7px;
+    color: white;
+    padding: 6px;
+}
+
+#filters div.filter-group div.filter-group-heading a {
+    font-size: 12px;
+    color: #C9DDFF;
+    float: right;
+}
+
+
+#filters div.filter {
     margin: 5px;
     padding: 4px;
-    text-align: center;
     border: none;
-    color: white;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    -webkit-box-shadow:none;
+    color: black;
     float: none; 
     height: 23px;
     width: 187px;
+    font-size: 15px;
+    font-family: Tahoma;
+
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-shadow:none;
+
+    -moz-border-radius: 7px;
+    webkit-border-radius: 7px;
+    border-radius: 7px;
+    
+    opacity: .6;
+
 }
 
-#filters div.category-filter.current {
-    background: #ddd;
-    color: black;
+#filters div.filter.current {
+    opacity: 1;
 }
 
-
-#filters div.category-filter:hover {
-    cursor: pointer;
-    background: #ddd;
-    color: black;
-}
-
-#filters div.category-filter.current span.category-filter-label,
-#filters div.category-filter:hover span.category-filter-label {
-    color: black;
-}
-
-#filters div.category-filter span.category-filter-label {
-    color: white;
+#filters div.filter input {
+    float: right;
+    margin: 5px;
     display: block;
-    clear: right;
-    margin-top: 21px;
-    display: inline;
-    clear: none;
 }
 
-#filters div.category-filter img {
+#filters div.filter span.savings {
+    color: #4A793C;
+    font: arial;
+}
+
+#filters div.filter:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+#filters div.filter.current span.filter-label,
+#filters div.filter:hover span.filter-label {
+    color: black;
+}
+
+#filters div.filter span.filter-label {
+    display: block;
+    margin: 5px;
+    float: left;
+    color: #666;
+}
+#filters div.filter span.filter-label:hover {
+    text-decoration: underline;
+}
+
+
+#filters div.filter img {
     float: left;
 }
 
@@ -596,6 +717,9 @@ div#ads div.logo-container {
 
 /* step details ==============================================================*/
 div.step-details-container {
+    overflow: auto;
+    margin: 5px 0;
+    color: black;
 }
 
 div.step-details-container h2 {
@@ -607,39 +731,10 @@ div.step-details-container div.step-description {
     margin: 0 0 15px 0;
 }
 
-div.step-details-container div.step-submissions {
-    
-    
-}
-
-div.step-details-container div.step-submissions div.step-submission {
-    width: 100%;
-    float: left;
-    border-bottom: 1px solid #ccc;
-    padding: 5px 0;
-}
-
-div.step-details-container div.step-submissions div.step-submission.first {
-    border-top: 1px solid #ccc;
-}
-
-div.step-details-container div.step-submissions div.step-submission span.name {
-    float: left;
-}
-
-div.step-details-container div.step-submissions div.step-submission span.date {
-    color: #666;
+a.take-this-step {
+    float: right;
     font-size: 12px;
-    float: right;
-}
-
-div.step-details-container div.step-submissions div.step-submission span.story {
-    float: right;
-    background: #FFFFBB;
-    width: 400px;
-    padding: 3px 6px;
-    border-radius: 7px;
-    margin: 0 0 10px 0;
+    display: none;
 }
 
 
@@ -664,8 +759,104 @@ div.logo-block {
 div.logo-block img {
     display: block;
     float: left; 
-    width: 90px;
+    width: 55px;
     margin: 5px;
 }
 
 /* end logos =================================================================*/
+
+/* about page =================================================================*/
+div#about-page-container h1 {
+    font-size: 30px;
+}
+
+div#about-page-container p {
+    line-height: 20px;
+    margin: 15px 0;
+}
+/* end about page ============================================================*/
+
+/* take a step page =================================================================*/
+div.take-a-step-box {
+    width: 60%;
+    margin: 15px auto 5px;
+    font-size: 20px;
+}
+
+div.take-a-step-box .step-container {
+    border: 1px solid #b7253a;
+    border-radius: 10px 10px 0 0;
+}
+
+div.take-a-step-box span.description a {
+    color: #C9DDFF !important;
+}
+
+
+div.take-a-step-box span.savings {
+    width: 35px !important;
+}
+
+div.take-a-step-box span.description {
+    background: #b7253a;
+    padding: 10px;
+    display: block;
+    border-radius: 0 0 10px 10px;
+    color: white;
+}
+
+div#take-a-step-page-container {
+    
+}
+div#take-a-step-page-container h1 {
+    font-size: 26px !important;
+}
+
+div#take-a-step-page-container div.share-this-step {
+    float: right;
+    width: 490px;
+    font-size: 28px;
+    margin: 20px 0;
+}
+
+div.step-details-container div.step-submissions {
+    width: 75%;
+    float: right;
+    color: black;
+    font-size: 10px;
+}
+
+div.step-submissions {
+    width: 75%;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+ div.step-submissions div.step-submission {
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 0;
+    font-size: 15px;
+}
+
+div.step-submissions div.step-submission.first {
+    border-top: 1px solid #ccc;
+}
+
+ div.step-submissions div.step-submission span.name {
+    float: left;
+}
+
+ div.step-submissions div.step-submission span.date {
+    color: #666;
+    font-size: 14px;
+    float: right;
+    margin-top: 5px;
+}
+
+ div.step-submissions div.step-submission span.story {
+     margin-left: 5px;
+}
+
+/* end take a step page =================================================================*/
