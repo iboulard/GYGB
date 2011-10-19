@@ -1,0 +1,17 @@
+
+    <div class="organizations">
+        {% for organization in organizations %}
+            <div class="organization-container">
+                <div class="organization">
+                    {% if organization.website is defined %}<a href="{{ organization.website }}">{% endif %}
+                        <img style="width: {{ 100 * organization.width }}px" src="{{ asset('images/logos/' ~ organization.logo) }}" />
+                    {% if organization.website is defined %}</a>{% endif %}
+                    {% if organization.description is defined %}
+                        <div class="description">
+                            {{ organization.description|raw }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
