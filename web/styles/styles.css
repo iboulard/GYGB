@@ -223,10 +223,14 @@ div.home-column {
     float: left;
     border: 1px solid #eee;
     box-shadow: 0 8px 7px #ccc;
+    -moz-box-shadow: 0 8px 7px #ccc;
+    -webkit-box-shadow: 0 8px 7px #ccc;
 }
 
 div.home-column:hover {
     box-shadow: 0 8px 7px #4a793c;    
+    -moz-box-shadow: 0 8px 7px #4a793c;    
+    -webkit-box-shadow: 0 8px 7px #4a793c;    
     cursor: pointer;
 }
 
@@ -473,6 +477,8 @@ div.step-list#all-step-list {
     margin: 0 0 20px 110px;
     float: left;
     box-shadow: 0px 1px 9px #666;
+    -moz-box-shadow: 0px 1px 9px #666;
+    -webkit-box-shadow: 0px 1px 9px #666;
     padding: 10px;
 }
 
@@ -482,6 +488,8 @@ div.step-list#recent-step-list {
     margin-bottom: 20px;
     background: white;
     border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
 }
 
 div.step-container div.step.transportation {
@@ -688,6 +696,8 @@ div#all-link a:hover,
 #filters div.filter-group {
     border: 1px solid #ccc;
     border-radius: 0 0 7px 7px;
+    -moz-border-radius: 0 0 7px 7px;
+    -webkit-border-radius: 0 0 7px 7px;
     margin-bottom: 10px;
 }
 
@@ -853,6 +863,8 @@ div.take-a-step-box {
 div.take-a-step-box .step-container {
     border: 1px solid #b7253a;
     border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
 }
 
 div.take-a-step-box span.description a {
@@ -869,6 +881,8 @@ div.take-a-step-box span.description {
     padding: 10px;
     display: block;
     border-radius: 0 0 10px 10px;
+    -moz-border-radius: 0 0 10px 10px;
+    -webkit-border-radius: 0 0 10px 10px;
     color: white;
 }
 
@@ -902,6 +916,8 @@ div.step-submissions {
     margin: 0 auto;
     overflow: auto;
     box-shadow: 0px 1px 9px #666;
+    -moz-box-shadow: 0px 1px 9px #666;
+    -webkit-box-shadow: 0px 1px 9px #666;
     padding: 10px;
 }
 
@@ -938,6 +954,8 @@ div.organizations {
 
 div.organizations div.organization:hover {
     box-shadow: 0 7px 8px #ccc;
+    -moz-box-shadow: 0 7px 8px #ccc;
+    -webkit-box-shadow: 0 7px 8px #ccc;
     cursor: pointer;
 }
 
