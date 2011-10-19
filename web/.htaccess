@@ -9,5 +9,12 @@ RewriteRule (.*)    http://getyourgreenbacktompkins.org%{REQUEST_URI} [redirect,
 RewriteCond %{HTTP_HOST}    ^www.getyourgreenbacktompkins\.com [nocase]
 RewriteRule (.*)    http://getyourgreenbacktompkins.org%{REQUEST_URI} [redirect,last]
 
+RewriteCond %{HTTP_HOST}    ^getyourgreenback\.org [nocase]
+RewriteRule (.*)    http://getyourgreenbacktompkins.org%{REQUEST_URI} [redirect,last]
+
+RewriteCond %{HTTP_HOST}    ^www.getyourgreenback\.org [nocase]
+RewriteRule (.*)    http://getyourgreenbacktompkins.org%{REQUEST_URI} [redirect,last]
+
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ app.php [QSA,L]
