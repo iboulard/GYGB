@@ -137,7 +137,7 @@ class ShareAStepController extends Controller
                 $em->persist($stepSubmission);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('home'));
+                return $this->redirect($this->generateUrl('findAStep'));
             }
         }
 

@@ -16,19 +16,19 @@ class Builder extends ContainerAware
         $this->mainMenu->setCurrentUri($this->container->get('request')->getRequestUri());
 
         $this->mainMenu->addChild('Home', array('route' => 'home'));
-        //$this->mainMenu->addChild('Find a Step', array('route' => 'findAStep'));
-        //$this->mainMenu->addChild('Take a Step', array('route' => 'takeAStep'));
-        //$this->mainMenu->addChild('Share a Step', array('route' => 'shareAStep'));
+        $this->mainMenu->addChild('Find a Step', array('route' => 'findAStep'));
+        $this->mainMenu->addChild('Take a Step', array('route' => 'takeAStep'));
+        $this->mainMenu->addChild('Share a Step', array('route' => 'shareAStep'));
         $this->mainMenu->addChild('About', array('route' => 'about'));
         $this->mainMenu->addChild('Coalition', array('route' => 'coalition'));
-        $this->mainMenu->addChild('Steps and Resources', array('uri' => '../files/GetYourGreenBack.pdf'));
+        //$this->mainMenu->addChild('Steps and Resources', array('uri' => '../files/GetYourGreenBack.pdf'));
         
         $this->path = str_replace($this->container->get('request')->getBaseUrl(), '', $this->container->get('request')->getRequestUri());
         $this->path = explode('/', $this->path);
 
-        //$this->correctFindAStepCurrent();
-        //$this->correctTakeAStepCurrent();
-        //$this->correctShareAStepCurrent();
+        $this->correctFindAStepCurrent();
+        $this->correctTakeAStepCurrent();
+        $this->correctShareAStepCurrent();
         
         return $this->mainMenu;
     }

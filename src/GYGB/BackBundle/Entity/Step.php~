@@ -99,7 +99,12 @@ class Step
    * @ORM\Column(name="student", type="boolean", nullable="true")
    */
   private $student;     
-
+  /**
+   * @var string $featuredOrganization
+   *
+   * @ORM\Column(name="featuredOrganization", type="integer", nullable="true")
+   */
+  private $featuredOrganization;
   
   /** @ORM\OneToMany(targetEntity="StepSubmission", mappedBy="Step", cascade={"persist", "remove"}) */
   protected $submissions;
@@ -390,5 +395,145 @@ class Step
     public function getActionTitle()
     {
         return $this->actionTitle;
+    }
+
+    /**
+     * Set individual
+     *
+     * @param boolean $individual
+     */
+    public function setIndividual($individual)
+    {
+        $this->individual = $individual;
+    }
+
+    /**
+     * Get individual
+     *
+     * @return boolean 
+     */
+    public function getIndividual()
+    {
+        return $this->individual;
+    }
+
+    /**
+     * Set organization
+     *
+     * @param boolean $organization
+     */
+    public function setOrganization($organization)
+    {
+        $this->organization = $organization;
+    }
+
+    /**
+     * Get organization
+     *
+     * @return boolean 
+     */
+    public function getOrganization()
+    {
+        return $this->organization;
+    }
+
+    /**
+     * Set renter
+     *
+     * @param boolean $renter
+     */
+    public function setRenter($renter)
+    {
+        $this->renter = $renter;
+    }
+
+    /**
+     * Get renter
+     *
+     * @return boolean 
+     */
+    public function getRenter()
+    {
+        return $this->renter;
+    }
+
+    /**
+     * Set landlord
+     *
+     * @param boolean $landlord
+     */
+    public function setLandlord($landlord)
+    {
+        $this->landlord = $landlord;
+    }
+
+    /**
+     * Get landlord
+     *
+     * @return boolean 
+     */
+    public function getLandlord()
+    {
+        return $this->landlord;
+    }
+
+    /**
+     * Set homeowner
+     *
+     * @param boolean $homeowner
+     */
+    public function setHomeowner($homeowner)
+    {
+        $this->homeowner = $homeowner;
+    }
+
+    /**
+     * Get homeowner
+     *
+     * @return boolean 
+     */
+    public function getHomeowner()
+    {
+        return $this->homeowner;
+    }
+
+    /**
+     * Set student
+     *
+     * @param boolean $student
+     */
+    public function setStudent($student)
+    {
+        $this->student = $student;
+    }
+
+    /**
+     * Get student
+     *
+     * @return boolean 
+     */
+    public function getStudent()
+    {
+        return $this->student;
+    }
+
+    /**
+     * Set featuredOrganization
+     *
+     * @param integer $featuredOrganization
+     */
+    public function setFeaturedOrganization($featuredOrganization)
+    {
+        $this->featuredOrganization = $featuredOrganization;
+    }
+
+    /**
+     * Get featuredOrganization
+     *
+     * @return integer 
+     */
+    public function getFeaturedOrganization()
+    {
+        return $this->featuredOrganization;
     }
 }

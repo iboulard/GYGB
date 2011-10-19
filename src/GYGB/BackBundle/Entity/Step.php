@@ -99,7 +99,12 @@ class Step
    * @ORM\Column(name="student", type="boolean", nullable="true")
    */
   private $student;     
-
+  /**
+   * @var string $featuredOrganization
+   *
+   * @ORM\Column(name="featuredOrganization", type="integer", nullable="true")
+   */
+  private $featuredOrganization;
   
   /** @ORM\OneToMany(targetEntity="StepSubmission", mappedBy="Step", cascade={"persist", "remove"}) */
   protected $submissions;
@@ -510,5 +515,25 @@ class Step
     public function getStudent()
     {
         return $this->student;
+    }
+
+    /**
+     * Set featuredOrganization
+     *
+     * @param integer $featuredOrganization
+     */
+    public function setFeaturedOrganization($featuredOrganization)
+    {
+        $this->featuredOrganization = $featuredOrganization;
+    }
+
+    /**
+     * Get featuredOrganization
+     *
+     * @return integer 
+     */
+    public function getFeaturedOrganization()
+    {
+        return $this->featuredOrganization;
     }
 }

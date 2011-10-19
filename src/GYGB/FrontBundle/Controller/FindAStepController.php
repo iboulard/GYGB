@@ -85,7 +85,7 @@ class FindAStepController extends Controller
         else
         {
 //            $steps = $stepRepository->findByFiltersAndSorts($em, $categories, $sort, $savings, $type);
-            $steps = $stepRepository->findBy(array('approved' => true));
+            $steps = $stepRepository->findRecentlySubmitted($em);
         }
 
         if(count($steps) == 1)

@@ -1,18 +1,18 @@
-homeDefault:
-  pattern:  /
-  defaults: { _controller: GYGBFrontBundle:Home:staticHome }
-
-home:
-  pattern:  /home
-  defaults: { _controller: GYGBFrontBundle:Home:staticHome }
-
 #homeDefault:
 #  pattern:  /
-#  defaults: { _controller: GYGBFrontBundle:Home:home, highlightStep: false }
+#  defaults: { _controller: GYGBFrontBundle:Home:staticHome }
 
 #home:
-#  pattern:  /home/{highlightStep}
-#  defaults: { _controller: GYGBFrontBundle:Home:home, highlightStep: false }
+#  pattern:  /home
+#  defaults: { _controller: GYGBFrontBundle:Home:staticHome }
+
+homeDefault:
+  pattern:  /
+  defaults: { _controller: GYGBFrontBundle:Home:home, highlightStep: false }
+
+home:
+  pattern:  /home/{highlightStep}
+  defaults: { _controller: GYGBFrontBundle:Home:home, highlightStep: false }
 
 #basic:
 #  pattern:  /basic

@@ -123,5 +123,21 @@ class StepRepository extends EntityRepository
 
         return $query->getQuery()->getResult();
     }
+    
+    public function findRecentlySubmitted($em)
+    {
+        $query = $this->createQueryBuilder('s');
+        $query->join('s.submissions', 'ss');
+        $query->orderBy('ss.datetimeSubmitted', 'DESC');
+        $query->andWhere('s.approved = true');
+        $resultsA = $query->getQuery()->getResult();
+        
+        $queryB = $this->createQueryBuilder('sb');
+        $queryB->andWhere('sb.count = 0');
+        $resultsB = $queryB->getQuery()->getResult();
+        
+        return array_merge($resultsA, $resultsB);
+    }
 
+    
 }

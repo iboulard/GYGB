@@ -2,41 +2,33 @@
 
 {% block content %}
     
-    {#
-    <div id="step-submission-container">
-      
-        <div style="float: right; width: 40%;">
-            <a href="{{ path("findAStep") }}">Take a Step &rarr;</a>
-        </div>
+    {% render "GYGBFrontBundle:Home:stepsTakenCounter" %} 
 
-        {% render "GYGBFrontBundle:Home:stepsTakenCounter" %} 
-        {% render "GYGBFrontBundle:Home:recentStepList" %}  
-    </div>#}
-    
     <div class="home-column">
-        <h2>1. Find a Step</h2>
+        <h2><a href="{{ path('findAStep') }}">1. Find a Step</a></h2>
+        <h3>See what steps others are taking</h3>
+        <img style="margin-top: 85px;" src="{{ asset('images/step-food.jpg') }}" />
     </div>
 
     <div class="home-column">
-        <h2>2. Take a Step and save</h2>
+        <h2><a href="{{ path('takeAStep') }}">2. Take a Step and Save</a></h2>
+        <h3>Save money and energy</h3>
+        <img style="margin-top: 10px;" src="{{ asset('images/step-energy.jpg') }}" />
     </div>
      
     <div class="home-column">
-        <h2>3. Share a step and win</h2>
-
+        <h2><a href="{{ path('shareAStep') }}">3. Share a Step and Win</a></h2>
+        <h3>Enter to win over $2,000 in prizes</h3>
+        <img style="margin-top: 30px;" src="{{ asset('images/step-dollar.jpg') }}" />
     </div>
 
     <div class="about-container">
         {% include "GYGBFrontBundle:Home:_about.html.twig" %}  
     </div>
     
+
     <div id="founders-and-sponsors">
         {% include "GYGBFrontBundle:Home:_logos.html.twig" with {'logoBlocks' : foundersAndSponsors } %}
-    </div>
-
-    {# hidden div to include a bool that triggers some javascript when a step is submitted #}
-    <div id="highlightStepBool" style="display: none;">
-        {% if highlightStep %}true{% endif %}
     </div>
 
 {% endblock content %}

@@ -4,6 +4,7 @@ $(document).ready(function() {
     var headerMessage = $('div.header-message');
     headerMessage.delay(5000).fadeOut(1000);
     
+    $('div#filters .filter input').attr('checked', true);
 
     // Step Form
     $('a.share-your-own').live("click", function(e){
@@ -70,9 +71,11 @@ $(document).ready(function() {
         $('div.filter.' + filterType).addClass('current');
         
         // if categories, show all the ads
-        if(filterType == 'category') {
+        /*if(filterType == 'category') {
             $('div#ads div.logo-container').show();
-        }
+        }*/
+        
+        fixLastStep();
 
     });
 
@@ -105,10 +108,12 @@ $(document).ready(function() {
         filter.addClass('current');
         
         // if categories, show all the ads for this category
-        if(filterType == 'category') {
+        /*if(filterType == 'category') {
             $('div#ads div.logo-container').hide();
             $('div#ads div.logo-container.' + filterClass).show();
-        }
+        }*/
+        
+        fixLastStep();
     });
 
     $('div#filters div.filter input').live("click", function(e){
@@ -136,9 +141,9 @@ $(document).ready(function() {
             $('div.step-container.' + filterClass).addClass(filterType + '-hidden');
 
             // hide relevant adds if a category is deselected
-            if(filterType == 'category') {
+            /*if(filterType == 'category') {
                 $('div#ads div.logo-container.' + filterClass).hide();
-            }
+            }*/
         }
         else {
             filter.addClass('current');
@@ -150,10 +155,12 @@ $(document).ready(function() {
             $('div.step-container.' + filterClass).removeClass(filterType + '-hidden');
 
             // show relevant adds if a category is selected
-            if(filterType == 'category') {
+            /*if(filterType == 'category') {
                 $('div#ads div.logo-container.' + filterClass).show();
-            }
+            }*/
         }
+        
+        fixLastStep();
                         
     });
     
@@ -166,6 +173,8 @@ $(document).ready(function() {
         $('div#sort-options a#popular').removeClass('current');
         if(!$(this).hasClass('current')) $(this).addClass('current');
         $("div.step-list-container>div.step-container").tsort('', {attr:"id"});
+        
+        fixLastStep();
     });
     
     $('div#sort-options a#popular').live("click", function(e){
@@ -174,7 +183,32 @@ $(document).ready(function() {
         $('div#sort-options a#recent').removeClass('current');
         if(!$(this).hasClass('current')) $(this).addClass('current');
         $("div.step-list-container>div.step-container").tsort('span.count', {order: 'desc'});
+
+        fixLastStep();
     });
-  
+    
+   // home
+   $('div.home-column').live("click", function(e){
+       e.preventDefault();
+       
+       var href = $(this).find('a').attr('href');
+       
+       document.location = href;
+   });
+   
+   $('div.organizations div.organization').live("click", function(e){
+       e.preventDefault();
+       
+       var href = $(this).find('a').attr('href');
+       
+       document.location = href;
+   });
+   
    
 });
+
+function fixLastStep()
+    {
+        $("div.step-list-container div.step-container").removeClass('last');
+        $("div.step-list-container div.step-container:visible").filter(':last').addClass('last');        
+    }

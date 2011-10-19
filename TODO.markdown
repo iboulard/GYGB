@@ -9,90 +9,46 @@ Ideas
 	- showcased steps?
 	
 
-Static site for Tuesday
-=========================
-//	1. upload document
-	
-//	2. any other improvements?
-	
-	3. new domain
-	
-
-Preview for meeting on Wednesday
-=================
-	1.	Features
-	
-		a.	Home Page
-		
-			1. 2. 3.?
-		
-//		b.	Find a Step
-		
-		c.	Take a Step
-
-			- get help!
-		
-//		d.	Share a Step
-		
-//			- make look better when id is set
-			
-		e.	Organizations
-		
-	
-	2.	Design
-	
-		a.	Home Page
-		
-		b.	Find a Step
-		
-			- text at top		
-
-//			- filters
-		
-		c.	Take a Step
-			
-			- first, first a step
-		
-		d.	Share a Step
-			
-		e.	Organizations	
-
-		f.	header and footer?
-
-	3.	Content
-	
-		- submit some steps
-		
-		- add organizations and links
-
-		- update about with content from packet
-		
-		- what other content is in packet?
-
-1.1  - due 10/21
+1.1  - due 10/26 - 34
 =======================
+
+	0.	Organizations
+	
+		- sign up
+	
+			- logo
+			
+			- description (for ads)
+			
+				- use tinymce
+				
+		- share a step?
 
 
 //#	1.	Menu
 
 
 
-#	2.	Find a Step
+#	2.	Find a Step - 3
 
-		- fix type filters			!!!!!
+		- fix type filters
 
-		- audience filters			!!!!!
+		- audience filters			
 		
-		
+		- filters when searching
+	
+	
 	3.	Take a Step
 	
 	
-	4.	Share a Step
+	4.	Share a Step - 2
 	
 		- cancel selected step
+		
+		- featured step
 
 
-#	5.	Accounts
+#	5.	Accounts - 8
 
 //		- anyone can submit step: name, step, category, savings
 	
@@ -103,18 +59,25 @@ Preview for meeting on Wednesday
 		c. let users view their steps
 				
 	
-	6.	Design
+	6.	Design - 5
 	
-		- smaller text
+	7.	Admin - 5
 
+	8.	Testing - 8
 	
-	7.	Misc
-
-		- check admin interface
+		a. Safarai
 		
-			- organizations
-			
-			- users
+		b. Chrome
+		
+		c. old Firefox
+		
+		d. IE 8
+		
+		e. IE 7
+		
+		f. IE 6?
+
+	8.	Misc - 3
 		
 		- JS message
 
@@ -141,6 +104,8 @@ Preview for meeting on Wednesday
 
 
 #	4.	AJAX
+
+#	5.	Meta tags for search?
 
 
 

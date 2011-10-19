@@ -99,6 +99,18 @@ p {
     margin: 10px 0;
 }
 
+span.page-heading {
+    font-size: 24px;
+    margin: 5px 0 15px 0;
+    width: 100%;
+    display: block;
+}
+
+span.page-sub-heading {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
 .button {
     webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -172,6 +184,7 @@ div.about-container {
     -webkit-border-radius: 10px;
     width: 100%;
     clear: both;
+    margin: 50px 0 0 0;
 }
 
 div.about-container #about {
@@ -202,13 +215,44 @@ div#founders-and-sponsors {
 
 div.home-column {
     width: 32%;
-    margin: 5px;
+    margin: 40px 5px;
     border-radius: 7px;
     -moz-border-radius: 7px;
     -webkit-border-radius: 7px;
-    height: 200px;
+    height: 250px;
     float: left;
-    border: 1px solid #b7253a;
+    border: 1px solid #eee;
+    box-shadow: 0 8px 7px #ccc;
+}
+
+div.home-column:hover {
+    box-shadow: 0 8px 7px #4a793c;    
+    cursor: pointer;
+}
+
+div.home-column h2 {
+    text-align: center;
+    margin: 10px 0;
+}
+
+div.home-column h2 a {
+    color: black;
+}
+
+div.home-column h2 a:hover {
+    text-decoration: none;
+}
+
+div.home-column h3 {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 14px;
+    text-align: center;
+}
+
+div.home-column img {
+    margin: 0 auto;
+    display: block;
 }
 
 /* end home ================================================================= */
@@ -390,16 +434,15 @@ div.share-your-own-container {
 
 /* steps taken ============================================================== */
 div#steps-taken {
-    margin: 0 0 20px 16px;
     float: left;
-    width: 48%;
+    width: 100%;
 }
 
 div#steps-taken-counter {
     font-size: 2em;
-    margin: 10px 0 0 100px;
     color: black;
     float: left;
+    margin: 25px 0 0 372px;
 }
 
 div#steps-taken-counter span.step-digit {
@@ -427,8 +470,10 @@ div#steps-taken-counter .step-digit:hover {
 
 div.step-list#all-step-list {
     width: 50%;
-    margin: 15px 0 20px 0;
+    margin: 0 0 20px 110px;
     float: left;
+    box-shadow: 0px 1px 9px #666;
+    padding: 10px;
 }
 
 div.step-list#recent-step-list {
@@ -478,6 +523,10 @@ div.step-container {
     border-bottom: 1px solid #ccc;
     overflow: auto;
     background: white;
+}
+
+div.step-list#all-step-list .step-container.last {
+    border: none;
 }
 
 div.step-container.category-hidden,
@@ -557,30 +606,24 @@ div#step-page-container {
 }
 
 div#step-option-container {
-    width: 100%;
+    width: 861px;
     float: left;
     height: 40px;
+    margin-bottom: 15px;
 }
 
 
 #sort-options {
     float: right;
-    width: 30%;
+    width: 200px;
     text-align: center;
-    margin-top: 11px;
+    margin:15px 87px 0 0;
+    font-size: 14px;
 }
 
 #sort-options a,
 div#all-link a {
-    color: black;
-    text-decoration: none;
-    border: none;
-    background: white;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-
-    padding: 3px 5px;
+    margin: 5px;
 }
 
 #sort-options a.last {
@@ -588,19 +631,20 @@ div#all-link a {
 }
 
 div#all-link a.current,
+#sort-options a.current:hover,
 #sort-options a.current {
-    color: white;
-    background: #666;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 div#all-link a:hover,
 #sort-options a:hover {
-    background: #ddd;
-    color: black;
+
 }
 
 #search-steps {
-    width: 25%;
+    width: 216px;
     float: right;
     margin-right: 30px;
     margin-top: 7px;
@@ -612,6 +656,14 @@ div#all-link a:hover,
 
 #search-steps label {
     display: none;
+}
+
+#search-steps input {
+    background:transparent url('/GYGB/web/images/search.gif') no-repeat scroll right center;
+    margin:0;
+    width:200px;
+    padding-right:22px;
+    font-size: 16px;
 }
 
 #search-steps .button {
@@ -827,11 +879,15 @@ div#take-a-step-page-container h1 {
     font-size: 26px !important;
 }
 
+div#take-a-step-page-container div.share-this-step-container {
+    width: 100%;
+}
+
 div#take-a-step-page-container div.share-this-step {
     float: right;
     width: 490px;
     font-size: 28px;
-    margin: 20px 0;
+    margin: 30px 0 0 0;
 }
 
 div.step-details-container div.step-submissions {
@@ -845,6 +901,8 @@ div.step-submissions {
     width: 75%;
     margin: 0 auto;
     overflow: auto;
+    box-shadow: 0px 1px 9px #666;
+    padding: 10px;
 }
 
  div.step-submissions div.step-submission {
@@ -855,8 +913,8 @@ div.step-submissions {
     font-size: 15px;
 }
 
-div.step-submissions div.step-submission.first {
-    border-top: 1px solid #ccc;
+div.step-submissions div.step-submission.last {
+    border: none;
 }
 
  div.step-submissions div.step-submission span.name {
@@ -873,6 +931,48 @@ div.step-submissions div.step-submission.first {
  div.step-submissions div.step-submission span.story {
      margin-left: 5px;
 }
+
+div.organizations {
+    width: 100%;
+}
+
+div.organizations div.organization:hover {
+    box-shadow: 0 7px 8px #ccc;
+    cursor: pointer;
+}
+
+div.organizations div.organization-container {
+    width: 100%;
+    float: left;
+    overflow: auto;
+}
+
+div.organizations div.organization {
+    border: 1px solid #ccc;
+    margin: 8px;
+    padding: 15px;
+    overflow: auto;
+}
+
+div.organizations div.organization img {
+    float: left;
+    margin-right: 25px;
+}
+
+div.organizations div.organization div.description {
+    padding: 5px;
+}
+
+div.organizations ul {
+    list-style: disc;
+}
+
+div.organizations div.description h2 {
+    color: #4a793c;
+    text-align: center;
+    font-size: 30px;
+}
+
 
 /* end take a step page =================================================================*/
 

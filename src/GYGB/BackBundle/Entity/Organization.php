@@ -16,7 +16,7 @@ class Organization
     {
         return $this->getName();
     }
-
+    
     /**
      * @var integer $id
      *
@@ -31,6 +31,12 @@ class Organization
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+    /**
+     * @var string $description
+     *
+     * @ORM\Column(name="description", type="text", nullable="true")
+     */
+    private $description;
     /**
      * @var string $website
      *
@@ -295,5 +301,25 @@ class Organization
     public function getOrganization()
     {
         return $this->organization;
+    }
+
+    /**
+     * Set description
+     *
+     * @param text $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * Get description
+     *
+     * @return text 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

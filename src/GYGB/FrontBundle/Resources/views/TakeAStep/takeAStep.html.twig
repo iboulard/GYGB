@@ -1,8 +1,8 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
+<h1>Take a step</h1>
 <div id="take-a-step-page-container">
-    {% if step is defined and step != "" %}
         <div class="step-list take-a-step-box">
          
             <div class="step-container">
@@ -16,8 +16,11 @@
             <span class="description">{{ step.description|raw }}</a>
         </div>
 
-        <div class="share-this-step">
-            Have you taken this step? <a class="button" href="{{ path('shareAStep', {'id':step.id}) }}">Share it! &rarr;</a>
+        <div class="share-this-step-container">
+            <div class="share-this-step">
+                Have you taken this step? <a class="button" href="{{ path('shareAStep', {'id':step.id}) }}">Share it! &rarr;</a>
+            </div>
+            <div style="clear: both;">&nbsp;</div>
         </div>
 
         <br/>
@@ -42,13 +45,11 @@
             </div>
         {% endif %}
 
-{#        <h1>Need Help?</h1> #}
-
-
-
-    {% else %}
-        Before taking a step, <a href="{{ path('findAStep') }}">find a step</a>.
-    {% endif %}
+        <br/><br/>
+        <h1>Need help taking this step?</h1>
+        {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : organizations } %}
+        
+   
 
 </div>
     

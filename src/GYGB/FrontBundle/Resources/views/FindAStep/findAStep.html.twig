@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block content %}
+<h1>Find a step</h1>
     <div id="step-page-container">
         <div id="step-option-container">
             <div id="search-steps">
@@ -15,13 +16,12 @@
                     {{ form_row(stepSearchForm.terms) }}
 
                     {{ form_rest(stepSearchForm) }}
-                    <input class="button submit" value="Search" type="submit" />
                 </form>
             </div>
 
             <div id="sort-options">
-                <a href="#" id="recent" class="button current">Recent</a>
-                <a href="#" id="popular" class="button last">Popular</a>
+                <a href="#" id="recent" class="current">Recent</a>
+                <a href="#" id="popular" class="last">Popular</a>
             </div>
         </div>
 
@@ -100,11 +100,11 @@
 
         {% render "GYGBFrontBundle:FindAStep:allStepList" with {'terms' : terms} %}   
 
-        {% if id is defined and id != "" %}
+        {#{% if id is defined and id != "" %}
             {% render "GYGBFrontBundle:FindAStep:organizationAds" %}   
         {% else %}
             {% render "GYGBFrontBundle:FindAStep:organizationAds" %}   
-        {% endif %}
+        {% endif %}#}
 
     </div>
 {% endblock %}
