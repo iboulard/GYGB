@@ -118,7 +118,7 @@ class TakeAStepController extends Controller
                 }
                 else
                 {
-                    $this->getRequest()->getSession()->setFlash('registrationMessage', 'Thanks for committing to taking a step to save money and energy!  Create and account to commit to more steps and find more resources.');
+                    $this->getRequest()->getSession()->setFlash('page-message', 'Thanks for committing to taking a step to save money and energy!  Create and account to commit to more steps and find more resources.');
                 }
                 
                 

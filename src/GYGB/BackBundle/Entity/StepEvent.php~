@@ -1,0 +1,38 @@
+<?php
+
+namespace GYGB\BackBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GYGB\BackBundle\Entity\Commitment
+ *
+ * @ORM\Entity(repositoryClass="GYGB\BackBundle\Entity\StepEventRepository")
+ */
+class StepEvent
+{
+    /**
+   * @var integer $id
+   *
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="AUTO")
+   */
+  private $id;
+ 
+    /**
+     * @var string $name
+     *
+     */
+    private $name;
+    /**
+     * @var integer $text
+     *
+     */
+    private $text;
+    /**
+     * @var datetime $datetime
+     *
+     */
+    private $datetime;
+       
+}

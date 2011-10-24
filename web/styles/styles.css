@@ -119,6 +119,26 @@ div.header-error-message {
     color: white;
 }
 
+.page-message {
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    background: #ffffbb;
+    overflow: auto;
+    font-size: 14px;
+}
+
+.page-error-message {
+    background: #aa0000;
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    overflow: auto;
+    font-size: 14px;
+}
+
+
 p {
     margin: 10px 0;
 }
