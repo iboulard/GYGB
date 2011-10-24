@@ -11,10 +11,10 @@
                 <div class="category-resources-heading">{{ categoryOptions[c]['heading'] }}</div>
                 <div class="featured-resource">
                     <img style="float: {{ categoryOptions[c]['foot'] }};" class="category-step" src="{{ asset('images/vert-step-' ~ c ~ '.png') }}" />
-                    {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : featuredResources[c] } %}
+                    {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : featuredResources[c], 'showSteps' : true } %}
                 </div>
             </div>
-            {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : resources[c] } %}
+            {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : resources[c], 'showSteps' : true } %}
         </div>
     {% endfor %}
 </div>

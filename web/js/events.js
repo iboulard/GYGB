@@ -198,19 +198,25 @@ $(document).ready(function() {
    });
    
    $('div.organizations div.organization').live("click", function(e){
+       if($(e.target).is('div.step') || $(e.target).parent().is('.step'))
+       {
+           return;
+       }
+
+       
        if($(e.target).is('a'))
        {
            var href = $(e.target).attr('href');
        }
        else if($(e.target).parent().is('a'))
        {
-           var href = $(e.target).attr('href');          
+           var href = $(e.target).parent().attr('href');          
+            e.preventDefault();
        }
        else {
             e.preventDefault();
             var href = $(this).find('a.box-link').attr('href');
        }
-       
        
        window.open(href,'_blank');
 

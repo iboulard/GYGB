@@ -12,11 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Organization
 {
+
     public function __toString()
     {
         return $this->getName();
     }
-    
+
     /**
      * @var integer $id
      *
@@ -55,6 +56,9 @@ class Organization
      * @ORM\Column(name="logo", type="string", length=400, nullable="true")
      */
     private $logo;
+    
+    protected $file;
+    
     /**
      * @var string $category
      *
@@ -67,24 +71,7 @@ class Organization
      * @ORM\Column(name="width", type="string", length=255, nullable="true")
      */
     private $width;
-    /**
-     * @var boolean $sponsor
-     *
-     * @ORM\Column(name="sponsor", type="boolean")
-     */
-    private $sponsor;
-    /**
-     * @var boolean $founder
-     *
-     * @ORM\Column(name="founder", type="boolean")
-     */
-    private $founder;
-    /**
-     * @var boolean $organization
-     *
-     * @ORM\Column(name="organization", type="boolean")
-     */
-    private $organization;
+   
     /**
      * @var boolean $approved
      *
@@ -98,6 +85,18 @@ class Organization
      */
     private $featured;
 
+   /**
+     * @ORM\ManyToMany(targetEntity="Step", mappedBy="featuredOrganizations")
+    */
+    protected $featuredSteps;
+
+    /**
+     * @ORM\prePersist
+     */
+    public function setDefaultValues()
+    {
+    }
+    
     /**
      * Get id
      *
@@ -248,67 +247,6 @@ class Organization
         return $this->width;
     }
 
-
-    /**
-     * Set sponsor
-     *
-     * @param boolean $sponsor
-     */
-    public function setSponsor($sponsor)
-    {
-        $this->sponsor = $sponsor;
-    }
-
-    /**
-     * Get sponsor
-     *
-     * @return boolean 
-     */
-    public function getSponsor()
-    {
-        return $this->sponsor;
-    }
-
-    /**
-     * Set founder
-     *
-     * @param boolean $founder
-     */
-    public function setFounder($founder)
-    {
-        $this->founder = $founder;
-    }
-
-    /**
-     * Get founder
-     *
-     * @return boolean 
-     */
-    public function getFounder()
-    {
-        return $this->founder;
-    }
-
-    /**
-     * Set organization
-     *
-     * @param boolean $organization
-     */
-    public function setOrganization($organization)
-    {
-        $this->organization = $organization;
-    }
-
-    /**
-     * Get organization
-     *
-     * @return boolean 
-     */
-    public function getOrganization()
-    {
-        return $this->organization;
-    }
-
     /**
      * Set description
      *
@@ -347,5 +285,77 @@ class Organization
     public function getFeatured()
     {
         return $this->featured;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->logo ? null : $this->getUploadRootDir() . '/' . $this->logo;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->logo ? null : $this->getUploadDir() . '/' . $this->logo;
+    }
+
+    protected function getUploadRootDir($basepath)
+    {
+        // the absolute directory path where uploaded documents should be saved
+        return $basepath . $this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+        return 'files/logos';
+    }
+
+    public function upload($basepath)
+    {
+        // the file property can be empty if the field is not required
+        if(null === $this->file)
+        {
+            return;
+        }
+
+        if(null === $basepath)
+        {
+            return;
+        }
+
+        // we use the original file name here but you should
+        // sanitize it at least to avoid any security issues
+        // move takes the target directory and then the target filename to move to
+        $this->file->move($this->getUploadRootDir($basepath), $this->file->getClientOriginalName());
+
+        // set the path property to the filename where you'ved saved the file
+        $this->setLogo($this->file->getClientOriginalName());
+
+        // clean up the file property as you won't need it anymore
+        $this->file = null;
+    }
+
+    public function __construct()
+    {
+        $this->featuredSteps = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add featuredSteps
+     *
+     * @param GYGB\BackBundle\Entity\Step $featuredSteps
+     */
+    public function addStep(\GYGB\BackBundle\Entity\Step $featuredSteps)
+    {
+        $this->featuredSteps[] = $featuredSteps;
+    }
+
+    /**
+     * Get featuredSteps
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getFeaturedSteps()
+    {
+        return $this->featuredSteps;
     }
 }

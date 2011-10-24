@@ -1,7 +1,7 @@
 /* 
         logo green hex: #4a793c
         red: #b7253a (#b7253_a)
-        light link: #C9DDFF;
+        light link: #C9DDFF;a3a8ff
         link: #B7253A
         #D6562_9
         organe: #D65629 (#D6562_9)
@@ -563,11 +563,16 @@ div.step-list-container a.step-link {
     color: black;
 }
 
-div.step-list#all-step-list div.step-container:hover,
-div.step-list#all-step-list div.step-container.highlight, 
-div.step-list#recent-step-list div.step-container:hover {
+div.step-container:hover,
+div.step-container.highlight, 
+div.step-container:hover {
     background-color: #ffffbb; 
     cursor: pointer;
+}
+
+div.take-a-step-box div.step-container:hover {
+    background: white;
+    cursor: auto;
 }
 
 div.step-container {
@@ -576,7 +581,7 @@ div.step-container {
     background: white;
 }
 
-div.step-list#all-step-list .step-container.last {
+div.step-list-container .step-container.last {
     border: none;
 }
 
@@ -753,7 +758,7 @@ div#all-link a:hover,
 
 #filters div.filter-group div.filter-group-heading a {
     font-size: 12px;
-    color: #C9DDFF;
+    color: #a3a8ff;
     float: right;
 }
 
@@ -912,7 +917,7 @@ div.take-a-step-box .step-container {
 }
 
 div.take-a-step-box span.description a {
-    color: #C9DDFF !important;
+    color: #a3a8ff !important;
 }
 
 
@@ -1018,10 +1023,10 @@ div.organizations div.organization-container {
 }
 
 div.organizations div.organization {
-    border: 1px solid #ccc;
     margin: 8px;
     padding: 15px;
     overflow: auto;
+    border: 1px solid #ccc;
 }
 
 div.organizations div.organization div.logo-container {
@@ -1050,8 +1055,6 @@ div#resources-container {
 div.category-resources {
     overflow: auto;
     margin: 10px 0 25px 0;
-    border: 1px solid #D65629;
-    border-radius: 10px;
 }
 
 div.category-resources-heading-container img.category-step {
@@ -1070,7 +1073,6 @@ div.category-resources-heading {
     color: white;
     font-size: 22px;
     padding: 7px;
-    border-radius: 7px 7px 0 0;
 }
 
 div.featured-resource div.organizations {
@@ -1087,6 +1089,22 @@ div#commit-form {
     background: #ddd;
     font-size: 14px; width: 400px; margin-top: 25px; display: none;
 }
+
+div.organization-steps {
+    float: right;
+    width: 70%;
+    margin: 5px;
+    clear: both;
+}
+
+div.organization-steps h2 {
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    padding: 3px 0;
+}
+
+
+
 
 /* end take a step page =================================================================*/
 

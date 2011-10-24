@@ -41,8 +41,8 @@ class TakeAStepController extends Controller
             
             foreach($categories as $c)
             {
-                $resources[$c] = $organizationRepository->findBy(array('organization' => '1', 'category' => $c, 'featured' => '0'));
-                $featuredResources[$c] = $organizationRepository->findBy(array('organization' => '1', 'category' => $c, 'featured' => '1'));
+                $resources[$c] = $organizationRepository->findBy(array('category' => $c, 'featured' => '0'));
+                $featuredResources[$c] = $organizationRepository->findBy(array('category' => $c, 'featured' => '1'));
             }
             
             return $this->render('GYGBFrontBundle:TakeAStep:resources.html.twig', array(
@@ -78,8 +78,10 @@ class TakeAStepController extends Controller
         $session = $request->getSession();
         $em = $this->getDoctrine()->getEntityManager();
         
-        if($step->getFeaturedOrganization()) {
-            $organizations = $organizationRepository->findById($step->getFeaturedOrganization());
+        $featuredOrgs = $step->getFeaturedOrganizations();
+        
+        if(count($featuredOrgs) > 0) {
+            $organizations = $featuredOrgs;
         }
         else 
         {

@@ -32,7 +32,6 @@ class HomeController extends Controller
         
         return $this->render('GYGBFrontBundle:Home:home.html.twig', array(
             'highlightStep' => $highlightStep,
-            'foundersAndSponsors' => $this->getOrganizationLogoBlocks($organizationRepository->findFoundersAndSponsors($em))
         ));
     }
     

@@ -13,35 +13,6 @@ Questions for Ken
 	-  Homeowner/Renter/Landlord/Congregation/Student/School/Business/Organization?
 
 	-  take a step
-
-
-0.8
-=======================
-
-//	1.	Commit / share once - 1
-	
-//	2.	Share a Step - 1
-	
-//		- id bug!
-		
-//		- fix cats
-	
-	3.	Content - 2
-	
-		- resources from packet
-		
-		- featured organizations
-		
-		- photos!
-		
-		- coalition text		
-
-	
-	10.	Misc
-		
-//		- coalition links
-		
-//		- remove savings
 		
 		
 0.9
@@ -50,12 +21,23 @@ Questions for Ken
 	
 		- cleanup orgs
 		
-			- remove old fields
+//			- remove old fields
 			
-			- remove old records
+//			- remove old records
 			
 			- logos?
+	
+	
+	2.	Content
+	
+		- resources from packet
 		
+		- featured organizations
+		
+		- photos!
+		
+	
+	
 
 1.0  - due 10/26 - 34
 =======================
@@ -168,11 +150,11 @@ Questions for Ken
 		
 			- they are on github...
 			
-		- about line height
+//		- about line height
 		
-		- page subheadings
+//		- page subheadings
 		
-		- page messages
+//		- page messages
 		
 //		- default story/commitment/count
 		

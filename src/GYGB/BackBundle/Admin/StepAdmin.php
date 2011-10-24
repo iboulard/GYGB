@@ -20,11 +20,12 @@ class StepAdmin extends Admin
         $showMapper
                 ->add('title', null, array('label' => 'Step'))
                 ->add('category', null, array('label' => 'Category'))
-                ->add('savings', null, array('label' => 'Savings'))
+                ->add('commitment', null, array('label' => 'Default Commitment'))
+                ->add('story', null, array('label' => 'Default Story'))
+                //->add('savings', null, array('label' => 'Savings'))
                 ->add('stepCount', null, array('label' => 'Step Count'))
                 ->add('commitmentCount', null, array('label' => 'Commitment Count'))
                 ->add('approved', null, array('label' => 'Approved'))
-
         ;
 
         $showGroups = array(
@@ -32,7 +33,9 @@ class StepAdmin extends Admin
                 'fields' => array(
                     'step',
                     'category',
-                    'savings',
+                    'commitment',
+                    'story',
+//                    'savings',
                     'stepCount',
                     'commitmentCount',
                     'approved'
@@ -68,9 +71,9 @@ class StepAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-                ->add('step', 'string', array('name' => 'Watermelon'))
+                ->add('title', 'string', array('name' => 'Step'))
                 ->add('category', 'string', array('name' => 'Category'))
-                ->add('savings', 'string', array('name' => 'Savings'))
+//                ->add('savings', 'string', array('name' => 'Savings'))
                 ->add('approved', 'boolean', array('name' => 'Approved'))
                 ->add('stepCount', 'integer', array('name' => 'Step Count'))
                 ->add('commitmentCount', 'integer', array('name' => 'Commitment Count'))
@@ -91,7 +94,7 @@ class StepAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-                ->add('step', null, array('label' => 'Step'))
+                ->add('title', null, array('label' => 'Step'))
                 ->add('category', 'doctrine_orm_choice', array('label' => 'Category',
                     'field_options' => array(
                         'required' => false,
@@ -99,13 +102,13 @@ class StepAdmin extends Admin
                     ),
                     'field_type' => 'choice'
                 ))
-                ->add('savings', 'doctrine_orm_choice', array('label' => 'Savings',
+/*                ->add('savings', 'doctrine_orm_choice', array('label' => 'Savings',
                     'field_options' => array(
                         'required' => false,
 //                        'choices' => Step::getSavingsChoices()
                     ),
   //                  'field_type' => 'choice'
-                ))
+                ))*/
         ;
     }
 
@@ -114,10 +117,18 @@ class StepAdmin extends Admin
         $formMapper
                 ->add('title')
                 ->add('category', 'choice', array('choices' => Step::getCategoryChoices(), 'expanded' => false, 'multiple' => false))
-                ->add('savings', 'choice', array('choices' => Step::getSavingsChoices(), 'expanded' => false, 'multiple' => false))
+                //->add('savings', 'choice', array('choices' => Step::getSavingsChoices(), 'expanded' => false, 'multiple' => false))
+                ->add('commitment', null, array('required' => false, 'label' => 'Default Commitment')) 
+                ->add('story', null, array('required' => false, 'label' => 'Default Story')) 
+                ->add('description')
                 ->add('approved')
-                ->add('stepCount', null, array('required' => false))
-                ->add('commitmentCount', null, array('required' => false))
+                ->add('stepCount', null, array('required' => false, 'label' => 'Step Count'))
+                ->add('commitmentCount', null, array('required' => false, 'label' => 'Commitment Count'))
+                ->add('featuredOrganizations', null, array('label' => 'Featured Resources', 'required' => false))
+                ->setHelps(array(
+                    'featuredOrganizations' => 'CTRL + click to select mutliple resources',
+                ));
+
         ;
     }
 

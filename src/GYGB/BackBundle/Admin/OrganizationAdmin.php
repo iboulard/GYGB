@@ -14,7 +14,7 @@ use GYGB\BackBundle\Entity\Organization;
 class OrganizationAdmin extends Admin
 {
 
-    protected $entityLabelPlural = "Organizations";
+    protected $entityLabelPlural = "Resources";
 
     protected function configureShowField(ShowMapper $showMapper)
     {
@@ -22,13 +22,9 @@ class OrganizationAdmin extends Admin
                 ->add('name', null, array('label' => 'Name'))
                 ->add('website', null, array('label' => 'Website'))
                 ->add('email', null, array('label' => 'E-mail'))
-                ->add('description', null, array('label' => 'Description'))
                 ->add('approved', null, array('label' => 'Approved'))
                 ->add('featured', null, array('label' => 'Featured'))
                 ->add('category', null, array('label' => 'Category'))
-                ->add('organization', null, array('label' => 'Organization'))
-                ->add('sponsor', null, array('label' => 'Sponsor'))
-                ->add('founder', null, array('label' => 'Founding Partner'))
         ;
 
         $showGroups = array(
@@ -37,11 +33,9 @@ class OrganizationAdmin extends Admin
                     'name',
                     'website',
                     'email',
-                    'description',
                     'approved',
                     'featured',
                     'category',
-                    'organization', 'sponsor', 'founder'
                 )
             ),
         );
@@ -79,7 +73,6 @@ class OrganizationAdmin extends Admin
                 ->add('email', 'string', array('name' => 'E-mail'))
                 ->add('approved', 'boolean', array('name' => 'Approved'))
                 ->add('category', 'string', array('name' => 'category'))
-                ->add('type', 'string', array('name' => 'type'))
 
                 // add custom action links
                 ->add('_action', 'actions', array(
@@ -106,29 +99,45 @@ class OrganizationAdmin extends Admin
                     ),
                     'field_type' => 'choice'
                 ))
-                ->add('organization', null, array('label' => 'Organization'))
-                ->add('sponsor', null, array('label' => 'Sponser'))
-                ->add('founder', null, array('label' => 'Founding Partner'))
         ;
     }
 
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-                ->add('name', null, array('label' => 'Organization'))
+                ->add('name', null, array('label' => 'Title'))
                 ->add('email')
                 ->add('website')
                 ->add('description')
                 ->add('category', 'choice', array('choices' => Step::getCategoryChoices(), 'expanded' => false, 'multiple' => false))
-                ->add('founder', null, array('required' => false))
-                ->add('organization', null, array('required' => false))
-                ->add('sponsor', null, array('required' => false))
                 ->add('approved', null, array('required' => false))
-                ->add('featured', null, array('required' => false))
-                ->add('logo', null, array('required' => false))
-                ->add('width', null, array('required' => false))
+                ->add('featured', null, array('required' => false, 'label' => 'Featured'))
+                
+                ->add('logo', 'file', array('required' => false))
+                
+                ->setHelps(array(
+                    'featured' => 'featured resources show up at the top of their category on the resource guide',
+                    'approved' => 'only approved resources will appear on the website',
+                    'approved' => 'only approved resources will appear on the website',
+                ));
 
         ;
+    }
+
+    public function prePersist($product)
+    {
+        $this->saveFile($product);
+    }
+
+    public function preUpdate($product)
+    {
+        $this->saveFile($product);
+    }
+
+    public function saveFile($product)
+    {
+        $basepath = $this->getRequest()->getBasePath();
+        $product->upload($basepath);
     }
 
 }

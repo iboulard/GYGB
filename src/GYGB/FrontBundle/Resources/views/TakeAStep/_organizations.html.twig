@@ -4,14 +4,36 @@
             <div class="organization-container">
                 <div class="organization">
                     <div class="logo-container">
-                    {% if organization.website is defined %}<a class="box-link" href="{{ organization.website }}">{% endif %}
-                        <img src="{{ asset('images/logos/' ~ organization.logo) }}" />
+                    {% if organization.website is defined %}<a class="box-link" target="_blank" href="{{ organization.website }}">{% endif %}
+                        <img src="{{ asset('files/logos/' ~ organization.logo) }}" />
                     {% if organization.website is defined %}</a>{% endif %}
                     </div>
                     {% if organization.description is defined %}
                         <div class="description">
                             {{ organization.description|raw }}
                         </div>
+                    {% endif %}
+                    {% if organization.featuredSteps|length > 0 and showSteps %}
+                    <div class="organization-steps">
+                        <h2>Related Steps</h2>
+                        <div class="step-list-container">
+                        {% for step in organization.featuredSteps %}
+                                <div id="{{ loop.index }}" class="step-container {{ step.category }} {% if loop.first %}first{% endif %} {% if loop.last %}last{% endif %}">
+                                    <div class="step {{ step.category }}">
+                                        <span class="count">{{ step.stepCount }}</span>
+                                        <span style="float: left; margin: 5px 10px 5px 0; font-size: 11px;">step{% if step.stepCount != 1%}s{%endif%}</span>
+                                        <span class="count">{{ step.commitmentCount }}</span>
+                                        <span style="float: left; margin: 5px 10px 5px 0; font-size: 11px;">commitment{% if step.stepCount != 1%}s{%endif%}</span>
+                                        <span class="step">
+                                            <a class="step-link" href="{{ path('takeAStep', {'id' : step.id }) }}"> 
+                                                {{ step.title }}
+                                            </a>
+                                        </span>
+                                    </div>
+                               </div>
+                        {% endfor %}
+                        </div>
+                    </div>
                     {% endif %}
                 </div>
             </div>

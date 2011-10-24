@@ -17,7 +17,7 @@ class OrganizationController extends Controller
         $categoryNames = array('food', 'transportation', 'energy', 'waste', 'general');
         $categoryIcons = array('food' => 'apple', 'transportation' => 'bicycle', 'energy' => 'battery', 'waste' => 'recycle-bin', 'general' => 'globe');
         
-        $allStepObjects = $stepRepository->findBy(array('organization' => true));
+        $allStepObjects = $stepRepository->findAll();
         $allSteps = array();
         $allStepInfo = array();
         foreach($allStepObjects as $step)
@@ -25,8 +25,6 @@ class OrganizationController extends Controller
             $allStepInfo[$step->getStep()] = array('category' => $step->getCategory(), 'savings' => $step->getSavings(), 'step' => $step->getStep());
             $allSteps[] = $step->getStep();
         }
-
-        
         
         $request = $this->get('request');
 

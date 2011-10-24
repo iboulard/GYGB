@@ -5,3 +5,4 @@
 /vendor/
 /app/config/parameters.ini
 /app/config/config_dev.yml
+/web/files/

@@ -57,7 +57,7 @@
             <div id="header">
                 <div id="user-menu">
                         {% if is_granted('ROLE_USER') %}
-                            Logged in as {{ app.user }} <a href="{{ url('fos_user_profile_show') }}">(edit)</a> <a href="{{ url('fos_user_security_logout') }}">Log out</a>
+                            Logged in as <a href="{{ url('fos_user_profile_show') }}">{{ app.user }} </a> <a href="{{ url('fos_user_security_logout') }}">Log out</a>
                         {% else %}
                             <a href="{{ url('fos_user_security_login') }}">Login</a>
                             <a href="{{ url('fos_user_registration_register') }}">Register</a>

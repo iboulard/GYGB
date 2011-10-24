@@ -24,19 +24,19 @@ class Step
   /**
    * @var text $story
    *
-   * @ORM\Column(name="story", type="text", nullable="true")
+   * @ORM\Column(name="story", type="string", length="255", nullable="true")
    */
   private $story;
   /**
    * @var text $title
    *
-   * @ORM\Column(name="title", type="text", nullable="true")
+   * @ORM\Column(name="title", type="string", length="255", nullable="true")
    */
   private $title;
   /**
    * @var text $commitment
    *
-   * @ORM\Column(name="commitment", type="text", nullable="true")
+   * @ORM\Column(name="commitment", type="string", length="255", nullable="true")
    */
   private $commitment;  
   /**
@@ -66,13 +66,13 @@ class Step
   /**
    * @var string $stepCount
    *
-   * @ORM\Column(name="stepCount", type="integer")
+   * @ORM\Column(name="stepCount", type="integer", nullable="true")
    */
   private $stepCount;
   /**
    * @var string $commitmentCount
    *
-   * @ORM\Column(name="commitmentCount", type="integer")
+   * @ORM\Column(name="commitmentCount", type="integer", nullable="true")
    */
   private $commitmentCount;
   /**
@@ -111,13 +111,6 @@ class Step
    * @ORM\Column(name="student", type="boolean", nullable="true")
    */
   private $student;     
-  /**
-   * @var string $featuredOrganization
-   *
-   * @ORM\Column(name="featuredOrganization", type="integer", nullable="true")
-   */
-  private $featuredOrganization;
-  
   
   /** @ORM\OneToMany(targetEntity="StepSubmission", mappedBy="step", cascade={"persist", "remove"})
    * @ORM\OrderBy({"datetimeSubmitted" = "DESC"})
@@ -129,13 +122,22 @@ class Step
    */
    protected $commitments;
   
-  
-  function onPrePersist()
-  {
-    $this->category = 'general';
-    $this->stepCount = '0';
-    $this->commitmentCount = '0';
-  }
+    /**
+     * @ORM\ManyToMany(targetEntity="Organization", inversedBy="featuredSteps")
+     * @ORM\JoinTable(name="StepsToOrganizations")
+     */
+    protected $featuredOrganizations;
+
+   
+    /**
+     * @ORM\prePersist
+     */
+    public function setDefaultValues()
+    {
+        if(!$this->category) $this->category = 'general';
+        if(!$this->stepCount) $this->stepCount = '0';
+        if(!$this->commitmentCount) $this->commitmentCount = '0';
+    }
 
   /**
    * Get id
@@ -418,27 +420,6 @@ class Step
     }
 
     /**
-     * Set featuredOrganization
-     *
-     * @param integer $featuredOrganization
-     */
-    public function setFeaturedOrganization($featuredOrganization)
-    {
-        $this->featuredOrganization = $featuredOrganization;
-    }
-
-    /**
-     * Get featuredOrganization
-     *
-     * @return integer 
-     */
-    public function getFeaturedOrganization()
-    {
-        return $this->featuredOrganization;
-    }
-
-   
-    /**
      * Set stepCount
      *
      * @param integer $stepCount
@@ -578,5 +559,45 @@ class Step
     public function getCommitments()
     {
         return $this->commitments;
+    }
+
+    /**
+     * Set featuredOrganization
+     *
+     * @param GYGB\BackBundle\Entity\Organization $featuredOrganization
+     */
+    public function setFeaturedOrganization(\GYGB\BackBundle\Entity\Organization $featuredOrganization)
+    {
+        $this->featuredOrganization = $featuredOrganization;
+    }
+
+    /**
+     * Get featuredOrganization
+     *
+     * @return GYGB\BackBundle\Entity\Organization 
+     */
+    public function getFeaturedOrganization()
+    {
+        return $this->featuredOrganization;
+    }
+
+    /**
+     * Add featuredOrganizations
+     *
+     * @param GYGB\BackBundle\Entity\Organization $featuredOrganizations
+     */
+    public function addOrganization(\GYGB\BackBundle\Entity\Organization $featuredOrganizations)
+    {
+        $this->featuredOrganizations[] = $featuredOrganizations;
+    }
+
+    /**
+     * Get featuredOrganizations
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getFeaturedOrganizations()
+    {
+        return $this->featuredOrganizations;
     }
 }

@@ -47,8 +47,9 @@ class ShareAStepController extends Controller
         
         $stepForm = $this->createFormBuilder()
                 ->add('stepDropdown', 'choice', array('label' => ' ','required' => false, 'choices' => $stepTitles))
-                ->add('step', 'text', array('label' => 'Title (ex: "Plant a Garden!")', 'required' => false))
-                ->add('action', 'text', array('label' => 'Action (ex: "I planted a garden")', 'required' => false))
+                ->add('title', 'text', array('label' => 'Title (ex: "Plant a Garden!")', 'required' => false))
+                ->add('commitment', 'text', array('label' => 'Commitment (ex: "I will plant a garden")', 'required' => false))
+                ->add('step', 'text', array('label' => 'Action (ex: "I planted a garden")', 'required' => false))
                 ->add('description', 'textarea', array('label' => 'Description (what will help others take this step?)', 'required' => false))
                 ->add('category', 'hidden', array('required' => false))
                 ->add('stepFromID', 'hidden', array('required' => false))
@@ -77,7 +78,7 @@ class ShareAStepController extends Controller
                 $session = $this->getRequest()->getSession();
                 $data = $stepForm->getData();
 
-                if(trim($data['stepDropdown']) == "" && trim($data['step']) == "" && trim($data['stepFromID']) == "")
+                if(trim($data['stepDropdown']) == "" && trim($data['title']) == "" && trim($data['stepFromID']) == "")
                 {
                     $this->getRequest()->getSession()->setFlash('error-message', 'Please select a step or share a new one.');
 
@@ -101,7 +102,7 @@ class ShareAStepController extends Controller
                 }
                 else
                 {
-                    $step_title = $data['step'];
+                    $step_title = $data['title'];
                 }
                 
                 $step = $stepRepository->findOneBytitle($step_title);
@@ -114,10 +115,12 @@ class ShareAStepController extends Controller
                     $step->setApproved(false);
                     $step->setDescription($data['description']);
                     $step->setCategory($data['category']);
-                    $step->setSavings($data['savings']);
+                    //$step->setSavings($data['savings']);
                     $step->setStepCount(1);
                     $step->setIndividual(true);
-                    $step->setCommitmentCount(1);
+                    $step->setCommitmentCount(0);
+                    $step->setCommitment($data['commitment']);
+                    $step->setStory($data['step']);
                     
                     $em->persist($step);
                     $em->flush();

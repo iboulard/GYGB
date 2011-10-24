@@ -79,4 +79,44 @@ class User extends BaseUser
 
     
     
+
+    /**
+     * Add stepSubmissions
+     *
+     * @param GYGB\BackBundle\Entity\StepSubmission $stepSubmissions
+     */
+    public function addStepSubmission(\GYGB\BackBundle\Entity\StepSubmission $stepSubmissions)
+    {
+        $this->stepSubmissions[] = $stepSubmissions;
+    }
+
+    /**
+     * Get stepSubmissions
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getStepSubmissions()
+    {
+        return $this->stepSubmissions;
+    }
+
+    /**
+     * Add commitments
+     *
+     * @param GYGB\BackBundle\Entity\Commitment $commitments
+     */
+    public function addCommitment(\GYGB\BackBundle\Entity\Commitment $commitments)
+    {
+        $this->commitments[] = $commitments;
+    }
+
+    /**
+     * Get commitments
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getCommitments()
+    {
+        return $this->commitments;
+    }
 }

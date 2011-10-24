@@ -9,10 +9,10 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use GYGB\FrontBundle\Entity\StepSubmission;
 
-class StepSubmissionAdmin extends Admin
+class StepCommitmentAdmin extends Admin
 {
 
-    protected $entityLabelPlural = "Step Submissions";
+    protected $entityLabelPlural = "Step Commitments";
 
     protected function configureShowField(ShowMapper $showMapper)
     {
@@ -21,7 +21,7 @@ class StepSubmissionAdmin extends Admin
                 ->add('email', null, array('label' => 'Email'))
                 ->add('datetimeSubmitted', null, array('label' => 'Submitted'))
                 ->add('step', null, array('label' => 'Step'))
-                ->add('story', null, array('label' => 'Story'))                
+                ->add('commitment', null, array('label' => 'Story'))                
         ;
     }
 
@@ -57,7 +57,7 @@ class StepSubmissionAdmin extends Admin
                 ->add('step')
                 ->add('name')
                 ->add('email')
-                ->add('story')
+                ->add('commitment')
                 ->add('datetimeSubmitted', null, array('label' => 'Submitted'))
         ;
     }

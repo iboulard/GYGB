@@ -79,7 +79,7 @@
         </div>
 
         {% if not taken %}<h1>Need help taking this step?</h1>{% endif %}
-        {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : organizations } %}
+        {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : organizations, 'showSteps' : false } %}
         
    
 

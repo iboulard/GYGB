@@ -43,6 +43,11 @@ shareAStep:
   pattern: /share-a-step/{id}
   defaults: { _controller: GYGBFrontBundle:ShareAStep:ShareAStep, id: null }
 
+volunteers:
+  pattern: /volunteers
+  defaults: { _resource: "files/GYGBVolunteerScript.doc" }
+
+
 
 
 #stepId:
@@ -63,6 +68,7 @@ adminHelp:
 adminHome:
   pattern: /admin/dashboard
   defaults: { _controller: SonataAdminBundle:Core:dashboard }
+
 
 
 # ADMIN =====================

@@ -42,7 +42,7 @@ class StepSubmission
     /**
      * @var text $story
      *
-     * @ORM\Column(name="story", type="text", nullable="true")
+     * @ORM\Column(name="story", type="string", length=255, nullable="true")
      */
     private $story;
     /**

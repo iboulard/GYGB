@@ -29,10 +29,15 @@ services:
       tags:
         - { name: sonata.admin, manager_type: orm, group: Step Data, label: Step Submissions }
       arguments: [null, GYGB\BackBundle\Entity\StepSubmission, GYGBBackBundle:StepSubmissionAdmin]
+    gygb.back.admin.stepcommitment:
+      class: GYGB\BackBundle\Admin\StepCommitmentAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: Step Data, label: Step Commitments }
+      arguments: [null, GYGB\BackBundle\Entity\Commitment, GYGBBackBundle:StepCommitmentAdmin]
     gygb.back.admin.organization:
       class: GYGB\BackBundle\Admin\OrganizationAdmin
       tags:
-        - { name: sonata.admin, manager_type: orm, group: Step Data, label: Organizations }
+        - { name: sonata.admin, manager_type: orm, group: Step Data, label: Resources }
       arguments: [null, GYGB\BackBundle\Entity\Organization, GYGBBackBundle:OrganizationAdmin]
     ccetc.useradmin.admin.user:
       class: CCETC\UserAdminBundle\Admin\UserAdmin

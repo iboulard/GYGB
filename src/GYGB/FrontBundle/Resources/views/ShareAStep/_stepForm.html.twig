@@ -26,8 +26,9 @@
                 <div class="share-your-own-container">
                 <fieldset style="border: 1px solid #aaa; border-radius: 6px; padding: 10px;">
                 <legend style="text-align: center; padding: 0 10px;">Share your own step</legend>
+                    {{ form_row(stepForm.title) }}
+                    {{ form_row(stepForm.commitment) }}
                     {{ form_row(stepForm.step) }}
-                    {{ form_row(stepForm.action) }}
                     {{ form_row(stepForm.description) }}
 
                     <span class="box-form-label">What area was your step in?</span>
