@@ -18,7 +18,7 @@ class StepAdmin extends Admin
     protected function configureShowField(ShowMapper $showMapper)
     {
         $showMapper
-                ->add('step', null, array('label' => 'Step'))
+                ->add('title', null, array('label' => 'Step'))
                 ->add('category', null, array('label' => 'Category'))
                 ->add('savings', null, array('label' => 'Savings'))
                 ->add('stepCount', null, array('label' => 'Step Count'))
@@ -112,12 +112,12 @@ class StepAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-                ->add('step')
+                ->add('title')
                 ->add('category', 'choice', array('choices' => Step::getCategoryChoices(), 'expanded' => false, 'multiple' => false))
                 ->add('savings', 'choice', array('choices' => Step::getSavingsChoices(), 'expanded' => false, 'multiple' => false))
                 ->add('approved')
-                ->add('stepCount')
-                ->add('commitmentCount')
+                ->add('stepCount', null, array('required' => false))
+                ->add('commitmentCount', null, array('required' => false))
         ;
     }
 

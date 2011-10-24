@@ -19,8 +19,8 @@ class Builder extends ContainerAware
         $this->mainMenu->addChild('Find a Step', array('route' => 'findAStep'));
         $this->mainMenu->addChild('Take a Step', array('route' => 'takeAStep'));
         $this->mainMenu->addChild('Share a Step', array('route' => 'shareAStep'));
-        $this->mainMenu->addChild('About', array('route' => 'about'));
-        $this->mainMenu->addChild('Coalition', array('route' => 'coalition'));
+        //$this->mainMenu->addChild('About', array('route' => 'about'));
+        //$this->mainMenu->addChild('Coalition', array('route' => 'coalition'));
         //$this->mainMenu->addChild('Steps and Resources', array('uri' => '../files/GetYourGreenBack.pdf'));
         
         $this->path = str_replace($this->container->get('request')->getBaseUrl(), '', $this->container->get('request')->getRequestUri());

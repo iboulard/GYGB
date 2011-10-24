@@ -2,10 +2,9 @@
 
 {% block content %}
     <h1>What's Your Step?</h1>
- 
+    <h2>Have you taken a step to save money and energy?  Share it and enter to win over $2000 in prizes.</h2>
+    
     <div id="step-submission-container">
-        <div style="margin-bottom: 10px;">Have you taken a step to save energy and money?  Share it! </div>
-        
         <div id="whats-your-step">
             {% include "GYGBFrontBundle:ShareAStep:_stepForm.html.twig" with {'stepForm' : stepForm, 'categoryNames' : categoryNames, 'stepObjects' : stepObjects, 'id': id, 'selectedStep' : selectedStep } %}
         </div>

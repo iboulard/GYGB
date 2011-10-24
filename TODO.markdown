@@ -15,16 +15,16 @@ Questions for Ken
 	-  take a step
 
 
-0.9
+0.8
 =======================
 
-	1.	Commit / share once - 1
+//	1.	Commit / share once - 1
 	
-	2.	Share a Step - 1
+//	2.	Share a Step - 1
 	
-		- id bug!
+//		- id bug!
 		
-		- fix cats
+//		- fix cats
 	
 	3.	Content - 2
 	
@@ -37,7 +37,16 @@ Questions for Ken
 		- coalition text		
 
 	
-	4.	Admin
+	10.	Misc
+		
+//		- coalition links
+		
+//		- remove savings
+		
+		
+0.9
+=======================
+	1.	Admin
 	
 		- cleanup orgs
 		
@@ -46,13 +55,6 @@ Questions for Ken
 			- remove old records
 			
 			- logos?
-	
-	10.	Misc
-		
-		- remove savings
-		
-		- add photos?
-		
 		
 
 1.0  - due 10/26 - 34

@@ -7,8 +7,10 @@
          
             <div class="step-container">
                 <div class="step {{ step.category}}">
-                    <span class="savings">{{ step.savingsLabel }}</span>
                     <span class="count">{{ step.stepCount }}</span>
+                    <span style="float: left; margin: 5px 10px 5px 0; font-size: 11px;">step{% if step.stepCount != 1%}s{%endif%}</span>
+                    <span class="count">{{ step.commitmentCount }}</span>
+                    <span style="float: left; margin: 5px 10px 5px 0; font-size: 11px;">commitment{% if step.commitmentCount != 1%}s{%endif%}</span>
                     <span class="step">{{ step.title }}</span>
                 </div>
             </div>
@@ -16,41 +18,19 @@
             <span class="description">{{ step.description|raw }}</a>
         </div>
 
-        <div class="step-buttons-container">
-            <div class="commit-to-this-step">
-                {% if commited %}
-                    You have committed to taking this step.
-                {% else %}
-                    <a class="button" href="#" id="commit-to-this-step">Commit to taking this step</a>
-
-
-                    <div id="commit-form" class="box-form">
-                        <form action="{{ path('takeAStep', {'id': step.id}) }}" method="post" {{ form_enctype(commitmentForm) }}>
-                            {{ form_errors(commitmentForm) }}
-                            {{ form_row(commitmentForm.commitment) }}
-                            {% if not is_granted('ROLE_USER') %}
-                                {{ form_row(commitmentForm.name) }}
-                                {{ form_row(commitmentForm.email) }}
-                            {% endif %}
-                            {{ form_rest(commitmentForm) }}
-                            <br/>
-                            <input class="button submit" value="Commit" type="submit" />
-
-                        </form>
-                    </div>
-                {% endif %}
+        {% if commited and taken == false %}
+            <div style="font-size: 20px; float: right; margin: 0 0 10px 0;">
+                    <span style="">You have committed to taking this step.</span>
             </div>
-            <div class="share-this-step">
-                {% if taken %}
-                    You have taken this step.
-                {% else %}
-                    Have you taken this step? <a class="button" href="{{ path('shareAStep', {'id':step.id}) }}">Share it! &rarr;</a>
-                {% endif %}
+        {% elseif taken %} 
+            <div style="font-size: 20px; float: right;">
+                <div style="">
+                    <img style="float: left;" src="{{ asset('images/check.png') }}" />
+                    <span style="float: left; padding: 10px 0 0 10px; margin: 0 0 10px 0;">You have taken this step.</span><br/>
+                </div>
+                <div>&nbsp;</div>
             </div>
-            <div style="clear: both;">&nbsp;</div>
-        </div>
-
-        <br/>
+        {% endif %}
 
         {% if events|length > 0 %}
             <div class="step-submissions">
@@ -64,13 +44,41 @@
                 {% endfor %}
             </div>
         {% else %}
-            <div style="background: #ffffcc; font-size: 20px; padding: 15px; text-align: center; border: 1px solid #ccc;">
-                No one has taken this step!  <a href="{{ path('shareAStep', {'id':step.id}) }}">Be the first.</a>
+            <div style="background: #ffffcc; font-size: 20px; padding: 15px; text-align: center;">
+                No one has taken this step!  Be the first.
             </div>
         {% endif %}
 
-        <br/><br/>
-        <h1>Need help taking this step?</h1>
+        <div class="step-buttons-container">
+            {% if not taken %}    
+                <div class="commit-to-this-step">
+                    {% if not commited %}
+                        <a class="button" href="#" id="commit-to-this-step">Commit to taking this step</a>
+
+                        <div id="commit-form" class="box-form">
+                            <form action="{{ path('takeAStep', {'id': step.id}) }}" method="post" {{ form_enctype(commitmentForm) }}>
+                                {{ form_errors(commitmentForm) }}
+                                {{ form_row(commitmentForm.commitment) }}
+                                {% if not is_granted('ROLE_USER') %}
+                                    {{ form_row(commitmentForm.name) }}
+                                    {{ form_row(commitmentForm.email) }}
+                                {% endif %}
+                                {{ form_rest(commitmentForm) }}
+                                <br/>
+                                <input class="button submit" value="Commit" type="submit" />
+
+                            </form>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="share-this-step">
+                        Have you taken this step? <a class="button" href="{{ path('shareAStep', {'id':step.id}) }}">Share it! &rarr;</a>
+                </div>
+                <div style="clear: both;">&nbsp;</div>
+            {% endif %}
+        </div>
+
+        {% if not taken %}<h1>Need help taking this step?</h1>{% endif %}
         {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : organizations } %}
         
    

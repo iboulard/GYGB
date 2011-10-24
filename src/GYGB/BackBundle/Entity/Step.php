@@ -248,7 +248,7 @@ class Step
   
   public function __toString()
   {
-    return $this->getStep();
+    return $this->getTitle();
   }
 
     public function __construct()

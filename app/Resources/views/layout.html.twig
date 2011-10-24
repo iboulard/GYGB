@@ -62,6 +62,8 @@
                             <a href="{{ url('fos_user_security_login') }}">Login</a>
                             <a href="{{ url('fos_user_registration_register') }}">Register</a>
                         {% endif %}
+                        <a href="{{ url('about') }}">About</a>
+                        <a href="{{ url('coalition') }}">Coalition</a>
                         {% if is_granted('ROLE_ADMIN') %}
                             <a href="{{ url('adminHome') }}">Admin</a>
                         {% endif %}

@@ -177,15 +177,19 @@ class TakeAStepController extends Controller
             
             foreach($userCommitments as $uc)
             {
-                if($uc->getStep() == $step) $commited = true;
-                break;
+                if($uc->getStep() == $step) {
+                    $commited = true;
+                    break;
+                }
             }
             foreach($userStepSubmissions as $us)
             {
-                if($us->getStep() == $step) $taken = true;
-                break;
+                if($us->getStep() == $step) {
+                    $taken = true;
+                    break;
+                }
             }
-                       
+
         }
         
         return $this->render('GYGBFrontBundle:TakeAStep:takeAStep.html.twig', array(

@@ -26,7 +26,7 @@ class ShareAStepController extends Controller
         {
             $selectedStep = null;
         }
-                
+        
         $allStepObjects = $stepRepository->findBy(array('individual' => true));
         $allSteps = array();
         $allStepInfo = array();
@@ -46,11 +46,12 @@ class ShareAStepController extends Controller
         }
         
         $stepForm = $this->createFormBuilder()
-                ->add('step_dropdown', 'choice', array('label' => ' ','required' => false, 'choices' => $stepTitles))
+                ->add('stepDropdown', 'choice', array('label' => ' ','required' => false, 'choices' => $stepTitles))
                 ->add('step', 'text', array('label' => 'Title (ex: "Plant a Garden!")', 'required' => false))
                 ->add('action', 'text', array('label' => 'Action (ex: "I planted a garden")', 'required' => false))
                 ->add('description', 'textarea', array('label' => 'Description (what will help others take this step?)', 'required' => false))
                 ->add('category', 'hidden', array('required' => false))
+                ->add('stepFromID', 'hidden', array('required' => false))
                 ->add('savings', 'hidden', array('required' => false))
                 ->add('story', 'textarea', array('label' => 'What did you do? How did it go?', 'required' => false));
         
@@ -63,9 +64,7 @@ class ShareAStepController extends Controller
 
         $stepForm = $stepForm->getForm();
 
-
-        if(isset($selectedStep)) $stepForm->setData(array('step_dropdown' => $selectedStep->getTitle()));
-        if(isset($selectedStep)) $stepForm->setData(array('story' => $selectedStep->getStory()));
+        if(isset($selectedStep)) $stepForm->setData(array('story' => $selectedStep->getStory(), 'stepFromID' => $selectedStep->getTitle()));
         
         // process step form
         if($request->getMethod() == 'POST')
@@ -78,7 +77,7 @@ class ShareAStepController extends Controller
                 $session = $this->getRequest()->getSession();
                 $data = $stepForm->getData();
 
-                if(trim($data['step_dropdown']) == "" && trim($data['step']) == "")
+                if(trim($data['stepDropdown']) == "" && trim($data['step']) == "" && trim($data['stepFromID']) == "")
                 {
                     $this->getRequest()->getSession()->setFlash('error-message', 'Please select a step or share a new one.');
 
@@ -92,9 +91,13 @@ class ShareAStepController extends Controller
                         'selectedStep' => $selectedStep
                     ));
                 }
-                else if(trim($data['step_dropdown']) != "")
+                else if(trim($data['stepDropdown']) != "")
                 {
-                    $step_title = $data['step_dropdown'];                    
+                    $step_title = $data['stepDropdown'];                    
+                }
+                else if(trim($data['stepFromID']) != "")
+                {
+                    $step_title = $data['stepFromID'];                    
                 }
                 else
                 {
@@ -115,6 +118,10 @@ class ShareAStepController extends Controller
                     $step->setStepCount(1);
                     $step->setIndividual(true);
                     $step->setCommitmentCount(1);
+                    
+                    $em->persist($step);
+                    $em->flush();
+
                 }
                 else
                 {

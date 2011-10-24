@@ -319,7 +319,7 @@ div#step-form {
 }
 
 div.box-form {
-    width: 500px;
+    width: 515px;
     padding: 15px 25px;
     overflow: auto;
     -moz-border-radius: 7px;  
@@ -394,21 +394,20 @@ div.box-form .savings-selection {
     webkit-border-radius: 7px;
     border-radius: 7px;
     padding: 5px;
+    border: 1px solid #eee;
 }
 
 div.box-form .category-selection.selected,
-div.box-form .category-selection.selected span.category-name,
-div.box-form .savings-selection.selected,
-div.box-form .savings-selection.selected span.category-name {
-    background: #4a793c;
-    color: white;
+div.box-form .savings-selection.selected {
+    border: #4a793c 1px solid;
+    color: black;
 }
 
 div.box-form .category-selection:hover,
 div.box-form .savings-selection:hover {
-    background: #4a793c;
+    border: #4a793c 1px solid;
     cursor: pointer;
-    color: white;
+    color: black;
 }
 
 div.box-form .savings-selections a {
@@ -436,7 +435,7 @@ div.category-selection span.category-name {
 }
 
 div.category-selection:hover span.category-name {
-    color: white;
+    color: black;
 }
 
 div.box-form .box-form-label {
@@ -635,6 +634,7 @@ div.step-list-search-results {
 div#step-page-container {
     width: 100%;
     float: left;
+    margin-top: 10px;
 }
 
 div#step-option-container {
@@ -880,7 +880,7 @@ div#about-page-container p {
 /* take a step page =================================================================*/
 div.take-a-step-box {
     width: 60%;
-    margin: 15px auto 5px;
+    margin: 15px auto;
     font-size: 20px;
 }
 
@@ -1029,7 +1029,7 @@ div#resources-container {
 
 div.category-resources {
     overflow: auto;
-    margin-bottom: 25px;
+    margin: 10px 0 25px 0;
     border: 1px solid #D65629;
     border-radius: 10px;
 }
