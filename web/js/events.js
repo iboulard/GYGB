@@ -1,4 +1,5 @@
 
+
 $(document).ready(function() {
     // general
     var headerMessage = $('div.header-message');
@@ -197,13 +198,29 @@ $(document).ready(function() {
    });
    
    $('div.organizations div.organization').live("click", function(e){
-       e.preventDefault();
+       if($(e.target).is('a'))
+       {
+           var href = $(e.target).attr('href');
+       }
+       else if($(e.target).parent().is('a'))
+       {
+           var href = $(e.target).attr('href');          
+       }
+       else {
+            e.preventDefault();
+            var href = $(this).find('a.box-link').attr('href');
+       }
        
-       var href = $(this).find('a').attr('href');
        
-       document.location = href;
+       window.open(href,'_blank');
+
    });
    
+   $('a#commit-to-this-step').live("click", function(e){
+        e.preventDefault();
+        
+        $('div#commit-form').show();                
+   });
    
 });
 

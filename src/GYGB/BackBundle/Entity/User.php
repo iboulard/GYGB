@@ -12,9 +12,7 @@ class User extends BaseUser
 {
     public function __toString()
     {
-      $s = $this->firstName.' ';
-      $s .= $this->lastName;
-      return $s;
+      return $this->name;
     }
 
     /**
@@ -25,17 +23,17 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var string $firstName
+     * @var string $name
      *
-     * @ORM\Column(name="firstName", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $firstName;
-    /**
-     * @var string $lastName
-     *
-     * @ORM\Column(name="lastName", type="string", length=255)
-     */
-    private $lastName;
+    private $name;
+    
+    /** @ORM\OneToMany(targetEntity="StepSubmission", mappedBy="user", cascade={"persist", "remove"}) */
+    protected $stepSubmissions;
+  
+    /** @ORM\OneToMany(targetEntity="Commitment", mappedBy="user", cascade={"persist", "remove"}) */
+    protected $commitments;
     
     
     public function __construct()
@@ -54,49 +52,71 @@ class User extends BaseUser
         return $this->id;
     }
 
+   
+    
+
     /**
-     * Set firstName
+     * Set name
      *
-     * @param string $firstName
+     * @param string $name
      */
-    public function setFirstName($firstName)
+    public function setName($name)
     {
-        $this->firstName = $firstName;
+        $this->name = $name;
     }
 
     /**
-     * Get firstName
-     *
-     * @return string 
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * Set lastName
-     *
-     * @param string $lastName
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-    }
-
-    /**
-     * Get lastName
+     * Get name
      *
      * @return string 
      */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
     public function getName()
     {
-        return $this->firstName.' '.$this->lastName;
+        return $this->name;
     }
+
     
+
+    
+    
+
+    /**
+     * Add stepSubmissions
+     *
+     * @param GYGB\BackBundle\Entity\StepSubmission $stepSubmissions
+     */
+    public function addStepSubmission(\GYGB\BackBundle\Entity\StepSubmission $stepSubmissions)
+    {
+        $this->stepSubmissions[] = $stepSubmissions;
+    }
+
+    /**
+     * Get stepSubmissions
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getStepSubmissions()
+    {
+        return $this->stepSubmissions;
+    }
+
+    /**
+     * Add commitments
+     *
+     * @param GYGB\BackBundle\Entity\Commitment $commitments
+     */
+    public function addCommitment(\GYGB\BackBundle\Entity\Commitment $commitments)
+    {
+        $this->commitments[] = $commitments;
+    }
+
+    /**
+     * Get commitments
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getCommitments()
+    {
+        return $this->commitments;
+    }
 }

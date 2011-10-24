@@ -34,8 +34,8 @@ class StepRepository extends EntityRepository
         $totalSteps = 0;
         foreach($allSteps as $step)
         {
-            $categoryTotals['all'] += $step->getCount();
-            $categoryTotals[$step->getCategory()] += $step->getCount();
+            $categoryTotals['all'] += $step->getStepCount();
+            $categoryTotals[$step->getCategory()] += $step->getStepCount();
         }
 
         return $categoryTotals;
@@ -44,7 +44,7 @@ class StepRepository extends EntityRepository
     public function findByTerms($em, $terms)
     {
         $query = $this->createQueryBuilder('s');
-        $query->andWhere('s.actionTitle LIKE :title');
+        $query->andWhere('s.title LIKE :title');
         $query->setParameter('title', '%' . $terms . '%');
 
         return $query->getQuery()->getResult();
@@ -111,7 +111,7 @@ class StepRepository extends EntityRepository
         {
             $query->join('s.submissions', 'ss');
             $query->groupBy('s.id');
-            $query->orderBy('s.count', 'DESC');
+            $query->orderBy('s.stepCount', 'DESC');
         }
         else if(isset($sort) && $sort == 'recent')
         {
@@ -127,17 +127,88 @@ class StepRepository extends EntityRepository
     public function findRecentlySubmitted($em)
     {
         $query = $this->createQueryBuilder('s');
-        $query->join('s.submissions', 'ss');
+        $query->join('s.stepSubmissions', 'ss');
         $query->orderBy('ss.datetimeSubmitted', 'DESC');
         $query->andWhere('s.approved = true');
         $resultsA = $query->getQuery()->getResult();
         
         $queryB = $this->createQueryBuilder('sb');
-        $queryB->andWhere('sb.count = 0');
+        $queryB->andWhere('sb.stepCount = 0');
         $resultsB = $queryB->getQuery()->getResult();
         
         return array_merge($resultsA, $resultsB);
     }
 
+    public function findEvents($em, $stepSubmissionRepository, $commitmentRepository)
+    {
+         // build array of x most recent commitments and submissions
+        
+        // add a ":" to name if commitment/story is abbreviated
+        // add quotes around text if commitment/story is abbreviated
+        // abbreviate commitment/story if possible
+        
+    }
+    
+    static function compareEvent($a, $b) {
+        if ($a == $b) {
+            return 0;
+        }
+        return ($a['datetime'] > $b['datetime']) ? -1 : 1;
+    }
+    
+    public function findEventsByStep($step)
+    {
+        // build array of commitments and submissions for step.id
+        
+        // add a ":" to name if commitment/story is abbreviated
+        // add quotes around text if commitment/story is abbreviated
+        // abbreviate commitment/story if possible
+        $submissions = $step->getStepSubmissions();
+        $commitments = $step->getCommitments();
+        
+        $events = array();
+     
+        foreach($submissions as $s)
+        {
+            $e = array();
+            if($s->storyCanBeAbbreviated())
+            {
+                $e['name'] = $s->getName();
+                $e['text'] = $s->getAbbreviatedStory();
+            }
+            else
+            {
+                $e['name'] = $s->getName().': ';
+                $e['text'] = '"'.$s->getAbbreviatedStory().'"';
+            }
+            $e['datetime'] = $s->getDatetimeSubmitted();                
+            
+            $events[] = $e;
+        }
+        
+        foreach($commitments as $c)
+        {
+            $e = array();
+            if($c->commitmentCanBeAbbreviated())
+            {
+                $e['name'] = $c->getName();
+                $e['text'] = $c->getAbbreviatedCommitment();
+            }
+            else
+            {
+                $e['name'] = $c->getName().': ';
+                $e['text'] = '"'.$c->getAbbreviatedCommitment().'"';
+            }
+            $e['datetime'] = $c->getDatetimeSubmitted();                
+            
+            $events[] = $e;
+        }
+        
+        uasort($events, 'self::compareEvent');
+        
+        return $events;
+    }
+    
+   
     
 }

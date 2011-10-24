@@ -46,7 +46,7 @@ class Organization
     /**
      * @var string $email
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, nullable="true")
      */
     private $email;
     /**
@@ -91,6 +91,12 @@ class Organization
      * @ORM\Column(name="approved", type="boolean")
      */
     private $approved;
+    /**
+     * @var boolean $featured
+     *
+     * @ORM\Column(name="featured", type="boolean")
+     */
+    private $featured;
 
     /**
      * Get id
@@ -321,5 +327,25 @@ class Organization
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set featured
+     *
+     * @param boolean $featured
+     */
+    public function setFeatured($featured)
+    {
+        $this->featured = $featured;
+    }
+
+    /**
+     * Get featured
+     *
+     * @return boolean 
+     */
+    public function getFeatured()
+    {
+        return $this->featured;
     }
 }

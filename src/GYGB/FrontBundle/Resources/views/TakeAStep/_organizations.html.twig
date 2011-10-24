@@ -1,11 +1,13 @@
 
-    <div class="organizations">
+    {% if organizations|length > 0 %}<div class="organizations">{% endif %}
         {% for organization in organizations %}
             <div class="organization-container">
                 <div class="organization">
-                    {% if organization.website is defined %}<a href="{{ organization.website }}">{% endif %}
-                        <img style="width: {{ 100 * organization.width }}px" src="{{ asset('images/logos/' ~ organization.logo) }}" />
+                    <div class="logo-container">
+                    {% if organization.website is defined %}<a class="box-link" href="{{ organization.website }}">{% endif %}
+                        <img src="{{ asset('images/logos/' ~ organization.logo) }}" />
                     {% if organization.website is defined %}</a>{% endif %}
+                    </div>
                     {% if organization.description is defined %}
                         <div class="description">
                             {{ organization.description|raw }}
@@ -14,4 +16,5 @@
                 </div>
             </div>
         {% endfor %}
-    </div>
+    {% if organizations|length > 0 %}</div>{% endif %}
+    

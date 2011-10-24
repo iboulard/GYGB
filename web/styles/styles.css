@@ -1,8 +1,11 @@
 /* 
         logo green hex: #4a793c
-        red: #b7253a
+        red: #b7253a (#b7253_a)
         light link: #C9DDFF;
         link: #B7253A
+        #D6562_9
+        organe: #D65629 (#D6562_9)
+        yellow:     #D65629 (#D7822_8)
 */
 
 /* layout =================================================================== */
@@ -35,6 +38,27 @@
     margin: 75px 0 0 100px;
 }
 
+#user-menu {
+    float: right;
+    font-size: 12px;
+}
+
+#user-menu li {
+    float: left;
+    margin: 0 5px;
+}
+
+#user-menu a {
+    border-right: 1px solid #666;
+    margin-right: 4px;
+    padding-right: 6px;
+}
+
+#user-menu a.last {
+    border: none;
+}
+
+    
 #menu {
     float: right;
     margin-top: 20px;
@@ -48,7 +72,7 @@
 }
 
 #menu li.current {
-    background: #B7253A;
+    background: #D65629;
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -56,7 +80,7 @@
 }
 
 #menu li a {
-    color: #B7253A;
+    color: #D65629;
 }
 
 #menu li.current a {
@@ -861,7 +885,7 @@ div.take-a-step-box {
 }
 
 div.take-a-step-box .step-container {
-    border: 1px solid #b7253a;
+    border: 1px solid #D65629;
     border-radius: 10px 10px 0 0;
     -moz-border-radius: 10px 10px 0 0;
     -webkit-border-radius: 10px 10px 0 0;
@@ -877,7 +901,7 @@ div.take-a-step-box span.savings {
 }
 
 div.take-a-step-box span.description {
-    background: #b7253a;
+    background: #D65629;
     padding: 10px;
     display: block;
     border-radius: 0 0 10px 10px;
@@ -893,15 +917,23 @@ div#take-a-step-page-container h1 {
     font-size: 26px !important;
 }
 
-div#take-a-step-page-container div.share-this-step-container {
+div#take-a-step-page-container div.step-buttons-container {
     width: 100%;
+    font-size: 28px;
+    margin: 30px 0 0 0;
+}
+
+div.share-this-step-container a.button {
+}
+
+div#take-a-step-page-container div.commit-to-this-step {
+    float: left;
+    width: 400px;
 }
 
 div#take-a-step-page-container div.share-this-step {
     float: right;
     width: 490px;
-    font-size: 28px;
-    margin: 30px 0 0 0;
 }
 
 div.step-details-container div.step-submissions {
@@ -972,9 +1004,14 @@ div.organizations div.organization {
     overflow: auto;
 }
 
+div.organizations div.organization div.logo-container {
+}
+
 div.organizations div.organization img {
     float: left;
     margin-right: 25px;
+    max-width: 300px;
+    max-height: 150px;
 }
 
 div.organizations div.organization div.description {
@@ -985,12 +1022,51 @@ div.organizations ul {
     list-style: disc;
 }
 
-div.organizations div.description h2 {
-    color: #4a793c;
-    text-align: center;
-    font-size: 30px;
+
+div#resources-container {
+    
 }
 
+div.category-resources {
+    overflow: auto;
+    margin-bottom: 25px;
+    border: 1px solid #D65629;
+    border-radius: 10px;
+}
+
+div.category-resources-heading-container img.category-step {
+    width: 9%;
+    float: left;
+    margin: 5px;
+}
+
+div.category-resources-heading-container {
+    overflow: auto;
+}
+
+div.category-resources-heading {
+    display: block;
+    background: #D65629;
+    color: white;
+    font-size: 22px;
+    padding: 7px;
+    border-radius: 7px 7px 0 0;
+}
+
+div.featured-resource div.organizations {
+    width: 89%;
+    float: right;
+    overflow: auto;
+}
+
+div.featured-resource {
+    width: 100%;
+}
+
+div#commit-form {
+    background: #ddd;
+    font-size: 14px; width: 400px; margin-top: 25px; display: none;
+}
 
 /* end take a step page =================================================================*/
 
@@ -1006,3 +1082,5 @@ div#coalition ul {
 div#coalition ul li {
     line-height: 17px;
 }
+
+

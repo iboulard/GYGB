@@ -26,15 +26,15 @@ class ShareAStepController extends Controller
         {
             $selectedStep = null;
         }
-        
+                
         $allStepObjects = $stepRepository->findBy(array('individual' => true));
         $allSteps = array();
         $allStepInfo = array();
         $stepObjects = array();
         foreach($allStepObjects as $step)
         {
-            $allStepInfo[$step->getStep()] = array('category' => $step->getCategory(), 'savings' => $step->getSavings(), 'step' => $step->getStep());
-            $allSteps[] = $step->getStep();
+            $allStepInfo[$step->getTitle()] = array('category' => $step->getCategory(), 'savings' => $step->getSavings(), 'title' => $step->getTitle());
+            $allSteps[] = $step->getTitle();
             $stepObjects[] = $step;
         }
 
@@ -42,7 +42,7 @@ class ShareAStepController extends Controller
         
         foreach($stepObjects as $s)
         {
-            $stepTitles[$s->getActionTitle()] = $s->getActionTitle();
+            $stepTitles[$s->getTitle()] = $s->getTitle();
         }
         
         $stepForm = $this->createFormBuilder()
@@ -52,13 +52,20 @@ class ShareAStepController extends Controller
                 ->add('description', 'textarea', array('label' => 'Description (what will help others take this step?)', 'required' => false))
                 ->add('category', 'hidden', array('required' => false))
                 ->add('savings', 'hidden', array('required' => false))
-                ->add('story', 'textarea', array('label' => 'What did you do? How did it go?', 'required' => false))
-                ->add('name', 'text', array('label' => 'Your Name', 'required' => true))
-                ->add('email', 'text', array('label' => 'Your E-mail', 'required' => true))
-                ->getForm();
+                ->add('story', 'textarea', array('label' => 'What did you do? How did it go?', 'required' => false));
+        
+        if(!$this->get('security.context')->isGranted('ROLE_USER'))
+        {
+            $stepForm->add('name', 'text', array('label' => 'Your Name', 'required' => true))
+                ->add('email', 'text', array('label' => 'Your E-mail', 'required' => true));
+
+        }
+
+        $stepForm = $stepForm->getForm();
 
 
-        if(isset($selectedStep)) $stepForm->setData(array('step_dropdown' => $selectedStep->getActionTitle()));
+        if(isset($selectedStep)) $stepForm->setData(array('step_dropdown' => $selectedStep->getTitle()));
+        if(isset($selectedStep)) $stepForm->setData(array('story' => $selectedStep->getStory()));
         
         // process step form
         if($request->getMethod() == 'POST')
@@ -94,23 +101,24 @@ class ShareAStepController extends Controller
                     $step_title = $data['step'];
                 }
                 
-                $step = $stepRepository->findOneByActionTitle($step_title);
+                $step = $stepRepository->findOneBytitle($step_title);
 
                 // add step if new
                 if(!$step)
                 {
                     $step = new \GYGB\BackBundle\Entity\Step();
-                    $step->setActionTitle($step_title);
+                    $step->setTitle($step_title);
                     $step->setApproved(false);
                     $step->setDescription($data['description']);
                     $step->setCategory($data['category']);
                     $step->setSavings($data['savings']);
-                    $step->setCount(1);
+                    $step->setStepCount(1);
                     $step->setIndividual(true);
+                    $step->setCommitmentCount(1);
                 }
                 else
                 {
-                    $step->setCount($step->getCount() + 1);
+                    $step->setStepCount($step->getStepCount() + 1);
                 }
                
                 // unapproved steps and new steps (that are inherently unapproved) should not be highlighted
@@ -120,16 +128,35 @@ class ShareAStepController extends Controller
                 }
                 else
                 {
-                    $this->getRequest()->getSession()->setFlash('message', 'Thanks for taking a step to save money and energy!');
+                    if($this->get('security.context')->isGranted('ROLE_USER'))
+                    {
+                        $this->getRequest()->getSession()->setFlash('message', 'Thanks for taking a step to save money and energy!');
+                    }
+                    else
+                    {
+                        $this->getRequest()->getSession()->setFlash('registrationMessage', 'Thanks for taking a step to save money and energy!  Create and account to return and take more steps.');
+                    }
+                    
                 }
                 
                 
-                $em->persist($step);
-                $em->flush();
-
                 $stepSubmission = new \GYGB\BackBundle\Entity\StepSubmission();
-                $stepSubmission->setName($data['name']);
-                $stepSubmission->setEmail($data['email']);
+                
+                if($this->get('security.context')->isGranted('ROLE_USER'))
+                {
+                    $user = $this->get('security.context')->getToken()->getUser();
+                    $stepSubmission->setName($user->getName());
+                    $stepSubmission->setEmail($user->getEmail());
+                    $stepSubmission->setUser($user);
+                }
+                else
+                {
+                    $stepSubmission->setName($data['name']);
+                    $stepSubmission->setEmail($data['email']);
+                    $session->set('userName', $data['name']);
+                    $session->set('userEmail', $data['email']);
+                }
+                
                 $stepSubmission->setDatetimeSubmitted(new \DateTime());
                 $stepSubmission->setStep($step);
                 if(trim($data['story']) != "") $stepSubmission->setStory($data['story']);
@@ -137,7 +164,20 @@ class ShareAStepController extends Controller
                 $em->persist($stepSubmission);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('findAStep'));
+                $step->addStepSubmission($stepSubmission);
+                
+                $em->persist($step);
+                $em->flush();
+
+                
+                if($this->get('security.context')->isGranted('ROLE_USER'))
+                {
+                    return $this->redirect($this->generateUrl('findAStep'));
+                }
+                else
+                {
+                    return $this->redirect($this->generateUrl('fos_user_registration_register'));                    
+                }
             }
         }
 

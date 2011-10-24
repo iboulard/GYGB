@@ -8,34 +8,58 @@
             <div class="step-container">
                 <div class="step {{ step.category}}">
                     <span class="savings">{{ step.savingsLabel }}</span>
-                    <span class="count">{{ step.count }}</span>
-                    <span class="step">{{ step.actionTitle }}</span>
+                    <span class="count">{{ step.stepCount }}</span>
+                    <span class="step">{{ step.title }}</span>
                 </div>
             </div>
            
             <span class="description">{{ step.description|raw }}</a>
         </div>
 
-        <div class="share-this-step-container">
+        <div class="step-buttons-container">
+            <div class="commit-to-this-step">
+                {% if commited %}
+                    You have committed to taking this step.
+                {% else %}
+                    <a class="button" href="#" id="commit-to-this-step">Commit to taking this step</a>
+
+
+                    <div id="commit-form" class="box-form">
+                        <form action="{{ path('takeAStep', {'id': step.id}) }}" method="post" {{ form_enctype(commitmentForm) }}>
+                            {{ form_errors(commitmentForm) }}
+                            {{ form_row(commitmentForm.commitment) }}
+                            {% if not is_granted('ROLE_USER') %}
+                                {{ form_row(commitmentForm.name) }}
+                                {{ form_row(commitmentForm.email) }}
+                            {% endif %}
+                            {{ form_rest(commitmentForm) }}
+                            <br/>
+                            <input class="button submit" value="Commit" type="submit" />
+
+                        </form>
+                    </div>
+                {% endif %}
+            </div>
             <div class="share-this-step">
-                Have you taken this step? <a class="button" href="{{ path('shareAStep', {'id':step.id}) }}">Share it! &rarr;</a>
+                {% if taken %}
+                    You have taken this step.
+                {% else %}
+                    Have you taken this step? <a class="button" href="{{ path('shareAStep', {'id':step.id}) }}">Share it! &rarr;</a>
+                {% endif %}
             </div>
             <div style="clear: both;">&nbsp;</div>
         </div>
 
         <br/>
 
-        <h1>Who has taken this step?</h1>
-        {% if step.submissions|length > 0 %}
+        {% if events|length > 0 %}
             <div class="step-submissions">
-                {% for submission in step.submissions %}
+                {% for event in events %}
                     <div class="step-submission {% if loop.first %}first {% endif %}{% if loop.last %}last {% endif %}">
-                        <span class="name">{{ submission.name }}{% if submission.story is defined and submission.story != "" %}:{% endif %} 
+                        <span class="name">{{ event.name }} 
                         </span>
-                        {% if submission.story is defined and submission.story != "" %}
-                            <span class="story">"{{ submission.story }}"</span>
-                        {% endif %}
-                        <span class="date">{{ submission.datetimesubmitted|date("F j, Y g:i") }}</span>
+                        <span class="story">{{ event.text }}</span>
+                        <span class="date">{{ event.datetime|date("F j, Y g:i") }}</span>
                     </div>
                 {% endfor %}
             </div>

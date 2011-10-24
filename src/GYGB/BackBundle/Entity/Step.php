@@ -22,17 +22,23 @@ class Step
    */
   private $id;
   /**
-   * @var text $step
+   * @var text $story
    *
-   * @ORM\Column(name="step", type="text", nullable="true")
+   * @ORM\Column(name="story", type="text", nullable="true")
    */
-  private $step;
+  private $story;
   /**
-   * @var text $actionTitle
+   * @var text $title
    *
-   * @ORM\Column(name="actionTitle", type="text")
+   * @ORM\Column(name="title", type="text", nullable="true")
    */
-  private $actionTitle;
+  private $title;
+  /**
+   * @var text $commitment
+   *
+   * @ORM\Column(name="commitment", type="text", nullable="true")
+   */
+  private $commitment;  
   /**
    * @var text $description
    *
@@ -58,11 +64,17 @@ class Step
    */
   private $category;
   /**
-   * @var string $count
+   * @var string $stepCount
    *
-   * @ORM\Column(name="count", type="integer")
+   * @ORM\Column(name="stepCount", type="integer")
    */
-  private $count;
+  private $stepCount;
+  /**
+   * @var string $commitmentCount
+   *
+   * @ORM\Column(name="commitmentCount", type="integer")
+   */
+  private $commitmentCount;
   /**
    * @var smallint $individual
    *
@@ -106,12 +118,23 @@ class Step
    */
   private $featuredOrganization;
   
-  /** @ORM\OneToMany(targetEntity="StepSubmission", mappedBy="Step", cascade={"persist", "remove"}) */
-  protected $submissions;
+  
+  /** @ORM\OneToMany(targetEntity="StepSubmission", mappedBy="step", cascade={"persist", "remove"})
+   * @ORM\OrderBy({"datetimeSubmitted" = "DESC"})
+   */
+  protected $stepSubmissions;
+  
+  /** @ORM\OneToMany(targetEntity="Commitment", mappedBy="step", cascade={"persist", "remove"}) 
+   * @ORM\OrderBy({"datetimeSubmitted" = "DESC"})
+   */
+   protected $commitments;
+  
   
   function onPrePersist()
   {
     $this->category = 'general';
+    $this->stepCount = '0';
+    $this->commitmentCount = '0';
   }
 
   /**
@@ -122,26 +145,6 @@ class Step
   public function getId()
   {
     return $this->id;
-  }
-
-  /**
-   * Set step
-   *
-   * @param text $step
-   */
-  public function setStep($step)
-  {
-    $this->step = $step;
-  }
-
-  /**
-   * Get step
-   *
-   * @return text 
-   */
-  public function getStep()
-  {
-    return $this->step;
   }
 
   /**
@@ -163,59 +166,7 @@ class Step
   {
     return $this->datetimeSubmitted;
   }
-  /**
-   * Add submissions
-   *
-   * @param GYGB\BackBundle\Entity\StepSubmission $submissions
-   */
-  public function addSubmissions(\GYGB\BackBundle\Entity\StepSubmission $submissions)
-  {
-    $this->submissions[] = $submissions;
-  }
-
-  /**
-   * Get submissions
-   *
-   * @return Doctrine\Common\Collections\Collection 
-   */
-  public function getSubmissions()
-  {
-    return $this->submissions;
-  }
   
-  public function getAbbrvStep()
-  {
-    if($this->stepIsAbbreviated())
-    {
-      return substr($this->getStep(), 2);
-    }
-    else
-    {
-      return $this->getStep();
-    }
-  }
-
-  public function stepIsAbbreviated()
-  {
-    if($this->stepStartsWithI() && !$this->stepContainsPronoun())
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-  }
-  
-  public function stepStartsWithI()
-  {
-    return substr($this->getStep(), 0, 2) === 'I ';
-  }
-  
-  public function stepContainsPronoun()
-  {
-      return strstr($this->getStep(), " my ");
-  }
 
   /**
    * Set category
@@ -304,16 +255,7 @@ class Step
     {
         $this->submissions = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
-    /**
-     * Add submissions
-     *
-     * @param GYGB\BackBundle\Entity\StepSubmission $submissions
-     */
-    public function addStepSubmission(\GYGB\BackBundle\Entity\StepSubmission $submissions)
-    {
-        $this->submissions[] = $submissions;
-    }
+   
 
     /**
      * Set approved
@@ -336,26 +278,6 @@ class Step
     }
 
     /**
-     * Set count
-     *
-     * @param string $count
-     */
-    public function setCount($count)
-    {
-        $this->count = $count;
-    }
-
-    /**
-     * Get count
-     *
-     * @return string 
-     */
-    public function getCount()
-    {
-        return $this->count;
-    }
-
-    /**
      * Set description
      *
      * @param text $description
@@ -373,28 +295,6 @@ class Step
     public function getDescription()
     {
         return $this->description;
-    }
-
-    
-
-    /**
-     * Set actionTitle
-     *
-     * @param text $actionTitle
-     */
-    public function setActionTitle($actionTitle)
-    {
-        $this->actionTitle = $actionTitle;
-    }
-
-    /**
-     * Get actionTitle
-     *
-     * @return text 
-     */
-    public function getActionTitle()
-    {
-        return $this->actionTitle;
     }
 
     /**
@@ -535,5 +435,148 @@ class Step
     public function getFeaturedOrganization()
     {
         return $this->featuredOrganization;
+    }
+
+   
+    /**
+     * Set stepCount
+     *
+     * @param integer $stepCount
+     */
+    public function setStepCount($stepCount)
+    {
+        $this->stepCount = $stepCount;
+    }
+
+    /**
+     * Get stepCount
+     *
+     * @return integer 
+     */
+    public function getStepCount()
+    {
+        return $this->stepCount;
+    }
+
+    /**
+     * Set commitmentCount
+     *
+     * @param integer $commitmentCount
+     */
+    public function setCommitmentCount($commitmentCount)
+    {
+        $this->commitmentCount = $commitmentCount;
+    }
+
+    /**
+     * Get commitmentCount
+     *
+     * @return integer 
+     */
+    public function getCommitmentCount()
+    {
+        return $this->commitmentCount;
+    }
+
+    /**
+     * Set story
+     *
+     * @param text $story
+     */
+    public function setStory($story)
+    {
+        $this->story = $story;
+    }
+
+    /**
+     * Get story
+     *
+     * @return text 
+     */
+    public function getStory()
+    {
+        return $this->story;
+    }
+
+    /**
+     * Set title
+     *
+     * @param text $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * Get title
+     *
+     * @return text 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set commitment
+     *
+     * @param text $commitment
+     */
+    public function setCommitment($commitment)
+    {
+        $this->commitment = $commitment;
+    }
+
+    /**
+     * Get commitment
+     *
+     * @return text 
+     */
+    public function getCommitment()
+    {
+        return $this->commitment;
+    }
+
+   
+
+    /**
+     * Add stepSubmissions
+     *
+     * @param GYGB\BackBundle\Entity\StepSubmission $stepSubmissions
+     */
+    public function addStepSubmission(\GYGB\BackBundle\Entity\StepSubmission $stepSubmissions)
+    {
+        $this->stepSubmissions[] = $stepSubmissions;
+    }
+
+    /**
+     * Get stepSubmissions
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getStepSubmissions()
+    {
+        return $this->stepSubmissions;
+    }
+
+    /**
+     * Add commitments
+     *
+     * @param GYGB\BackBundle\Entity\Commitment $commitments
+     */
+    public function addCommitment(\GYGB\BackBundle\Entity\Commitment $commitments)
+    {
+        $this->commitments[] = $commitments;
+    }
+
+    /**
+     * Get commitments
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getCommitments()
+    {
+        return $this->commitments;
     }
 }

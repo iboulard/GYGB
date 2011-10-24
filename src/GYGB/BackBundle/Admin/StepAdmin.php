@@ -21,7 +21,8 @@ class StepAdmin extends Admin
                 ->add('step', null, array('label' => 'Step'))
                 ->add('category', null, array('label' => 'Category'))
                 ->add('savings', null, array('label' => 'Savings'))
-                ->add('count', null, array('label' => 'Count'))
+                ->add('stepCount', null, array('label' => 'Step Count'))
+                ->add('commitmentCount', null, array('label' => 'Commitment Count'))
                 ->add('approved', null, array('label' => 'Approved'))
 
         ;
@@ -32,7 +33,8 @@ class StepAdmin extends Admin
                     'step',
                     'category',
                     'savings',
-                    'count',
+                    'stepCount',
+                    'commitmentCount',
                     'approved'
                 )
             ),
@@ -70,7 +72,8 @@ class StepAdmin extends Admin
                 ->add('category', 'string', array('name' => 'Category'))
                 ->add('savings', 'string', array('name' => 'Savings'))
                 ->add('approved', 'boolean', array('name' => 'Approved'))
-                ->add('count', 'integer', array('name' => 'Count'))
+                ->add('stepCount', 'integer', array('name' => 'Step Count'))
+                ->add('commitmentCount', 'integer', array('name' => 'Commitment Count'))
 
                 // add custom action links
                 ->add('_action', 'actions', array(
@@ -113,7 +116,8 @@ class StepAdmin extends Admin
                 ->add('category', 'choice', array('choices' => Step::getCategoryChoices(), 'expanded' => false, 'multiple' => false))
                 ->add('savings', 'choice', array('choices' => Step::getSavingsChoices(), 'expanded' => false, 'multiple' => false))
                 ->add('approved')
-                ->add('count')
+                ->add('stepCount')
+                ->add('commitmentCount')
         ;
     }
 

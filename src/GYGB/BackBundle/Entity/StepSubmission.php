@@ -51,8 +51,11 @@ class StepSubmission
      * @ORM\Column(name="datetimeSubmitted", type="datetime")
      */
     private $datetimeSubmitted;
-    /** @ORM\ManyToOne(targetEntity="Step", inversedBy="StepSubmission") */
-    protected $Step;
+    /** @ORM\ManyToOne(targetEntity="Step", inversedBy="stepSubmissions") */
+    protected $step;
+    
+    /** @ORM\ManyToOne(targetEntity="User", inversedBy="stepSubmissions") */
+    protected $user;
 
     /**
      * Get id
@@ -107,31 +110,10 @@ class StepSubmission
         return $this->datetimeSubmitted;
     }
 
-    /**
-     * Set Step
-     *
-     * @param GYGB\BackBundle\Entity\Step $Step
-     */
-    public function setStep(\GYGB\BackBundle\Entity\Step $Step)
-    {
-        $this->Step = $Step;
-    }
-
-    /**
-     * Get step
-     *
-     * @return GYGB\BackBundle\Entity\Step 
-     */
-    public function getStep()
-    {
-        return $this->Step;
-    }
-
     public function __toString()
     {
         return $this->getName() . ' - ' . $this->getStep();
     }
-
 
     /**
      * Set website
@@ -191,5 +173,90 @@ class StepSubmission
     public function getEmail()
     {
         return $this->email;
+    }
+
+    public function __construct()
+    {
+        $this->Users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    
+
+    
+    public function getAbbreviatedStory()
+    {
+        if($this->storyCanBeAbbreviated())
+        {
+            return substr($this->getStory(), 2);
+        }
+        else
+        {
+            return $this->getStory();
+        }
+    }
+
+    public function storyCanBeAbbreviated()
+    {
+        if($this->storyStartsWithI() && !$this->storyContainsPronoun())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function storyStartsWithI()
+    {
+        return substr($this->getStory(), 0, 2) === 'I ';
+    }
+
+    public function storyContainsPronoun()
+    {
+        return strstr($this->getStory(), " my ");
+    }
+
+
+    
+
+    /**
+     * Set step
+     *
+     * @param GYGB\BackBundle\Entity\Step $step
+     */
+    public function setStep(\GYGB\BackBundle\Entity\Step $step)
+    {
+        $this->step = $step;
+    }
+
+    /**
+     * Get step
+     *
+     * @return GYGB\BackBundle\Entity\Step 
+     */
+    public function getStep()
+    {
+        return $this->step;
+    }
+
+    /**
+     * Set user
+     *
+     * @param GYGB\BackBundle\Entity\User $user
+     */
+    public function setUser(\GYGB\BackBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * Get user
+     *
+     * @return GYGB\BackBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

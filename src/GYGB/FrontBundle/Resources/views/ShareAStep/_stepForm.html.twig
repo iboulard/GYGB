@@ -2,17 +2,17 @@
     <form action="{{ path('shareAStep') }}" method="post" {{ form_enctype(stepForm) }}>
         {{ form_errors(stepForm) }}
 
-        {% if selectedStep.step is defined %}
+        {% if selectedStep.title is defined %}
            <h2 style="margin: 10px 0;">Your Step:</h2>
            <div class="step-container" style="background: #ffffcc; border: none;">
                 <div class="step {{ selectedStep.category}}">
                     <span class="savings">{{ selectedStep.savingsLabel }}</span>
-                    <span class="step">{{ selectedStep.actionTitle }}</span>
+                    <span class="step">{{ selectedStep.title }}</span>
                 </div>
             </div>
         {% endif %}
 
-        <div style="{% if selectedStep.step is defined %}display: none;{% endif %}">
+        <div style="{% if selectedStep.title is defined %}display: none;{% endif %}">
             <h2 style="margin: 10px 0;">What step did you take?</h2>
                 <div class="select-a-step">
                     Select a step:<br/><br/>
@@ -62,16 +62,19 @@
                </fieldset>
                </div>
            </div>
-        
+
         <h2>Tell a story.</h2>
 
             {{ form_row(stepForm.story) }}
 
+
+        {% if not is_granted('ROLE_USER') %}
+                        
           <h2>Who are you?</h2>
                     {{ form_row(stepForm.name) }}
                     {{ form_row(stepForm.email) }}
 
-
+        {% endif %}
             
         {{ form_rest(stepForm) }}
         <br/>

@@ -54,8 +54,20 @@
         {% endif %}
 
         <div id="page-container">
-    
             <div id="header">
+                <div id="user-menu">
+                        {% if is_granted('ROLE_USER') %}
+                            Logged in as {{ app.user }} <a href="{{ url('fos_user_profile_show') }}">(edit)</a> <a href="{{ url('fos_user_security_logout') }}">Log out</a>
+                        {% else %}
+                            <a href="{{ url('fos_user_security_login') }}">Login</a>
+                            <a href="{{ url('fos_user_registration_register') }}">Register</a>
+                        {% endif %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ url('adminHome') }}">Admin</a>
+                        {% endif %}
+                        <a class="last" href="{{ url('help') }}">Help</a>
+                </div>
+    
                 <a href="{{ path('home') }}"><img id="logo" src="{{ asset('images/logoa.png') }}" /></a>
                 
                 <img id="logob" src="{{ asset('images/logob.png') }}" />
@@ -66,6 +78,13 @@
             </div>
            
             <div id="content">
+                {% if(app.session.hasFlash('page-message')) %}
+                    <div class="page-message">{{ app.session.getFlash('page-message') }}</div>
+                {% endif %}
+                {% if(app.session.hasFlash('page-error-message')) %}
+                    <div class="page-error-message">{{ app.session.getFlash('page-error-message') }}</div>
+                {% endif %}
+
                 {% block content %}{% endblock %}
 
                 <div style="clear: both;"></div>

@@ -26,105 +26,12 @@ class HomeController extends Controller
         
         $em = $this->getDoctrine()->getEntityManager();
         
-        $categoryNames = array('food', 'transportation', 'energy', 'waste', 'general');
-        $categoryIcons = array('food' => 'apple', 'transportation' => 'bicycle', 'energy' => 'battery', 'waste' => 'recycle-bin', 'general' => 'globe');
         
         $request = $this->get('request');
 
-        $allStepObjects = $stepRepository->findBy(array('individual' => true));
-        $allSteps = array();
-        $allStepInfo = array();
-        foreach($allStepObjects as $step)
-        {
-            $allStepInfo[$step->getStep()] = array('category' => $step->getCategory(), 'savings' => $step->getSavings(), 'step' => $step->getStep());
-            $allSteps[] = $step->getStep();
-        }
-
-        $stepForm = $this->createFormBuilder()
-                ->add('name', 'text', array('label' => 'Your Name', 'required' => false))
-                ->add('story', 'textarea', array('label' => 'How did it go? Tell a story!', 'required' => false))
-                ->add('category', 'hidden', array('required' => false))
-                ->add('savings', 'hidden', array('required' => false))
-                ->add('step', 'text', array('label' => 'What step did you take?'))
-                ->getForm();
-
-        // reset data for when form is submitted
-        $stepForm->setData(array('step' => 'I ', 'category' => '', 'savings' => ''));
-
-        // process step form
-        if($request->getMethod() == 'POST')
-        {
-            $highlightStep = false;
-            $stepForm->bindRequest($request);
-
-            if($stepForm->isValid())
-            {
-                $session = $this->getRequest()->getSession();
-                $data = $stepForm->getData();
-
-                $step = $stepRepository->findOneByStep($data['step']);
-
-                // add step if new
-                if(!$step)
-                {
-                    $step = new \GYGB\BackBundle\Entity\Step();
-                    $step->setStep($data['step']);
-                    $step->setApproved(false);
-                    $step->setCategory($data['category']);
-                    $step->setSavings($data['savings']);
-                    $step->setCount(1);
-                    $step->setIndividual(true);
-                }
-                else
-                {
-                    $step->setCount($step->getCount() + 1);
-                }
-               
-                // unapproved steps and new steps (that are inherently unapproved) should not be highlighted
-                if(!$step || $step->getApproved() == false)
-                {
-                    $this->getRequest()->getSession()->setFlash('message', 'Thanks for taking a step to save money and energy! Your step will appear when our team approves it.');
-                    $highlightStep = false;                    
-                }
-                else
-                {
-                    $highlightStep = true;
-                    $this->getRequest()->getSession()->setFlash('message', 'Thanks for taking a step to save money and energy!');
-                }
-                
-                
-                $em->persist($step);
-                $em->flush();
-
-                $stepSubmission = new \GYGB\BackBundle\Entity\StepSubmission();
-                $stepSubmission->setName($data['name']);
-                $stepSubmission->setDatetimeSubmitted(new \DateTime());
-                $stepSubmission->setStep($step);
-                if(trim($data['story']) != "") $stepSubmission->setStory($data['story']);
-
-                $em->persist($stepSubmission);
-                $em->flush();
-
-                // reset the form values
-                $data = array();
-                $data['step'] = '';
-                $data['name'] = '';
-                $stepForm->setData($data);
-                
-                return $this->redirect($this->generateUrl('home', array('highlightStep' => $highlightStep)));
-            }
-        }
-
+        
         return $this->render('GYGBFrontBundle:Home:home.html.twig', array(
-            'stepForm' => $stepForm->createView(),
             'highlightStep' => $highlightStep,
-            'categoryNames' => $categoryNames,
-            'categoryIcons' => $categoryIcons,
-            'allSteps' => $allSteps,
-            'allStepInfo' => $allStepInfo,
-//            'founderBlocks' => $this->getOrganizationLogoBlocks($organizationRepository->findBy(array('founder' => true, 'approved' => true))),
-//            'sponsorBlocks' => $this->getOrganizationLogoBlocks($organizationRepository->findBy(array('sponsor' => true, 'approved' => true))),
-//            'orgBlocks' => $this->getOrganizationLogoBlocks($organizationRepository->findBy(array('organization' => true, 'approved' => true)))
             'foundersAndSponsors' => $this->getOrganizationLogoBlocks($organizationRepository->findFoundersAndSponsors($em))
         ));
     }

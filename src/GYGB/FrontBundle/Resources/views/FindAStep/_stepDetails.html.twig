@@ -6,7 +6,7 @@
     {% endif %}
 
     <div class="step-submissions">
-        {% for submission in step.submissions %}
+        {% for submission in step.stepSubmissions %}
             <div class="step-submission {% if loop.first %}first {% endif %}{% if loop.last %}last {% endif %}">
                 <span class="name">{{ submission.name }}{% if submission.story is defined and submission.story != "" %}:{% endif %}
                 </span>

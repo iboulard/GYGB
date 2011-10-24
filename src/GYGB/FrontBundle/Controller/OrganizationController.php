@@ -64,12 +64,12 @@ class OrganizationController extends Controller
                     $step->setApproved(false);
                     $step->setCategory($data['category']);
                     $step->setSavings($data['savings']);
-                    $step->setCount(1);
+                    $step->setStepCount(1);
                     $step->setOrganization(true);
                 }
                 else
                 {
-                    $step->setCount($step->getCount() + 1);
+                    $step->setStepCount($step->getStepCount() + 1);
                 }
                 
                 $em->persist($step);

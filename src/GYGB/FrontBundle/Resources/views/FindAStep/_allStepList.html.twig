@@ -10,10 +10,10 @@
                 <div id="{{ loop.index }}" class="step-container {{ step.category }} {{ step.savings }} {% if step.organization %}organization{%endif%} {% if step.individual %}individual{%endif%} {% if loop.first %}first{% endif %} {% if loop.last %}last{% endif %}">
                     <div class="step {{ step.category }}">
                         {% if step.savingsLabel %}<span class="savings">{{ step.savingsLabel }}</span>{% endif %}
-                        <span class="count">{{ step.count }}</span>
+                        <span class="count">{{ step.stepCount }}</span>
                         <span class="step">
                             <a class="step-link" href="{{ path('takeAStep', {'id' : step.id }) }}"> 
-                                {{ step.actionTitle }}
+                                {{ step.title }}
                             </a>
                         </span>
                         <a class="take-this-step button" href="{{ path('takeAStep', {'id' : step.id }) }}">Take this step</a>

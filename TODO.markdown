@@ -8,21 +8,55 @@ Ideas
 			
 	- showcased steps?
 	
+Questions for Ken	
+======================
+	-  Homeowner/Renter/Landlord/Congregation/Student/School/Business/Organization?
 
-1.1  - due 10/26 - 34
+	-  take a step
+
+
+0.9
 =======================
 
-	0.	Organizations
+	1.	Commit / share once - 1
 	
-		- sign up
+	2.	Share a Step - 1
 	
-			- logo
+		- id bug!
+		
+		- fix cats
+	
+	3.	Content - 2
+	
+		- resources from packet
+		
+		- featured organizations
+		
+		- photos!
+		
+		- coalition text		
+
+	
+	4.	Admin
+	
+		- cleanup orgs
+		
+			- remove old fields
 			
-			- description (for ads)
+			- remove old records
 			
-				- use tinymce
-				
-		- share a step?
+			- logos?
+	
+	10.	Misc
+		
+		- remove savings
+		
+		- add photos?
+		
+		
+
+1.0  - due 10/26 - 34
+=======================
 
 
 //#	1.	Menu
@@ -37,31 +71,72 @@ Ideas
 		
 		- filters when searching
 	
+		- show commitment count
 	
 	3.	Take a Step
 	
+		- commit
+		
+			-	share buttons
+			
+			-	email reminders
+			
+			-	feed?
+			
+		- resources
+			
+//			- group by category
+
+//			- feature
+
+//			- tinymce on backend
+
+			- change org to resources
+			
+				- remove founder, sponsor
+				
+			- logo
+			
+				- backend
+				
+				- fix size problem
+			
 	
 	4.	Share a Step - 2
 	
 		- cancel selected step
 		
-		- featured step
+		- custom step
+		
+			- organization drop down
 
+				- featured step
+				
+		- audience
+		
 
 #	5.	Accounts - 8
 
-//		- anyone can submit step: name, step, category, savings
-	
-		a. ask for password after step submission
+		- submit step
 		
-		b. include password in organization form
-		
-		c. let users view their steps
+//			- hide name and e-mail if logged in
+			
+//			- use name and e-mail if logged in
+			
+//				- m-to-1
+						
+//			- send to register if not logged in
+			
+				- use name and e-mail WHY DOESN'T THIS WORK?
 				
+		- remember me?
+	
 	
 	6.	Design - 5
 	
 	7.	Admin - 5
+	
+		- upload logos
 
 	8.	Testing - 8
 	
@@ -77,7 +152,7 @@ Ideas
 		
 		f. IE 6?
 
-	8.	Misc - 3
+	10.	Misc - 3
 		
 		- JS message
 
@@ -85,9 +160,22 @@ Ideas
 					
 		- errors
 		
+		- spool cron
+		
+		- backup git directories on server?
+		
+			- they are on github...
+			
+		- about line height
+		
+		- page subheadings
+		
+		- page messages
+		
+//		- default story/commitment/count
+		
 
-
-1.2	- ASAP after 1.1
+1.1	- ASAP after 1.1
 =============================
 
 #	1.	Google Map
@@ -100,19 +188,39 @@ Ideas
 			- save old ones
 		
 	
-#	3.	Facebook and Twitter API integration
+#	3.	Facebook and Twitter
+
+		- simple buttons
+		
+		- API integration?
 
 
-#	4.	AJAX
+#	4.	Meta tags for search?
 
-#	5.	Meta tags for search?
+
+1.2
+=========================
+	1.	Organizations
+	
+		- sign up
+	
+			- logo
+			
+			- description (for ads)
+			
+				- use tinymce
+				
+		- share a step?
+		
+		- include coalition
+
 
 
 
 
 == Finished =========================
 
-1.0
+.1
 =======================
 
 #	1.	Home

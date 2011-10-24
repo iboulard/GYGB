@@ -19,10 +19,12 @@ class OrganizationAdmin extends Admin
     protected function configureShowField(ShowMapper $showMapper)
     {
         $showMapper
-                ->add('name', null, array('label' => 'Organization'))
+                ->add('name', null, array('label' => 'Name'))
                 ->add('website', null, array('label' => 'Website'))
                 ->add('email', null, array('label' => 'E-mail'))
+                ->add('description', null, array('label' => 'Description'))
                 ->add('approved', null, array('label' => 'Approved'))
+                ->add('featured', null, array('label' => 'Featured'))
                 ->add('category', null, array('label' => 'Category'))
                 ->add('organization', null, array('label' => 'Organization'))
                 ->add('sponsor', null, array('label' => 'Sponsor'))
@@ -35,7 +37,9 @@ class OrganizationAdmin extends Admin
                     'name',
                     'website',
                     'email',
+                    'description',
                     'approved',
+                    'featured',
                     'category',
                     'organization', 'sponsor', 'founder'
                 )
@@ -63,14 +67,14 @@ class OrganizationAdmin extends Admin
             'label' => 'Un-Approve Selected',
             'ask_confirmation' => false
         );
-        
+
         return $actions;
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-                ->add('name', 'string', array('name' => 'Organization'))
+                ->add('name', 'string', array('name' => 'Name'))
                 ->add('website', 'string', array('name' => 'Website'))
                 ->add('email', 'string', array('name' => 'E-mail'))
                 ->add('approved', 'boolean', array('name' => 'Approved'))
@@ -114,11 +118,16 @@ class OrganizationAdmin extends Admin
                 ->add('name', null, array('label' => 'Organization'))
                 ->add('email')
                 ->add('website')
+                ->add('description')
                 ->add('category', 'choice', array('choices' => Step::getCategoryChoices(), 'expanded' => false, 'multiple' => false))
-                ->add('founder')
-                ->add('organization')
-                ->add('sponsor')
-                ->add('approved')
+                ->add('founder', null, array('required' => false))
+                ->add('organization', null, array('required' => false))
+                ->add('sponsor', null, array('required' => false))
+                ->add('approved', null, array('required' => false))
+                ->add('featured', null, array('required' => false))
+                ->add('logo', null, array('required' => false))
+                ->add('width', null, array('required' => false))
+
         ;
     }
 
