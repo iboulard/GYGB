@@ -1032,11 +1032,21 @@ div.organizations div.organization {
 div.organizations div.organization div.logo-container {
 }
 
+div.organizations div.organization div.title-container {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    font-size: 20px;
+    padding: 0 0 8px 0;
+}
+
+
+
 div.organizations div.organization img {
-    float: left;
-    margin-right: 25px;
-    max-width: 300px;
-    max-height: 150px;
+    float: right;
+    margin: 15px 25px 5px 5px;
+    max-width: 250px;
+    max-height: 120px;
+    
 }
 
 div.organizations div.organization div.description {
@@ -1100,7 +1110,7 @@ div.organization-steps {
 
 div.organization-steps h2 {
     text-align: center;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #eee;
     padding: 3px 0;
 }
 
