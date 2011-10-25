@@ -57,6 +57,11 @@ class Organization
      */
     private $logo;
     
+    /**
+     * @var string $file
+     *
+     * @ORM\Column(name="file", type="string", length=255, nullable=true)
+     */
     protected $file;
     
     /**
@@ -299,7 +304,6 @@ class Organization
 
     protected function getUploadRootDir($basepath)
     {
-        // the absolute directory path where uploaded documents should be saved
         return $basepath . $this->getUploadDir();
     }
 
@@ -328,7 +332,7 @@ class Organization
         $this->file->move($this->getUploadRootDir($basepath), $this->file->getClientOriginalName());
 
         // set the path property to the filename where you'ved saved the file
-        $this->setLogo($this->file->getClientOriginalName());
+        $this->setLogo('$this->file->getClientOriginalName()');
 
         // clean up the file property as you won't need it anymore
         $this->file = null;

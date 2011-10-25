@@ -145,8 +145,7 @@ $(document).ready(function() {
             /*if(filterType == 'category') {
                 $('div#ads div.logo-container.' + filterClass).hide();
             }*/
-        }
-        else {
+        } else {
             filter.addClass('current');
             // check the box if something besides the box was checked
             //if(!$(e.target).is('input')) input.attr('checked', true);
@@ -198,23 +197,26 @@ $(document).ready(function() {
    });
    
    $('div.organizations div.organization').live("click", function(e){
+       // do not respond to clicks on the steps
        if($(e.target).is('div.step') || $(e.target).parent().is('.step'))
        {
            return;
        }
 
-       
+       e.preventDefault();
+
+       // use href from any link clicked
        if($(e.target).is('a'))
        {
            var href = $(e.target).attr('href');
        }
+       // use href from any part of any link clickted
        else if($(e.target).parent().is('a'))
        {
            var href = $(e.target).parent().attr('href');          
-            e.preventDefault();
        }
+       // otherwise use the href of the box-link
        else {
-            e.preventDefault();
             var href = $(this).find('a.box-link').attr('href');
        }
        

@@ -1,11 +1,11 @@
 /* 
         logo green hex: #4a793c
-        red: #b7253a (#b7253_a)
+        red: #b7253a 
         light link: #C9DDFF;a3a8ff
         link: #B7253A
         #D6562_9
-        organe: #D65629 (#D6562_9)
-        yellow:     #D65629 (#D7822_8)
+        organe: #D65629 
+        yellow:     D78228 
 */
 
 /* layout =================================================================== */
@@ -1045,6 +1045,7 @@ div.organizations div.organization div.description {
 
 div.organizations ul {
     list-style: disc;
+    margin-left: 15px;
 }
 
 
@@ -1104,6 +1105,43 @@ div.organization-steps h2 {
 }
 
 
+div.resource-category-options {
+    width: 100%;
+    margin: 10px 0;
+}
+a.resource-category-option {
+    float: left;
+    padding: 10px 0 10px 35px;
+    margin: 0 5px;
+}
+
+a.resource-category-option.current {
+    color: black;
+}
+
+a.resource-category-option.current:hover {
+    color: black;
+    text-decoration: none;
+}
+
+a.resource-category-option:hover {
+}
+
+a.resource-category-option.transportation {
+    background: url("/GYGB/web/images/transportation.png") no-repeat scroll 4px;    
+}
+a.resource-category-option.general {
+    background: url("/GYGB/web/images/general.png") no-repeat scroll 4px;    
+}
+a.resource-category-option.waste {
+    background: url("/GYGB/web/images/waste.png") no-repeat scroll 4px;    
+}
+a.resource-category-option.energy {
+    background: url("/GYGB/web/images/energy.png") no-repeat scroll 4px;    
+}
+a.resource-category-option.food {
+    background: url("/GYGB/web/images/food.png") no-repeat scroll 4px;    
+}
 
 
 /* end take a step page =================================================================*/

@@ -37,7 +37,14 @@ findAStep:
 
 takeAStep:
   pattern: /take-a-step/{id}
-  defaults: { _controller: GYGBFrontBundle:TakeAStep:takeAStep, id: null }
+  defaults: { _controller: GYGBFrontBundle:TakeAStep:takeAStep, id: null, category: null }
+  requirements:
+        id:  \d+
+
+takeAStepCategory:
+  pattern: /take-a-step/{category}
+  defaults: { _controller: GYGBFrontBundle:TakeAStep:takeAStep, id: null, category: null }
+
 
 shareAStep:
   pattern: /share-a-step/{id}

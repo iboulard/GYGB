@@ -1,0 +1,4 @@
+{% if object.logo is defined and object.logo != "" %}
+    Current Logo:<br/>
+    <img src="{{ asset('files/logos/' ~ object.logo) }}" />
+{% endif %}

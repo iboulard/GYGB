@@ -10,7 +10,6 @@ class CoalitionController extends Controller
 {
     public function coalitionAction($id = null)
     {
-
         return $this->render('GYGBFrontBundle:Coalition:coalition.html.twig', array(
         ));
     }

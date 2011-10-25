@@ -7,26 +7,21 @@ Ideas
 	- $$ saved graph
 			
 	- showcased steps?
-	
-Questions for Ken	
-======================
-	-  Homeowner/Renter/Landlord/Congregation/Student/School/Business/Organization?
-
-	-  take a step
-		
+			
 		
 0.9
 =======================
-	1.	Admin
+//	1.	Admin
 	
-		- cleanup orgs
+//		- cleanup orgs
 		
 //			- remove old fields
 			
 //			- remove old records
 			
-			- logos?
+//			- logos?
 	
+//				- fix path
 	
 	2.	Content
 	
@@ -49,13 +44,10 @@ Questions for Ken
 
 #	2.	Find a Step - 3
 
-		- fix type filters
-
-		- audience filters			
-		
 		- filters when searching
 	
-		- show commitment count
+//		- show commitment count
+	
 	
 	3.	Take a Step
 	
@@ -63,11 +55,7 @@ Questions for Ken
 		
 			-	share buttons
 			
-			-	email reminders
-			
-			-	feed?
-			
-		- resources
+//		- resources
 			
 //			- group by category
 
@@ -75,15 +63,15 @@ Questions for Ken
 
 //			- tinymce on backend
 
-			- change org to resources
+//			- change org to resources
 			
-				- remove founder, sponsor
+//				- remove founder, sponsor
 				
-			- logo
+//			- logo
 			
-				- backend
+//				- backend
 				
-				- fix size problem
+//				- fix size problem
 			
 	
 	4.	Share a Step - 2
@@ -96,8 +84,8 @@ Questions for Ken
 
 				- featured step
 				
-		- audience
-		
+		- share buttons
+				
 
 #	5.	Accounts - 8
 
@@ -116,11 +104,11 @@ Questions for Ken
 		- remember me?
 	
 	
-	6.	Design - 5
+//	6.	Design - 5
 	
-	7.	Admin - 5
+//	7.	Admin - 5
 	
-		- upload logos
+//		- upload logos
 
 	8.	Testing - 8
 	
@@ -140,15 +128,13 @@ Questions for Ken
 		
 		- JS message
 
-		- facebook and twitter buttons
-					
 		- errors
 		
 		- spool cron
 		
-		- backup git directories on server?
+//		- backup git directories on server?
 		
-			- they are on github...
+//			- they are on github...
 			
 //		- about line height
 		
@@ -182,6 +168,22 @@ Questions for Ken
 #	4.	Meta tags for search?
 
 
+#	5.	Audience
+
+		- homeowner, renter, landlord, school, students, congregations
+
+		- add to step form
+		
+		
+#	6.	E-mail reminders
+
+		- for commitments
+		
+		
+#	7.	My Steps		
+		
+		
+		
 1.2
 =========================
 	1.	Organizations

@@ -580,4 +580,24 @@ class Step
     {
         return $this->featuredOrganization;
     }
+
+    /**
+     * Add featuredOrganizations
+     *
+     * @param GYGB\BackBundle\Entity\Organization $featuredOrganizations
+     */
+    public function addOrganization(\GYGB\BackBundle\Entity\Organization $featuredOrganizations)
+    {
+        $this->featuredOrganizations[] = $featuredOrganizations;
+    }
+
+    /**
+     * Get featuredOrganizations
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getFeaturedOrganizations()
+    {
+        return $this->featuredOrganizations;
+    }
 }

@@ -57,6 +57,11 @@ class Organization
      */
     private $logo;
     
+    /**
+     * @var string $file
+     *
+     * @ORM\Column(name="file", type="string", length=255, nullable=true)
+     */
     protected $file;
     
     /**
@@ -297,19 +302,12 @@ class Organization
         return null === $this->logo ? null : $this->getUploadDir() . '/' . $this->logo;
     }
 
-    protected function getUploadRootDir($basepath)
-    {
-        // the absolute directory path where uploaded documents should be saved
-        return $basepath . $this->getUploadDir();
-    }
-
     protected function getUploadDir()
     {
-        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
-        return 'files/logos';
+        return __DIR__.'/../../../../web/files/logos';
     }
 
-    public function upload($basepath)
+    public function upload()
     {
         // the file property can be empty if the field is not required
         if(null === $this->file)
@@ -317,15 +315,10 @@ class Organization
             return;
         }
 
-        if(null === $basepath)
-        {
-            return;
-        }
-
         // we use the original file name here but you should
         // sanitize it at least to avoid any security issues
         // move takes the target directory and then the target filename to move to
-        $this->file->move($this->getUploadRootDir($basepath), $this->file->getClientOriginalName());
+        $this->file->move($this->getUploadDir(), $this->file->getClientOriginalName());
 
         // set the path property to the filename where you'ved saved the file
         $this->setLogo($this->file->getClientOriginalName());
@@ -357,5 +350,25 @@ class Organization
     public function getFeaturedSteps()
     {
         return $this->featuredSteps;
+    }
+
+    /**
+     * Set file
+     *
+     * @param string $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Get file
+     *
+     * @return string 
+     */
+    public function getFile()
+    {
+        return $this->file;
     }
 }

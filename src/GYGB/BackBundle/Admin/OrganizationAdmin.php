@@ -113,7 +113,7 @@ class OrganizationAdmin extends Admin
                 ->add('approved', null, array('required' => false))
                 ->add('featured', null, array('required' => false, 'label' => 'Featured'))
                 
-                ->add('logo', 'file', array('required' => false))
+                ->add('file', 'file', array('required' => false))
                 
                 ->setHelps(array(
                     'featured' => 'featured resources show up at the top of their category on the resource guide',
@@ -123,21 +123,27 @@ class OrganizationAdmin extends Admin
 
         ;
     }
+    
+    public $formFieldPreHooks = array();
+    
+    public $formFieldPostHooks = array(
+        'file' => 'GYGBBackBundle:Organization:_currentLogo.html.twig'
+    );
 
-    public function prePersist($product)
+
+    public function prePersist($object)
     {
-        $this->saveFile($product);
+        $this->saveFile($object);
     }
 
-    public function preUpdate($product)
+    public function preUpdate($object)
     {
-        $this->saveFile($product);
+        $this->saveFile($object);
     }
 
-    public function saveFile($product)
+    public function saveFile($object)
     {
-        $basepath = $this->getRequest()->getBasePath();
-        $product->upload($basepath);
+        $object->upload();
     }
 
 }

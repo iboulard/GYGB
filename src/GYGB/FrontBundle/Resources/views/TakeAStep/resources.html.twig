@@ -3,20 +3,31 @@
 {% block content %}
 <div id="resources-container">
     <h1>Need help taking a step?</h1>
-    <h2>Find Tompkins County resources that will help you save money and energy.</h2>
+    <h2>Select a category to find Tompkins County resources that will help you save money and energy.</h2>
 
-    {% for c in categories %}
+    <div class="resource-category-options">
+        {% for c in categories %}
+            <a class="resource-category-option {{ c }} {% if c == category %}current{% endif %}" href="{{ path('takeAStepCategory', {'category' : c }) }}">
+                {{ categoryOptions[c]['heading'] }}
+            </a>
+        {% endfor %}
+        <div style="clear: both;">&nbsp;</div>
+    </div>
+
+
+    {% if category is defined and category != "" %}
         <div class="category-resources">
             <div class="category-resources-heading-container">
-                <div class="category-resources-heading">{{ categoryOptions[c]['heading'] }}</div>
+                <div class="category-resources-heading">{{ categoryOptions[category]['heading'] }}</div>
                 <div class="featured-resource">
-                    <img style="float: {{ categoryOptions[c]['foot'] }};" class="category-step" src="{{ asset('images/vert-step-' ~ c ~ '.png') }}" />
-                    {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : featuredResources[c], 'showSteps' : true } %}
+                    <img style="float: {{ categoryOptions[category]['foot'] }};" class="category-step" src="{{ asset('images/vert-step-' ~ category ~ '.png') }}" />
+                    {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : featuredResources, 'showSteps' : true } %}
                 </div>
             </div>
-            {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : resources[c], 'showSteps' : true } %}
+            {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : resources, 'showSteps' : true } %}
         </div>
-    {% endfor %}
+    {% endif %}
+        
 </div>
     
 {% endblock content %}
