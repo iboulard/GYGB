@@ -26,7 +26,15 @@
             </div>
             {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : resources, 'showSteps' : true } %}
         </div>
+    {% else %}
+        <div class="category-resources">
+            <div class="category-resources-heading-container">
+                <div class="category-resources-heading">Featured Resources</div>
+            </div>
+            {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : featuredResources, 'showSteps' : false } %}        
+        </div>
     {% endif %}
+
         
 </div>
     

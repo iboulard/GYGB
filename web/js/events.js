@@ -1,6 +1,8 @@
 
 
 $(document).ready(function() {
+    $('div.header-error-message#javascript-message').hide();
+    
     // general
     var headerMessage = $('div.header-message');
     headerMessage.delay(5000).fadeOut(1000);

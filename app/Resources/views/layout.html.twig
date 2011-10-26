@@ -55,7 +55,7 @@
 
         <div id="page-container">
             {% if usingIE6 is defined and usingIE6 == true %}
-                <div class="header-message">
+                <div class="ie6-header-message">
                     You are using an outdated version of internet explorer.
                     Because of security and performance issues, it is recommended that you upgrade to a modern browser.
 			<br/>	
@@ -67,6 +67,7 @@
                 </div>
 
             {% endif %}
+            <div class="header-error-message" id="javascript-message">This site works best with javascript enabled.</div>
             <div id="header">
                 <div id="user-menu">
                         {% if is_granted('ROLE_USER') %}

@@ -105,6 +105,7 @@ h1 {
     padding: 0 3px;
 }
 
+div.ie6-header-message,
 div.header-message {
     text-align: center;
     background: #ffffbb;

@@ -56,6 +56,10 @@ class TakeAStepController extends Controller
     
             
         }
+        else
+        {
+            $featuredResources = $featuredResourceRepository->findFeaturedOnHome();
+        }
         
         return $this->render('GYGBFrontBundle:TakeAStep:resources.html.twig', array(
             'resources' => $resources,
@@ -75,7 +79,7 @@ class TakeAStepController extends Controller
             $step = $stepRepository->findOneBy(array('id' => $id));
         
             if(!$step) return $this->forward('GYGBFrontBundle:TakeAStep:resourceList', array('category' => $category));
-            else return $this->forward('GYGBFrontBundle:TakeAStep:stepPage', array('id' => $id));
+            else return $this->forward('GYGBFrontBundle:TakeAStep:stepPage', array('id' => $id, 'step' => $step));
         }
         else
         {

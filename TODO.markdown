@@ -132,9 +132,9 @@ Ideas
 
 	10.	Misc - 3
 		
-		- JS message
+//		- JS message
 		
-		- ie6 message
+//		- ie6 message
 
 //		- errors
 		
