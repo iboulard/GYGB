@@ -2,7 +2,7 @@
 
 {% block content %}
     
-    {% render "GYGBFrontBundle:Home:stepsTakenCounter" %} 
+    <div style="width: 96%; background: #D65629; padding: 0 20px; overflow: auto; margin-top: 50px;">
 
     <div class="home-column">
         <h2><a href="{{ path('findAStep') }}">1. Find a Step</a></h2>
@@ -21,11 +21,45 @@
         <h3>Enter to win over $2,000 in prizes</h3>
         <img style="margin-top: 30px;" src="{{ asset('images/step-dollar.jpg') }}" />
     </div>
+    
+    </div>
+
+    {% render "GYGBFrontBundle:Home:stepsTakenCounter" %} 
+    <div>&nbsp;</div>
+
+
 
     <div class="about-container">
         {% include "GYGBFrontBundle:Home:_about.html.twig" %}  
     </div>
-    
+
+    {% if featuredResources|length > 0 %}
+        <h1>Featured Resources</h1>
+        {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : featuredResources, 'showSteps' : false } %}
+    {% endif %}
+
+    {% if featuredSteps|length > 0 %}
+        <h1>Featured Steps</h1>
+        <div style="width: 600px; margin: 0 auto;">
+            <div class="step-list-container">
+                {% for step in featuredSteps %}
+                        <div id="{{ loop.index }}" class="step-container {{ step.category }} {% if loop.first %}first{% endif %} {% if loop.last %}last{% endif %}">
+                            <div class="step {{ step.category }}">
+                                <span class="count">{{ step.stepCount }}</span>
+                                <span style="float: left; margin: 5px 10px 5px 0; font-size: 11px;">step{% if step.stepCount != 1%}s{%endif%}</span>
+                                <span class="count">{{ step.commitmentCount }}</span>
+                                <span style="float: left; margin: 5px 10px 5px 0; font-size: 11px;">commitment{% if step.stepCount != 1%}s{%endif%}</span>
+                                <span class="step">
+                                    <a class="step-link" href="{{ path('takeAStep', {'id' : step.id }) }}"> 
+                                        {{ step.title }}
+                                    </a>
+                                </span>
+                            </div>
+                       </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 
     <div id="founders-and-sponsors">
         <div style="width: 949px;" class="logo-block">

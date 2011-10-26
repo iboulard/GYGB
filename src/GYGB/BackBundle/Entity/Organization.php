@@ -83,18 +83,17 @@ class Organization
      * @ORM\Column(name="approved", type="boolean")
      */
     private $approved;
-    /**
-     * @var boolean $featured
-     *
-     * @ORM\Column(name="featured", type="boolean")
-     */
-    private $featured;
 
    /**
      * @ORM\ManyToMany(targetEntity="Step", mappedBy="featuredOrganizations")
     */
     protected $featuredSteps;
 
+      /** @ORM\OneToMany(targetEntity="FeaturedResource", mappedBy="organization", cascade={"persist", "remove"})
+       */
+      protected $features;
+
+    
     /**
      * @ORM\prePersist
      */
@@ -232,25 +231,7 @@ class Organization
         return $this->category;
     }
 
-    /**
-     * Set width
-     *
-     * @param string $width
-     */
-    public function setWidth($width)
-    {
-        $this->width = $width;
-    }
-
-    /**
-     * Get width
-     *
-     * @return string 
-     */
-    public function getWidth()
-    {
-        return $this->width;
-    }
+ 
 
     /**
      * Set description
@@ -272,25 +253,7 @@ class Organization
         return $this->description;
     }
 
-    /**
-     * Set featured
-     *
-     * @param boolean $featured
-     */
-    public function setFeatured($featured)
-    {
-        $this->featured = $featured;
-    }
-
-    /**
-     * Get featured
-     *
-     * @return boolean 
-     */
-    public function getFeatured()
-    {
-        return $this->featured;
-    }
+    
 
     public function getAbsolutePath()
     {
@@ -370,5 +333,45 @@ class Organization
     public function getFile()
     {
         return $this->file;
+    }
+
+    /**
+     * Add features
+     *
+     * @param GYGB\BackBundle\Entity\FeaturedResource $features
+     */
+    public function addFeaturedResource(\GYGB\BackBundle\Entity\FeaturedResource $features)
+    {
+        $this->features[] = $features;
+    }
+
+    /**
+     * Get features
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getFeatures()
+    {
+        return $this->features;
+    }
+
+    /**
+     * Set width
+     *
+     * @param string $width
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+    }
+
+    /**
+     * Get width
+     *
+     * @return string 
+     */
+    public function getWidth()
+    {
+        return $this->width;
     }
 }

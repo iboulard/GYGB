@@ -25,13 +25,17 @@ Ideas
 	
 	2.	Content
 	
-		- resources from packet
+//		- resources from packet
 		
-		- featured organizations
+		- home page
 		
-		- photos!
-		
-	
+			- featured resources
+			
+				- make entity
+				
+					type home/take-a-step
+					resource
+					
 	
 
 1.0  - due 10/26 - 34

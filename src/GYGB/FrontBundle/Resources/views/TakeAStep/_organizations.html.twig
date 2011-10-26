@@ -13,8 +13,12 @@
                     {% if organization.website is defined %}<a class="box-link" target="_blank" href="{{ organization.website }}">{% endif %}
                         {{ organization.name }}
                     {% if organization.website is defined %}</a>{% endif %}
-                    </div>
-                    {% if organization.logo is defined %}
+                
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="edit" href="{{ admin.generateObjectUrl('edit', organization) }}">edit</a>
+                    {% endif %}
+                </div>
+                    {% if organization.logo is defined and organization.logo != "" %}
                         <img src="{{ asset('files/logos/' ~ organization.logo) }}" /> 
                     {% endif %}
                     {% if organization.description is defined %}

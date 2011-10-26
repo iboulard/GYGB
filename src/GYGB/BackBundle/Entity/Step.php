@@ -127,6 +127,10 @@ class Step
      * @ORM\JoinTable(name="StepsToOrganizations")
      */
     protected $featuredOrganizations;
+ 
+    /** @ORM\OneToMany(targetEntity="FeaturedStep", mappedBy="step", cascade={"persist", "remove"})
+   */
+  protected $features;
 
    
     /**
@@ -599,5 +603,25 @@ class Step
     public function getFeaturedOrganizations()
     {
         return $this->featuredOrganizations;
+    }
+
+    /**
+     * Add features
+     *
+     * @param GYGB\BackBundle\Entity\FeaturedStep $features
+     */
+    public function addFeaturedStep(\GYGB\BackBundle\Entity\FeaturedStep $features)
+    {
+        $this->features[] = $features;
+    }
+
+    /**
+     * Get features
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getFeatures()
+    {
+        return $this->features;
     }
 }

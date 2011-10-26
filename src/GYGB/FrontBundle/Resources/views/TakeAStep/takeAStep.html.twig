@@ -3,6 +3,25 @@
 {% block content %}
 <h1>Take a step</h1>
 <div id="take-a-step-page-container">
+        {% if commited or taken %}
+            <div style="width: 100%;">
+            {% if commited and taken == false %}
+                <div style="font-size: 20px; float: right; margin: 0 0 10px 0;">
+                        <span style="">You have committed to taking this step.</span>
+                </div>
+            {% elseif taken %} 
+                <div style="font-size: 20px; float: right;">
+                    <div style="">
+                        <img style="float: left;" src="{{ asset('images/check.png') }}" />
+                        <span style="float: left; padding: 10px 0 0 10px; margin: 0 0 10px 0;">You have taken this step.</span><br/>
+                    </div>
+                    <div>&nbsp;</div>
+                </div>
+            {% endif %}
+                <div style="clear: both;">&nbsp;</div>
+            </div>
+        {% endif %}
+
         <div class="step-list take-a-step-box">
          
             <div class="step-container">
@@ -18,19 +37,7 @@
             <span class="description">{{ step.description|raw }}</a>
         </div>
 
-        {% if commited and taken == false %}
-            <div style="font-size: 20px; float: right; margin: 0 0 10px 0;">
-                    <span style="">You have committed to taking this step.</span>
-            </div>
-        {% elseif taken %} 
-            <div style="font-size: 20px; float: right;">
-                <div style="">
-                    <img style="float: left;" src="{{ asset('images/check.png') }}" />
-                    <span style="float: left; padding: 10px 0 0 10px; margin: 0 0 10px 0;">You have taken this step.</span><br/>
-                </div>
-                <div>&nbsp;</div>
-            </div>
-        {% endif %}
+       
 
         {% if events|length > 0 %}
             <div class="step-submissions">
@@ -77,6 +84,8 @@
                 <div style="clear: both;">&nbsp;</div>
             {% endif %}
         </div>
+
+        
 
         {% if not taken %}<h1>Need help taking this step?</h1>{% endif %}
         {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : organizations, 'showSteps' : false } %}

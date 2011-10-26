@@ -127,6 +127,10 @@ class Step
      * @ORM\JoinTable(name="StepsToOrganizations")
      */
     protected $featuredOrganizations;
+ 
+    /** @ORM\OneToMany(targetEntity="FeaturedStep", mappedBy="step", cascade={"persist", "remove"})
+   */
+  protected $features;
 
    
     /**

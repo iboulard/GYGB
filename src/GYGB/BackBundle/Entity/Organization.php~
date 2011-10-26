@@ -83,18 +83,17 @@ class Organization
      * @ORM\Column(name="approved", type="boolean")
      */
     private $approved;
-    /**
-     * @var boolean $featured
-     *
-     * @ORM\Column(name="featured", type="boolean")
-     */
-    private $featured;
 
    /**
      * @ORM\ManyToMany(targetEntity="Step", mappedBy="featuredOrganizations")
     */
     protected $featuredSteps;
 
+      /** @ORM\OneToMany(targetEntity="FeaturedResource", mappedBy="organization", cascade={"persist", "remove"})
+       */
+      protected $features;
+
+    
     /**
      * @ORM\prePersist
      */
@@ -232,25 +231,7 @@ class Organization
         return $this->category;
     }
 
-    /**
-     * Set width
-     *
-     * @param string $width
-     */
-    public function setWidth($width)
-    {
-        $this->width = $width;
-    }
-
-    /**
-     * Get width
-     *
-     * @return string 
-     */
-    public function getWidth()
-    {
-        return $this->width;
-    }
+ 
 
     /**
      * Set description
@@ -272,25 +253,7 @@ class Organization
         return $this->description;
     }
 
-    /**
-     * Set featured
-     *
-     * @param boolean $featured
-     */
-    public function setFeatured($featured)
-    {
-        $this->featured = $featured;
-    }
-
-    /**
-     * Get featured
-     *
-     * @return boolean 
-     */
-    public function getFeatured()
-    {
-        return $this->featured;
-    }
+    
 
     public function getAbsolutePath()
     {
@@ -302,18 +265,12 @@ class Organization
         return null === $this->logo ? null : $this->getUploadDir() . '/' . $this->logo;
     }
 
-    protected function getUploadRootDir($basepath)
-    {
-        return $basepath . $this->getUploadDir();
-    }
-
     protected function getUploadDir()
     {
-        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
-        return 'files/logos';
+        return __DIR__.'/../../../../web/files/logos';
     }
 
-    public function upload($basepath)
+    public function upload()
     {
         // the file property can be empty if the field is not required
         if(null === $this->file)
@@ -321,18 +278,13 @@ class Organization
             return;
         }
 
-        if(null === $basepath)
-        {
-            return;
-        }
-
         // we use the original file name here but you should
         // sanitize it at least to avoid any security issues
         // move takes the target directory and then the target filename to move to
-        $this->file->move($this->getUploadRootDir($basepath), $this->file->getClientOriginalName());
+        $this->file->move($this->getUploadDir(), $this->file->getClientOriginalName());
 
         // set the path property to the filename where you'ved saved the file
-        $this->setLogo('$this->file->getClientOriginalName()');
+        $this->setLogo($this->file->getClientOriginalName());
 
         // clean up the file property as you won't need it anymore
         $this->file = null;
@@ -361,5 +313,65 @@ class Organization
     public function getFeaturedSteps()
     {
         return $this->featuredSteps;
+    }
+
+    /**
+     * Set file
+     *
+     * @param string $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Get file
+     *
+     * @return string 
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * Add features
+     *
+     * @param GYGB\BackBundle\Entity\FeaturedResource $features
+     */
+    public function addFeaturedResource(\GYGB\BackBundle\Entity\FeaturedResource $features)
+    {
+        $this->features[] = $features;
+    }
+
+    /**
+     * Get features
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getFeatures()
+    {
+        return $this->features;
+    }
+
+    /**
+     * Set width
+     *
+     * @param string $width
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+    }
+
+    /**
+     * Get width
+     *
+     * @return string 
+     */
+    public function getWidth()
+    {
+        return $this->width;
     }
 }

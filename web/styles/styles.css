@@ -228,7 +228,7 @@ div.about-container {
     -webkit-border-radius: 10px;
     width: 100%;
     clear: both;
-    margin: 50px 0 0 0;
+    margin: 50px 0;
 }
 
 div.about-container #about {
@@ -255,26 +255,29 @@ a#join-the-campaign {
 div#founders-and-sponsors {
     width: 100%;
     float: left;
+    margin-top: 100px;
+    border-top: 1px solid #ddd;
 }
 
 div.home-column {
-    width: 32%;
-    margin: 40px 5px;
+    width: 265px;
+    margin: 40px 20px;
     border-radius: 7px;
     -moz-border-radius: 7px;
     -webkit-border-radius: 7px;
     height: 250px;
     float: left;
     border: 1px solid #eee;
-    box-shadow: 0 8px 7px #ccc;
+/*    box-shadow: 0 8px 7px #ccc;
     -moz-box-shadow: 0 8px 7px #ccc;
-    -webkit-box-shadow: 0 8px 7px #ccc;
+    -webkit-box-shadow: 0 8px 7px #ccc;*/
+    background: white;
 }
 
 div.home-column:hover {
-    box-shadow: 0 8px 7px #4a793c;    
-    -moz-box-shadow: 0 8px 7px #4a793c;    
-    -webkit-box-shadow: 0 8px 7px #4a793c;    
+    box-shadow: 0 8px 7px #666;    
+    -moz-box-shadow: 0 8px 7px #666;    
+    -webkit-box-shadow: 0 8px 7px #666;
     cursor: pointer;
 }
 
@@ -489,7 +492,7 @@ div#steps-taken-counter {
     font-size: 2em;
     color: black;
     float: left;
-    margin: 25px 0 0 372px;
+    margin: 50px 0 0 372px;
 }
 
 div#steps-taken-counter span.step-digit {
@@ -969,7 +972,7 @@ div.step-details-container div.step-submissions {
 }
 
 div.step-submissions {
-    width: 75%;
+    width: 57%;
     margin: 0 auto;
     overflow: auto;
     box-shadow: 0px 1px 9px #666;
@@ -1007,6 +1010,7 @@ div.step-submissions div.step-submission.last {
 
 div.organizations {
     width: 100%;
+    overflow: auto;
 }
 
 div.organizations div.organization:hover {
@@ -1039,6 +1043,12 @@ div.organizations div.organization div.title-container {
     padding: 0 0 8px 0;
 }
 
+div.organization a.edit {
+    float: right;
+    font-size: 14px;
+    background: url("/GYGB/web/images/edit.png") no-repeat scroll 4px;    
+    padding: 5px 0 5px 28px;
+}
 
 
 div.organizations div.organization img {

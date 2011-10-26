@@ -22,23 +22,33 @@ services:
     gygb.back.admin.step:
       class: GYGB\BackBundle\Admin\StepAdmin
       tags:
-        - { name: sonata.admin, manager_type: orm, group: Step Data, label: Steps }
+        - { name: sonata.admin, manager_type: orm, group: Steps, label: Steps }
       arguments: [null, GYGB\BackBundle\Entity\Step, GYGBBackBundle:StepAdmin]
     gygb.back.admin.stepsubmission:
       class: GYGB\BackBundle\Admin\StepSubmissionAdmin
       tags:
-        - { name: sonata.admin, manager_type: orm, group: Step Data, label: Step Submissions }
+        - { name: sonata.admin, manager_type: orm, group: Steps, label: Step Submissions }
       arguments: [null, GYGB\BackBundle\Entity\StepSubmission, GYGBBackBundle:StepSubmissionAdmin]
     gygb.back.admin.stepcommitment:
       class: GYGB\BackBundle\Admin\StepCommitmentAdmin
       tags:
-        - { name: sonata.admin, manager_type: orm, group: Step Data, label: Step Commitments }
+        - { name: sonata.admin, manager_type: orm, group: Steps, label: Step Commitments }
       arguments: [null, GYGB\BackBundle\Entity\Commitment, GYGBBackBundle:StepCommitmentAdmin]
     gygb.back.admin.organization:
       class: GYGB\BackBundle\Admin\OrganizationAdmin
       tags:
-        - { name: sonata.admin, manager_type: orm, group: Step Data, label: Resources }
+        - { name: sonata.admin, manager_type: orm, group: Resources, label: Resources }
       arguments: [null, GYGB\BackBundle\Entity\Organization, GYGBBackBundle:OrganizationAdmin]
+    gygb.back.admin.featuredresource:
+      class: GYGB\BackBundle\Admin\FeaturedResourceAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: Featured Content, label: Featured Resources }
+      arguments: [null, GYGB\BackBundle\Entity\FeaturedResource, GYGBBackBundle:FeaturedResourceAdmin]
+    gygb.back.admin.featuredstep:
+      class: GYGB\BackBundle\Admin\FeaturedStepAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: Featured Content, label: Featured Steps }
+      arguments: [null, GYGB\BackBundle\Entity\FeaturedStep, GYGBBackBundle:FeaturedStepAdmin]
     ccetc.useradmin.admin.user:
       class: CCETC\UserAdminBundle\Admin\UserAdmin
       tags:

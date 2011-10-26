@@ -23,15 +23,23 @@ class HomeController extends Controller
     {
         $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
         $organizationRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Organization');
-        
+        $featuredResourceRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:FeaturedResource');
+        $featuredStepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:FeaturedStep');
+        $admin = $this->get('gygb.back.admin.organization');
+
         $em = $this->getDoctrine()->getEntityManager();
         
+        $featuredResources = $featuredResourceRepository->findFeaturedOnHome();
+        $featuredSteps = $featuredStepRepository->findFeaturedOnHome();
         
         $request = $this->get('request');
 
         
         return $this->render('GYGBFrontBundle:Home:home.html.twig', array(
             'highlightStep' => $highlightStep,
+            'featuredResources' => $featuredResources,
+            'featuredSteps' => $featuredSteps,
+            'admin' => $admin
         ));
     }
     

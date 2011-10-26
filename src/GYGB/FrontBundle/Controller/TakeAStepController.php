@@ -12,7 +12,10 @@ class TakeAStepController extends Controller
     public function resourceListAction($category)
     {
         $organizationRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Organization');
+        $featuredResourceRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:FeaturedResource');
         $categories = array('energy', 'food', 'waste', 'transportation', 'general');
+
+        $admin = $this->get('gygb.back.admin.organization');
         
         $categoryOptions = array(
             'food' => array(
@@ -42,8 +45,16 @@ class TakeAStepController extends Controller
 
         if(isset($category))
         {
-            $resources = $organizationRepository->findBy(array('category' => $category, 'featured' => '0'));
-            $featuredResources = $organizationRepository->findBy(array('category' => $category, 'featured' => '1'));            
+            $featuredResources = $featuredResourceRepository->findFeaturedOnTakeAStep($category);
+
+            $allResources = $organizationRepository->findBy(array('category' => $category));
+            
+            foreach($allResources as $r)
+            {
+                if(!in_array($r, $featuredResources)) $resources[] = $r;
+            }
+    
+            
         }
         
         return $this->render('GYGBFrontBundle:TakeAStep:resources.html.twig', array(
@@ -51,7 +62,8 @@ class TakeAStepController extends Controller
             'featuredResources' => $featuredResources,
             'categories' => $categories,
             'categoryOptions' => $categoryOptions,
-            'category' => $category
+            'category' => $category,
+            'admin' => $admin
         ));
     }
 
@@ -77,6 +89,7 @@ class TakeAStepController extends Controller
         $request = $this->getRequest();
         $session = $request->getSession();
         $em = $this->getDoctrine()->getEntityManager();
+        $admin = $this->get('gygb.back.admin.organization');
 
         $featuredOrgs = $step->getFeaturedOrganizations();
 
@@ -201,7 +214,8 @@ class TakeAStepController extends Controller
             'commitmentForm' => $commitmentForm->createView(),
             'events' => $events,
             'commited' => $commited,
-            'taken' => $taken
+            'taken' => $taken,
+            'admin' => $admin
         ));
     }
 
