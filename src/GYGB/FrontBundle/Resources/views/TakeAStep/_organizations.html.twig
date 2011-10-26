@@ -3,21 +3,15 @@
         {% for organization in organizations %}
             <div class="organization-container">
                 <div class="organization">
-{#                    <div class="logo-container">
-                    {% if organization.website is defined %}<a class="box-link" target="_blank" href="{{ organization.website }}">{% endif %}
-                        <img src="{{ asset('files/logos/' ~ organization.logo) }}" /> 
-                    {% if organization.website is defined %}</a>{% endif %}
-                    </div>
-#}
                     <div class="title-container">
-                    {% if organization.website is defined %}<a class="box-link" target="_blank" href="{{ organization.website }}">{% endif %}
-                        {{ organization.name }}
-                    {% if organization.website is defined %}</a>{% endif %}
-                
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a class="edit" href="{{ admin.generateObjectUrl('edit', organization) }}">edit</a>
-                    {% endif %}
-                </div>
+                        {% if organization.website is defined %}<a class="box-link" target="_blank" href="{{ organization.website }}">{% endif %}
+                            {{ organization.name }}
+                        {% if organization.website is defined %}</a>{% endif %}
+
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="edit" href="{{ admin.generateObjectUrl('edit', organization) }}">edit</a>
+                        {% endif %}
+                    </div>
                     {% if organization.logo is defined and organization.logo != "" %}
                         <img src="{{ asset('files/logos/' ~ organization.logo) }}" /> 
                     {% endif %}
@@ -48,8 +42,10 @@
                         </div>
                     </div>
                     {% endif %}
+                    <div style="clear: both;"></div>
                 </div>
             </div>
         {% endfor %}
-    {% if organizations|length > 0 %}</div>{% endif %}
+    {% if organizations|length > 0 %}                    <div style="clear: both;"></div>
+</div>{% endif %}
     

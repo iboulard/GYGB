@@ -116,9 +116,9 @@ Ideas
 
 	8.	Testing - 8
 	
-		a. Safarai
+//		a. Safarai
 		
-		b. Chrome
+//		b. Chrome
 		
 		c. old Firefox
 		
@@ -127,6 +127,10 @@ Ideas
 		e. IE 7
 		
 		f. IE 6?
+
+		g. older safari
+		
+			- overflow on org blocks
 
 	10.	Misc - 3
 		
