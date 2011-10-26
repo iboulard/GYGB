@@ -23,7 +23,6 @@ class OrganizationAdmin extends Admin
                 ->add('website', null, array('label' => 'Website'))
                 ->add('email', null, array('label' => 'E-mail'))
                 ->add('approved', null, array('label' => 'Approved'))
-                ->add('featured', null, array('label' => 'Featured'))
                 ->add('category', null, array('label' => 'Category'))
         ;
 
@@ -34,7 +33,6 @@ class OrganizationAdmin extends Admin
                     'website',
                     'email',
                     'approved',
-                    'featured',
                     'category',
                 )
             ),
@@ -111,7 +109,6 @@ class OrganizationAdmin extends Admin
                 ->add('description')
                 ->add('category', 'choice', array('choices' => Step::getCategoryChoices(), 'expanded' => false, 'multiple' => false))
                 ->add('approved', null, array('required' => false))
-                ->add('featured', null, array('required' => false, 'label' => 'Featured'))
                 
                 ->add('file', 'file', array('required' => false))
                 

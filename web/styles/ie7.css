@@ -11,3 +11,14 @@ div.box-form {
         overflow: hidden;
 }
 
+div.home-columns-container {
+    padding: 0 20px 45px 20px;
+}
+
+#menu {
+    width: 450px;
+}
+
+#filters div.filter-group div.filter-group-heading a {
+    float: none;
+}
