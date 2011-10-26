@@ -23,18 +23,18 @@ Ideas
 	
 //				- fix path
 	
-	2.	Content
+//	2.	Content
 	
 //		- resources from packet
 		
-		- home page
+//		- home page
 		
-			- featured resources
+//			- featured resources
 			
-				- make entity
+//				- make entity
 				
-					type home/take-a-step
-					resource
+//					type home/take-a-step
+//					resource
 					
 	
 
@@ -114,29 +114,29 @@ Ideas
 	
 //		- upload logos
 
-	8.	Testing - 8
+//	8.	Testing - 8
 	
 //		a. Safarai
 		
 //		b. Chrome
 		
-		c. old Firefox
+//		c. old Firefox
 		
-		d. IE 8
+//		d. IE 8
 		
-		e. IE 7
+//		e. IE 7
 		
-		f. IE 6?
-
-		g. older safari
+//		g. older safari
 		
-			- overflow on org blocks
+//			- overflow on org blocks
 
 	10.	Misc - 3
 		
 		- JS message
+		
+		- ie6 message
 
-		- errors
+//		- errors
 		
 		- spool cron
 		

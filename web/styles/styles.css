@@ -63,7 +63,6 @@
 #menu {
     float: right;
     margin-top: 20px;
-    clear: right;
 }
 
 #menu li {
@@ -1183,3 +1182,37 @@ div#coalition ul li {
 }
 
 
+/* error pages */
+div.errorPage {
+    text-align: center;
+    font-size: 24px;
+    font-family: Trebuchet,"Trebuchet MS",Verdana,sans-serif;
+}
+
+div.errorPage a {
+    color: #0066CC;
+    text-decoration: none;
+}
+
+div.errorPage a:hover {
+    text-decoration: underline;
+}
+
+div.errorPage h1 {
+    font-size: 30px;
+}
+
+div.errorPage h1, 
+div.errorPage span.errorText, 
+div.errorPage div.errorOptions {
+    margin-top: 20px;
+    display: block;
+}
+
+a.errorOption {
+    margin: 0 5px;
+}
+
+a.errorOption img {
+    margin: 2px 5px 0 0;
+}

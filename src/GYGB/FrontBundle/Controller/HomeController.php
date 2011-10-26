@@ -35,11 +35,21 @@ class HomeController extends Controller
         $request = $this->get('request');
 
         
+        $ua = $_SERVER['HTTP_USER_AGENT'];
+	if((!isset($_SESSION['ie6_message']) || $_SESSION['ie6_message'] == true) && preg_match('/\bmsie 6/i', $ua) && !preg_match('/\bopera/i', $ua)) {
+          $usingIE6 = true;
+        }
+        else{
+          $usingIE6 = false;
+        }
+
+        
         return $this->render('GYGBFrontBundle:Home:home.html.twig', array(
             'highlightStep' => $highlightStep,
             'featuredResources' => $featuredResources,
             'featuredSteps' => $featuredSteps,
-            'admin' => $admin
+            'admin' => $admin,
+            'usingIE6' => $usingIE6
         ));
     }
     

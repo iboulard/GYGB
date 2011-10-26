@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}GJGNY data tool | Error{% endblock %}</title>
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('styles/reset.css') }}" type="text/css">
+            <link rel="stylesheet" href="{{ asset('styles/styles.css') }}" type="text/css">
+            <link rel="stylesheet" href="{{ asset('bundles/fosuser/styles.css') }}" type="text/css" media="all">
+
+            <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" href="{{ asset('styles/ie7.css') }}" />
+                <![endif]-->
+            <!--[if lte IE 6]>
+                <link rel="stylesheet" type="text/css" href="{{ asset('styles/ie6.css') }}" />
+            <![endif]-->
+        {% endblock %}
+        
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
+
+    </head>
+    <body>
+        <div id="page-container">
+        <div id="header">
+                <div id="user-menu">
+                        {% if is_granted('ROLE_USER') %}
+                            Logged in as <a href="{{ url('fos_user_profile_show') }}">{{ app.user }} </a> <a href="{{ url('fos_user_security_logout') }}">Log out</a>
+                        {% else %}
+                            <a href="{{ url('fos_user_security_login') }}">Login</a>
+                            <a href="{{ url('fos_user_registration_register') }}">Register</a>
+                        {% endif %}
+                        <a href="{{ url('about') }}">About</a>
+                        <a href="{{ url('coalition') }}">Coalition</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ url('adminHome') }}">Admin</a>
+                        {% endif %}
+                        <a class="last" href="{{ url('help') }}">Help</a>
+                </div>
+    
+                <a href="{{ path('home') }}"><img id="logo" src="{{ asset('images/logoa.png') }}" /></a>
+                
+                <img id="logob" src="{{ asset('images/logob.png') }}" />
+            
+                <div id="menu">
+                    {{ knp_menu_render('GYGBFrontBundle:Builder:mainMenu') }}
+                </div>
+            </div>
+           
+
+        <div id="content" class="errorPage">
+            <div class="errorContent">
+                <h1>{% block errorMessage %}Oops! Something went wrong.{% endblock %}</h1>
+                <span class="errorText">You can <a href="mailto:haggertypat@gmail.com">contact us directly</a> about this error, or <a href="{{ path('help') }}">submit an error report</a>.</span>
+                
+                <div class="errorOptions">
+                    <a class="errorOption" id="home" href="{{ path('home') }}"><img src="{{ asset('bundles/adminextension/images/Home.png') }}" />Home</a>|
+                    <a class="errorOption" id="help" href="{{ path('help') }}"><img src="{{ asset('bundles/adminextension/images/Help.png') }}" />Help</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </body>
+</html>

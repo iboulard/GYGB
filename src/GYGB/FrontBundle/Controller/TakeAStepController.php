@@ -71,7 +71,11 @@ class TakeAStepController extends Controller
     {
         if(isset($id))
         {
-            return $this->forward('GYGBFrontBundle:TakeAStep:stepPage', array('id' => $id));
+            $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
+            $step = $stepRepository->findOneBy(array('id' => $id));
+        
+            if(!$step) return $this->forward('GYGBFrontBundle:TakeAStep:resourceList', array('category' => $category));
+            else return $this->forward('GYGBFrontBundle:TakeAStep:stepPage', array('id' => $id));
         }
         else
         {
@@ -79,18 +83,19 @@ class TakeAStepController extends Controller
         }
     }
 
-    public function stepPageAction($id)
+    public function stepPageAction($id, $step)
     {
         $organizationRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Organization');
         $commitmentRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Commitment');
         $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
         $stepSubmissionRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:StepSubmission');
-        $step = $stepRepository->findOneBy(array('id' => $id));
         $request = $this->getRequest();
         $session = $request->getSession();
         $em = $this->getDoctrine()->getEntityManager();
         $admin = $this->get('gygb.back.admin.organization');
 
+        
+        
         $featuredOrgs = $step->getFeaturedOrganizations();
 
         if(count($featuredOrgs) > 0)

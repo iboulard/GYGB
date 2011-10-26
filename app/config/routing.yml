@@ -44,6 +44,8 @@ takeAStep:
 takeAStepCategory:
   pattern: /take-a-step/{category}
   defaults: { _controller: GYGBFrontBundle:TakeAStep:takeAStep, id: null, category: null }
+  requirements:
+        category: food|waste|transportation|energy|general
 
 
 shareAStep:

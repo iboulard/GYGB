@@ -54,6 +54,19 @@
         {% endif %}
 
         <div id="page-container">
+            {% if usingIE6 is defined and usingIE6 == true %}
+                <div class="header-message">
+                    You are using an outdated version of internet explorer.
+                    Because of security and performance issues, it is recommended that you upgrade to a modern browser.
+			<br/>	
+                    		 <a href="http://www.mozilla.com"><img src="{{ asset('images/browsers/firefox.gif') }}" /></a>
+				 <a href='http://www.google.com/chrome'><img src="{{ asset('images/browsers/chrome.gif') }}" /></a>
+				 <a href="http://windows.microsoft.com/en-us/internet-explorer/products/ie/home"><img src="{{ asset('images/browsers/ie.gif') }}" /></a>
+				 <a href='http://www.opera.com'><img src="{{ asset('images/browsers/opera.gif') }}" /></a>
+				 <a href='http://www.apple.com/safari/'><img src="{{ asset('images/browsers/safari.gif') }}" /></a> 
+                </div>
+
+            {% endif %}
             <div id="header">
                 <div id="user-menu">
                         {% if is_granted('ROLE_USER') %}
