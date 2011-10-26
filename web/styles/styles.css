@@ -224,22 +224,41 @@ div#about div#campaign-summary{
 }
 
 div.about-container {
-    background: #4a793c;
     border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     width: 100%;
     clear: both;
-    margin: 50px 0;
 }
 
 div.about-container #about {
     width: 855px;
     float: none;
     margin: 0 auto;
-    padding: 23px 0;
-    color: white;
+    padding: 20px 0;
 }
+
+div.about-container #about a.food {
+    background: url("../images/food.png") no-repeat scroll 4px;    
+}
+div.about-container #about a.waste {
+    background: url("../images/waste.png") no-repeat scroll 4px;    
+}
+div.about-container #about a.energy {
+    background: url("../images/energy.png") no-repeat scroll 4px;    
+}
+div.about-container #about a.transportation {
+    background: url("../images/transportation.png") no-repeat scroll 4px;    
+}
+
+div.about-container #about a {
+    padding: 0 0 0 35px;
+}
+
+div.about-container #about a:hover {
+    cursor: pointer;
+}
+
 
 div#about {
     margin: 10px 0 10px 0;
@@ -262,7 +281,7 @@ div#founders-and-sponsors {
 }
 
 div.home-columns-container {
-    width: 96%; background: #D65629; padding: 0 20px; overflow: auto; margin-top: 50px;
+    width: 96%; background: #D65629; padding: 0 20px; overflow: auto;
 }
 
 div.home-column {
@@ -565,11 +584,11 @@ div.step-list#recent-step-list:hover {
 }
 
 div.step-list-container a.step-link:hover {
-    text-decoration: none;
+/*    text-decoration: none; */
 }
 
 div.step-list-container a.step-link {
-    color: black;
+/*    color: black; */
 }
 
 div.step-container:hover,

@@ -8,33 +8,33 @@ Ideas
 			
 	- showcased steps?
 			
+	- Home Page
 		
-0.9
-=======================
-//	1.	Admin
+		- Supporting the communities of Ithaca, Lansing, Dryden, Freeville, Groton, Trumansburg, Cayuga Heights, Caroline, Danby, Newfield, Enfield and Ulysses in taking energy-saving steps.
+
+
+	- Registration
+		
+		- blurb
 	
-//		- cleanup orgs
+
+	Find a Step	
+		- "I don’t find it helpful to differentiate between a step and a commitment.  If you do include both, then it needs to be explained somewhere what the difference is."
+		- Heat and Electric?
+	
+	Share + Commit
+		- explain why we need e-mails
+			- won't be displayed
 		
-//			- remove old fields
+		Tell a story
+			I think it would be more effective to ask more detailed questions to help them tell
+			the story.  Ask a question and then give them a text box to respond.
+			What did you do?  What obstacles did you overcome to do it? 
+			Was it worth the effort?  Have you inspired anyone else by your step? - Katie B
+	
+		- How about having a page where the steps taken in the community are shared, opposed to showing it all over the place on the whole site.  It starts to feel like the site is only about the step sharing and not so much about guidance on steps to take and support to get there.  So, the top banner could be home, find, take, share a step, and then have a button for Steps Taken To Date or something like that.
+	
 			
-//			- remove old records
-			
-//			- logos?
-	
-//				- fix path
-	
-//	2.	Content
-	
-//		- resources from packet
-		
-//		- home page
-		
-//			- featured resources
-			
-//				- make entity
-				
-//					type home/take-a-step
-//					resource
 					
 	
 
@@ -214,10 +214,37 @@ Ideas
 
 == Finished =========================
 
+0.9
+=======================
+//	1.	Admin
+	
+//		- cleanup orgs
+		
+//			- remove old fields
+			
+//			- remove old records
+			
+//			- logos?
+	
+//				- fix path
+	
+//	2.	Content
+	
+//		- resources from packet
+		
+//		- home page
+		
+//			- featured resources
+			
+//				- make entity
+				
+//					type home/take-a-step
+//					resource
+
 .1
 =======================
 
-#	1.	Home
+//	1.	Home
 	
 //		- link path steps to step page
 						
@@ -236,7 +263,7 @@ Ideas
 //		- link recent steps blocks
 		
 		
-#	2.	Steps
+//	2.	Steps
 	
 //		- view all unique steps
 		
@@ -283,7 +310,7 @@ Ideas
 //		- step translation: use colon if step contains my, or similar words
 
 	
-#	3.	Administration
+//	3.	Administration
 	
 //		-	step approval
 		
@@ -298,7 +325,7 @@ Ideas
 //				- only show approved
 	
 		
-#	4.	Organizations		
+//	4.	Organizations		
 	
 //		- move to own page
 		
