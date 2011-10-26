@@ -545,19 +545,19 @@ div.step-list#recent-step-list {
 }
 
 div.step-container div.step.transportation {
-    background: url("/GYGB/web/images/transportation.png") no-repeat scroll 4px;    
+    background: url("../images/transportation.png") no-repeat scroll 4px;    
 }
 div.step-container div.step.general {
-    background: url("/GYGB/web/images/general.png") no-repeat scroll 4px;    
+    background: url("../images/general.png") no-repeat scroll 4px;    
 }
 div.step-container div.step.waste {
-    background: url("/GYGB/web/images/waste.png") no-repeat scroll 4px;    
+    background: url("../images/waste.png") no-repeat scroll 4px;    
 }
 div.step-container div.step.energy {
-    background: url("/GYGB/web/images/energy.png") no-repeat scroll 4px;    
+    background: url("../images/energy.png") no-repeat scroll 4px;    
 }
 div.step-container div.step.food {
-    background: url("/GYGB/web/images/food.png") no-repeat scroll 4px;    
+    background: url("../images/food.png") no-repeat scroll 4px;    
 }
 
 div.step-list#recent-step-list:hover {
@@ -725,7 +725,7 @@ div#all-link a:hover,
 }
 
 #search-steps input {
-    background:transparent url('/GYGB/web/images/search.gif') no-repeat scroll right center;
+    background:transparent url('../images/search.gif') no-repeat scroll right center;
     margin:0;
     width:200px;
     padding-right:22px;
@@ -1049,7 +1049,7 @@ div.organizations div.organization div.title-container {
 div.organization a.edit {
     float: right;
     font-size: 14px;
-    background: url("/GYGB/web/images/edit.png") no-repeat scroll 4px;    
+    background: url("../images/edit.png") no-repeat scroll 4px;    
     padding: 5px 0 5px 28px;
 }
 
@@ -1151,19 +1151,19 @@ a.resource-category-option:hover {
 }
 
 a.resource-category-option.transportation {
-    background: url("/GYGB/web/images/transportation.png") no-repeat scroll 4px;    
+    background: url("../images/transportation.png") no-repeat scroll 4px;    
 }
 a.resource-category-option.general {
-    background: url("/GYGB/web/images/general.png") no-repeat scroll 4px;    
+    background: url("../images/general.png") no-repeat scroll 4px;    
 }
 a.resource-category-option.waste {
-    background: url("/GYGB/web/images/waste.png") no-repeat scroll 4px;    
+    background: url("../images/waste.png") no-repeat scroll 4px;    
 }
 a.resource-category-option.energy {
-    background: url("/GYGB/web/images/energy.png") no-repeat scroll 4px;    
+    background: url("../images/energy.png") no-repeat scroll 4px;    
 }
 a.resource-category-option.food {
-    background: url("/GYGB/web/images/food.png") no-repeat scroll 4px;    
+    background: url("../images/food.png") no-repeat scroll 4px;    
 }
 
 
