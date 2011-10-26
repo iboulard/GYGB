@@ -123,7 +123,7 @@ fos_user:
   firewall_name: main
   user_class: GYGB\BackBundle\Entity\User
   from_email:
-    address: noreply@ccetompkins.org
+    address: noreply@getyourgreenbacktompkins.org
     sender_name:    Get Your GreenBack
   registration:
     confirmation:
