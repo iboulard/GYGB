@@ -20,6 +20,7 @@ class TakeAStepController extends Controller
         $categoryOptions = array(
             'food' => array(
                 'heading' => 'Local Food',
+                'description' => 'Whether you are looking to save money, learn to garden, support local food/farm businesses or just want to know what is happening in Tompkins County, check out the “menu” below.',
                 'foot' => 'right'
             ),
             'waste' => array(
@@ -28,10 +29,12 @@ class TakeAStepController extends Controller
             ),
             'transportation' => array(
                 'heading' => 'Transportation Alternatives',
+                'description' => 'Whether you are looking to save money, get more exercise, support local transportation initiatives and businesses or just want to know what is happening in Tompkins County, check out the options below.',
                 'foot' => 'right'
             ),
             'energy' => array(
                 'heading' => 'Heating and Electricity',
+                'description' => 'Check out the <a href="http://www.upgradeupstate.org/learn/path" target="_blank">Path to Home Energy Savings</a> and the other resources below for the most cost effective sequence to make upgrades, low / no-cost ways to save, how to get a no-cost or reduced-cost energy assessment, tips on choosing a contractor, and upcoming home energy events.',
                 'foot' => 'left'
             ),
             'general' => array(
@@ -58,7 +61,7 @@ class TakeAStepController extends Controller
         }
         else
         {
-            $featuredResources = $featuredResourceRepository->findFeaturedOnHome();
+            $featuredResources = $featuredResourceRepository->findAllFeaturedOnTakeAStep();
         }
         
         return $this->render('GYGBFrontBundle:TakeAStep:resources.html.twig', array(

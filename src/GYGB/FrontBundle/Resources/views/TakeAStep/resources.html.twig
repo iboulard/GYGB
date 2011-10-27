@@ -2,8 +2,8 @@
 
 {% block content %}
 <div id="resources-container">
-    <h1>Need help taking a step?</h1>
-    <h2>Select a category to find Tompkins County resources that will help you save money and energy.</h2>
+    <h1>Tompkins County Resources</h1>
+    <h2>Need help taking a step? Select a category to find Tompkins County resources that will help you save money and energy:</h2>
 
     <div class="resource-category-options">
         {% for c in categories %}
@@ -19,11 +19,20 @@
         <div class="category-resources">
             <div class="category-resources-heading-container">
                 <div class="category-resources-heading">{{ categoryOptions[category]['heading'] }}</div>
-                <div class="featured-resource">
+                <div class="category-resources-description">
                     <img style="float: {{ categoryOptions[category]['foot'] }};" class="category-step" src="{{ asset('images/vert-step-' ~ category ~ '.png') }}" />
-                    {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : featuredResources, 'showSteps' : true } %}
+                    {% if categoryOptions[category]['description'] is defined %}
+                        <div class="category-description">{{ categoryOptions[category]['description']|raw }}</div>
+                    {% else %}
+                        <div class="featured-resource">
+                            {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : featuredResources, 'showSteps' : true } %}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
+            {% if categoryOptions[category]['description'] is defined %}
+                    {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : featuredResources, 'showSteps' : true } %}
+            {% endif %}
             {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : resources, 'showSteps' : true } %}
         </div>
     {% else %}

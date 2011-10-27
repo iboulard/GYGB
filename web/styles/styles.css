@@ -1114,7 +1114,7 @@ div.category-resources {
 div.category-resources-heading-container img.category-step {
     width: 9%;
     float: left;
-    margin: 5px;
+    margin: 15px;
 }
 
 div.category-resources-heading-container {
@@ -1129,8 +1129,14 @@ div.category-resources-heading {
     padding: 7px;
 }
 
+div.category-resources-description div.category-description {
+    padding: 30px 50px;
+    font-size: 25px;
+    line-height: 35px;
+}
+
 div.featured-resource div.organizations {
-    width: 89%;
+    width: 85%;
     float: right;
     overflow: auto;
 }
@@ -1160,7 +1166,7 @@ div.organization-steps h2 {
 
 div.resource-category-options {
     width: 100%;
-    margin: 10px 0;
+    margin: 20px 0;
 }
 a.resource-category-option {
     float: left;
