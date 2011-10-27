@@ -293,21 +293,22 @@ div#founders-and-sponsors {
 
 div.home-columns-container {
     width: 96%; background: #D65629; padding: 0 20px; overflow: auto;
-}
-
-div.home-column {
-    width: 265px;
-    margin: 40px 20px;
     border-radius: 7px;
     -moz-border-radius: 7px;
     -webkit-border-radius: 7px;
-    height: 250px;
+}
+
+div.home-column {
+    width: 235px;
+    margin: 40px 20px;
+    height: 240px;
     float: left;
     border: 1px solid #eee;
 /*    box-shadow: 0 8px 7px #ccc;
     -moz-box-shadow: 0 8px 7px #ccc;
     -webkit-box-shadow: 0 8px 7px #ccc;*/
     background: white;
+    padding: 0 15px;
 }
 
 div.home-column:hover {
@@ -698,7 +699,6 @@ div.step-list-search-results {
 div#step-page-container {
     width: 100%;
     float: left;
-    margin-top: 10px;
 }
 
 div#step-option-container {
@@ -1337,6 +1337,6 @@ div.take-a-step-menu li.shareAStep a {
 span.take-a-step-heading {
     font-size: 18px;
     width: 100%;
-    margin: 8px 0;
+    margin: 8px 0 25px 0;
     display: block;
 }
