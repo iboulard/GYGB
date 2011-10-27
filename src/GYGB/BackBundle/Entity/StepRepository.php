@@ -41,6 +41,20 @@ class StepRepository extends EntityRepository
         return $categoryTotals;
     }
 
+    public function findCategoryCommitmentsTotals()
+    {
+        $allSteps = $this->findBy(array('approved' => true));
+        $categoryTotals = array('all' => 0, 'transportation' => 0, 'food' => 0, 'waste' => 0, 'energy' => 0, 'general' => 0);
+        $totalSteps = 0;
+        foreach($allSteps as $step)
+        {
+            $categoryTotals['all'] += $step->getCommitmentCount();
+            $categoryTotals[$step->getCategory()] += $step->getCommitmentCount();
+        }
+
+        return $categoryTotals;
+    }
+
     public function findByTerms($em, $terms)
     {
         $query = $this->createQueryBuilder('s');

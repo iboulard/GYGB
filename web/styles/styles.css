@@ -1319,20 +1319,24 @@ div.take-a-step-menu li.current:hover a {
     text-decoration: none;
 }
 
-div.take-a-step-menu li.findAStep a {
+div.take-a-step-menu li.findAStep  {
     background: url("../images/step-food.jpg") no-repeat scroll 17px;
     padding: 0 0 80px;
+    background-position: center;
 }
 
-div.take-a-step-menu li.takeAStep a {
+div.take-a-step-menu li.takeAStep  {
     background: url("../images/step-energy.jpg") no-repeat scroll 17px;
     padding: 0 0 84px;
+    background-position: center;
 }
 
-div.take-a-step-menu li.shareAStep a {
+div.take-a-step-menu li.shareAStep  {
     background: url("../images/step-dollar.jpg") no-repeat scroll 17px;
     padding: 0 0 80px;
+    background-position: center;
 }
+
 
 span.take-a-step-heading {
     font-size: 18px;

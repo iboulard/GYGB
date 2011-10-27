@@ -71,6 +71,24 @@ class HomeController extends Controller
             'stepDigits' => $stepDigits,
         ));
     }
+    public function commitmentsCounterAction($extendLayout = false)
+    {
+        $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
+        $stepTotals = $stepRepository->findCategoryCommitmentsTotals();
+        
+        $stepCount = (int) $stepTotals['all'];
+        $stepCount = (string) $stepCount;
+        $stepDigits = array();
+
+        for($i = 0; $i < strlen($stepCount); $i++)
+        {
+            $stepDigits[] = $stepCount[$i];
+        }
+
+        return $this->render('GYGBFrontBundle:Home:_commitmentsCounter.html.twig', array(
+            'stepDigits' => $stepDigits,
+        ));
+    }
 
     public function recentStepListAction()
     {
