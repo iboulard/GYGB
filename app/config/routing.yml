@@ -31,6 +31,11 @@ coalition:
   pattern: /coalition
   defaults: { _controller: GYGBFrontBundle:Coalition:coalition }
 
+communitySteps:
+  pattern: /community-steps
+  defaults: { _controller: GYGBFrontBundle:CommunitySteps:communitySteps }
+
+
 findAStep:
   pattern: /find-a-step
   defaults: { _controller: GYGBFrontBundle:FindAStep:findAStep }
@@ -41,9 +46,9 @@ takeAStep:
   requirements:
         id:  \d+
 
-takeAStepCategory:
-  pattern: /take-a-step/{category}
-  defaults: { _controller: GYGBFrontBundle:TakeAStep:takeAStep, id: null, category: null }
+resources:
+  pattern: /resources/{category}
+  defaults: { _controller: GYGBFrontBundle:Resources:resources, category: null }
   requirements:
         category: food|waste|transportation|energy|general
 

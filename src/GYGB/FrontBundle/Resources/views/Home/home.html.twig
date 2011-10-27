@@ -35,7 +35,7 @@
     {% if featuredResources|length > 0 %}
         <br/>
       <h1>Featured Resources</h1>
-        {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : featuredResources, 'showSteps' : false } %}
+        {% include "GYGBFrontBundle:Resources:_organizations.html.twig" with {'organizations' : featuredResources, 'showSteps' : false } %}
     {% endif %}
 
     {% if featuredSteps|length > 0 %}

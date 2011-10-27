@@ -22,7 +22,11 @@ Ideas
 			What did you do?  What obstacles did you overcome to do it? 
 			Was it worth the effort?  Have you inspired anyone else by your step? - Katie B
 	
-	- How about having a page where the steps taken in the community are shared, opposed to showing it all over the place on the whole site.  It starts to feel like the site is only about the step sharing and not so much about guidance on steps to take and support to get there.  So, the top banner could be home, find, take, share a step, and then have a button for Steps Taken To Date or something like that.
+	- How about having a page where the steps taken in the community are shared, opposed to
+	   showing it all over the place on the whole site.  It starts to feel like the site is only
+	   about the step sharing and not so much about guidance on steps to take and support to
+	   get there.  So, the top banner could be home, find, take, share a step, and then have a
+	   button for Steps Taken To Date or something like that.
 	
 	- Sector summaries?
 	
@@ -38,10 +42,12 @@ Ideas
 			Take a Step
 				(<- back to list) Create your own step!
 			
-					
+Issues				
+======================				
+	
 	
 
-1.0  - due 10/26 - 34
+1.0
 =======================
 
 

@@ -1,0 +1,9 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+    {% include 'GYGBFrontBundle:TakeAStep:_takeAStepMenu.html.twig' %}
+    <span class="take-a-step-heading">Once you <a href="{{ path('findAStep') }}">find your step &uarr;</a>, you can find resources <b>here</b> to help you take it.</span>
+    <br/>
+    <span class="take-a-step-heading">If you have already taken a step, <a href="{{ path('shareAStep') }}">share it &rarr;</a>.</span>
+
+{% endblock content %}

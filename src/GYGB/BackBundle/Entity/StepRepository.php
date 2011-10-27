@@ -139,21 +139,19 @@ class StepRepository extends EntityRepository
         return array_merge($resultsA, $resultsB);
     }
 
-    public function findEvents($em, $stepSubmissionRepository, $commitmentRepository)
+    public function findAllEvents($stepSubmissionRepository, $commitmentRepository)
     {
-         // build array of x most recent commitments and submissions
+        $submissions = $stepSubmissionRepository->findAll();
+        $commitments = $commitmentRepository->findAll();
         
-        // add a ":" to name if commitment/story is abbreviated
-        // add quotes around text if commitment/story is abbreviated
-        // abbreviate commitment/story if possible
+        $submissionEvents = $this->turnStepsSubmissionsIntoEvents($submissions);
+        $commitmentEvents = $this->turnCommitmentsIntoEvents($commitments);
+                
+        $events = array_merge($submissionEvents, $commitmentEvents);
         
-    }
-    
-    static function compareEvent($a, $b) {
-        if ($a == $b) {
-            return 0;
-        }
-        return ($a['datetime'] > $b['datetime']) ? -1 : 1;
+        uasort($events, 'self::compareEvent');
+        
+        return $events;        
     }
     
     public function findEventsByStep($step)
@@ -166,8 +164,20 @@ class StepRepository extends EntityRepository
         $submissions = $step->getStepSubmissions();
         $commitments = $step->getCommitments();
         
+        $submissionEvents = $this->turnStepsSubmissionsIntoEvents($submissions);
+        $commitmentEvents = $this->turnCommitmentsIntoEvents($commitments);
+                
+        $events = array_merge($submissionEvents, $commitmentEvents);
+        
+        uasort($events, 'self::compareEvent');
+        
+        return $events;
+    }
+    
+    protected function turnStepsSubmissionsIntoEvents($submissions)
+    {
         $events = array();
-     
+        
         foreach($submissions as $s)
         {
             $e = array();
@@ -182,9 +192,18 @@ class StepRepository extends EntityRepository
                 $e['text'] = '"'.$s->getAbbreviatedStory().'"';
             }
             $e['datetime'] = $s->getDatetimeSubmitted();                
+            $e['category'] = $s->getStep()->getCategory();
+            $e['stepId'] = $s->getStep()->getId();
             
             $events[] = $e;
         }
+        
+        return $events;
+    }
+
+    public function turnCommitmentsIntoEvents($commitments)
+    {
+        $events = array();
         
         foreach($commitments as $c)
         {
@@ -200,13 +219,22 @@ class StepRepository extends EntityRepository
                 $e['text'] = '"'.$c->getAbbreviatedCommitment().'"';
             }
             $e['datetime'] = $c->getDatetimeSubmitted();                
+            $e['category'] = $c->getStep()->getCategory();
+            $e['stepId'] = $c->getStep()->getId();
             
             $events[] = $e;
         }
         
-        uasort($events, 'self::compareEvent');
-        
         return $events;
+    }
+
+
+
+    static function compareEvent($a, $b) {
+        if ($a == $b) {
+            return 0;
+        }
+        return ($a['datetime'] > $b['datetime']) ? -1 : 1;
     }
     
    

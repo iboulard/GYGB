@@ -7,7 +7,7 @@
 
     <div class="resource-category-options">
         {% for c in categories %}
-            <a class="resource-category-option {{ c }} {% if c == category %}current{% endif %}" href="{{ path('takeAStepCategory', {'category' : c }) }}">
+            <a class="resource-category-option {{ c }} {% if c == category %}current{% endif %}" href="{{ path('resources', {'category' : c }) }}">
                 {{ categoryOptions[c]['heading'] }}
             </a>
         {% endfor %}
@@ -25,22 +25,22 @@
                         <div class="category-description">{{ categoryOptions[category]['description']|raw }}</div>
                     {% else %}
                         <div class="featured-resource">
-                            {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : featuredResources, 'showSteps' : true } %}
+                            {% include "GYGBFrontBundle:Resources:_organizations.html.twig" with {'organizations' : featuredResources, 'showSteps' : true } %}
                         </div>
                     {% endif %}
                 </div>
             </div>
             {% if categoryOptions[category]['description'] is defined %}
-                    {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : featuredResources, 'showSteps' : true } %}
+                    {% include "GYGBFrontBundle:Resources:_organizations.html.twig" with {'organizations' : featuredResources, 'showSteps' : true } %}
             {% endif %}
-            {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : resources, 'showSteps' : true } %}
+            {% include "GYGBFrontBundle:Resources:_organizations.html.twig" with {'organizations' : resources, 'showSteps' : true } %}
         </div>
     {% else %}
         <div class="category-resources">
             <div class="category-resources-heading-container">
                 <div class="category-resources-heading">Featured Resources</div>
             </div>
-            {% include "GYGBFrontBundle:TakeAStep:_organizations.html.twig" with {'organizations' : featuredResources, 'showSteps' : false } %}        
+            {% include "GYGBFrontBundle:Resources:_organizations.html.twig" with {'organizations' : featuredResources, 'showSteps' : false } %}        
         </div>
     {% endif %}
 

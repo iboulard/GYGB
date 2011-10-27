@@ -9,10 +9,11 @@
             {% for step in steps %}
                 <div id="{{ loop.index }}" class="step-container {{ step.category }} {{ step.savings }} {% if step.organization %}organization{%endif%} {% if step.individual %}individual{%endif%} {% if loop.first %}first{% endif %} {% if loop.last %}last{% endif %}">
                     <div class="step {{ step.category }}">
-                        <span class="count">{{ step.stepCount }}</span>
+                        {#<span class="count">{{ step.stepCount }}</span>
                         <span style="float: left; margin: 5px 10px 5px 0; font-size: 11px;">step{% if step.stepCount == 1%}<span style="color: white";>{%endif%}s{% if step.stepCount == 1%}</span>{%endif%}</span>
                         <span class="count">{{ step.commitmentCount }}</span>
                         <span style="float: left; margin: 5px 10px 5px 0; font-size: 11px;">commitment{% if step.commitmentCount == 1%}<span style="color: white";>{%endif%}s{% if step.commitmentCount == 1%}</span>{%endif%}</span>
+                        #}
                         <span class="step">
                             <a class="step-link" href="{{ path('takeAStep', {'id' : step.id }) }}"> 
                                 {{ step.title }}

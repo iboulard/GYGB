@@ -20,7 +20,7 @@
     box-shadow: 0px 5px 20px #999999;
     background: white;
     min-height: 700px;
-    }
+}
 
 #header {
     padding: 10px 0;
@@ -274,7 +274,7 @@ div.about-container #about a:hover {
 div#about {
     margin: 10px 0 10px 0;
     font-size: 20px;
-    line-height: 30px;
+    line-height: 31px;
     width: 47%;
     float: right;
     text-align: center;
@@ -1008,21 +1008,19 @@ div.step-details-container div.step-submissions {
 }
 
 div.step-submissions {
-    width: 57%;
-    margin: 0 auto;
+}
+
+div.step-submission-container {
+    border-bottom: 1px solid #ccc;
     overflow: auto;
-    box-shadow: 0px 1px 9px #666;
-    -moz-box-shadow: 0px 1px 9px #666;
-    -webkit-box-shadow: 0px 1px 9px #666;
-    padding: 10px;
 }
 
  div.step-submissions div.step-submission {
-    width: 100%;
     float: left;
     border-bottom: 1px solid #ccc;
-    padding: 5px 0;
     font-size: 15px;
+    width: 100%;
+    padding: 5px 0;
 }
 
 div.step-submissions div.step-submission.last {
@@ -1266,4 +1264,79 @@ div#why-register {
     border-radius: 7px;
     -moz-border-radius: 7px;
     -webkit-border-radius: 7px;
+}
+
+div.step-list-container#community-steps {
+    width: 60%;
+    margin: 15px auto;
+    box-shadow: 0px 1px 9px #666;
+    -moz-box-shadow: 0px 1px 9px #666;
+    -webkit-box-shadow: 0px 1px 9px #666;
+    padding: 10px;
+}
+
+div.step-list-container#step-events {
+    width: 57%;
+    margin: 0 auto;
+    overflow: auto;
+    box-shadow: 0px 1px 9px #666;
+    -moz-box-shadow: 0px 1px 9px #666;
+    -webkit-box-shadow: 0px 1px 9px #666;
+    padding: 10px;
+}
+
+div.step-list-container#step-events .step:hover {
+    background-color: white;
+    cursor: default;
+}
+
+div.take-a-step-menu {
+    width: 100%;
+    margin: 15px 0;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    height: 75px;
+}
+
+div.take-a-step-menu li {
+    width: 33%;
+    float: left;
+    clear: none;
+    text-align: center;
+    font-size: 22px;
+    opacity: .7;
+}
+
+div.take-a-step-menu li.current {
+    opacity: 1;
+}
+
+div.take-a-step-menu li.current a {
+    color: black;
+}
+
+div.take-a-step-menu li.current:hover a {
+    text-decoration: none;
+}
+
+div.take-a-step-menu li.findAStep a {
+    background: url("../images/step-food.jpg") no-repeat scroll 17px;
+    padding: 0 0 80px;
+}
+
+div.take-a-step-menu li.takeAStep a {
+    background: url("../images/step-energy.jpg") no-repeat scroll 17px;
+    padding: 0 0 84px;
+}
+
+div.take-a-step-menu li.shareAStep a {
+    background: url("../images/step-dollar.jpg") no-repeat scroll 17px;
+    padding: 0 0 80px;
+}
+
+span.take-a-step-heading {
+    font-size: 18px;
+    width: 100%;
+    margin: 8px 0;
+    display: block;
 }
