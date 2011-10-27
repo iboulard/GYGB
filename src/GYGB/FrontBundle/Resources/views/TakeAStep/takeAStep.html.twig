@@ -69,6 +69,7 @@
                                 {% if not is_granted('ROLE_USER') %}
                                     {{ form_row(commitmentForm.name) }}
                                     {{ form_row(commitmentForm.email) }}
+                                    <span class="field-help">used to enter you into our raffle - your e-mail will not be displayed or shared with anyone</span>
                                 {% endif %}
                                 {{ form_rest(commitmentForm) }}
                                 <br/>

@@ -19,7 +19,7 @@ class FindAStepController extends Controller
         $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
 
         $categoryNames = array('food', 'transportation', 'energy', 'waste', 'general');
-        $categoryIcons = array('food' => 'apple', 'transportation' => 'bicycle', 'energy' => 'battery', 'waste' => 'recycle-bin', 'general' => 'globe');
+        $categoryLabels = array('food' => 'Local Food', 'transportation' => 'Transportation', 'energy' => 'Heat and Electricity', 'waste' => 'Waste Reduction', 'general' => 'General');
         
         $categoryTotals = $stepRepository->findCategoryStepTotals();
         $totalSteps = $categoryTotals['all'];
@@ -64,7 +64,7 @@ class FindAStepController extends Controller
 
         return $this->render('GYGBFrontBundle:FindAStep:findAStep.html.twig', array(
             'categoryNames' => $categoryNames,
-            'categoryIcons' => $categoryIcons,
+            'categoryLabels' => $categoryLabels,
             'totalSteps' => $totalSteps,
             'categoryTotals' => $categoryTotals,
             'stepSearchForm' => $stepSearchForm->createView(),

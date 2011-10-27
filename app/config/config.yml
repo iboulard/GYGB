@@ -37,18 +37,25 @@ services:
     gygb.back.admin.organization:
       class: GYGB\BackBundle\Admin\OrganizationAdmin
       tags:
-        - { name: sonata.admin, manager_type: orm, group: Resources, label: Resources }
+        - { name: sonata.admin, manager_type: orm, group: Content, label: Resources }
       arguments: [null, GYGB\BackBundle\Entity\Organization, GYGBBackBundle:OrganizationAdmin]
     gygb.back.admin.featuredresource:
       class: GYGB\BackBundle\Admin\FeaturedResourceAdmin
       tags:
-        - { name: sonata.admin, manager_type: orm, group: Featured Content, label: Featured Resources }
+        - { name: sonata.admin, manager_type: orm, group: Content, label: Featured Resources }
       arguments: [null, GYGB\BackBundle\Entity\FeaturedResource, GYGBBackBundle:FeaturedResourceAdmin]
     gygb.back.admin.featuredstep:
       class: GYGB\BackBundle\Admin\FeaturedStepAdmin
       tags:
-        - { name: sonata.admin, manager_type: orm, group: Featured Content, label: Featured Steps }
+        - { name: sonata.admin, manager_type: orm, group: Content, label: Featured Steps }
       arguments: [null, GYGB\BackBundle\Entity\FeaturedStep, GYGBBackBundle:FeaturedStepAdmin]
+    gygb.back.admin.coalitionmember:
+      class: GYGB\BackBundle\Admin\CoalitionMemberAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: Content, label: Coalition Members }
+      arguments: [null, GYGB\BackBundle\Entity\CoalitionMember, GYGBBackBundle:CoalitionMemberAdmin]
+    
+    
     ccetc.useradmin.admin.user:
       class: CCETC\UserAdminBundle\Admin\UserAdmin
       tags:
@@ -65,7 +72,7 @@ services:
 
     userSettings:
       class: FOS\UserBundle\Resources\config\Settings
-      arguments: [Get Your GreenBack, haggertypat@gmail.com, ::layout.html.twig, false, message]
+      arguments: [Get Your GreenBack, haggertypat@gmail.com, ::layout.html.twig, false, message, ::_whyRegister.html.twig]
 
 
 # Twig Configuration

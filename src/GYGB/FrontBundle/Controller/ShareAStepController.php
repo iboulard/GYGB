@@ -138,15 +138,7 @@ class ShareAStepController extends Controller
                 }
                 else
                 {
-                    if($this->get('security.context')->isGranted('ROLE_USER'))
-                    {
-                        $this->getRequest()->getSession()->setFlash('message', 'Thanks for taking a step to save money and energy!');
-                    }
-                    else
-                    {
-                        $this->getRequest()->getSession()->setFlash('page-message', 'Thanks for taking a step to save money and energy!  Create and account to return and take more steps.');
-                    }
-                    
+                    $this->getRequest()->getSession()->setFlash('message', 'Thanks for taking a step to save money and energy!');
                 }
                 
                 

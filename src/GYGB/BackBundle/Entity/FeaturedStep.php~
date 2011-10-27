@@ -44,4 +44,54 @@ class FeaturedStep
         );
     }
     
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set step
+     *
+     * @param GYGB\BackBundle\Entity\Step $step
+     */
+    public function setStep(\GYGB\BackBundle\Entity\Step $step)
+    {
+        $this->step = $step;
+    }
+
+    /**
+     * Get step
+     *
+     * @return GYGB\BackBundle\Entity\Step 
+     */
+    public function getStep()
+    {
+        return $this->step;
+    }
 }

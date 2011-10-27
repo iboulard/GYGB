@@ -50,7 +50,7 @@
             {% for c in categoryNames %}
                 <a href="#">
                     <div id="{{ c }}" class="filter category {% if terms == "" %}current{% endif %}">
-                        <input type="checkbox" checked="true" /><img src="{{ asset('images/' ~ c ~ '.png') }}" /><span class="filter-label">{{ c|capitalize }}</span> {#({{ categoryTotals[c] }})#}
+                        <input type="checkbox" checked="true" /><img src="{{ asset('images/' ~ c ~ '.png') }}" /><span class="filter-label">{{ categoryLabels[c] }}</span> {#({{ categoryTotals[c] }})#}
                     </div>
                 </a>
             {% endfor %}

@@ -68,7 +68,7 @@ class OrganizationAdmin extends Admin
         $listMapper
                 ->add('name', 'string', array('name' => 'Name'))
                 ->add('website', 'string', array('name' => 'Website'))
-                ->add('email', 'string', array('name' => 'E-mail'))
+              //  ->add('email', 'string', array('name' => 'E-mail'))
                 ->add('approved', 'boolean', array('name' => 'Approved'))
                 ->add('category', 'string', array('name' => 'category'))
 
@@ -104,7 +104,7 @@ class OrganizationAdmin extends Admin
     {
         $formMapper
                 ->add('name', null, array('label' => 'Title'))
-                ->add('email')
+            //    ->add('email')
                 ->add('website')
                 ->add('description')
                 ->add('category', 'choice', array('choices' => Step::getCategoryChoices(), 'expanded' => false, 'multiple' => false))

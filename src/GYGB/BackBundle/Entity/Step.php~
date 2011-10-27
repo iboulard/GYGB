@@ -604,4 +604,24 @@ class Step
     {
         return $this->featuredOrganizations;
     }
+
+    /**
+     * Add features
+     *
+     * @param GYGB\BackBundle\Entity\FeaturedStep $features
+     */
+    public function addFeaturedStep(\GYGB\BackBundle\Entity\FeaturedStep $features)
+    {
+        $this->features[] = $features;
+    }
+
+    /**
+     * Get features
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getFeatures()
+    {
+        return $this->features;
+    }
 }

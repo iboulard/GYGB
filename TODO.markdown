@@ -4,10 +4,6 @@ Get Your Greenback - TODO
 Ideas
 ===========
 
-	- $$ saved graph
-			
-	- showcased steps?
-			
 	- Home Page
 		
 		- Supporting the communities of Ithaca, Lansing, Dryden, Freeville, Groton, Trumansburg, Cayuga Heights, Caroline, Danby, Newfield, Enfield and Ulysses in taking energy-saving steps.
@@ -18,22 +14,36 @@ Ideas
 		- blurb
 	
 
-	Find a Step	
+	- Find a Step	
+		
 		- "I don’t find it helpful to differentiate between a step and a commitment.  If you do include both, then it needs to be explained somewhere what the difference is."
-		- Heat and Electric?
+		- Heat & Electric?
 	
-	Share + Commit
+	- Share + Commit
 		- explain why we need e-mails
 			- won't be displayed
 		
-		Tell a story
+	- Tell a story
 			I think it would be more effective to ask more detailed questions to help them tell
 			the story.  Ask a question and then give them a text box to respond.
 			What did you do?  What obstacles did you overcome to do it? 
 			Was it worth the effort?  Have you inspired anyone else by your step? - Katie B
 	
-		- How about having a page where the steps taken in the community are shared, opposed to showing it all over the place on the whole site.  It starts to feel like the site is only about the step sharing and not so much about guidance on steps to take and support to get there.  So, the top banner could be home, find, take, share a step, and then have a button for Steps Taken To Date or something like that.
+	- How about having a page where the steps taken in the community are shared, opposed to showing it all over the place on the whole site.  It starts to feel like the site is only about the step sharing and not so much about guidance on steps to take and support to get there.  So, the top banner could be home, find, take, share a step, and then have a button for Steps Taken To Date or something like that.
 	
+	- Sector summaries?
+	
+	- Change page structure
+	
+		Home | Take a Step | Community Steps | Resource Guide
+		
+			Take a Step
+				1. Find a Step  (2. Take a Step  (3. Share a Step))
+				
+				or 
+				
+			Take a Step
+				(<- back to list) Create your own step!
 			
 					
 	
@@ -130,7 +140,7 @@ Ideas
 		
 //			- overflow on org blocks
 
-	10.	Misc - 3
+//	10.	Misc - 3
 		
 //		- JS message
 		
@@ -138,7 +148,7 @@ Ideas
 
 //		- errors
 		
-		- spool cron
+//		- spool cron
 		
 //		- backup git directories on server?
 		
