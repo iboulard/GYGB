@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="GYGB\BackBundle\Entity\CoalitionMemberRepository")
- */
+*/
 class CoalitionMember
 {
     public function __toString()

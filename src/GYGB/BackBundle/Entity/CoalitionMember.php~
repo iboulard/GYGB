@@ -9,9 +9,15 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="GYGB\BackBundle\Entity\CoalitionMemberRepository")
- */
+ * @ORM\OrderBy({"name" = "ASC"})
+*/
 class CoalitionMember
 {
+    public function __toString()
+    {
+        return $this->name;
+    }
+    
     /**
      * @var integer $id
      *
@@ -31,7 +37,7 @@ class CoalitionMember
     /**
      * @var string $url
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="url", type="string", length=255, nullable="true")
      */
     private $url;
 

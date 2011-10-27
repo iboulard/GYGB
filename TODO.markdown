@@ -9,19 +9,12 @@ Ideas
 		- Supporting the communities of Ithaca, Lansing, Dryden, Freeville, Groton, Trumansburg, Cayuga Heights, Caroline, Danby, Newfield, Enfield and Ulysses in taking energy-saving steps.
 
 
-	- Registration
-		
-		- blurb
-	
-
 	- Find a Step	
 		
-		- "I don’t find it helpful to differentiate between a step and a commitment.  If you do include both, then it needs to be explained somewhere what the difference is."
-		- Heat & Electric?
+		- "I don’t find it helpful to differentiate between a step and a commitment.
+		If you do include both, then it needs to be explained somewhere what the difference is."
+			- katie B
 	
-	- Share + Commit
-		- explain why we need e-mails
-			- won't be displayed
 		
 	- Tell a story
 			I think it would be more effective to ask more detailed questions to help them tell

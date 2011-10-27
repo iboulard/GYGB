@@ -11,7 +11,7 @@ class CoalitionController extends Controller
     public function coalitionAction($id = null)
     {
         $coalitionMemberRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:CoalitionMember');
-        $coalitionMembers = $coalitionMemberRepository->findAll();
+        $coalitionMembers = $coalitionMemberRepository->findBy(array(), array('name' => 'ASC'));
         
         $middle =  ceil(count($coalitionMembers) / 2);
         

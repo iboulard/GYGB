@@ -16,6 +16,19 @@ class CoalitionMemberAdmin extends Admin
 
     protected $entityLabelPlural = "Coalition Members";
 
+    public function __construct($code, $class, $baseControllerName)
+    {
+        parent::__construct($code, $class, $baseControllerName);
+
+        if (!$this->hasRequest()) {
+            $this->datagridValues = array(
+                '_page' => 1,
+                '_sort_order' => 'ASC', // sort direction
+                '_sort_by' => 'name' // field name
+            );
+        }
+    }
+    
     protected function configureShowField(ShowMapper $showMapper)
     {
         $showMapper
