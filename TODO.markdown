@@ -4,11 +4,6 @@ Get Your Greenback - TODO
 Ideas
 ===========
 
-	- Home Page
-		
-		- Supporting the communities of Ithaca, Lansing, Dryden, Freeville, Groton, Trumansburg, Cayuga Heights, Caroline, Danby, Newfield, Enfield and Ulysses in taking energy-saving steps.
-
-
 	- Find a Step	
 		
 		- "I don’t find it helpful to differentiate between a step and a commitment.
@@ -22,30 +17,57 @@ Ideas
 			What did you do?  What obstacles did you overcome to do it? 
 			Was it worth the effort?  Have you inspired anyone else by your step? - Katie B
 	
-	- How about having a page where the steps taken in the community are shared, opposed to
-	   showing it all over the place on the whole site.  It starts to feel like the site is only
-	   about the step sharing and not so much about guidance on steps to take and support to
-	   get there.  So, the top banner could be home, find, take, share a step, and then have a
-	   button for Steps Taken To Date or something like that.
+			- optional after submission
 	
-	- Sector summaries?
+	- let admins sort resources
 	
-	- Change page structure
+	- consider moving the featured steps
+
+
+content
+===========
+- delete general steps
+
+- Energy featured steps:
+	Weatherization – all 4
 	
-		Home | Take a Step | Community Steps | Resource Guide
-		
-			Take a Step
-				1. Find a Step  (2. Take a Step  (3. Share a Step))
-				
-				or 
-				
-			Take a Step
-				(<- back to list) Create your own step!
-			
-Issues				
-======================				
+	 INHS – all 4
+	
+	Warmup – all 4
+	
+	 FL Climate Fund – all except for the free assessment
+	
+	Watt Metering – none
+	
+	FL Challenge - none
 	
 	
+- Trans feat steps
+
+	Gadabout – carpool
+	
+	 Cityvan – carpool
+	
+	FISH – carpool
+	
+	Vanpool - carpool
+
+- add SewGreen, Freecycle, Share tompkins
+
+	ReUse Center – Reuse and repair
+
+	Composters - compost
+	
+	Solid Waste – recycle, compost
+	
+	SewGreen – repair, reuse
+	
+	Freecycle - reuse
+	
+	Share Tompkins - reuse
+
+- add IthacaCan and Whole Community Project
+
 
 1.0
 =======================

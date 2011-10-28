@@ -48,7 +48,7 @@ class Builder extends ContainerAware
         $this->mainMenu->setCurrentUri($this->container->get('request')->getRequestUri());
 
         $this->mainMenu->addChild('Home', array('route' => 'home'));
-        $this->mainMenu->addChild('Take a Step', array('route' => 'findAStep'));
+        $this->mainMenu->addChild('Find a Step', array('route' => 'findAStep'));
         $this->mainMenu->addChild('Community', array('route' => 'communitySteps'));
         $this->mainMenu->addChild('Resources', array('route' => 'resources'));
         
@@ -67,15 +67,15 @@ class Builder extends ContainerAware
     {
         if(isset($this->path[1]) && $this->path[1] == "take-a-step")
         {
-            $this->mainMenu->getChild('Take a Step')->setCurrent(true);            
+            $this->mainMenu->getChild('Find a Step')->setCurrent(true);            
         }
         else if(isset($this->path[1]) && $this->path[1] == "find-a-step")
         {
-            $this->mainMenu->getChild('Take a Step')->setCurrent(true);            
+            $this->mainMenu->getChild('Find a Step')->setCurrent(true);            
         }
         else if(isset($this->path[1]) && $this->path[1] == "share-a-step")
         {
-            $this->mainMenu->getChild('Take a Step')->setCurrent(true);            
+            $this->mainMenu->getChild('Find a Step')->setCurrent(true);            
         }
         
     }

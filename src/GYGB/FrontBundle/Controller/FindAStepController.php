@@ -18,8 +18,8 @@ class FindAStepController extends Controller
 
         $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
 
-        $categoryNames = array('food', 'transportation', 'energy', 'waste', 'general');
-        $categoryLabels = array('food' => 'Local Food', 'transportation' => 'Transportation', 'energy' => 'Heat and Electricity', 'waste' => 'Waste Reduction', 'general' => 'General');
+        $categoryNames = array('food', 'transportation', 'energy', 'waste');
+        $categoryLabels = array('food' => 'Local Food', 'transportation' => 'Transportation', 'energy' => 'Heat and Electric', 'waste' => 'Waste Reduction');
         
         $categoryTotals = $stepRepository->findCategoryStepTotals();
         $totalSteps = $categoryTotals['all'];

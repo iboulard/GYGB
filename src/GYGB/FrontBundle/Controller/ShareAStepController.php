@@ -14,7 +14,7 @@ class ShareAStepController extends Controller
         
         $em = $this->getDoctrine()->getEntityManager();
         
-        $categoryNames = array('food', 'transportation', 'energy', 'waste', 'general');
+        $categoryNames = array('food', 'transportation', 'energy', 'waste');
         
         $request = $this->get('request');
 

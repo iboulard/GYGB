@@ -25,6 +25,7 @@ class ResourcesController extends Controller
             ),
             'waste' => array(
                 'heading' => 'Waste Reduction',
+                'description' => 'Whether you are looking to save money on trash tags, learn to compost, use less stuff or just want to know what is happening in Tompkins County, check out the resources below.',
                 'foot' => 'left'
             ),
             'transportation' => array(
