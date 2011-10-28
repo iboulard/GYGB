@@ -1,12 +1,12 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
-<h1>Steps Taken</h1>
+<h1>Community</h1>
 <h2>See what others in the Tompkins County community are doing to save money and energy.</h2>
     
- {#{% render "GYGBFrontBundle:Home:stepsTakenCounter" %}  
+ {% render "GYGBFrontBundle:Home:stepsTakenCounter" %}  
  {% render "GYGBFrontBundle:Home:commitmentsCounter" %}  
-#}
+
 <div class="step-list-container" id="community-steps">
     {% for event in events %}
         <div class="step-container {% if loop.first %}first {% endif %}{% if loop.last %}last {% endif %}">

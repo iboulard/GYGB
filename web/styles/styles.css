@@ -1,4 +1,4 @@
-/* 
+ /* 
         logo green hex: #4a793c
         red: #b7253a 
         light link: #C9DDFF;a3a8ff
@@ -522,15 +522,28 @@ div.share-your-own-container {
 /* steps taken ============================================================== */
 div#steps-taken {
     float: left;
-    width: 100%;
+    width: 50%;
 }
+div#commitments-made {
+    float: left;
+    width: 50%;
+}
+
 
 div#steps-taken-counter {
     font-size: 2em;
     color: black;
     float: left;
-    margin: 50px 0 0 372px;
 }
+
+div#steps-taken div#steps-taken-counter {
+    margin: 30px 0 30px 100px;
+}
+
+div#commitments-made div#steps-taken-counter {
+    margin: 30px 0 30px 50px;
+}
+
 
 div#steps-taken-counter span.step-digit {
     color: white;
