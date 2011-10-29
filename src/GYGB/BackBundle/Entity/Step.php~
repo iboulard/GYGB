@@ -598,4 +598,14 @@ class Step
     {
         return $this->features;
     }
+
+    /**
+     * Get featuredOrganizations
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getFeaturedOrganizations()
+    {
+        return $this->featuredOrganizations;
+    }
 }

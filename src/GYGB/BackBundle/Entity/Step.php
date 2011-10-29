@@ -608,4 +608,14 @@ class Step
     {
         return $this->featuredOrganizations;
     }
+    
+    /**
+     * Set featuredOrganizations
+     *
+     * @param GYGB\BackBundle\Entity\Organization $organizations
+     */
+    public function setFeaturedOrganizations($organizations)
+    {
+        $this->featuredOrganizations = $organizations;
+    }
 }

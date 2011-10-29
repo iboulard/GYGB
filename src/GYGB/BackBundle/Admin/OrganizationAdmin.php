@@ -21,7 +21,7 @@ class OrganizationAdmin extends Admin
         $showMapper
                 ->add('name', null, array('label' => 'Name'))
                 ->add('website', null, array('label' => 'Website'))
-                ->add('email', null, array('label' => 'E-mail'))
+//                ->add('email', null, array('label' => 'E-mail'))
                 ->add('approved', null, array('label' => 'Approved'))
                 ->add('category', null, array('label' => 'Category'))
         ;
@@ -31,7 +31,7 @@ class OrganizationAdmin extends Admin
                 'fields' => array(
                     'name',
                     'website',
-                    'email',
+//                    'email',
                     'approved',
                     'category',
                 )
@@ -88,7 +88,7 @@ class OrganizationAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-                ->add('name', null, array('label' => 'Organization'))
+                ->add('name', null, array('label' => 'Name'))
                 ->add('approved', null, array('label' => 'Approved'))
                 ->add('category', 'doctrine_orm_choice', array('label' => 'Category',
                     'field_options' => array(
@@ -109,12 +109,13 @@ class OrganizationAdmin extends Admin
                 ->add('description')
                 ->add('category', 'choice', array('choices' => Step::getCategoryChoices(), 'expanded' => false, 'multiple' => false))
                 ->add('approved', null, array('required' => false))
-                
                 ->add('file', 'file', array('required' => false))
+                ->add('featuredSteps', null, array('label' => 'Related Steps'))
                 
                 ->setHelps(array(
                     'featured' => 'featured resources show up at the top of their category on the resource guide',
                     'approved' => 'only approved resources will appear on the website',
+                    'featuredSteps' => 'CTRL + click to select mutliple steps',
                     'approved' => 'only approved resources will appear on the website',
                 ));
 

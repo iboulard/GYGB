@@ -122,11 +122,14 @@ class StepAdmin extends Admin
                 ->add('story', null, array('required' => false, 'label' => 'Default Story')) 
                 ->add('description')
                 ->add('approved')
-                ->add('stepCount', null, array('required' => false, 'label' => 'Step Count'))
-                ->add('commitmentCount', null, array('required' => false, 'label' => 'Commitment Count'))
-                ->add('featuredOrganizations', null, array('label' => 'Featured Resources', 'required' => false))
+                //->add('stepCount', null, array('required' => false, 'label' => 'Step Count'))
+                //->add('commitmentCount', null, array('required' => false, 'label' => 'Commitment Count'))
+                ->add('featuredOrganizations', 'sonata_type_model', array('label' => 'Related Resources', 'required' => false))
                 ->setHelps(array(
                     'featuredOrganizations' => 'CTRL + click to select mutliple resources',
+                    'commitment' => 'ex: "I will join carshare."',
+                    'story' => 'ex: "I joined carshare."',
+                    'approved' => 'only approved steps will appear on the site'
                 ));
 
         ;
