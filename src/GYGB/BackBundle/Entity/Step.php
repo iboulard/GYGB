@@ -565,26 +565,8 @@ class Step
         return $this->commitments;
     }
 
-    /**
-     * Set featuredOrganization
-     *
-     * @param GYGB\BackBundle\Entity\Organization $featuredOrganization
-     */
-    public function setFeaturedOrganization(\GYGB\BackBundle\Entity\Organization $featuredOrganization)
-    {
-        $this->featuredOrganization = $featuredOrganization;
-    }
-
-    /**
-     * Get featuredOrganization
-     *
-     * @return GYGB\BackBundle\Entity\Organization 
-     */
-    public function getFeaturedOrganization()
-    {
-        return $this->featuredOrganization;
-    }
-
+    
+    
     /**
      * Add featuredOrganizations
      *
@@ -595,15 +577,7 @@ class Step
         $this->featuredOrganizations[] = $featuredOrganizations;
     }
 
-    /**
-     * Get featuredOrganizations
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getFeaturedOrganizations()
-    {
-        return $this->featuredOrganizations;
-    }
+    
 
     /**
      * Add features
@@ -623,5 +597,15 @@ class Step
     public function getFeatures()
     {
         return $this->features;
+    }
+
+    /**
+     * Get featuredOrganizations
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getFeaturedOrganizations()
+    {
+        return $this->featuredOrganizations;
     }
 }

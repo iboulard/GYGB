@@ -24,49 +24,8 @@ Ideas
 	- consider moving the featured steps
 
 
-content
-===========
-- delete general steps
 
-- Energy featured steps:
-	Weatherization – all 4
-	
-	 INHS – all 4
-	
-	Warmup – all 4
-	
-	 FL Climate Fund – all except for the free assessment
-	
-	Watt Metering – none
-	
-	FL Challenge - none
-	
-	
-- Trans feat steps
 
-	Gadabout – carpool
-	
-	 Cityvan – carpool
-	
-	FISH – carpool
-	
-	Vanpool - carpool
-
-- add SewGreen, Freecycle, Share tompkins
-
-	ReUse Center – Reuse and repair
-
-	Composters - compost
-	
-	Solid Waste – recycle, compost
-	
-	SewGreen – repair, reuse
-	
-	Freecycle - reuse
-	
-	Share Tompkins - reuse
-
-- add IthacaCan and Whole Community Project
 
 
 1.0
