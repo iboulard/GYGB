@@ -11,17 +11,30 @@
   <changefreq>monthly</changefreq>
   <priority>1.00</priority>
 </url>
-
+<url>
+  <loc>http://getyourgreenbacktompkins.org/find-a-step</loc>
+  <changefreq>daily</changefreq>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>http://getyourgreenbacktompkins.org/community</loc>
+  <changefreq>daily</changefreq>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>http://getyourgreenbacktompkins.org/resources</loc>
+  <changefreq>daily</changefreq>
+  <priority>0.90</priority>
+</url>
 <url>
   <loc>http://getyourgreenbacktompkins.org/about</loc>
   <changefreq>monthly</changefreq>
-  <priority>0.90</priority>
+  <priority>0.70</priority>
 </url>
-
 <url>
   <loc>http://getyourgreenbacktompkins.org/coalition</loc>
   <changefreq>monthly</changefreq>
-  <priority>0.90</priority>
+  <priority>0.70</priority>
 </url>
 
 
