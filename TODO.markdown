@@ -1,6 +1,17 @@
 Get Your Greenback - TODO
 ======================================
 
+
+URGENT
+===============
+
+	- use real smtp server
+
+	- step model problem
+	
+		- add m2m field on admin
+
+
 Ideas
 ===========
 
@@ -21,13 +32,93 @@ Ideas
 	
 	- let admins sort resources
 	
-	- consider moving the featured steps
+Issues
+==============
+
+	- email
+	
+	- fix remember me
 
 
 
+1.1
+=============================
+
+#	1.	Google Map
+
+
+#	2.	Share Buttons
+
+
+#	3.	Audience
+
+		- homeowner, renter, landlord, school, students, congregations
+
+		- add to step form
+		
+				
+#	4.	My Steps		
+		
+		
+#	5.	Share a Step
+	
+		- cancel selected step
+		
+		- better step selection dropdown
+		
+		- custom step
+		
+			- organization drop down
+
+				- featured step
+		
+		
+#	10.	Misc
+
+		- improve take a step
+		
+		- fill out registration form after submission
+		
+		- what to do with filters when searching?
+		
+		
+1.2
+=========================
+	1.	Organizations
+	
+		- sign up
+	
+			- logo
+			
+			- description (for ads)
+			
+				- use tinymce
+				
+		- share a step?
+		
+		- include coalition
+
+
+#	2.	JS degradation
+
+		- less sophisticate step filters
+		
+			- save old ones
+		
+	
+#	3.	Facebook and Twitter
+
+		- API integration?
+
+
+#	4.	E-mail reminders
+
+		- for commitments
+		
 
 
 
+== Finished =========================
 1.0
 =======================
 
@@ -36,19 +127,13 @@ Ideas
 
 
 
-#	2.	Find a Step - 3
+//	2.	Find a Step - 3
 
-		- filters when searching
-	
 //		- show commitment count
 	
 	
-	3.	Take a Step
-	
-		- commit
-		
-			-	share buttons
-			
+//	3.	Take a Step
+				
 //		- resources
 			
 //			- group by category
@@ -66,24 +151,11 @@ Ideas
 //				- backend
 				
 //				- fix size problem
-			
-	
-	4.	Share a Step - 2
-	
-		- cancel selected step
-		
-		- custom step
-		
-			- organization drop down
+							
 
-				- featured step
-				
-		- share buttons
-				
+//	5.	Accounts - 8
 
-#	5.	Accounts - 8
-
-		- submit step
+//		- submit step
 		
 //			- hide name and e-mail if logged in
 			
@@ -93,11 +165,7 @@ Ideas
 						
 //			- send to register if not logged in
 			
-				- use name and e-mail WHY DOESN'T THIS WORK?
-				
-		- remember me?
-	
-	
+					
 //	6.	Design - 5
 	
 //	7.	Admin - 5
@@ -142,68 +210,6 @@ Ideas
 		
 //		- default story/commitment/count
 		
-
-1.1	- ASAP after 1.1
-=============================
-
-#	1.	Google Map
-
-	
-#	2.	JS degradation
-
-		- less sophisticate step filters
-		
-			- save old ones
-		
-	
-#	3.	Facebook and Twitter
-
-		- simple buttons
-		
-		- API integration?
-
-
-#	4.	Meta tags for search?
-
-
-#	5.	Audience
-
-		- homeowner, renter, landlord, school, students, congregations
-
-		- add to step form
-		
-		
-#	6.	E-mail reminders
-
-		- for commitments
-		
-		
-#	7.	My Steps		
-		
-		
-		
-1.2
-=========================
-	1.	Organizations
-	
-		- sign up
-	
-			- logo
-			
-			- description (for ads)
-			
-				- use tinymce
-				
-		- share a step?
-		
-		- include coalition
-
-
-
-
-
-== Finished =========================
-
 0.9
 =======================
 //	1.	Admin
@@ -231,7 +237,7 @@ Ideas
 //					type home/take-a-step
 //					resource
 
-.1
+0.1
 =======================
 
 //	1.	Home
