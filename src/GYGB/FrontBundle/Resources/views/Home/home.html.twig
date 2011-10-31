@@ -27,16 +27,18 @@
     </div>
     
     </div>
-
-{#    {% render "GYGBFrontBundle:Home:stepsTakenCounter" %} 
-    <div>&nbsp;</div>
-#}
-
-    <div style="font-size: 20px; line-height: 30px; font-style: italic; text-align: center; margin-top: 50px; padding: 0 50px;">
-        Supporting the communities of Ithaca, Lansing, Dryden, Freeville, Groton, Trumansburg, Cayuga Heights, Caroline, Danby, Newfield, Enfield and Ulysses in taking energy-saving steps.
-    </div>
     
-
+    <div style="padding: 50px 0; margin: 30px 0; font-size: 20px; line-height: 30px; border-top: 2px dashed #D78228; border-bottom: 2px dashed #D78228;">
+        <div style="width: 600px; margin: 0 auto 15px auto;">
+            GET YOUR GREENBACK is about YOU taking a new step to save money and grow our economy-and then sharing your best
+            ideas on how to do that with the rest of us. So... <br/>
+        </div>
+        <div style="float: right;">
+            <a href="{{ path('findAStep') }}">TAKE YOUR FIRST STEP</a> AND <a href="{{ path('shareAStep') }}">ENTER THE RAFFLE</a>
+            to win over $2,000 in prizes.
+        </div>
+        <div>&nbsp;</div>
+    </div>
 
     {% if featuredResources|length > 0 %}
         <br/>
@@ -44,7 +46,7 @@
         {% include "GYGBFrontBundle:Resources:_organizations.html.twig" with {'organizations' : featuredResources, 'showSteps' : false } %}
     {% endif %}
 
-    {% if featuredSteps|length > 0 %}
+    {#{% if featuredSteps|length > 0 %}
         <br/>
         <h1>Featured Steps</h1>
         <div style="width: 600px; margin: 0 auto;">
@@ -66,7 +68,11 @@
                 {% endfor %}
             </div>
         </div>
-    {% endif %}
+    {% endif %}#}
+
+    <div style="font-size: 20px; line-height: 30px; font-style: italic; text-align: center; margin-top: 50px; padding: 0 50px;">
+        Supporting the communities of Ithaca, Lansing, Dryden, Freeville, Groton, Trumansburg, Cayuga Heights, Caroline, Danby, Newfield, Enfield and Ulysses in taking energy-saving steps.
+    </div>
 
     <div id="founders-and-sponsors">
         <div style="width: 949px;" class="logo-block">
