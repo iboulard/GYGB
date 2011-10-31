@@ -12,6 +12,12 @@ URGENT
 		- add m2m field on admin
 
 
+Issues
+==============
+	
+	- fix remember me
+
+
 Ideas
 ===========
 
@@ -31,15 +37,8 @@ Ideas
 			- optional after submission
 	
 	- let admins sort resources
+
 	
-Issues
-==============
-
-	- email
-	
-	- fix remember me
-
-
 
 1.1
 =============================
