@@ -17,9 +17,9 @@ class Builder extends ContainerAware
         $this->takeAStepMenu = $factory->createItem('root');
         $this->takeAStepMenu->setCurrentUri($this->container->get('request')->getRequestUri());
 
-        $this->takeAStepMenu->addChild('1. Find a Step', array('route' => 'findAStep', 'attributes' => array('class' => 'findAStep')));
-        $this->takeAStepMenu->addChild('2. Take a Step', array('route' => 'takeAStep', 'attributes' => array('class' => 'takeAStep')));
-        $this->takeAStepMenu->addChild('3. Share a Step', array('route' => 'shareAStep', 'attributes' => array('class' => 'shareAStep')));
+        $this->takeAStepMenu->addChild('findAStep', array('route' => 'findAStep', 'label' => '1. Find a step', 'attributes' => array('class' => 'findAStep')));
+        $this->takeAStepMenu->addChild('takeAStep', array('route' => 'takeAStep', 'label' => '2. Take a step and save', 'attributes' => array('class' => 'takeAStep')));
+        $this->takeAStepMenu->addChild('shareAStep', array('route' => 'shareAStep', 'label' => '3. Share a step and win', 'attributes' => array('class' => 'shareAStep')));
         
         $this->correctTakeAStepCurrent();
         $this->correctShareAStepCurrent();
@@ -31,14 +31,14 @@ class Builder extends ContainerAware
      {
         if(isset($this->path[1]) && $this->path[1] == "take-a-step")
         {
-            $this->takeAStepMenu->getChild('2. Take a Step')->setCurrent(true);            
+            $this->takeAStepMenu->getChild('takeAStep')->setCurrent(true);            
         }        
     }
      public function correctShareAStepCurrent()
      {
         if(isset($this->path[1]) && $this->path[1] == "share-a-step")
         {
-            $this->takeAStepMenu->getChild('3. Share a Step')->setCurrent(true);            
+            $this->takeAStepMenu->getChild('shareAStep')->setCurrent(true);            
         }        
     }
     
