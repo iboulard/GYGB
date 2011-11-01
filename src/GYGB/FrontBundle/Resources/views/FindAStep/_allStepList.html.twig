@@ -19,14 +19,7 @@
                                 {{ step.title }}
                             </a>
                         </span>
-                        <a class="take-this-step button" href="{{ path('takeAStep', {'id' : step.id }) }}">Take this step</a>
                     </div>
-                   {# {% if id is defined and id == step.id %}
-                        {% render "GYGBFrontBundle:FindAStep:stepDetails" with {'id' : step.id, 'hidden' : false } %}           
-                    {% else %}
-                        {% render "GYGBFrontBundle:FindAStep:stepDetails" with {'id' : step.id, 'hidden' : true } %}           
-                    {% endif %}
-                    #}
                </div>
             {% endfor %}
         {% endif %}

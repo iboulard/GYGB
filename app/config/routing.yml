@@ -1,11 +1,3 @@
-#homeDefault:
-#  pattern:  /
-#  defaults: { _controller: GYGBFrontBundle:Home:staticHome }
-
-#home:
-#  pattern:  /home
-#  defaults: { _controller: GYGBFrontBundle:Home:staticHome }
-
 homeDefault:
   pattern:  /
   defaults: { _controller: GYGBFrontBundle:Home:home, highlightStep: false }
@@ -14,28 +6,17 @@ home:
   pattern:  /home/{highlightStep}
   defaults: { _controller: GYGBFrontBundle:Home:home, highlightStep: false }
 
-#basic:
-#  pattern:  /basic
-#  defaults: { _controller: GYGBFrontBundle:Home:staticHome }
+community:
+  pattern: /community
+  defaults: { _controller: GYGBFrontBundle:Community:communitySteps }
 
+resources:
+  pattern: /resources/{category}
+  defaults: { _controller: GYGBFrontBundle:Resources:resources, category: null }
+  requirements:
+        category: food|waste|transportation|energy|general
 
-organization:
-  pattern:  /organization
-  defaults: { _controller: GYGBFrontBundle:Organization:organization }
-
-about:
-  pattern: /about
-  defaults: { _controller: GYGBFrontBundle:About:about }
-
-coalition:
-  pattern: /coalition
-  defaults: { _controller: GYGBFrontBundle:Coalition:coalition }
-
-communitySteps:
-  pattern: /community-steps
-  defaults: { _controller: GYGBFrontBundle:CommunitySteps:communitySteps }
-
-
+# find a step -----------------------------------------------------------------
 findAStep:
   pattern: /find-a-step
   defaults: { _controller: GYGBFrontBundle:FindAStep:findAStep }
@@ -46,29 +27,19 @@ takeAStep:
   requirements:
         id:  \d+
 
-resources:
-  pattern: /resources/{category}
-  defaults: { _controller: GYGBFrontBundle:Resources:resources, category: null }
-  requirements:
-        category: food|waste|transportation|energy|general
-
-
 shareAStep:
   pattern: /share-a-step/{id}
   defaults: { _controller: GYGBFrontBundle:ShareAStep:ShareAStep, id: null }
+  
+# ------------------------------------------------------------------------------
 
-volunteers:
-  pattern: /volunteers
-  defaults: { _resource: "files/GYGBVolunteerScript.doc" }
+about:
+  pattern: /about
+  defaults: { _controller: GYGBFrontBundle:About:about }
 
-
-
-
-#stepId:
-#  pattern:  /steps/{id}
-#  defaults: { _controller: GYGBFrontBundle:Steps:steps, categories: all, sort: recent, savings: all}
-#  requirements:
-#        id:  \d+
+coalition:
+  pattern: /coalition
+  defaults: { _controller: GYGBFrontBundle:Coalition:coalition }
   
 help:
   pattern: /help
@@ -85,7 +56,7 @@ adminHome:
 
 
 
-# ADMIN =====================
+# admin bundle -----------------------------------------------------------------
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /admin
@@ -97,7 +68,7 @@ _sonata_admin:
   
     
     
-# FOSUser Bundle
+# FOSUser Bundle ---------------------------------------------------------------
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

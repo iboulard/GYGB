@@ -1,0 +1,7 @@
+<div id="{{ id }}">
+    <div class="counter">
+        {# this all has to be on one line or it looks wrong in the browser: #}
+        {% for d in counterDigits %}<span class="button step-digit {% if loop.last %}last{% endif %} ">{{ d }}</span>{% endfor %}
+        {{ text }}
+    </div>
+</div>

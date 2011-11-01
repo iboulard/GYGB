@@ -5,6 +5,7 @@ namespace GYGB\FrontBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class TakeAStepController extends Controller
 {
@@ -15,8 +16,14 @@ class TakeAStepController extends Controller
             $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
             $step = $stepRepository->findOneBy(array('id' => $id));
         
-            if(!$step) return $this->forward('GYGBFrontBundle:TakeAStep:resourceList', array('category' => $category));
-            else return $this->forward('GYGBFrontBundle:TakeAStep:stepPage', array('id' => $id, 'step' => $step));
+            if(!$step)
+            {
+                 throw new NotFoundHttpException("This step could not be found");
+            }
+            else
+            {
+                return $this->forward('GYGBFrontBundle:TakeAStep:stepPage', array('id' => $id, 'step' => $step));                
+            }
         }
         else
         {
@@ -26,26 +33,26 @@ class TakeAStepController extends Controller
 
     public function stepPageAction($id, $step)
     {
-        $organizationRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Organization');
+        $resourceRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Resource');
         $commitmentRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Commitment');
         $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
         $stepSubmissionRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:StepSubmission');
         $request = $this->getRequest();
         $session = $request->getSession();
         $em = $this->getDoctrine()->getEntityManager();
-        $admin = $this->get('gygb.back.admin.organization');
+        $admin = $this->get('gygb.back.admin.resource');
 
         
         
-        $featuredOrgs = $step->getFeaturedOrganizations();
+        $featuredResources = $step->getFeaturedResources();
 
-        if(count($featuredOrgs) > 0)
+        if(count($featuredResources) > 0)
         {
-            $organizations = $featuredOrgs;
+            $resources = $featuredResources;
         }
         else
         {
-            $organizations = $organizationRepository->findBy(array('category' => $step->getCategory()));
+            $resources = $resourceRepository->findBy(array('category' => $step->getCategory()));
         }
 
 
@@ -148,7 +155,7 @@ class TakeAStepController extends Controller
 
         return $this->render('GYGBFrontBundle:TakeAStep:takeAStep.html.twig', array(
             'step' => $step,
-            'organizations' => $organizations,
+            'resources' => $resources,
             'commitmentForm' => $commitmentForm->createView(),
             'events' => $events,
             'commited' => $commited,

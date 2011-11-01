@@ -12,7 +12,4 @@ use Doctrine\ORM\EntityRepository;
  */
 class CommitmentRepository extends EntityRepository
 {
-
-    
-
 }

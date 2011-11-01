@@ -20,14 +20,14 @@ class FeaturedResourceAdmin extends Admin
     {
         $showMapper
                 ->add('type', null, array('label' => 'Page'))
-                ->add('organization', null, array('label' => 'Resource'))
+                ->add('resource', null, array('label' => 'Resource'))
         ;
 
         $showGroups = array(
             'Featured Resource' => array(
                 'fields' => array(
                     'type',
-                    'organization',
+                    'resource',
                 )
             ),
         );
@@ -38,7 +38,7 @@ class FeaturedResourceAdmin extends Admin
     {
         $listMapper
                 ->add('type', 'string', array('name' => 'Page'))
-                ->add('organization', 'string', array('name' => 'Resource'))
+                ->add('resource', 'string', array('name' => 'Resource'))
 
                 // add custom action links
                 ->add('_action', 'actions', array(
@@ -59,7 +59,7 @@ class FeaturedResourceAdmin extends Admin
     {
         $formMapper
                 ->add('type', 'choice', array('choices' => FeaturedResource::getTypes(), 'expanded' => false, 'multiple' => false, 'label' => 'Page'))
-                ->add('organization', null, array('label' => 'Resource'))
+                ->add('resource', null, array('label' => 'Resource'))
                 
                 ->setHelps(array(
                     'type' => 'the page that the resource will be featured on'

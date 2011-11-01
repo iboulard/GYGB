@@ -12,10 +12,8 @@ class FindAStepController extends Controller
 
     public function findAStepAction()
     {
-        $request = $this->getRequest();
-
         $terms = null;
-
+        $request = $this->getRequest();
         $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
 
         $categoryNames = array('food', 'transportation', 'energy', 'waste');
@@ -69,76 +67,6 @@ class FindAStepController extends Controller
             'categoryTotals' => $categoryTotals,
             'stepSearchForm' => $stepSearchForm->createView(),
             'terms' => $terms,
-            'onStepsPage' => true,
-        ));
-    }
-
-    public function allStepListAction($categories = 'all', $sort = 'recent', $savings = 'all', $terms = null, $id = null, $type = 'all')
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-        $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
-
-        if(isset($terms))
-        {
-            $steps = $stepRepository->findByTerms($em, $terms);
-        }
-        else
-        {
-//            $steps = $stepRepository->findByFiltersAndSorts($em, $categories, $sort, $savings, $type);
-            $steps = $stepRepository->findRecentlySubmitted($em);
-        }
-
-        if(count($steps) == 1)
-        {
-            $stepNoun = "step";
-            $resultNoun = "result";
-        }
-        else
-        {
-            $stepNoun = "steps";
-            $resultNoun = "results";
-        }
-
-        return $this->render('GYGBFrontBundle:FindAStep:_allStepList.html.twig', array(
-            'steps' => $steps,
-            'categories' => $categories,
-            'savings' => $savings,
-            'sort' => $sort,
-            'type' => $type,
-            'id' => $id,
-            'terms' => $terms,
-            'resultNoun' => $resultNoun,
-            'stepNoun' => $stepNoun,
-        ));
-    }
-
-    public function stepDetailsAction($id, $hidden)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-        $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
-        $stepSubmission = $this->getDoctrine()->getRepository('GYGBBackBundle:StepSubmission');
-
-        $step = $stepRepository->findOneBy(array('id' => $id));
-        
-        if(!$step)
-        {
-            throw new NotFoundHttpException('We can\'t find this step!');
-        }
-
-        return $this->render('GYGBFrontBundle:FindAStep:_stepDetails.html.twig', array(
-            'step' => $step,
-            'hidden' => $hidden
-        ));
-    }
-    
-    
-    public function organizationAdsAction()
-    {
-        $organizationRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Organization');
-        $organizationAds = $organizationRepository->findBy(array('organization' => '1'));
-
-        return $this->render('GYGBFrontBundle:FindAStep:_organizationAds.html.twig', array(
-            'organizationAds' => $organizationAds
         ));
     }
 

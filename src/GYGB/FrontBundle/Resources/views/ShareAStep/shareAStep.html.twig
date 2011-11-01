@@ -1,7 +1,18 @@
 {% extends '::layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/stepList.css') }}" type="text/css">        
+    <link rel="stylesheet" href="{{ asset('styles/shareAStep.css') }}" type="text/css">        
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/shareAStep.js') }}" type="text/javascript"></script>
+{% endblock %}        
+    
 {% block content %}
-{% include 'GYGBFrontBundle:TakeAStep:_takeAStepMenu.html.twig' %}
+    {% include 'GYGBFrontBundle:Steps:_takeAStepMenu.html.twig' %}
     <span class="take-a-step-heading">Once you take your step, share it and enter to win over $2000 in prizes.</div>
     
     <div id="step-submission-container">

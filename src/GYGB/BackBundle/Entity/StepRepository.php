@@ -64,81 +64,7 @@ class StepRepository extends EntityRepository
         return $query->getQuery()->getResult();
     }
 
-    public function findByFiltersAndSorts($em, $category, $sort, $savings, $type)
-    {
-        $query = $this->createQueryBuilder('s');
-
-        if(isset($savings) && $savings != 'all')
-        {
-            $savings = explode(' ', $savings);
-            $savingsWhere = '';
-            $i = 0;
-            foreach($savings as $s)
-            {
-                $savingsWhere .= 's.savings = :savings' . $i . ' OR ';
-                $query->setParameter('savings' . $i, $s);
-
-                $i++;
-            }
-
-            $savingsWhere = rtrim($savingsWhere, ' OR ');
-            $query->andWhere($savingsWhere);
-        }
-
-        if(isset($category) && $category != 'all')
-        {
-            // categories are a space delimited string
-            // add a "where category = x OR category = y"
-            $categories = explode(' ', $category);
-            $categoryWhere = '';
-            $i = 0;
-            foreach($categories as $c)
-            {
-                $categoryWhere .= 's.category = :category' . $i . ' OR ';
-                $query->setParameter('category' . $i, $c);
-
-                $i++;
-            }
-
-            $categoryWhere = rtrim($categoryWhere, ' OR ');
-            $query->andWhere($categoryWhere);
-        }
-
-        if(isset($type) && $type != 'all')
-        {
-            $type = explode(' ', $type);
-            $typeWhere = '';
-            $i = 0;
-            foreach($type as $t)
-            {
-                $typeWhere .= 's.:type = 1' . $i . ' OR ';
-                $query->setParameter('type' . $i, $t);
-
-                $i++;
-            }
-
-            $typeWhere = rtrim($typeWhere, ' OR ');
-            $query->andWhere($typeWhere);
-        }
-
-        if(isset($sort) && $sort == 'popular')
-        {
-            $query->join('s.submissions', 'ss');
-            $query->groupBy('s.id');
-            $query->orderBy('s.stepCount', 'DESC');
-        }
-        else if(isset($sort) && $sort == 'recent')
-        {
-            $query->join('s.submissions', 'ss');
-            $query->orderBy('ss.datetimeSubmitted', 'DESC');
-        }
-
-        $query->andWhere('s.approved = true');
-
-        return $query->getQuery()->getResult();
-    }
-    
-    public function findRecentlySubmitted($em)
+    public function findRecentlyTaken($em)
     {
         $query = $this->createQueryBuilder('s');
         $query->join('s.stepSubmissions', 'ss');
@@ -152,7 +78,7 @@ class StepRepository extends EntityRepository
         
         return array_merge($resultsA, $resultsB);
     }
-
+    
     public function findAllEvents($stepSubmissionRepository, $commitmentRepository)
     {
         $submissions = $stepSubmissionRepository->findAll();

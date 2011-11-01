@@ -1,0 +1,98 @@
+#user-menu {
+    float: right;
+    font-size: 12px;
+}
+
+#user-menu li {
+    float: left;
+    margin: 0 5px;
+}
+
+#user-menu a {
+    border-right: 1px solid #666;
+    margin-right: 4px;
+    padding-right: 6px;
+}
+
+#user-menu a.last {
+    border: none;
+}
+
+    
+#menu {
+    float: right;
+    margin-top: 20px;
+}
+
+#menu li {
+    float: left;
+    margin: 5px;
+    display: block;
+    padding: 3px 6px;
+}
+
+#menu li.current {
+    background: #D65629;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    color: white;
+}
+
+#menu li a {
+    color: #D65629;
+}
+
+#menu li.current a {
+    color: white;
+}
+#menu li.current a:hover {
+    text-decoration: none;
+}
+
+div.take-a-step-menu {
+    width: 100%;
+    margin: 15px 0;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    height: 75px;
+}
+
+div.take-a-step-menu li {
+    width: 33%;
+    float: left;
+    clear: none;
+    text-align: center;
+    font-size: 22px;
+    opacity: .7;
+}
+
+div.take-a-step-menu li.current {
+    opacity: 1;
+}
+
+div.take-a-step-menu li.current a {
+    color: black;
+}
+
+div.take-a-step-menu li.current:hover a {
+    text-decoration: none;
+}
+
+div.take-a-step-menu li.findAStep  {
+    background: url("../images/step-food.jpg") no-repeat scroll 17px;
+    padding: 0 0 80px;
+    background-position: center;
+}
+
+div.take-a-step-menu li.takeAStep  {
+    background: url("../images/step-energy.jpg") no-repeat scroll 17px;
+    padding: 0 0 84px;
+    background-position: center;
+}
+
+div.take-a-step-menu li.shareAStep  {
+    background: url("../images/step-dollar.jpg") no-repeat scroll 17px;
+    padding: 0 0 80px;
+    background-position: center;
+}

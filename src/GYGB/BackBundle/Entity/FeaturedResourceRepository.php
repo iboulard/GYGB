@@ -17,39 +17,39 @@ class FeaturedResourceRepository extends EntityRepository
     {
         $featured = $this->findBy(array('type' => 'home'));
         
-        $organizations = array();
+        $resources = array();
         foreach($featured as $f)
         {
-            $organizations[] = $f->getOrganization();
+            $resources[] = $f->getResource();
         }
         
-        return $organizations;
+        return $resources;
     }
     
     public function findFeaturedOnTakeAStep($category)
     {
         $featured = $this->findBy(array('type' => 'take a step'));
         
-        $organizations = array();
+        $resources = array();
         foreach($featured as $f)
         {
-            if($f->getOrganization()->getCategory() == $category) $organizations[] = $f->getOrganization();
+            if($f->getResource()->getCategory() == $category) $resources[] = $f->getResource();
         }
         
-        return $organizations;
+        return $resources;
     }
 
     public function findAllFeaturedOnTakeAStep()
     {
         $featured = $this->findBy(array('type' => 'take a step'));
         
-        $organizations = array();
+        $resources = array();
         foreach($featured as $f)
         {
-            $organizations[] = $f->getOrganization();
+            $resources[] = $f->getResource();
         }
         
-        return $organizations;
+        return $resources;
     }    
     
 }

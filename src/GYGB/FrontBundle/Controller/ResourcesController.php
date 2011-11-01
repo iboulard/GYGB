@@ -11,11 +11,11 @@ class ResourcesController extends Controller
 
     public function resourcesAction($category)
     {
-        $organizationRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Organization');
+        $resourceRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Resource');
         $featuredResourceRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:FeaturedResource');
         $categories = array('energy', 'food', 'waste', 'transportation', 'general');
 
-        $admin = $this->get('gygb.back.admin.organization');
+        $admin = $this->get('gygb.back.admin.resource');
         
         $categoryOptions = array(
             'food' => array(
@@ -51,14 +51,12 @@ class ResourcesController extends Controller
         {
             $featuredResources = $featuredResourceRepository->findFeaturedOnTakeAStep($category);
 
-            $allResources = $organizationRepository->findBy(array('category' => $category));
+            $allResources = $resourceRepository->findBy(array('category' => $category));
             
             foreach($allResources as $r)
             {
                 if(!in_array($r, $featuredResources)) $resources[] = $r;
-            }
-    
-            
+            }            
         }
         else
         {

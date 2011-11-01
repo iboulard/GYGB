@@ -1,0 +1,48 @@
+div#steps-taken {
+    float: left;
+    width: 50%;
+}
+div#commitments-made {
+    float: left;
+    width: 50%;
+}
+
+div.counter {
+    font-size: 2em;
+    color: black;
+    float: left;
+}
+
+div#steps-taken div.counter {
+    margin: 30px 0 30px 100px;
+}
+
+div#commitments-made div.counter {
+    margin: 30px 0 30px 50px;
+}
+
+
+div.counter span.step-digit {
+    color: white;
+    padding: 4px 2px;
+    margin: 1px;
+    font-family: courier;
+    border: none;
+}
+
+div.counter span.step-digit {
+    -moz-border-radius: 0px;
+    webkit-border-radius: 0px;
+    border-radius: 0px;
+    background: #777;
+}
+
+div#steps-taken-counter .step-digit:hover {
+    background: #777;
+}
+
+div.step-list#community-steps {
+    width: 60%;
+    margin: 15px auto;
+    overflow: auto;
+}

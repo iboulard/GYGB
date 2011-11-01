@@ -1,50 +1,65 @@
 {% extends '::layout.html.twig' %}
 
-{% block content %}
-<div id="resources-container">
-    {% if category is defined and category != "" %}
-        <a href="{{ path('resources') }}">&larr; All Resources</a>
-        <div class="category-resources">
-            <div class="category-resources-heading-container">
-                <div class="category-resources-heading">{{ categoryOptions[category]['heading'] }}</div>
-                <div class="category-resources-description">
-                    <img style="float: {{ categoryOptions[category]['foot'] }};" class="category-step" src="{{ asset('images/vert-step-' ~ category ~ '.png') }}" />
-                    {% if categoryOptions[category]['description'] is defined %}
-                        <div class="category-description">{{ categoryOptions[category]['description']|raw }}</div>
-                    {% else %}
-                        <div class="featured-resource">
-                            {% include "GYGBFrontBundle:Resources:_organizations.html.twig" with {'organizations' : featuredResources, 'showSteps' : true } %}
-                        </div>
-                    {% endif %}
-                </div>
-            </div>
-            {% if categoryOptions[category]['description'] is defined %}
-                    {% include "GYGBFrontBundle:Resources:_organizations.html.twig" with {'organizations' : featuredResources, 'showSteps' : true } %}
-            {% endif %}
-            {% include "GYGBFrontBundle:Resources:_organizations.html.twig" with {'organizations' : resources, 'showSteps' : true } %}
-        </div>
-    {% else %}
-        <h1>Tompkins County Resources</h1>
-        <h2>Need help taking a step? Select a category to find Tompkins County resources that will help you save money and energy:</h2>
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/resources.css') }}" type="text/css">        
+    <link rel="stylesheet" href="{{ asset('styles/resourceList.css') }}" type="text/css">        
+    <link rel="stylesheet" href="{{ asset('styles/stepList.css') }}" type="text/css">        
+{% endblock %}
 
-        <div class="resource-category-options">
-            {% for c in categories %}
-                <a class="resource-category-option {{ c }} {% if c == category %}current{% endif %}" href="{{ path('resources', {'category' : c }) }}">
-                    {{ categoryOptions[c]['heading'] }}
-                </a>
-            {% endfor %}
-            <div style="clear: both;">&nbsp;</div>
-        </div>
-
-        <div class="category-resources">
-            <div class="category-resources-heading-container">
-                <div class="category-resources-heading">Featured Resources</div>
-            </div>
-            {% include "GYGBFrontBundle:Resources:_organizations.html.twig" with {'organizations' : featuredResources, 'showSteps' : false } %}        
-        </div>
-    {% endif %}
-
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/resourceList.js') }}" type="text/javascript"></script>
+{% endblock %}
         
-</div>
+{% block content %}
+
+    <div id="resources-container">
+        {% if category is defined and category != "" %}
+            <a href="{{ path('resources') }}">&larr; All Resources</a>
+            
+            <div class="category-resources">
+                <div class="category-resources-heading-container">
+                    <div class="category-resources-heading">{{ categoryOptions[category]['heading'] }}</div>
+                    <div class="category-resources-description">
+                        <img style="float: {{ categoryOptions[category]['foot'] }};" class="category-step" src="{{ asset('images/vert-step-' ~ category ~ '.png') }}" />
+                        {% if categoryOptions[category]['description'] is defined %}
+                            <div class="category-description">{{ categoryOptions[category]['description']|raw }}</div>
+                        {% else %}
+                            <div class="featured-resource">
+                                {% include "GYGBFrontBundle:Resources:_resourceList.html.twig" with {'resources' : featuredResources, 'showSteps' : true } %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% if categoryOptions[category]['description'] is defined %}
+                        {% include "GYGBFrontBundle:Resources:_resourceList.html.twig" with {'resources' : featuredResources, 'showSteps' : true } %}
+                {% endif %}
+                {% include "GYGBFrontBundle:Resources:_resourceList.html.twig" with {'resources' : resources, 'showSteps' : true } %}
+            </div>
+
+        {% else %}
+            <h1>Tompkins County Resources</h1>
+            <h2>Need help taking a step? Select a category to find Tompkins County resources that will help you save money and energy:</h2>
+
+            <div class="resource-category-options">
+                {% for c in categories %}
+                    <a class="resource-category-option {{ c }} {% if c == category %}current{% endif %}" href="{{ path('resources', {'category' : c }) }}">
+                        {{ categoryOptions[c]['heading'] }}
+                    </a>
+                {% endfor %}
+                <div style="clear: both;">&nbsp;</div>
+            </div>
+
+            <div class="category-resources">
+                <div class="category-resources-heading-container">
+                    <div class="category-resources-heading">Featured Resources</div>
+                </div>
+                {% include "GYGBFrontBundle:Resources:_resourceList.html.twig" with {'resources' : featuredResources, 'showSteps' : false } %}        
+            </div>
+        {% endif %}
+
+
+    </div>
     
 {% endblock content %}

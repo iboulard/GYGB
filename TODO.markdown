@@ -11,6 +11,7 @@ URGENT
 	
 		- add m2m field on admin
 
+		
 
 Issues
 ==============
@@ -42,6 +43,8 @@ Ideas
 
 1.1
 =============================
+
+#	0.	Upload site map
 
 #	1.	Google Map
 
@@ -118,6 +121,45 @@ Ideas
 
 
 == Finished =========================
+Post 1.0 Cleanup
+=================
+
+//	1. clean controllers and views
+	
+	
+//	2. clean css + templates
+	
+//		- split into multiple files
+	
+	
+//	3. clean js!
+	
+//		- split into multiple files
+	
+	
+//	4. make generic step list templates
+
+
+//	5. Organization - Resource
+	
+//		- admin
+		
+//		- entity
+		
+//		- repo
+		
+//		- controllers
+
+//		- templates
+		
+//		- css
+	
+//	6.	Repos!
+	
+//	10.	Misc
+	
+//		- re add sorting and counts!
+
 1.0
 =======================
 

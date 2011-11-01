@@ -1,9 +1,0 @@
-<div id="ads">
-    {% for a in organizationAds %}
-        <div class="logo-container {{ a.category }}" style="{% if a.width is defined %}width: {{ a.width }}px{% else %}90px{% endif %}">
-            <a href="{{ a.website }}">
-                <img style="{% if a.width is defined %}width: {{ a.width }}px{% endif %}" src="{{ asset('images/logos/'~a.logo) }}" />
-            </a>
-        </div>
-    {% endfor %}
-</div>

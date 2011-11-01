@@ -1,0 +1,166 @@
+div#step-page-container {
+    width: 100%;
+    float: left;
+}
+
+div#step-option-container {
+    width: 861px;
+    float: left;
+    height: 40px;
+    margin-bottom: 15px;
+}
+
+#sort-options {
+    float: right;
+    width: 238px;
+    text-align: center;
+    margin:15px 50px 0 0;
+    font-size: 14px;
+}
+
+#sort-options a {
+    margin: 5px;
+}
+
+#sort-options a.last {
+    border: none;
+}
+
+#sort-options a.current:hover,
+#sort-options a.current {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+#search-steps {
+    width: 216px;
+    float: right;
+    margin-right: 30px;
+    margin-top: 7px;
+}
+
+#search-steps div {
+    float: left;
+}
+
+#search-steps label {
+    display: none;
+}
+
+#search-steps input {
+    background:transparent url('../images/search.gif') no-repeat scroll right center;
+    margin:0;
+    width:200px;
+    padding-right:22px;
+    font-size: 16px;
+}
+
+#search-steps .button {
+    background: #ddd;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+
+#filters {
+    width: 210px;
+    float: left;
+    margin: 0 20px 0 0;
+    padding: 1px;
+}
+
+#filters a {
+    color: #4a793c;
+}
+
+#filters div.filter-group {
+    border: 1px solid #ccc;
+    border-radius: 0 0 7px 7px;
+    -moz-border-radius: 0 0 7px 7px;
+    -webkit-border-radius: 0 0 7px 7px;
+    margin-bottom: 10px;
+}
+
+#filters div.filter-group div.filter-group-heading {
+    background: #666;
+    color: white;
+    padding: 6px;
+}
+
+#filters div.filter-group div.filter-group-heading a {
+    font-size: 12px;
+    color: #a3a8ff;
+    float: right;
+}
+
+
+#filters div.filter {
+    margin: 5px;
+    padding: 4px;
+    border: none;
+    color: black;
+    float: none; 
+    height: 23px;
+    width: 187px;
+    font-size: 15px;
+    font-family: Tahoma;
+
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-shadow:none;
+
+    -moz-border-radius: 7px;
+    webkit-border-radius: 7px;
+    border-radius: 7px;
+    
+    opacity: .6;
+
+}
+
+#filters div.filter.current {
+    opacity: 1;
+}
+
+#filters div.filter input {
+    float: right;
+    margin: 5px;
+    display: block;
+}
+
+#filters div.filter span.savings {
+    color: #4A793C;
+    font: arial;
+}
+
+#filters div.filter:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+#filters div.filter.current span.filter-label,
+#filters div.filter:hover span.filter-label {
+    color: black;
+}
+
+#filters div.filter span.filter-label {
+    display: block;
+    margin: 5px;
+    float: left;
+    color: #666;
+}
+#filters div.filter span.filter-label:hover {
+    text-decoration: underline;
+}
+
+
+#filters div.filter img {
+    float: left;
+}
+div.step-list#all-step-list {
+    width: 50%;
+    margin: 0 0 20px 110px;
+    float: left;
+}

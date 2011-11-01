@@ -1,0 +1,136 @@
+div#about-container {
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    width: 100%;
+    clear: both;
+    margin: 0 auto 15px auto;
+}
+
+div#about-container div#about {
+    font-size: 20px;
+    line-height: 31px;
+    text-align: center;
+    width: 855px;
+    float: none;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+div#about-container #about a.food {
+    background: url("../images/food.png") no-repeat scroll 4px;    
+}
+div#about-container #about a.waste {
+    background: url("../images/waste.png") no-repeat scroll 4px;    
+}
+div#about-container #about a.energy {
+    background: url("../images/energy.png") no-repeat scroll 4px;    
+}
+div#about-container #about a.transportation {
+    background: url("../images/transportation.png") no-repeat scroll 4px;    
+}
+
+div#about-container #about a {
+    padding: 0 0 0 35px;
+}
+
+div#about-container #about a:hover {
+    cursor: pointer;
+}
+
+div#home-columns-container {
+    width: 96%; background: #D65629; padding: 0 20px; overflow: auto;
+    border-radius: 7px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+}
+
+div.home-column {
+    width: 235px;
+    margin: 40px 20px;
+    height: 240px;
+    float: left;
+    border: 1px solid #eee;
+    background: white;
+    padding: 0 15px;
+}
+
+div.home-column:hover {
+    box-shadow: 0 8px 7px #666;    
+    -moz-box-shadow: 0 8px 7px #666;    
+    -webkit-box-shadow: 0 8px 7px #666;
+    cursor: pointer;
+}
+
+div.home-column h2 {
+    text-align: center;
+    margin: 10px 0;
+}
+
+div.home-column h2 a {
+    color: black;
+}
+
+div.home-column h2 a:hover {
+    text-decoration: none;
+}
+
+div.home-column h3 {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 14px;
+    text-align: center;
+}
+
+div.home-column img {
+    margin: 0 auto;
+    display: block;
+}
+
+div#enter-raffle-container {
+    padding: 50px 0;
+    margin: 30px 0;
+    font-size: 20px;
+    line-height: 30px;
+    border-top: 2px dashed #D78228;
+    border-bottom: 2px dashed #D78228;
+}
+
+div#about-you-container {
+    width: 600px;
+    margin: 0 auto 15px auto;
+}
+
+div#enter-raffle {
+    float: right;
+}
+
+div#communities-supported {
+    font-size: 20px;
+    line-height: 30px;
+    font-style: italic;
+    text-align: center;
+    margin-top: 50px;
+    padding: 0 50px;
+}
+
+
+div#founders-and-sponsors {
+    width: 100%;
+    float: left;
+    margin-top: 100px;
+    border-top: 1px solid #ddd;
+}
+
+div.logo-block {
+    margin: 15px auto;
+    overflow: auto;
+    width: 949px;
+}
+
+div.logo-block img {
+    display: block;
+    float: left; 
+    width: 55px;
+    margin: 5px;
+}

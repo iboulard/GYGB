@@ -4,12 +4,15 @@
 
         {% if selectedStep.title is defined %}
            <h2 style="margin: 10px 0;">Your Step:</h2>
-           <div class="step-container" style="background: #ffffcc; border: none;">
-                <div class="step {{ selectedStep.category}}">
-                    <span class="savings">{{ selectedStep.savingsLabel }}</span>
-                    <span class="step">{{ selectedStep.title }}</span>
-                </div>
-            </div>
+           {% include "GYGBFrontBundle:StepList:_step.html.twig" with {
+                'step' : selectedStep,
+                'id' : selectedStep.id,
+                'displayCounts' : false,
+                'first' : false,
+                'last' : true,
+                'linkStep' : false,
+                'highlight' : true
+           }%}
         {% endif %}
 
         <div style="{% if selectedStep.title is defined %}display: none;{% endif %}">

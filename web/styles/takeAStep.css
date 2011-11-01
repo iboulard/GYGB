@@ -1,0 +1,68 @@
+div.take-a-step-box {
+    width: 60%;
+    margin: 15px auto;
+    font-size: 20px;
+}
+
+div.take-a-step-box .step-container {
+    border: 1px solid #D65629;
+    border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
+}
+
+div.take-a-step-box span.description a {
+    color: #a3a8ff !important;
+}
+
+
+div.take-a-step-box span.savings {
+    width: 35px !important;
+}
+
+div.take-a-step-box span.description {
+    background: #D65629;
+    padding: 10px;
+    display: block;
+    border-radius: 0 0 10px 10px;
+    -moz-border-radius: 0 0 10px 10px;
+    -webkit-border-radius: 0 0 10px 10px;
+    color: white;
+}
+
+div#take-a-step-page-container {
+    
+}
+div#take-a-step-page-container h1 {
+    font-size: 26px !important;
+}
+
+div#take-a-step-page-container div.step-buttons-container {
+    width: 100%;
+    font-size: 28px;
+    margin: 30px 0 0 0;
+}
+
+div.share-this-step-container a.button {
+}
+
+div#take-a-step-page-container div.commit-to-this-step {
+    float: left;
+    width: 400px;
+}
+
+div#take-a-step-page-container div.share-this-step {
+    float: right;
+    width: 490px;
+}
+
+div#commit-form {
+    background: #ddd;
+    font-size: 14px; width: 400px; margin-top: 25px; display: none;
+}
+
+div.step-list#step-events {
+    width: 57%;
+    margin: 0 auto;
+    overflow: auto;
+}

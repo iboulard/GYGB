@@ -5,12 +5,12 @@ namespace GYGB\BackBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * GYGB\BackBundle\Entity\Organization
+ * GYGB\BackBundle\Entity\Resource
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="GYGB\BackBundle\Entity\OrganizationRepository")
+ * @ORM\Entity(repositoryClass="GYGB\BackBundle\Entity\ResourceRepository")
  */
-class Organization
+class Resource
 {
 
     public function __toString()
@@ -85,11 +85,11 @@ class Organization
     private $approved;
 
    /**
-     * @ORM\ManyToMany(targetEntity="Step", mappedBy="featuredOrganizations")
+     * @ORM\ManyToMany(targetEntity="Step", mappedBy="featuredResources")
     */
     protected $featuredSteps;
 
-      /** @ORM\OneToMany(targetEntity="FeaturedResource", mappedBy="organization", cascade={"persist", "remove"})
+      /** @ORM\OneToMany(targetEntity="FeaturedResource", mappedBy="resource", cascade={"persist", "remove"})
        */
       protected $features;
 

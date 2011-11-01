@@ -10,8 +10,7 @@ class AboutController extends Controller
 {    
     public function aboutAction()
     {                    
-        return $this->render('GYGBFrontBundle:About:about.html.twig', array(
-        ));
+        return $this->render('GYGBFrontBundle:About:about.html.twig', array());
     }
 
 }

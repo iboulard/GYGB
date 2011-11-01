@@ -1,0 +1,81 @@
+div#resources-container {
+    
+}
+
+div.category-resources {
+    overflow: auto;
+    margin: 10px 0 25px 0;
+}
+
+div.category-resources-heading-container img.category-step {
+    width: 9%;
+    float: left;
+    margin: 15px;
+}
+
+div.category-resources-heading-container {
+    overflow: auto;
+}
+
+div.category-resources-heading {
+    display: block;
+    background: #D65629;
+    color: white;
+    font-size: 22px;
+    padding: 7px;
+}
+
+div.category-resources-description div.category-description {
+    padding: 30px 50px;
+    font-size: 25px;
+    line-height: 35px;
+}
+
+div.featured-resource div.organizations {
+    width: 85%;
+    float: right;
+    overflow: auto;
+}
+
+div.featured-resource {
+    width: 100%;
+}
+
+
+div.resource-category-options {
+    width: 100%;
+    margin: 20px 0;
+}
+a.resource-category-option {
+    float: left;
+    padding: 10px 0 10px 35px;
+    margin: 0 5px;
+}
+
+a.resource-category-option.current {
+    color: black;
+}
+
+a.resource-category-option.current:hover {
+    color: black;
+    text-decoration: none;
+}
+
+a.resource-category-option:hover {
+}
+
+a.resource-category-option.transportation {
+    background: url("../images/transportation.png") no-repeat scroll 4px;    
+}
+a.resource-category-option.general {
+    background: url("../images/general.png") no-repeat scroll 4px;    
+}
+a.resource-category-option.waste {
+    background: url("../images/waste.png") no-repeat scroll 4px;    
+}
+a.resource-category-option.energy {
+    background: url("../images/energy.png") no-repeat scroll 4px;    
+}
+a.resource-category-option.food {
+    background: url("../images/food.png") no-repeat scroll 4px;    
+}

@@ -1,0 +1,15 @@
+<div id="{{ id }}" class="step-container {{ step.category }} {% if first %}first{% endif %} {% if last %}last{% endif %} {% if highlight is defined and highlight %}highlight{% endif %}">
+    <div class="step {{ step.category }}">
+        {% if displayCounts %}                        
+            <span class="step-count">{{ step.stepCount }}</span>
+            <span class="count-label">step{% if step.stepCount == 1%}<span style="color: white";>{%endif%}s{% if step.stepCount == 1%}</span>{%endif%}</span>
+            <span class="commitment-count">{{ step.commitmentCount }}</span>
+            <span class="count-label">commitment{% if step.commitmentCount == 1%}<span style="color: white";>{%endif%}s{% if step.commitmentCount == 1%}</span>{%endif%}</span>
+        {% endif %}
+        <span class="step">
+            {% if linkStep %}<a class="step-link" href="{{ path('takeAStep', {'id' : step.id }) }}"> {% endif %}
+                {{ step.title }}
+            {% if linkStep %}</a>{% endif %}
+        </span>
+    </div>
+</div>                

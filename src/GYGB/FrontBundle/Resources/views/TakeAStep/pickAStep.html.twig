@@ -1,7 +1,12 @@
 {% extends '::layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/steps.css') }}" type="text/css">        
+{% endblock %}
+
 {% block content %}
-    {% include 'GYGBFrontBundle:TakeAStep:_takeAStepMenu.html.twig' %}
+    {% include 'GYGBFrontBundle:Steps:_takeAStepMenu.html.twig' %}
     <span class="take-a-step-heading">Once you <a href="{{ path('findAStep') }}">find your step &uarr;</a>, you can find resources <b>here</b> to help you take it.</span>
     <br/>
     <span class="take-a-step-heading">If you have already taken a step, <a href="{{ path('shareAStep') }}">share it &rarr;</a>.</span>

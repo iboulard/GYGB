@@ -1,25 +1,30 @@
 {% extends '::layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/coalition.css') }}" type="text/css">        
+{% endblock %}
+
 {% block content %}
-<div id="coalition">
-    <h1>The Get Your GreenBack Tompkins Coalition</h1>
-    <ul style="float: left;">
-        {% for c in coalitionMembersA %}
-            <li>
-                {% if c.url is defined and c.url != "" %}<a href="{{ c.url }}" target="_blank">{% endif %}
-                    {{ c.name }}
-                {% if c.url is defined and c.url != "" %}</a>{% endif %}
-            </li>
-        {% endfor %}
-    </ul>
-    <ul style="float: right;">
-        {% for c in coalitionMembersB %}
-            <li>
-                {% if c.url is defined and c.url != "" %}<a href="{{ c.url }}" target="_blank">{% endif %}
-                    {{ c.name }}
-                {% if c.url is defined and c.url != "" %}</a>{% endif %}
-            </li>
-        {% endfor %}
-    </ul>
-</div>
+    <div id="coalition">
+        <h1>The Get Your GreenBack Tompkins Coalition</h1>
+        <ul class="left-column">
+            {% for c in coalitionMembersA %}
+                <li>
+                    {% if c.url is defined and c.url != "" %}<a href="{{ c.url }}" target="_blank">{% endif %}
+                        {{ c.name }}
+                    {% if c.url is defined and c.url != "" %}</a>{% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        <ul class="right-column">
+            {% for c in coalitionMembersB %}
+                <li>
+                    {% if c.url is defined and c.url != "" %}<a href="{{ c.url }}" target="_blank">{% endif %}
+                        {{ c.name }}
+                    {% if c.url is defined and c.url != "" %}</a>{% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

@@ -1,0 +1,46 @@
+
+    {% if resources|length > 0 %}
+        <div class="resource-list-container">
+    {% endif %}
+                
+        {% for resource in resources %}
+            <div class="resource-container">
+                <div class="resource">
+                    <div class="title-container">
+                        {% if resource.website is defined %}<a class="box-link" target="_blank" href="{{ resource.website }}">{% endif %}
+                            {{ resource.name }}
+                        {% if resource.website is defined %}</a>{% endif %}
+
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="edit" href="{{ admin.generateObjectUrl('edit', resource) }}">edit</a>
+                        {% endif %}
+                    </div>
+                    {% if resource.logo is defined and resource.logo != "" %}
+                        <img src="{{ asset('files/logos/' ~ resource.logo) }}" /> 
+                    {% endif %}
+                    {% if resource.description is defined %}
+                        <div class="description">
+                            {{ resource.description|raw }}
+                        </div>
+                    {% endif %}
+                    {% if resource.featuredSteps|length > 0 and showSteps %}
+                        <div id="resources-steps-container">
+                            <h2>Related Steps</h2>
+                            {% render "GYGBFrontBundle:StepList:stepList" with {
+                                'steps' : resource.featuredSteps,
+                                'displayCounts' : true,
+                                'linkSteps' : true,
+                                'id' : 'resource-steps'
+                            }%}   
+                        </div>
+                    {% endif %}
+                    <div style="clear: both;"></div>
+                </div>
+            </div>
+        {% endfor %}
+                
+    {% if resources|length > 0 %}
+        <div style="clear: both;"></div>
+        </div>
+    {% endif %}
+    

@@ -1,0 +1,20 @@
+div#about-page-container h1 {
+    font-size: 30px;
+}
+
+div#about-page-container p {
+    line-height: 20px;
+    margin: 15px 0;
+}
+
+div#about-page-container div#about-text {
+    font-size: 24px;
+    text-align: center;
+    color: #4a793c;
+    margin-bottom: 30px;
+    line-height: 32px;
+}
+
+div#about-page-container h2 {
+    font-size: 20px;
+}

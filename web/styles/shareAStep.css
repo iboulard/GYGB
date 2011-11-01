@@ -1,0 +1,127 @@
+div#step-submission-container {
+    width: 100%;
+    float: left;
+    padding: 15px 0;
+    text-align: center;
+}
+
+div#whats-your-step {
+    width: 550px;
+    clear: right;
+    margin: 0 auto 10px auto;
+}
+
+div#step-form {
+    float: right;
+    background: #ddd;
+    width: 515px;
+    padding: 15px 25px;
+    overflow: auto;
+    -moz-border-radius: 7px;  
+    webkit-border-radius: 7px;
+    border-radius: 7px;
+    box-shadow: -2px 5px 10px #999;
+    -moz-box-shadow: -2px 5px 10px #999;
+    -webkit-box-shadow: -2px 5px 10px #999;
+}
+
+div#step-form h2 {
+    font-size: 20px;
+    text-align: left;
+    margin: 30px 0 0 0;
+    display: block;
+}
+
+div#step-form form input, 
+div#step-form form textarea {
+    width: 99%;
+}
+
+div#step-form select#form_step_dropdown {
+    width: 90%;
+    font-size: 14px;
+}
+
+div#step-form form input[type="submit"] {
+    width: auto;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+div#step-form .category-selections {
+    width: 100%;
+    clear: both;
+    overflow: auto;
+    
+}
+
+div#step-form .category-selections a {
+    float: left;
+    display: block;
+}
+
+div#step-form .category-selection img,
+div#step-form .category-selection span {
+    float: left;
+    display: block;
+    clear: none;
+}
+
+div#step-form .category-selection {
+    float: left;
+    margin: 5px 2px;
+    background: #eee;
+    -moz-border-radius: 7px;
+    webkit-border-radius: 7px;
+    border-radius: 7px;
+    padding: 5px;
+    border: 1px solid #eee;
+}
+
+div#step-form .category-selection.selected {
+    border: #4a793c 1px solid;
+    color: black;
+}
+
+div#step-form .category-selection:hover {
+    border: #4a793c 1px solid;
+    cursor: pointer;
+    color: black;
+}
+
+div#step-form form div label {
+    float: left;
+    margin-top: 12px;
+}
+
+div#step-form form textarea,
+div#step-form form input[type="text"] {
+    font-size: 19px;
+    font-family: courier;
+}
+
+div.category-selection span.category-name {
+    display: block;
+    float: right;
+    margin: 5px;
+    color: black;
+    font-size: 13px;
+}
+
+div.category-selection:hover span.category-name {
+    color: black;
+}
+
+a.share-your-own {
+    margin: 10px 0;
+    display: block;
+}
+
+a.share-your-own-cancel {
+    font-size: 12px;
+    float: right;
+}
+
+div.share-your-own-container {
+    display: none;
+}

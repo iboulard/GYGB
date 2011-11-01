@@ -34,11 +34,11 @@ services:
       tags:
         - { name: sonata.admin, manager_type: orm, group: Steps, label: Step Commitments }
       arguments: [null, GYGB\BackBundle\Entity\Commitment, GYGBBackBundle:StepCommitmentAdmin]
-    gygb.back.admin.organization:
-      class: GYGB\BackBundle\Admin\OrganizationAdmin
+    gygb.back.admin.resource:
+      class: GYGB\BackBundle\Admin\ResourceAdmin
       tags:
         - { name: sonata.admin, manager_type: orm, group: Content, label: Resources }
-      arguments: [null, GYGB\BackBundle\Entity\Organization, GYGBBackBundle:OrganizationAdmin]
+      arguments: [null, GYGB\BackBundle\Entity\Resource, GYGBBackBundle:ResourceAdmin]
     gygb.back.admin.featuredresource:
       class: GYGB\BackBundle\Admin\FeaturedResourceAdmin
       tags:
@@ -80,7 +80,7 @@ twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
     globals:
-      adminTitle: "Get Your GreenBack"
+      adminTitle: "Get Your GreenBack - Tompkins!"
       adminEmail: "haggertypat@gmail.com"
       
 # Assetic Configuration

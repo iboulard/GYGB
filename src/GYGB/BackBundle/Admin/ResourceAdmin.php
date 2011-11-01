@@ -9,9 +9,9 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use GYGB\BackBundle\Entity\Step;
-use GYGB\BackBundle\Entity\Organization;
+use GYGB\BackBundle\Entity\Resource;
 
-class OrganizationAdmin extends Admin
+class ResourceAdmin extends Admin
 {
 
     protected $entityLabelPlural = "Resources";
@@ -27,7 +27,7 @@ class OrganizationAdmin extends Admin
         ;
 
         $showGroups = array(
-            'Organization' => array(
+            'Resource' => array(
                 'fields' => array(
                     'name',
                     'website',
@@ -125,7 +125,7 @@ class OrganizationAdmin extends Admin
     public $formFieldPreHooks = array();
     
     public $formFieldPostHooks = array(
-        'file' => 'GYGBBackBundle:Organization:_currentLogo.html.twig'
+        'file' => 'GYGBBackBundle:Resource:_currentLogo.html.twig'
     );
 
 

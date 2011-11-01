@@ -1,0 +1,15 @@
+<div class="step-list" id="{{ id }}">
+    {% if terms is defined and terms != "" %}
+        <div class="step-list-results">Your search for <i>{{ terms }}</i> returned {{ steps|length }} {{ resultNoun }}.</div>
+    {% endif %}
+    <div class="step-list-container">
+        {% if steps|length == 0 and (terms is not defined or terms == "") %}
+            <div class="step-list-results">There are no steps.</div>
+        {% else %}
+            {% for step in steps %}
+                {% include "GYGBFrontBundle:StepList:_step.html.twig" with {'step' : step, 'id' : loop.index, 'displayCounts' : displayCounts, 'first' : loop.first, 'last' : loop.last, 'linkStep' : linkSteps } %}
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+                

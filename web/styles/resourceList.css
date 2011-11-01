@@ -1,0 +1,74 @@
+div.resource-list-container {
+    width: 100%;
+}
+
+div.resource-list-container ul {
+    list-style: disc;
+    margin-left: 15px;
+}
+
+div.resource-container {
+    width: 100%;
+    float: left;
+}
+
+div.resource {
+    margin: 8px;
+    padding: 15px;
+    border: 1px solid #ccc;
+}
+div.resource:hover {
+    box-shadow: 0 7px 8px #ccc;
+    -moz-box-shadow: 0 7px 8px #ccc;
+    -webkit-box-shadow: 0 7px 8px #ccc;
+    cursor: pointer;
+}
+
+
+div.resource div.logo-container {
+}
+
+div.resource div.title-container {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    font-size: 20px;
+    padding: 0 0 8px 0;
+}
+
+div.resource a.edit {
+    float: right;
+    font-size: 14px;
+    background: url("../images/edit.png") no-repeat scroll 4px;    
+    padding: 5px 0 5px 28px;
+}
+
+div.resource img {
+    float: right;
+    margin: 15px 25px 5px 5px;
+    max-width: 250px;
+    max-height: 120px;
+    
+}
+
+div.resource div.description {
+    padding: 5px;
+}
+
+div#resource-steps-container {
+    float: right;
+    width: 70%;
+    margin: 5px;
+    clear: both;
+}
+
+div#resource-steps-container h2 {
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding: 3px 0;
+}
+
+div.step-list#resource-steps {
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}

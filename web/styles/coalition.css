@@ -1,0 +1,20 @@
+div#coalition {
+    padding: 10px 20px 30px 20px;
+    overflow: auto;
+}
+
+div#coalition ul {
+    list-style: disc; width: 45%;
+}
+
+div#coalition ul li {
+    line-height: 17px;
+}
+
+div#coalition ul.left-column {
+    float: left;
+}
+
+div#coalition ul.right-column {
+    float: right;
+}

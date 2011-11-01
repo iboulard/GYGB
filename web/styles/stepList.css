@@ -1,0 +1,105 @@
+/* step list -----------------------------------------------------------------*/
+div.step-list-container {
+    clear: both;
+}
+
+div.step-list {
+    background: white;
+    padding: 10px;
+    
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;    
+
+    box-shadow: 0px 1px 9px #666;
+    -moz-box-shadow: 0px 1px 9px #666;
+    -webkit-box-shadow: 0px 1px 9px #666;
+}
+
+div.step-container {
+    border-bottom: 1px solid #ccc;
+    overflow: auto;
+    background: white;
+}
+
+div.step-list-container .step-container.last {
+    border: none;
+}
+
+div.step-container.category-hidden,
+div.step-container.type-hidden,
+div.step-container.savings-hidden {
+    display: none;
+}
+
+div.step-container div.step {
+    padding: 8px 8px 8px 36px;
+    color: black;
+    overflow: hidden;
+}
+
+div.step-container div.step.transportation {
+    background: url("../images/transportation.png") no-repeat scroll 4px;    
+}
+div.step-container div.step.general {
+    background: url("../images/general.png") no-repeat scroll 4px;    
+}
+div.step-container div.step.waste {
+    background: url("../images/waste.png") no-repeat scroll 4px;    
+}
+div.step-container div.step.energy {
+    background: url("../images/energy.png") no-repeat scroll 4px;    
+}
+div.step-container div.step.food {
+    background: url("../images/food.png") no-repeat scroll 4px;    
+}
+
+div.step-container div.step span.commitment-count,
+div.step-container div.step span.step-count {
+    display: block;
+    float: left;
+    padding: 3px;
+    -moz-border-radius: 2px;
+    webkit-border-radius: 2px;
+    border-radius: 2px;
+
+    background: #666;
+    color: white;
+    font-family: courier;
+    margin-right: 5px;
+}
+
+div.step-container div.step span.count-label {
+    float: left;
+    margin: 5px 10px 5px 0;
+    font-size: 11px;
+}
+
+div.step-container div.step span.step {
+    padding: 3px;
+}
+
+
+div.step-container div.step span.date {
+    color: #666;
+    font-size: 12px;
+    float: right;
+    margin-top: 5px;
+}
+
+div.step-list-results {
+    width: 100%; text-align: center; padding: 5px; background: #ffffbb; float: left;
+    margin: 5px 0 10px 0;
+}
+
+div.step-container.highlight, 
+div.step-container:hover {
+    background-color: #ffffbb; 
+    cursor: pointer;
+}
+
+div.take-a-step-box div.step-container:hover,
+div.step-list-container.events-not-linked .step:hover {
+    background-color: white;
+    cursor: auto;
+}
