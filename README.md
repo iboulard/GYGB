@@ -15,6 +15,7 @@ https://github.com/CCETC/FOSUserBundle
 
 https://github.com/CCETC/ErrorReportBundle
 
+https://github.com/CCETC/UserAdminBundle
 
 #Installation
 ###1. Clone repository:
@@ -32,4 +33,6 @@ https://github.com/CCETC/ErrorReportBundle
 ###5. Install vendors:
 
 	$ bin/vendors install
+
+###6. Follow installation instructions for dependencies CCETCErrorReportBundle and CCETCUserAdminBundle
 	
