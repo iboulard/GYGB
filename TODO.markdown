@@ -46,22 +46,23 @@ Ideas
 
 #	0.	Upload site map
 
-#	1.	Google Map
+
+#	1.	Share Buttons
 
 
-#	2.	Share Buttons
+#	2.	Google Map
 
 
-#	3.	Audience
+#	3.	My Steps		
+
+
+#	4.	Audience
 
 		- homeowner, renter, landlord, school, students, congregations
 
 		- add to step form
 		
-				
-#	4.	My Steps		
-		
-		
+						
 #	5.	Share a Step
 	
 		- cancel selected step
