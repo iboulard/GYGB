@@ -43,12 +43,12 @@ coalition:
   
 help:
   pattern: /help
-  defaults: { _controller: CCETCErrorReportBundle:ErrorReport:errorReport, includeBreadcrumb: false, flash: message, redirect: home, baseLayout: "::layout.html.twig", formRoute: help }
+  defaults: { _controller: CCETCErrorReportBundle:ErrorReport:errorReport, includeBreadcrumb: false, flash: alert-message success, redirect: home, baseLayout: "::layout.html.twig", formRoute: help }
 
 
 adminHelp:
-  pattern: /adminHelp
-  defaults: { _controller: CCETCErrorReportBundle:ErrorReport:errorReport, includeBreadcrumb: true, flash: sonata_flash_success, redirect: sonata_admin_dashboard, baseLayout: SonataAdminBundle::standard_layout.html.twig, formRoute: adminHelp }
+  pattern: /help
+  defaults: { _controller: CCETCErrorReportBundle:ErrorReport:errorReport, includeBreadcrumb: false, flash: alert-message success, redirect: home, baseLayout: "::layout.html.twig", formRoute: help }
   
 adminHome:
   pattern: /admin/dashboard

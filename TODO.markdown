@@ -39,6 +39,18 @@ Ideas
 	
 	- let admins sort resources
 
+
+	- user/submission/commitment
+	
+		- who are you
+		
+		- where are you (map)
+		
+			=>
+				community
+				
+				- filter by who and where
+			
 	
 
 1.1
@@ -46,10 +58,49 @@ Ideas
 
 #	0.	Upload site map
 
+	00.	Update db when rolling out
+	
+		- manually change Organization -> Resource where you can
+
+
+#	x.	Try out Bootstrap
+
+//		- buttons
+		
+//		- messages
+		
+//		- forms
+	
+//			- share a step
+			
+//			- commit
+	
+//		- font
+		
+//		- text size
+		
+//		- layout
+				
+//		- headings
+
+//		- add to errorreportbundle
+		
+//			- messages
+
+		- add to UserBundle!
+
+			- profile
+			
+			- reset
+			
+			- messages
+			
+			- errors
 
 #	1.	Share Buttons
 
-
+		- use on form and notice after
+		
 #	2.	Google Map
 
 

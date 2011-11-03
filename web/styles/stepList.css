@@ -22,7 +22,7 @@ div.step-container {
     background: white;
 }
 
-div.step-list-container .step-container.last {
+.step-container.last {
     border: none;
 }
 
@@ -36,6 +36,7 @@ div.step-container div.step {
     padding: 8px 8px 8px 36px;
     color: black;
     overflow: hidden;
+    font-size: 16px;
 }
 
 div.step-container div.step.transportation {
@@ -92,14 +93,17 @@ div.step-list-results {
     margin: 5px 0 10px 0;
 }
 
-div.step-container.highlight, 
 div.step-container:hover {
     background-color: #ffffbb; 
     cursor: pointer;
 }
 
-div.take-a-step-box div.step-container:hover,
-div.step-list-container.events-not-linked .step:hover {
+div.step-container.highlight {
+    border: 1px solid #ccc;
+}
+
+div.step-container.not-linked:hover {
     background-color: white;
     cursor: auto;
 }
+

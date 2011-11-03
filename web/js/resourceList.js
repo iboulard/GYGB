@@ -1,6 +1,6 @@
 
 $(document).ready(function() {
-    $('div.organizations div.organization').live("click", function(e){
+    $('div.resource').live("click", function(e){
        // do not respond to clicks on the steps
        if($(e.target).is('div.step') || $(e.target).parent().is('.step'))
        {

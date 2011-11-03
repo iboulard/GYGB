@@ -1,0 +1,38 @@
+<div class="row" id="commit-form-container">
+    <div id="commit-form" class="form-stacked span8">
+        <form action="{{ path('takeAStep', {'id': step.id}) }}" method="post" {{ form_enctype(commitmentForm) }}>
+            {{ form_errors(commitmentForm) }}
+            <div class="clearfix">
+                {{ form_label(commitmentForm.commitment) }}
+                <div class="input">
+                    {{ form_widget(commitmentForm.commitment, { 'attr': {'class': 'span8'} }) }}
+                    <span class="help-inline">what will you do?</span>
+                </div>
+            </div><!-- /clearfix -->
+            {% if not is_granted('ROLE_USER') %}
+                <div class="clearfix">
+                    {{ form_label(commitmentForm.name) }}
+                    <div class="input">
+                        {{ form_widget(commitmentForm.name, { 'attr': {'class': 'span8'} }) }}
+                    </div>
+                </div><!-- /clearfix -->
+                <div class="clearfix">
+                    {{ form_label(commitmentForm.email) }}
+                    <div class="input">
+                        {{ form_widget(commitmentForm.email, { 'attr': {'class': 'span8'} }) }}
+                        <span class="help-inline">used to enter you into our raffle - your e-mail will not be displayed or shared with anyone</span>
+                    </div>
+                </div><!-- /clearfix -->
+            {% endif %}
+
+
+            {{ form_rest(commitmentForm) }}
+
+            <div class="actions">
+                <input class="btn primary" value="Commit" type="submit" />
+                <a href="#" id="commit-form-cancel" class="btn">Cancel</a>
+            </div>
+
+        </form>
+    </div>
+</div>

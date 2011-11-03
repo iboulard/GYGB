@@ -2,16 +2,16 @@
 $(document).ready(function() {
     $('a.share-your-own').live("click", function(e){
         e.preventDefault();
-        $('div.select-a-step').hide();
+        $('fieldset#select-a-step').hide();
         
-        $('div.share-your-own-container').show();
+        $('fieldset#share-your-own').show();
     });
     
     $('a.share-your-own-cancel').live("click", function(e){
         e.preventDefault();
-        $('div.select-a-step').show();
+        $('fieldset#select-a-step').show();
         
-        $('div.share-your-own-container').hide();
+        $('fieldset#share-your-own').hide();
         
         $('input#form_step').val("");
     });

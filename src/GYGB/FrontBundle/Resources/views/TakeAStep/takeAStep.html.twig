@@ -17,7 +17,7 @@
 {% block content %}
     {% include 'GYGBFrontBundle:Steps:_takeAStepMenu.html.twig' %}
     
-    <span class="take-a-step-heading">Commit to taking a step and find resources to help you take it.</div>
+    <span class="take-a-step-heading">Commit to taking a step and find resources to help you take it.</span>
     
     <div id="take-a-step-page-container">
         {% if commited or taken %}
@@ -45,39 +45,30 @@
             <span class="description">{{ step.description|raw }}</a>
         </div>
 
-        {% include "GYGBFrontBundle:EventList:_eventList.html.twig" with {'events' : events, 'id' : 'step-events', 'noEventText' : 'No one has taken this step! Be the first.', 'linkEvents' : false } %}
-
-        <div class="step-buttons-container">
+        {% if events|length > 0 %}
+            {% include "GYGBFrontBundle:EventList:_eventList.html.twig" with {'events' : events, 'id' : 'step-events', 'noEventsText' : 'No one has taken this step! Be the first.', 'linkEvents' : false } %}
+        {% endif %}
+            
+        <div class="step-buttons-container row">
             {% if not taken %}    
-                <div class="commit-to-this-step">
+                <div class="commit-to-this-step span7">
                     {% if not commited %}
-                        <a class="button" href="#" id="commit-to-this-step">Commit to taking this step</a>
-
-                        <div id="commit-form" class="box-form">
-                            <form action="{{ path('takeAStep', {'id': step.id}) }}" method="post" {{ form_enctype(commitmentForm) }}>
-                                {{ form_errors(commitmentForm) }}
-                                {{ form_row(commitmentForm.commitment) }}
-                                {% if not is_granted('ROLE_USER') %}
-                                    {{ form_row(commitmentForm.name) }}
-                                    {{ form_row(commitmentForm.email) }}
-                                    <span class="field-help">used to enter you into our raffle - your e-mail will not be displayed or shared with anyone</span>
-                                {% endif %}
-                                {{ form_rest(commitmentForm) }}
-                                <br/>
-                                <input class="button submit" value="Commit" type="submit" />
-
-                            </form>
-                        </div>
+                        <a class="btn large success" href="#" id="commit-to-this-step">Commit to taking this step</a>
                     {% endif %}
                 </div>
-                <div class="share-this-step">
-                        Have you taken this step? <a class="button" href="{{ path('shareAStep', {'id':step.id}) }}">Share it! &rarr;</a>
+                <div class="share-this-step pull-right">
+                        Have you taken this step? <a class="btn large success" href="{{ path('shareAStep', {'id':step.id}) }}">Share it! &rarr;</a>
                 </div>
-                <div style="clear: both;">&nbsp;</div>
             {% endif %}
         </div>
 
-        {% if not taken %}<h1>Need help taking this step?</h1>{% endif %}
+        {% if not commited %}
+            {% include "GYGBFrontBundle:TakeAStep:_commitmentForm.html.twig" with {'step' : step, 'commitmentForm' : commitmentForm } %}            
+        {% endif %}
+            
+        {% if not taken %}
+            <h1>Need help taking this step?</h1>
+        {% endif %}
         {% include "GYGBFrontBundle:Resources:_resourceList.html.twig" with {'resources' : resources, 'showSteps' : false } %}
         
     </div>

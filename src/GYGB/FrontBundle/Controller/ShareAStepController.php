@@ -46,11 +46,11 @@ class ShareAStepController extends Controller
         }
         
         $stepForm = $this->createFormBuilder()
-                ->add('stepDropdown', 'choice', array('label' => ' ','required' => false, 'choices' => $stepTitles))
-                ->add('title', 'text', array('label' => 'Title (ex: "Plant a Garden!")', 'required' => false))
-                ->add('commitment', 'text', array('label' => 'Commitment (ex: "I will plant a garden")', 'required' => false))
-                ->add('step', 'text', array('label' => 'Action (ex: "I planted a garden")', 'required' => false))
-                ->add('description', 'textarea', array('label' => 'Description (what will help others take this step?)', 'required' => false))
+                ->add('stepDropdown', 'choice', array('label' => 'Choose a step','required' => false, 'choices' => $stepTitles))
+                ->add('title', 'text', array('label' => 'Title', 'required' => false))
+                ->add('commitment', 'text', array('label' => 'Commitment', 'required' => false))
+                ->add('step', 'text', array('label' => 'Action', 'required' => false))
+                ->add('description', 'textarea', array('label' => 'Description', 'required' => false))
                 ->add('category', 'hidden', array('required' => false))
                 ->add('stepFromID', 'hidden', array('required' => false))
                 ->add('savings', 'hidden', array('required' => false))
@@ -80,7 +80,7 @@ class ShareAStepController extends Controller
 
                 if(trim($data['stepDropdown']) == "" && trim($data['title']) == "" && trim($data['stepFromID']) == "")
                 {
-                    $this->getRequest()->getSession()->setFlash('error-message', 'Please select a step or share a new one.');
+                    $this->getRequest()->getSession()->setFlash('alert-message error', 'Please select a step or share a new one.');
 
                     return $this->render('GYGBFrontBundle:ShareAStep:shareAStep.html.twig', array(
                         'stepForm' => $stepForm->createView(),
@@ -134,11 +134,11 @@ class ShareAStepController extends Controller
                 // unapproved steps and new steps (that are inherently unapproved) should not be highlighted
                 if(!$step || $step->getApproved() == false)
                 {
-                    $this->getRequest()->getSession()->setFlash('message', 'Thanks for taking a step to save money and energy! Your step will appear when our team approves it.');
+                    $this->getRequest()->getSession()->setFlash('alert-message success', 'Thanks for taking a step to save money and energy! Your step will appear when our team approves it.');
                 }
                 else
                 {
-                    $this->getRequest()->getSession()->setFlash('message', 'Thanks for taking a step to save money and energy!');
+                    $this->getRequest()->getSession()->setFlash('alert-message success', 'Thanks for taking a step to save money and energy!');
                 }
                 
                 

@@ -6,17 +6,15 @@
         <title>{% block title %}Get Your GreenBack - Tompkins!{% endblock %}</title>
 
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('styles/reset.css') }}" type="text/css">
             <link rel="stylesheet" href="{{ asset('styles/layout.css') }}" type="text/css">
-            <link rel="stylesheet" href="{{ asset('styles/messages.css') }}" type="text/css">
             <link rel="stylesheet" href="{{ asset('styles/misc.css') }}" type="text/css">
             <link rel="stylesheet" href="{{ asset('styles/menus.css') }}" type="text/css">
-            <link rel="stylesheet" href="{{ asset('styles/general.css') }}" type="text/css">
             <link rel="stylesheet" href="{{ asset('styles/specifics.css') }}" type="text/css">
+            <link rel="stylesheet" href="{{ asset('bundles/ccetcbootstrap/bootstrap/bootstrap.css') }}" type="text/css" media="all" >
             
             <link type="text/css" href="{{ asset('bundles/sonatajquery/themes/flick/jquery-ui-1.8.6.custom.css') }}" rel="Stylesheet" />	
-            <link rel="stylesheet" href="{{ asset('bundles/fosuser/styles.css') }}" type="text/css" media="all">
-
+            <link rel="stylesheet" href="{{ asset('styles/general.css') }}" type="text/css">
+            
             <!--[if lte IE 7]>
                 <link rel="stylesheet" type="text/css" href="{{ asset('styles/ie7.css') }}" />
                 <![endif]-->
@@ -52,16 +50,9 @@
     </head>
 
     <body>
-        {% if(app.session.hasFlash('message')) %}
-            <div class="header-message">{{ app.session.getFlash('message') }}</div>
-        {% endif %}
-        {% if(app.session.hasFlash('error-message')) %}
-            <div class="header-error-message">{{ app.session.getFlash('error-message') }}</div>
-        {% endif %}
-
-        <div id="page-container">
+        <div class="container">
             {% if usingIE6 is defined and usingIE6 == true %}
-                <div class="ie6-header-message">
+                <div class="alert-message error">
                     You are using an outdated version of internet explorer.
                     Because of security and performance issues, it is recommended that you upgrade to a modern browser.
 			<br/>	
@@ -73,39 +64,50 @@
                 </div>
 
             {% endif %}
-            <div id="header">
-                <div id="user-menu">
-                        {% if is_granted('ROLE_USER') %}
-                            Logged in as <a href="{{ url('fos_user_profile_show') }}">{{ app.user }} </a> <a href="{{ url('fos_user_security_logout') }}">Log out</a>
-                        {% else %}
-                            <a href="{{ url('fos_user_security_login') }}">Login</a>
-                            <a href="{{ url('fos_user_registration_register') }}">Register</a>
-                        {% endif %}
-                        <a href="{{ url('about') }}">About</a>
-                        <a href="{{ url('coalition') }}">Coalition</a>
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <a href="{{ url('adminHome') }}">Admin</a>
-                        {% endif %}
-                        <a class="last" href="{{ url('help') }}">Help</a>
-                </div>
-    
-                <a href="{{ path('home') }}"><img id="logo" src="{{ asset('images/logoa.png') }}" /></a>
-                
-                <img id="logob" src="{{ asset('images/logob.png') }}" />
-            
-                <div id="menu">
-                    {{ knp_menu_render('GYGBFrontBundle:Builder:mainMenu') }}
-                </div>
-            </div>
-           
-            <div id="content">
-                {% if(app.session.hasFlash('page-message')) %}
-                    <div class="page-message">{{ app.session.getFlash('page-message') }}</div>
-                {% endif %}
-                {% if(app.session.hasFlash('page-error-message')) %}
-                    <div class="page-error-message">{{ app.session.getFlash('page-error-message') }}</div>
-                {% endif %}
+            <div class="content">
+                <div id="header">
+                    <div id="user-menu">
+                            {% if is_granted('ROLE_USER') %}
+                                Logged in as <a href="{{ url('fos_user_profile_show') }}">{{ app.user }} </a> <a href="{{ url('fos_user_security_logout') }}">Log out</a>
+                            {% else %}
+                                <a href="{{ url('fos_user_security_login') }}">Login</a>
+                                <a href="{{ url('fos_user_registration_register') }}">Register</a>
+                            {% endif %}
+                            <a href="{{ url('about') }}">About</a>
+                            <a href="{{ url('coalition') }}">Coalition</a>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ url('adminHome') }}">Admin</a>
+                            {% endif %}
+                            <a class="last" href="{{ url('help') }}">Help</a>
+                    </div>
 
+                    <a href="{{ path('home') }}"><img id="logo" src="{{ asset('images/logoa.png') }}" /></a>
+
+                    <img id="logob" src="{{ asset('images/logob.png') }}" />
+
+                    <div id="menu">
+                        {{ knp_menu_render('GYGBFrontBundle:Builder:mainMenu') }}
+                    </div>
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+           
+                {% for notice_level in [' success',' error',' info', ' warning', ''] %}
+                    {% set notice_var = 'alert-message' ~ notice_level %}
+                    {% set block_var = 'alert-message block-message' ~ notice_level %}
+                    {% if app.session.hasFlash(notice_var) %}
+                        <div class="{{ notice_var }}">
+                            {{ app.session.flash(notice_var) }}
+                        </div>
+                    {% endif %}
+                    {% if app.session.hasFlash(block_var) %}
+                        <div class="{{ block_var }}">
+                            {{ app.session.flash(block_var) }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                    
+                    
                 {% block content %}{% endblock %}
 
                 <div style="clear: both;"></div>

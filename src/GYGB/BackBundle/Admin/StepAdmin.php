@@ -18,7 +18,7 @@ class StepAdmin extends Admin
     protected function configureShowField(ShowMapper $showMapper)
     {
         $showMapper
-                ->add('title', null, array('label' => 'Step'))
+                ->add('title', null, array('label' => 'Title'))
                 ->add('category', null, array('label' => 'Category'))
                 ->add('commitment', null, array('label' => 'Default Commitment'))
                 ->add('story', null, array('label' => 'Default Story'))
@@ -28,21 +28,7 @@ class StepAdmin extends Admin
                 ->add('approved', null, array('label' => 'Approved'))
         ;
 
-        $showGroups = array(
-            'Step' => array(
-                'fields' => array(
-                    'step',
-                    'category',
-                    'commitment',
-                    'story',
-//                    'savings',
-                    'stepCount',
-                    'commitmentCount',
-                    'approved'
-                )
-            ),
-        );
-        $this->setShowGroups($showGroups);
+       
     }
 
     protected function configureRoutes(RouteCollection $collection)
@@ -102,13 +88,6 @@ class StepAdmin extends Admin
                     ),
                     'field_type' => 'choice'
                 ))
-/*                ->add('savings', 'doctrine_orm_choice', array('label' => 'Savings',
-                    'field_options' => array(
-                        'required' => false,
-//                        'choices' => Step::getSavingsChoices()
-                    ),
-  //                  'field_type' => 'choice'
-                ))*/
         ;
     }
 
@@ -133,6 +112,8 @@ class StepAdmin extends Admin
                 ));
 
         ;
+        
+        
     }
 
 }

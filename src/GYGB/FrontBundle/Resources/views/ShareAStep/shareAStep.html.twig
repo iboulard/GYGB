@@ -13,12 +13,13 @@
     
 {% block content %}
     {% include 'GYGBFrontBundle:Steps:_takeAStepMenu.html.twig' %}
-    <span class="take-a-step-heading">Once you take your step, share it and enter to win over $2000 in prizes.</div>
+    <span class="take-a-step-heading">Once you take your step, share it and enter to win over $2000 in prizes.</span>
     
-    <div id="step-submission-container">
+    <div id="step-submission-container" class="row">
         <div id="whats-your-step">
             {% include "GYGBFrontBundle:ShareAStep:_stepForm.html.twig" with {'stepForm' : stepForm, 'categoryNames' : categoryNames, 'stepObjects' : stepObjects, 'id': id, 'selectedStep' : selectedStep } %}
+            <div style="clear: both;">&nbsp;</div>
         </div>
+        <div style="clear: both;">&nbsp;</div>
     </div>
-
 {% endblock content %}

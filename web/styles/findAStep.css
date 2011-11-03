@@ -88,6 +88,7 @@ div#step-option-container {
     background: #666;
     color: white;
     padding: 6px;
+    font-size: 16px;
 }
 
 #filters div.filter-group div.filter-group-heading a {
@@ -106,7 +107,6 @@ div#step-option-container {
     height: 23px;
     width: 187px;
     font-size: 15px;
-    font-family: Tahoma;
 
     -moz-box-shadow: none;
     box-shadow: none;

@@ -23,7 +23,6 @@ class HomeController extends Controller
           $usingIE6 = false;
         }
 
-        
         return $this->render('GYGBFrontBundle:Home:home.html.twig', array(
             'highlightStep' => $highlightStep,
             'featuredResources' => $featuredResources,

@@ -16,7 +16,7 @@
 
     <div id="resources-container">
         {% if category is defined and category != "" %}
-            <a href="{{ path('resources') }}">&larr; All Resources</a>
+            <a class="all-resources" href="{{ path('resources') }}">&larr; All Resources</a>
             
             <div class="category-resources">
                 <div class="category-resources-heading-container">
@@ -40,7 +40,7 @@
 
         {% else %}
             <h1>Tompkins County Resources</h1>
-            <h2>Need help taking a step? Select a category to find Tompkins County resources that will help you save money and energy:</h2>
+            <h4>Need help taking a step? Select a category to find Tompkins County resources that will help you save money and energy:</h4>
 
             <div class="resource-category-options">
                 {% for c in categories %}

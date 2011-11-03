@@ -68,11 +68,11 @@ services:
 
     adminSettings:
       class: Sonata\AdminBundle\Resources\config\Settings
-      arguments: [Get Your GreenBack, haggertypat@gmail.com]
+      arguments: [Get Your GreenBack - Tompkins, haggertypat@gmail.com]
 
     userSettings:
       class: FOS\UserBundle\Resources\config\Settings
-      arguments: [Get Your GreenBack, haggertypat@gmail.com, ::layout.html.twig, false, message, ::_whyRegister.html.twig]
+      arguments: [Get Your GreenBack - Tompkins, haggertypat@gmail.com, ::layout.html.twig, false, alert-message success, ::_whyRegister.html.twig]
 
 
 # Twig Configuration

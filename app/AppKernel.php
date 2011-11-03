@@ -23,8 +23,10 @@ class AppKernel extends Kernel
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\BluePrintBundle\SonataBluePrintBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new CCETC\ErrorReportBundle\CCETCErrorReportBundle(),
             new CCETC\UserAdminBundle\CCETCUserAdminBundle(),
+            new CCETC\BootstrapBundle\CCETCBootstrapBundle(),            
             new FOS\UserBundle\FOSUserBundle(),            
         );
 

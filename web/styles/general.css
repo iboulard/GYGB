@@ -1,64 +1,54 @@
+/* 
+    Colors used
+        logo green: 4a793c
+        red:        b7253a 
+        light link: a3a8ff
+        link:       B7253A
+        orange:     D65629 
+        yellow:     D78228 
+*/
+
 /* Tags ----------------------------------------------------------------------*/
-body {
-    font-family: Trebuchet,"Trebuchet MS",Verdana,sans-serif;
+html, body {
     background: #eeeeee;
 }
 
-h1 {
-    font-size: 30px;
-    margin: 20px 0;
-    padding: 0 3px;
+#header {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
 }
 
-p {
-    margin: 10px 0;
+#header img#logo {
+    float: left; 
+    width: 375px;
 }
 
-a {
-    text-decoration: none;
-    color: #0066CC;
-}
-
-
-a:hover {
-    text-decoration: underline;
+#header img#logob {
+    float: left;
+    margin: 75px 0 0 100px;
 }
 
 
-/* Classes -------------------------------------------------------------------*/
-.button {
-    webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
 
-    box-shadow: 0 1px 1px rgba(0,0,0, 0.5);
-    -moz-box-shadow: 0 1px 1px rgba(0,0,0, 0.5);
-    -webkit-box-shadow: 0 1px 1px rgba(0,0,0, 0.5);
-
-    border: 1px solid #4a793c;
-    background: #4a793c;
-    color: white;
-    margin: 2px;
-
-    padding: 3px 6px;
+.content {
+    background-color: #fff;
+    padding: 20px;
+    margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+    -webkit-border-radius: 0 0 6px 6px;
+       -moz-border-radius: 0 0 6px 6px;
+            border-radius: 0 0 6px 6px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+       -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+            box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }
 
-.button:hover {
-    background: #325228;
-    text-decoration: none;
+/* bootstrap outlines active links... why? it looks horrible */
+a:active
+{
+    outline: none !important;
 }
 
-.submit {
-    float: right;
-    clear: both;
-}
-
-span.field-help {
-    float: right;
-    color: #666;
-    font-style: italic;
-    width: 70%;
-    clear: both;
-    font-size: 12px;
-    margin: 5px 0;
-}
+a:focus
+{
+    -moz-outline-style: none !important;
+}      

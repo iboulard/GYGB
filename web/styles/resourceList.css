@@ -39,7 +39,7 @@ div.resource a.edit {
     float: right;
     font-size: 14px;
     background: url("../images/edit.png") no-repeat scroll 4px;    
-    padding: 5px 0 5px 28px;
+    padding: 0 0 5px 28px;
 }
 
 div.resource img {

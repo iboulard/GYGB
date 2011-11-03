@@ -80,7 +80,7 @@ class TakeAStepController extends Controller
 
                 $step->setCommitmentCount($step->getCommitmentCount() + 1);
 
-                $this->getRequest()->getSession()->setFlash('page-message', 'Thanks for commiting to take a step to save money and energy!');
+                $this->getRequest()->getSession()->setFlash('alert-message success', 'Thanks for commiting to take a step to save money and energy!');
 
                 $commitment = new \GYGB\BackBundle\Entity\Commitment();
 

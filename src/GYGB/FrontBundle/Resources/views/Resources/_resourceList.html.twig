@@ -24,7 +24,7 @@
                         </div>
                     {% endif %}
                     {% if resource.featuredSteps|length > 0 and showSteps %}
-                        <div id="resources-steps-container">
+                        <div id="resource-steps-container">
                             <h2>Related Steps</h2>
                             {% render "GYGBFrontBundle:StepList:stepList" with {
                                 'steps' : resource.featuredSteps,

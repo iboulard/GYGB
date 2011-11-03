@@ -1,27 +1,3 @@
-/* 
-    Colors used
-        logo green: 4a793c
-        red:        b7253a 
-        light link: a3a8ff
-        link:       B7253A
-        orange:     D65629 
-        yellow:     D78228 
-*/
-
-div#why-register {
-    background: #D78228;
-    color: white;
-    font-size: 20px;
-    text-align: center;
-    
-    
-    padding: 20px 100px;
-    
-    border-radius: 7px;
-    -moz-border-radius: 7px;
-    -webkit-border-radius: 7px;
-}
-
 span.take-a-step-heading {
     font-size: 18px;
     width: 100%;

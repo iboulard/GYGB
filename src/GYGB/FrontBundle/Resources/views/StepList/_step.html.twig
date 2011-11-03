@@ -1,4 +1,4 @@
-<div id="{{ id }}" class="step-container {{ step.category }} {% if first %}first{% endif %} {% if last %}last{% endif %} {% if highlight is defined and highlight %}highlight{% endif %}">
+<div id="{{ id }}" class="step-container {{ step.category }} {% if first %}first{% endif %} {% if last %}last{% endif %} {% if not linkStep %}not-linked{% endif %} {% if highlight is defined and highlight %}highlight{% endif %}">
     <div class="step {{ step.category }}">
         {% if displayCounts %}                        
             <span class="step-count">{{ step.stepCount }}</span>

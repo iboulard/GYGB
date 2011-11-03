@@ -45,6 +45,7 @@ div.featured-resource {
 div.resource-category-options {
     width: 100%;
     margin: 20px 0;
+    font-size: 16px;
 }
 a.resource-category-option {
     float: left;
@@ -78,4 +79,8 @@ a.resource-category-option.energy {
 }
 a.resource-category-option.food {
     background: url("../images/food.png") no-repeat scroll 4px;    
+}
+
+a.all-resources {
+    font-size: 16px;
 }
