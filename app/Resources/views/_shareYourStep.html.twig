@@ -1,0 +1,33 @@
+<div class="alert-message block-message success">
+    <h1>Thanks for taking a step to save money and energy!</h1>
+    <h2>What's next?</h2>
+    <ul>
+        <li><h4>Tell your friends about your step, or challenge them to take their own!</h4></li>
+        <div class="row share-icon-container">
+            <div class="span14 offset1">
+                <span>
+                    <a href="mailto:?subject=I just took a step to Get My GreenBack!&body=Hey, %0A I just took a step to Get My GreenBack.%0AGet Your GreenBack - Tompkins helps Tompkins County residents and businesses take steps to save money and energy. %0AIf you take a step and share it on the the site, you are entered to win up to $2000 in prizes! %0ACheck it out: GetYourGreenBackTompkins.org">
+                        <img style="float: left; margin-right: 3px;" src="{{ asset('images/mail.png') }}" />
+                        E-mail
+                    </a>
+                </span>
+                <span style="margin: 11px 0 0 0;">
+                    <g:plusone size="medium" href="http://getyourgreenbacktompkins.org"></g:plusone>
+                </span>
+                <span style="margin: 11px 5px 5px 5px;">
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://getyourgreenbacktompkins.org" data-text="I took at step to Get My GreenBack" data-count="none">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+                </span>
+
+                <span>
+                    <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fgetyourgreenbacktompkins.org&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+                </span>
+            </div>
+        </div>
+
+        <li><h4><a href="{{ url('findAStep') }}">Find another step to take</a></h4></li>
+        
+        {% if not is_granted('ROLE_USER') %}
+        <li><h4>Create an account below</h4></li>
+        {% endif %}
+    </ul>
+</div>

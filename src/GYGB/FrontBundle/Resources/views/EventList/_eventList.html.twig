@@ -2,7 +2,7 @@
     {% if events|length > 0 %}
         <div class="step-list-container {% if not linkEvents %}events-not-linked{% endif %}">
             {% for event in events %}
-                <div class="step-container {% if loop.first %}first {% endif %}{% if loop.last %}last {% endif %}">
+                <div class="step-container {% if not linkEvents%}not-linked{% endif %} {% if loop.first %}first {% endif %}{% if loop.last %}last {% endif %}">
                 <div class="step {{ event.category }}">
                     <span class="name">{{ event.name }} 
                     </span>

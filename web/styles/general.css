@@ -52,3 +52,27 @@ a:focus
 {
     -moz-outline-style: none !important;
 }      
+
+div.share-icon-container span {
+    float: left;
+    margin: 8px 25px;
+}
+
+div#founders-and-sponsors {
+    width: 100%;
+    float: left;
+    border-top: 1px solid #ddd;
+}
+
+div.logo-block {
+    margin: 15px auto;
+    overflow: auto;
+    width: 949px;
+}
+
+div.logo-block img {
+    display: block;
+    float: left; 
+    width: 55px;
+    margin: 5px;
+}

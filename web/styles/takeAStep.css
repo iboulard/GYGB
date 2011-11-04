@@ -37,7 +37,7 @@ div#take-a-step-page-container h1 {
     font-size: 26px !important;
 }
 
-div#take-a-step-page-container div.step-buttons-container {
+div#take-a-step-page-container div#step-buttons-container {
     width: 100%;
     font-size: 28px;
     margin: 30px 0;

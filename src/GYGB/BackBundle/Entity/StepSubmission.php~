@@ -46,6 +46,20 @@ class StepSubmission
      */
     private $story;
     /**
+     * @var integer $latitude
+     *
+     * @ORM\Column(name="latitude", type="string", length="255", nullable="true")
+     */
+    private $latitude;
+    /**
+     * @var integer $longitude
+     *
+     * @ORM\Column(name="longitude", type="string", length="255", nullable="true")
+     */
+    private $longitude;
+
+    
+    /**
      * @var datetime $datetimeSubmitted
      *
      * @ORM\Column(name="datetimeSubmitted", type="datetime")

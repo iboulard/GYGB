@@ -63,46 +63,41 @@ Ideas
 		- manually change Organization -> Resource where you can
 
 
-#	x.	Try out Bootstrap
 
-//		- buttons
-		
-//		- messages
-		
-//		- forms
-	
-//			- share a step
-			
-//			- commit
-	
-//		- font
-		
-//		- text size
-		
-//		- layout
-				
-//		- headings
+//	1.	Share Buttons
 
-//		- add to errorreportbundle
-		
-//			- messages
-
-		- add to UserBundle!
-
-			- profile
-			
-			- reset
-			
-			- messages
-			
-			- errors
-
-#	1.	Share Buttons
-
-		- use on form and notice after
+//		- use on form and notice after
 		
 #	2.	Google Map
+	
+//		- community
+	
+//			- center map
 
+//			- click markers
+	
+//			- load from DB
+
+			- clean up look
+		
+		- share a step
+		
+//			- map
+			
+			- place marker
+			
+//				- move
+	
+				- ignore double click
+				
+//				- only one
+	
+				- close
+				
+//				- store in DB
+				
+
+	
 
 #	3.	My Steps		
 
@@ -135,6 +130,11 @@ Ideas
 		
 		- what to do with filters when searching?
 		
+		- remove repeat step
+		
+			- don't allow repeat steps
+			
+		- use user name if available
 		
 1.2
 =========================
@@ -173,6 +173,40 @@ Ideas
 
 
 == Finished =========================
+Bootstrap Transition
+================
+//		- buttons
+		
+//		- messages
+		
+//		- forms
+	
+//			- share a step
+			
+//			- commit
+	
+//		- font
+		
+//		- text size
+		
+//		- layout
+				
+//		- headings
+
+//		- add to errorreportbundle
+		
+//			- messages
+
+//		- add to UserBundle!
+
+//			- profile
+			
+//			- reset
+			
+//			- messages
+			
+//			- errors
+
 Post 1.0 Cleanup
 =================
 

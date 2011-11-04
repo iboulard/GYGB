@@ -10,8 +10,35 @@ class Builder extends ContainerAware
 
     public $mainMenu;
     public $takeAStepMenu;
+    public $communityMenu;
+    
     public $path;
 
+    public function communityMenu(FactoryInterface $factory)
+    {
+        $this->communityMenu = $factory->createItem('root');
+        $this->communityMenu->setCurrentUri($this->container->get('request')->getRequestUri());
+        $this->communityMenu->setAttribute('class', 'tabs');
+        
+        $this->communityMenu->addChild('communitySteps', array('route' => 'communitySteps', 'label' => 'Steps'));
+        $this->communityMenu->addChild('communityMap', array('route' => 'communityMap', 'label' => 'Map'));
+
+        $this->correctCommunityStepsCurrent();
+        
+        $this->communityMenu->getCurrentItem()->setAttribute('class', 'current active');
+        
+        return $this->communityMenu;
+    }
+
+    protected function correctCommunityStepsCurrent()
+    {
+        if(isset($this->path[1]) && $this->path[1] == "community" && !isset($this->path[2]))
+        {
+            $this->communityMenu->getChild('communitySteps')->setCurrent(true);
+        }
+    }    
+
+    
     public function takeAStepMenu(FactoryInterface $factory)
     {
         $this->takeAStepMenu = $factory->createItem('root');
@@ -50,7 +77,7 @@ class Builder extends ContainerAware
 
         $this->mainMenu->addChild('Home', array('route' => 'home'));
         $this->mainMenu->addChild('Find a Step', array('route' => 'findAStep'));
-        $this->mainMenu->addChild('Community', array('route' => 'community'));
+        $this->mainMenu->addChild('Community', array('route' => 'communitySteps'));
         $this->mainMenu->addChild('Resources', array('route' => 'resources'));
 
         $this->path = str_replace($this->container->get('request')->getBaseUrl(), '', $this->container->get('request')->getRequestUri());
@@ -59,6 +86,7 @@ class Builder extends ContainerAware
         $this->correctStepCurrent();
         $this->correctHomeCurrent();
         $this->correctResourcesCurrent();
+        $this->correctCommunityCurrent();
 
         return $this->mainMenu;
     }
@@ -95,4 +123,13 @@ class Builder extends ContainerAware
         }
     }
 
+    protected function correctCommunityCurrent()
+    {
+        if(isset($this->path[1]) && $this->path[1] == "community")
+        {
+            $this->mainMenu->getChild('Community')->setCurrent(true);
+        }
+    }
+
+    
 }

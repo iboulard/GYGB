@@ -80,7 +80,7 @@ class TakeAStepController extends Controller
 
                 $step->setCommitmentCount($step->getCommitmentCount() + 1);
 
-                $this->getRequest()->getSession()->setFlash('alert-message success', 'Thanks for commiting to take a step to save money and energy!');
+                $this->getRequest()->getSession()->setFlash('template-flash', '::_shareYourStep.html.twig');
 
                 $commitment = new \GYGB\BackBundle\Entity\Commitment();
 
@@ -113,7 +113,7 @@ class TakeAStepController extends Controller
 
                 if($this->get('security.context')->isGranted('ROLE_USER'))
                 {
-                    return $this->redirect($this->generateUrl('takeAStep', array('id' => $id)));
+                    return $this->redirect($this->generateUrl('community'));
                 }
                 else
                 {

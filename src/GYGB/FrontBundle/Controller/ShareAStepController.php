@@ -53,7 +53,8 @@ class ShareAStepController extends Controller
                 ->add('description', 'textarea', array('label' => 'Description', 'required' => false))
                 ->add('category', 'hidden', array('required' => false))
                 ->add('stepFromID', 'hidden', array('required' => false))
-                ->add('savings', 'hidden', array('required' => false))
+                ->add('latitude', 'hidden', array('required' => false))
+                ->add('longitude', 'hidden', array('required' => false))
                 ->add('story', 'textarea', array('label' => 'What did you do? How did it go?', 'required' => false));
         
         if(!$this->get('security.context')->isGranted('ROLE_USER'))
@@ -134,11 +135,12 @@ class ShareAStepController extends Controller
                 // unapproved steps and new steps (that are inherently unapproved) should not be highlighted
                 if(!$step || $step->getApproved() == false)
                 {
-                    $this->getRequest()->getSession()->setFlash('alert-message success', 'Thanks for taking a step to save money and energy! Your step will appear when our team approves it.');
+                    // TODO: your step will appear once our team approves it
+                    $this->getRequest()->getSession()->setFlash('template-flash', '::_shareYourStep.html.twig');
                 }
                 else
                 {
-                    $this->getRequest()->getSession()->setFlash('alert-message success', 'Thanks for taking a step to save money and energy!');
+                    $this->getRequest()->getSession()->setFlash('template-flash', '::_shareYourStep.html.twig');
                 }
                 
                 
@@ -162,6 +164,8 @@ class ShareAStepController extends Controller
                 $stepSubmission->setDatetimeSubmitted(new \DateTime());
                 $stepSubmission->setStep($step);
                 if(trim($data['story']) != "") $stepSubmission->setStory($data['story']);
+                if(trim($data['latitude']) != "") $stepSubmission->setLatitude($data['latitude']);
+                if(trim($data['longitude']) != "") $stepSubmission->setLongitude($data['longitude']);
 
                 $em->persist($stepSubmission);
                 $em->flush();
@@ -174,7 +178,7 @@ class ShareAStepController extends Controller
                 
                 if($this->get('security.context')->isGranted('ROLE_USER'))
                 {
-                    return $this->redirect($this->generateUrl('findAStep'));
+                    return $this->redirect($this->generateUrl('community'));
                 }
                 else
                 {

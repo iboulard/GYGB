@@ -23,5 +23,8 @@ $(document).ready(function() {
         
         $('input#form_category').val($(this).attr('id'));
     });
+    
+    initializeSubmissionMap();
+
 
 });

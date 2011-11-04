@@ -46,6 +46,20 @@ class StepSubmission
      */
     private $story;
     /**
+     * @var integer $latitude
+     *
+     * @ORM\Column(name="latitude", type="string", length="255", nullable="true")
+     */
+    private $latitude;
+    /**
+     * @var integer $longitude
+     *
+     * @ORM\Column(name="longitude", type="string", length="255", nullable="true")
+     */
+    private $longitude;
+
+    
+    /**
      * @var datetime $datetimeSubmitted
      *
      * @ORM\Column(name="datetimeSubmitted", type="datetime")
@@ -258,5 +272,45 @@ class StepSubmission
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set latitude
+     *
+     * @param string $latitude
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+    }
+
+    /**
+     * Get latitude
+     *
+     * @return string 
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * Set longitude
+     *
+     * @param string $longitude
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+    }
+
+    /**
+     * Get longitude
+     *
+     * @return string 
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
     }
 }

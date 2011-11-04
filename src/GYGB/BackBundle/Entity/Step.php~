@@ -123,10 +123,10 @@ class Step
    protected $commitments;
   
     /**
-     * @ORM\ManyToMany(targetEntity="Organization", inversedBy="featuredSteps")
-     * @ORM\JoinTable(name="StepsToOrganizations")
+     * @ORM\ManyToMany(targetEntity="Resource", inversedBy="featuredSteps")
+     * @ORM\JoinTable(name="StepsToResources")
      */
-    protected $featuredOrganizations;
+    protected $featuredResources;
  
     /** @ORM\OneToMany(targetEntity="FeaturedStep", mappedBy="step", cascade={"persist", "remove"})
    */
@@ -568,13 +568,13 @@ class Step
     
     
     /**
-     * Add featuredOrganizations
+     * Add featuredResourcess
      *
-     * @param GYGB\BackBundle\Entity\Organization $featuredOrganizations
+     * @param GYGB\BackBundle\Entity\Resource $featuredResources
      */
-    public function addOrganization(\GYGB\BackBundle\Entity\Organization $featuredOrganizations)
+    public function addResource(\GYGB\BackBundle\Entity\Resource $featuredResources)
     {
-        $this->featuredOrganizations[] = $featuredOrganizations;
+        $this->featuredResources[] = $featuredResources;
     }
 
     
@@ -600,12 +600,22 @@ class Step
     }
 
     /**
-     * Get featuredOrganizations
+     * Get featuredResources
      *
      * @return Doctrine\Common\Collections\Collection 
      */
-    public function getFeaturedOrganizations()
+    public function getFeaturedResources()
     {
-        return $this->featuredOrganizations;
+        return $this->featuredResources;
+    }
+    
+    /**
+     * Set featuredResources
+     *
+     * @param GYGB\BackBundle\Entity\Resource $resources
+     */
+    public function setFeaturedResources($resources)
+    {
+        $this->featuredResources = $resources;
     }
 }

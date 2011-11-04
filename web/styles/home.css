@@ -110,24 +110,3 @@ div#communities-supported {
     margin-top: 50px;
     padding: 0 50px;
 }
-
-
-div#founders-and-sponsors {
-    width: 100%;
-    float: left;
-    margin-top: 100px;
-    border-top: 1px solid #ddd;
-}
-
-div.logo-block {
-    margin: 15px auto;
-    overflow: auto;
-    width: 949px;
-}
-
-div.logo-block img {
-    display: block;
-    float: left; 
-    width: 55px;
-    margin: 5px;
-}

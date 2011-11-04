@@ -5,15 +5,16 @@
 
         <title>{% block title %}Get Your GreenBack - Tompkins!{% endblock %}</title>
 
+        <meta property="og:title" content="Get Your GreenBack - Tompkins!" />
+        <meta property="og:description" content="Get Your GreenBack Tompkins is a community-based campaign to inspire all 42,000 households and every business in Tompkins County to take meaningful steps to save energy and money in the areas of Food, Building Heating & Lighting, Waste, and Transportation." />
+        <meta property="og:image" content="{{ asset('images/logoa.png') }}" />
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('styles/layout.css') }}" type="text/css">
+            <link rel="stylesheet" href="{{ asset('bundles/ccetcbootstrap/bootstrap/bootstrap.css') }}" type="text/css" media="all" >
+            <link rel="stylesheet" href="{{ asset('styles/general.css') }}" type="text/css">
             <link rel="stylesheet" href="{{ asset('styles/misc.css') }}" type="text/css">
             <link rel="stylesheet" href="{{ asset('styles/menus.css') }}" type="text/css">
-            <link rel="stylesheet" href="{{ asset('styles/specifics.css') }}" type="text/css">
-            <link rel="stylesheet" href="{{ asset('bundles/ccetcbootstrap/bootstrap/bootstrap.css') }}" type="text/css" media="all" >
             
             <link type="text/css" href="{{ asset('bundles/sonatajquery/themes/flick/jquery-ui-1.8.6.custom.css') }}" rel="Stylesheet" />	
-            <link rel="stylesheet" href="{{ asset('styles/general.css') }}" type="text/css">
             
             <!--[if lte IE 7]>
                 <link rel="stylesheet" type="text/css" href="{{ asset('styles/ie7.css') }}" />
@@ -47,6 +48,14 @@
 
             }
         </script>
+        <script type="text/javascript">
+          (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>
+
     </head>
 
     <body>
@@ -96,23 +105,83 @@
                     {% set block_var = 'alert-message block-message' ~ notice_level %}
                     {% if app.session.hasFlash(notice_var) %}
                         <div class="{{ notice_var }}">
-                            {{ app.session.flash(notice_var) }}
+                            {{ app.session.flash(notice_var)|raw }}
                         </div>
                     {% endif %}
                     {% if app.session.hasFlash(block_var) %}
                         <div class="{{ block_var }}">
-                            {{ app.session.flash(block_var) }}
+                            {{ app.session.flash(block_var)|raw }}
                         </div>
                     {% endif %}
                 {% endfor %}
+                {% if app.session.hasFlash('template-flash') %}
+                    {% include app.session.getFlash('template-flash') %}
+                {% endif %}
 
                     
                     
                 {% block content %}{% endblock %}
-
-                <div style="clear: both;"></div>
+                <div style="clear: both;">&nbsp;</div>
             </div>
+            <footer>
+                <div class="row">
+                    <div id="founders-and-sponsors">
+                        <div class="logo-block">
+                            <a href="http://www.tompkins-co.org/" target="_blank">
+                                <img src="{{ asset('files/logos/tompkins.gif') }}">
+                            </a>
+                            <a href="http://www.ci.ithaca.ny.us/" target="_blank">
+                                <img src="{{ asset('files/logos/cityithaca.png') }}">
+                            </a>
+                            <a href="http://www.town.ithaca.ny.us/" target="_blank">
+                                <img src="{{ asset('files/logos/townithaca.gif') }}">
+                            </a>
+                            <a href="http://ccetompkins.org" target="_blank">
+                                <img src="{{ asset('files/logos/ccetompkins.jpg') }}" style="width: 152px;">
+                            </a>
+                            <a href="http://dryden.ny.us/" target="_blank">
+                                <img src="{{ asset('files/logos/dryden.png') }}" style="width: 75px;">
+                            </a>
+                            <a href="http://www.tccpi.org/" target="_blank">
+                                <img src="{{ asset('files/logos/tccpi.png') }}" style="width: 70px;">
+                            </a>
+                            <a href="http://www.tcactionweb.org/cms/" target="_blank">
+                                <img src="{{ asset('files/logos/tcaction.png') }}">
+                            </a>
+                            <a href="http://www.cargill.com/" target="_blank">
+                                <img src="{{ asset('files/logos/cargill.jpg') }}" style="width: 92px;">
+                            </a>
+                            <a href="http://creating.theseen.org/" target="_blank">
+                                <img src="{{ asset('files/logos/seen.jpg') }}" style="width: 72px;">
+                            </a>
+                            <a href="http://sustainabletompkins.org/" target="_blank">
+                                <img src="{{ asset('files/logos/sustainabletompkins.gif') }}" style="width: 168px;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                    
+                <div class="row">
+                    <div class="span16">
+                        <span class="pull-right" style="font-size: 10px;">
+                            Built by <a target="_blank" href="http://ccetompkins.org">Cornell Cooperative Extension of Tompkins County</a> - <a target="_blank" href="http://github.com/CCETC/GYGB">source code</a>
+                        </span>   
+                        <span style="float: left; margin: 2px 15px 0 0;">
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://getyourgreenbacktompkins.org" data-text="Get Your GreenBack - Tompkins!" data-count="none">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+                        </span>
+                        <span style="float: left; margin: 2px 0 0 0;">
+                            <g:plusone size="medium" href="http://getyourgreenbacktompkins.org"></g:plusone>
+                        </span>
+                        <span style="float: left;">
+                            <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fgetyourgreenbacktompkins.org&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+                        </span>
+                            
+                            
+                    </div>
 
+                </div>
+            </footer>
+                
         </div>
 
     </body>

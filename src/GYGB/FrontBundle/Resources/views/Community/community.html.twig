@@ -2,10 +2,14 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('styles/stepList.css') }}" type="text/css">        
     <link rel="stylesheet" href="{{ asset('styles/community.css') }}" type="text/css">        
 {% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/community.js') }}" type="text/javascript"></script>
+{% endblock %}        
+    
 {% block content %}
 <h1>Community</h1>
 <h3>See what others in the Tompkins County community are doing to save money and energy.</h3>
@@ -13,7 +17,6 @@
 {% render "GYGBFrontBundle:Community:stepsTakenCounter" %}  
 {% render "GYGBFrontBundle:Community:commitmentsMadeCounter" %}  
 
-{% include "GYGBFrontBundle:EventList:_eventList.html.twig" with {'events' : events, 'id' : 'community-steps', 'noEventText' : 'No one has taken a step! Be the first.', 'linkEvents' : true } %}
-
+{{ knp_menu_render('GYGBFrontBundle:Builder:communityMenu') }}
 
 {% endblock %}

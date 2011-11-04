@@ -9,7 +9,21 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CommunityController extends Controller
 {
-
+    public function communityAction()
+    {
+        return $this->forward('GYGBFrontBundle:Community:communitySteps');
+    }
+    
+    public function communityMapAction()
+    {
+        $stepSubmissionRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:StepSubmission');
+        $stepSubmissions = $stepSubmissionRepository->findAll();
+                
+        return $this->render('GYGBFrontBundle:Community:_communityMap.html.twig', array(
+            'stepSubmissions' => $stepSubmissions,
+        ));
+    }
+    
     public function communityStepsAction()
     {
         $stepSubmissionRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:StepSubmission');
@@ -17,9 +31,9 @@ class CommunityController extends Controller
         $commitmentRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Commitment');
 
         $events = $stepRepository->findAllEvents($stepSubmissionRepository, $commitmentRepository);
-
-        return $this->render('GYGBFrontBundle:Community:communitySteps.html.twig', array(
-            'events' => $events
+        
+        return $this->render('GYGBFrontBundle:Community:_communitySteps.html.twig', array(
+            'events' => $events,
         ));
     }
 

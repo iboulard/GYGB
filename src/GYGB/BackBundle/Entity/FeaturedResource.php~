@@ -15,7 +15,7 @@ class FeaturedResource
 
     public function __toString()
     {
-        return $this->getOrganization() . ' featured on the '. $this->getType(). ' page';
+        return $this->getResource() . ' featured on the '. $this->getType(). ' page';
     }
 
     /**
@@ -33,8 +33,8 @@ class FeaturedResource
      */
     private $type;
     
-    /** @ORM\ManyToOne(targetEntity="Organization", inversedBy="features") */
-    protected $organization;
+    /** @ORM\ManyToOne(targetEntity="Resource", inversedBy="features") */
+    protected $resource;
 
     
     public static function getTypes()
@@ -77,22 +77,22 @@ class FeaturedResource
     }
 
     /**
-     * Set organization
+     * Set resource
      *
-     * @param GYGB\BackBundle\Entity\Organization $organization
+     * @param GYGB\BackBundle\Entity\Resource $resource
      */
-    public function setOrganization(\GYGB\BackBundle\Entity\Organization $organization)
+    public function setResource(\GYGB\BackBundle\Entity\Resource $resource)
     {
-        $this->organization = $organization;
+        $this->resource = $resource;
     }
 
     /**
-     * Get organization
+     * Get resource
      *
-     * @return GYGB\BackBundle\Entity\Organization 
+     * @return GYGB\BackBundle\Entity\Resource
      */
-    public function getOrganization()
+    public function getResource()
     {
-        return $this->organization;
+        return $this->resource;
     }
 }

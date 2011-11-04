@@ -1,0 +1,13 @@
+{% extends 'GYGBFrontBundle:Community:community.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/stepList.css') }}" type="text/css">        
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+    
+    {% include "GYGBFrontBundle:EventList:_eventList.html.twig" with {'events' : events, 'id' : 'community-steps', 'noEventText' : 'No one has taken a step! Be the first.', 'linkEvents' : true } %}
+
+{% endblock %}

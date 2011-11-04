@@ -8,7 +8,15 @@ home:
 
 community:
   pattern: /community
+  defaults: { _controller: GYGBFrontBundle:Community:community }
+
+communitySteps:
+  pattern: /community/steps
   defaults: { _controller: GYGBFrontBundle:Community:communitySteps }
+
+communityMap:
+  pattern: /community/map
+  defaults: { _controller: GYGBFrontBundle:Community:communityMap }
 
 resources:
   pattern: /resources/{category}

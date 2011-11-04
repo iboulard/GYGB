@@ -2,31 +2,76 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('styles/about.css') }}" type="text/css">        
+<link rel="stylesheet" href="{{ asset('styles/about.css') }}" type="text/css">        
 {% endblock %}
 
 {% block content %}
-    <div id="about-page-container">
-        <h1>Get My GreenBack?</h1>
-        <div id="about-text">
-            Get Your GreenBack Tompkins is a community-based campaign to inspire all 42,000 households and every business in Tompkins County to take meaningful steps to save energy and money in the areas of Food, Building Heat & Lighting, Transportation, and Waste. Including you! Join the 100’s of others who have already taken steps to Get Their GreenBack!
-        </div>
-
-
-        <h2>Why ”Get Your GreenBack Tompkins!” and Why Now?</h2>
-
-        <p>
-        The cost of energy is becoming an increasingly important factor in deciding whether to drive or take the bus to work; what food to put on the table; how to heat a building; where to live or locate a business; and what types of services a local government can offer its citizens.  We can also anticipate that the changing energy landscape will result in greater pressure on our natural resources – agricultural land, water resources, and local forests – to help meet the energy demands of the County.  
-        </p>
-
-        <p>
-        In response to these economic, energy and greenhouse gas emissions challenges, a number of community initiatives, including those of local governments, institutions of higher education, local coalitions, the business community, and local nonprofits, are already underway.  By combining efforts to reduce energy demand, improve efficiency, and transition to alternative energy sources, the Tompkins County community will also build the essential connections across neighborhoods and social groups that will bring long-term economic and environmental sustainability. 
-        </p>
-
-        <br/><br/>
-        <h2>Contact Us</h2>
-        <p>
-        Questions or Comments? Call Cooperative Extension of Tompkins County at 607-272-2292 or e-mail us at <a href="mailto:getyourgreenbacktompkins@gmail.com">getyourgreenbacktompkins@gmail.com</a>
-        </p>
+<div id="about-page-container">
+    <h1>Get My GreenBack?</h1>
+    <div id="about-text">
+        Get Your GreenBack Tompkins is a community-based campaign to inspire all 42,000 households and every business in Tompkins County to take meaningful steps to save energy and money in the areas of Food, Building Heat & Lighting, Transportation, and Waste. Including you! Join the 100’s of others who have already taken steps to Get Their GreenBack!
     </div>
+
+    <div class="row">
+        <div class="span16">
+            <div class="page-header">
+                <h2>Why ”Get Your GreenBack Tompkins!” and Why Now?</h2>
+            </div>
+
+            <p>
+                The cost of energy is becoming an increasingly important factor in deciding whether to drive or take the bus to work; what food to put on the table; how to heat a building; where to live or locate a business; and what types of services a local government can offer its citizens.  We can also anticipate that the changing energy landscape will result in greater pressure on our natural resources – agricultural land, water resources, and local forests – to help meet the energy demands of the County.  
+            </p>
+
+            <p>
+                In response to these economic, energy and greenhouse gas emissions challenges, a number of community initiatives, including those of local governments, institutions of higher education, local coalitions, the business community, and local nonprofits, are already underway.  By combining efforts to reduce energy demand, improve efficiency, and transition to alternative energy sources, the Tompkins County community will also build the essential connections across neighborhoods and social groups that will bring long-term economic and environmental sustainability. 
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span16">
+            <div class="page-header">
+                <h2>Contact Us</h2>
+            </div>
+            <p>
+                Questions or Comments? Call Cooperative Extension of Tompkins County at 607-272-2292 or e-mail us at <a href="mailto:getyourgreenbacktompkins@gmail.com">getyourgreenbacktompkins@gmail.com</a>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="span16">
+            <div class="page-header" id="code">
+                <h2>Code</h2>
+            </div>
+            <p>
+                The Get Your GreenBack web site is built by <a target="_blank" href="http://ccetompkins.org">Cornell Cooperative Extension
+                    of Tompkins County</a>.  It is open source and can be found on <a target="_blank" href="http://github.com/CCETC/GYGB">GitHub</a>.
+                    If you would like to contribute, <a href="mailto:haggertypat@gmail.com">let us know</a>.
+            </p>
+            <p>
+                This website is built with several open source projects including <a target="_blank" href="http://symfony.com">Symfony</a>, <a target="_blank" href="http://twitter.github.com/bootstrap">Bootstrap</a>, and <a target="_blank" href="http://jquery.com/">jQuery</a>.
+                It also makes use Symfony bundles from <a target="_blank" href="http://sonata-project.org/about">Sonata</a>, <a target="_blank" href="http://friendsofsymfony.github.com/">FOS</a>, and <a target="_blank" href="https://github.com/CCETC">Cornell Cooperative Extension of Tompkins County</a>.
+            </p>
+            <p>
+                We owe thanks to many other open source projects that we use to build and run the site:
+                <ul>
+                    <li><a href="http://twig.sensiolabs.org/" target="_blank">Twig</a> - PHP templating engine</li>
+                    <li><a href="http://swiftmailer.org/" target="_blank">SwiftMailer</a> - e-mail library</li>
+                    <li><a href="http://www.doctrine-project.org/" target="_blank">Doctrine</a> - object relational mapper</li>
+                    <li><a href="http://www.tinymce.com/" target="_blank">TinyMCE</a> - rich text editor</li>
+                    <li><a href="http://www.php.net/" target="_blank">PHP</a> scripting language</li>
+                    <li><a href="http://www.mysql.com/" target="_blank">MySQL</a> - database system</li>
+                    <li><a href="http://www.debian.org/" target="_blank">Debian</a> - operating system</li>
+                    <li><a href="http://lesscss.org/" target="_blank">Less</a> - dyanmic stylesheet language</li>
+                    <li><a href="http://www.apache.org/" target="_blank">Apache</a> - web server</li>
+                    <li><a href="http://netbeans.org/" target="_blank">NetBeans</a> IDE</li>
+                    <li><a href="http://git-scm.com/" target="_blank">Git</a> - version control system</li>
+                    <li><a href="http://github.com" target="_blank">GitHub</a> - Git Repository hosting</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -20,25 +20,6 @@
     <span class="take-a-step-heading">Commit to taking a step and find resources to help you take it.</span>
     
     <div id="take-a-step-page-container">
-        {% if commited or taken %}
-            <div style="width: 100%;">
-            {% if commited and taken == false %}
-                <div style="font-size: 20px; float: right; margin: 0 0 10px 0;">
-                        <span style="">You have committed to taking this step.</span>
-                </div>
-            {% elseif taken %} 
-                <div style="font-size: 20px; float: right;">
-                    <div style="">
-                        <img style="float: left;" src="{{ asset('images/check.png') }}" />
-                        <span style="float: left; padding: 10px 0 0 10px; margin: 0 0 10px 0;">You have taken this step.</span><br/>
-                    </div>
-                    <div>&nbsp;</div>
-                </div>
-            {% endif %}
-                <div style="clear: both;">&nbsp;</div>
-            </div>
-        {% endif %}
-
         <div class="take-a-step-box">
             {% include "GYGBFrontBundle:StepList:_step.html.twig" with {'step' : step, 'id' : step.id, 'displayCounts' : true, 'linkStep' : false, 'first' : false, 'last' : true } %}
 
@@ -49,17 +30,30 @@
             {% include "GYGBFrontBundle:EventList:_eventList.html.twig" with {'events' : events, 'id' : 'step-events', 'noEventsText' : 'No one has taken this step! Be the first.', 'linkEvents' : false } %}
         {% endif %}
             
-        <div class="step-buttons-container row">
-            {% if not taken %}    
+        <div id="step-buttons-container" class="row">
                 <div class="commit-to-this-step span7">
                     {% if not commited %}
-                        <a class="btn large success" href="#" id="commit-to-this-step">Commit to taking this step</a>
+                        <a class="btn large success" href="#step-buttons-container" id="commit-to-this-step">Commit to taking this step</a>
+                    {% elseif not taken %}
+                        <div style="font-size: 20px; float: left; margin: 0 0 10px 0;">
+                                <img style="float: left;" src="{{ asset('images/check.png') }}" />
+                                <span style="float: left; padding: 10px 0 0 10px; margin: 0 0 10px 0;">You've committed to taking this step.</span>
+                        </div>
                     {% endif %}
                 </div>
                 <div class="share-this-step pull-right">
+                    {% if not taken %}
                         Have you taken this step? <a class="btn large success" href="{{ path('shareAStep', {'id':step.id}) }}">Share it! &rarr;</a>
+                    {% else %}
+                        <div style="font-size: 20px; float: right;">
+                            <div style="">
+                                <img style="float: left;" src="{{ asset('images/check.png') }}" />
+                                <span style="float: left; padding: 10px 0 0 10px; margin: 0 0 10px 0;">You've taken this step.</span><br/>
+                            </div>
+                            <div>&nbsp;</div>
+                        </div>
+                    {% endif %}
                 </div>
-            {% endif %}
         </div>
 
         {% if not commited %}
