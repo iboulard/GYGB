@@ -1,24 +1,15 @@
-<div class="step-list" id="{{ id }}">
-    {% if events|length > 0 %}
+{% if events|length > 0 %}
+    <div class="step-list" id="{{ id }}">
         <div class="step-list-container {% if not linkEvents %}events-not-linked{% endif %}">
             {% for event in events %}
-                <div class="step-container {% if not linkEvents%}not-linked{% endif %} {% if loop.first %}first {% endif %}{% if loop.last %}last {% endif %}">
-                <div class="step {{ event.category }}">
-                    <span class="name">{{ event.name }} 
-                    </span>
-                    <span class="story">
-                        {% if linkEvents %}<a class="step-link" href="{{ path('takeAStep', {'id': event.stepId }) }}">{% endif %}
-                            {{ event.text }}
-                        {% if linkEvents %}</a>{% endif %}
-                    </span>
-                    <span class="date">{{ event.datetime|date("F j, Y g:i a") }}</span>
-                </div>
-                </div>
+                {% include "GYGBFrontBundle:EventList:_event.html.twig" with {'event' : event, 'first' : loop.first, 'last' : loop.last, 'linkEvent' : linkEvents, 'justStory' : justStory, 'showCustomLabel' : showCustomLabel  } %}
             {% endfor %}
         </div>
-    {% else %}
-        <div class="step-list-results">
-            {{ noEventsText }}
+    </div>
+{% else %}
+    <div class="row">
+        <div class="alert-message block-message span15">
+            {{ noEventsText|raw }}
         </div>
-    {% endif %}
-</div>
+    </div>
+{% endif %}

@@ -160,7 +160,15 @@ div#step-option-container {
     float: left;
 }
 div.step-list#all-step-list {
-    width: 50%;
-    margin: 0 0 20px 110px;
+    width: 60%;
+    margin: 0 0 20px 63px;
     float: left;
 }
+
+/*div.step-container a.take-this-step {
+    display: none;
+}
+
+div.step-container:hover a.take-this-step {
+    display: inline;
+}*/

@@ -14,6 +14,8 @@ class StepListController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
 
+        $stepAdmin = $this->get('gygb.back.admin.step');
+
         if(isset($terms))
         {
             $steps = $stepRepository->findByTerms($em, $terms);
@@ -41,7 +43,8 @@ class StepListController extends Controller
             'stepNoun' => $stepNoun,
             'id' => $id,
             'displayCounts' => true,
-            'linkSteps' => $linkSteps
+            'linkSteps' => $linkSteps,
+            'stepAdmin' => $stepAdmin
         ));
     }
 }

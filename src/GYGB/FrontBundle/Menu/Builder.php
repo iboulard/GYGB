@@ -11,9 +11,26 @@ class Builder extends ContainerAware
     public $mainMenu;
     public $takeAStepMenu;
     public $communityMenu;
+    public $myStepsMenu;
     
     public $path;
 
+    public function myStepsMenu(FactoryInterface $factory)
+    {
+        $this->myStepsMenu = $factory->createItem('root');
+        $this->myStepsMenu->setCurrentUri($this->container->get('request')->getRequestUri());
+        $this->myStepsMenu->setAttribute('class', 'tabs');
+        
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        
+        $this->myStepsMenu->addChild('mySteps', array('route' => 'mySteps', 'label' => 'My Steps ('.count($user->getStepSubmissions()).')'));
+        $this->myStepsMenu->addChild('myCommitments', array('route' => 'myCommitments', 'label' => 'My Commitments ('.count($user->getCommitments()).')'));
+
+        $this->myStepsMenu->getCurrentItem()->setAttribute('class', 'current active');
+        
+        return $this->myStepsMenu;
+    }
+    
     public function communityMenu(FactoryInterface $factory)
     {
         $this->communityMenu = $factory->createItem('root');
@@ -43,7 +60,8 @@ class Builder extends ContainerAware
     {
         $this->takeAStepMenu = $factory->createItem('root');
         $this->takeAStepMenu->setCurrentUri($this->container->get('request')->getRequestUri());
-
+        $this->takeAStepMenu->setAttribute('class', 'tabs');
+        
         $this->takeAStepMenu->addChild('findAStep', array('route' => 'findAStep', 'label' => '1. Find a step', 'attributes' => array('class' => 'findAStep')));
         $this->takeAStepMenu->addChild('takeAStep', array('route' => 'takeAStep', 'label' => '2. Take a step and save', 'attributes' => array('class' => 'takeAStep')));
         $this->takeAStepMenu->addChild('shareAStep', array('route' => 'shareAStep', 'label' => '3. Share a step and win', 'attributes' => array('class' => 'shareAStep')));
@@ -51,6 +69,8 @@ class Builder extends ContainerAware
         $this->correctTakeAStepCurrent();
         $this->correctShareAStepCurrent();
 
+        $this->takeAStepMenu->getCurrentItem()->setAttribute('class', 'current active');
+        
         return $this->takeAStepMenu;
     }
 
@@ -78,6 +98,7 @@ class Builder extends ContainerAware
         $this->mainMenu->addChild('Home', array('route' => 'home'));
         $this->mainMenu->addChild('Find a Step', array('route' => 'findAStep'));
         $this->mainMenu->addChild('Community', array('route' => 'communitySteps'));
+        $this->mainMenu->addChild('My Steps', array('route' => 'mySteps'));
         $this->mainMenu->addChild('Resources', array('route' => 'resources'));
 
         $this->path = str_replace($this->container->get('request')->getBaseUrl(), '', $this->container->get('request')->getRequestUri());
@@ -87,6 +108,7 @@ class Builder extends ContainerAware
         $this->correctHomeCurrent();
         $this->correctResourcesCurrent();
         $this->correctCommunityCurrent();
+        $this->correctMyStepsCurrent();
 
         return $this->mainMenu;
     }
@@ -131,5 +153,12 @@ class Builder extends ContainerAware
         }
     }
 
+    protected function correctMyStepsCurrent()
+    {
+        if(isset($this->path[1]) && ($this->path[1] == "my-steps" || $this->path[1] == "my-commitments"))
+        {
+            $this->mainMenu->getChild('My Steps')->setCurrent(true);
+        }
+    }
     
 }

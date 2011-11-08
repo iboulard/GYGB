@@ -10,6 +10,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/resourceList.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/stepList.js') }}" type="text/javascript"></script>
 {% endblock %}
         
 {% block content %}
@@ -25,16 +26,9 @@
                         <img style="float: {{ categoryOptions[category]['foot'] }};" class="category-step" src="{{ asset('images/vert-step-' ~ category ~ '.png') }}" />
                         {% if categoryOptions[category]['description'] is defined %}
                             <div class="category-description">{{ categoryOptions[category]['description']|raw }}</div>
-                        {% else %}
-                            <div class="featured-resource">
-                                {% include "GYGBFrontBundle:Resources:_resourceList.html.twig" with {'resources' : featuredResources, 'showSteps' : true } %}
-                            </div>
                         {% endif %}
                     </div>
                 </div>
-                {% if categoryOptions[category]['description'] is defined %}
-                        {% include "GYGBFrontBundle:Resources:_resourceList.html.twig" with {'resources' : featuredResources, 'showSteps' : true } %}
-                {% endif %}
                 {% include "GYGBFrontBundle:Resources:_resourceList.html.twig" with {'resources' : resources, 'showSteps' : true } %}
             </div>
 

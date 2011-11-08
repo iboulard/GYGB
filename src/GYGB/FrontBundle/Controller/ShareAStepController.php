@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class ShareAStepController extends Controller
 {
-    public function shareAStepAction($id = null)
+    public function shareAStepAction($id = null, $custom = false)
     {
         $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
         
@@ -27,7 +27,7 @@ class ShareAStepController extends Controller
             $selectedStep = null;
         }
         
-        $allStepObjects = $stepRepository->findBy(array('individual' => true));
+        $allStepObjects = $stepRepository->findBy(array('approved' => true));
         $allSteps = array();
         $allStepInfo = array();
         $stepObjects = array();
@@ -49,7 +49,7 @@ class ShareAStepController extends Controller
                 ->add('stepDropdown', 'choice', array('label' => 'Choose a step','required' => false, 'choices' => $stepTitles))
                 ->add('title', 'text', array('label' => 'Title', 'required' => false))
                 ->add('commitment', 'text', array('label' => 'Commitment', 'required' => false))
-                ->add('step', 'text', array('label' => 'Action', 'required' => false))
+                ->add('step', 'text', array('label' => 'Step', 'required' => false))
                 ->add('description', 'textarea', array('label' => 'Description', 'required' => false))
                 ->add('category', 'hidden', array('required' => false))
                 ->add('stepFromID', 'hidden', array('required' => false))
@@ -90,7 +90,7 @@ class ShareAStepController extends Controller
                         'allStepInfo' => $allStepInfo,
                         'stepObjects' => $stepObjects,
                         'id' => $id,
-                        'selectedStep' => $selectedStep
+                        'selectedStep' => $selectedStep,
                     ));
                 }
                 else if(trim($data['stepDropdown']) != "")
@@ -107,10 +107,13 @@ class ShareAStepController extends Controller
                 }
                 
                 $step = $stepRepository->findOneBytitle($step_title);
-
+                $stepSubmission = new \GYGB\BackBundle\Entity\StepSubmission();
+                $newStep = false;
+                
                 // add step if new
                 if(!$step)
                 {
+                    $newStep = true;
                     $step = new \GYGB\BackBundle\Entity\Step();
                     $step->setTitle($step_title);
                     $step->setApproved(false);
@@ -125,30 +128,35 @@ class ShareAStepController extends Controller
                     
                     $em->persist($step);
                     $em->flush();
-
                 }
                 else
                 {
                     $step->setStepCount($step->getStepCount() + 1);
                 }
                
-                // unapproved steps and new steps (that are inherently unapproved) should not be highlighted
-                if(!$step || $step->getApproved() == false)
-                {
-                    // TODO: your step will appear once our team approves it
-                    $this->getRequest()->getSession()->setFlash('template-flash', '::_shareYourStep.html.twig');
-                }
-                else
-                {
-                    $this->getRequest()->getSession()->setFlash('template-flash', '::_shareYourStep.html.twig');
-                }
-                
-                
-                $stepSubmission = new \GYGB\BackBundle\Entity\StepSubmission();
                 
                 if($this->get('security.context')->isGranted('ROLE_USER'))
                 {
                     $user = $this->get('security.context')->getToken()->getUser();
+                    
+                    $stepSubmissionArray = array();
+                    foreach($user->getStepSubmissions() as $ss)
+                    {
+                        $stepSubmissionArray[] = $ss->getStep();
+                    }
+                    if(in_array($step, $stepSubmissionArray)) {
+                        $this->getRequest()->getSession()->setFlash('alert-message error', 'You have already taken this step.  Try selecting a different step.');
+
+                        return $this->render('GYGBFrontBundle:ShareAStep:shareAStep.html.twig', array(
+                            'stepForm' => $stepForm->createView(),
+                            'categoryNames' => $categoryNames,
+                            'allSteps' => $allSteps,
+                            'allStepInfo' => $allStepInfo,
+                            'stepObjects' => $stepObjects,
+                            'id' => $id,
+                            'selectedStep' => $selectedStep
+                        ));
+                    }
                     $stepSubmission->setName($user->getName());
                     $stepSubmission->setEmail($user->getEmail());
                     $stepSubmission->setUser($user);
@@ -172,9 +180,24 @@ class ShareAStepController extends Controller
 
                 $step->addStepSubmission($stepSubmission);
                 
+                if($newStep)
+                {
+                    $step->setParentSubmission($stepSubmission);
+                }
+                
                 $em->persist($step);
                 $em->flush();
 
+                
+                // unapproved steps and new steps (that are inherently unapproved) should not be highlighted
+                if($newStep)
+                {
+                    $this->getRequest()->getSession()->setFlash('template-flash', '::_thanksNeedsApproval.html.twig');
+                }
+                else
+                {
+                    $this->getRequest()->getSession()->setFlash('template-flash', '::_thanks.html.twig');
+                }
                 
                 if($this->get('security.context')->isGranted('ROLE_USER'))
                 {
@@ -194,7 +217,8 @@ class ShareAStepController extends Controller
             'allStepInfo' => $allStepInfo,
             'stepObjects' => $stepObjects,
             'id' => $id,
-            'selectedStep' => $selectedStep
+            'selectedStep' => $selectedStep,
+            'custom' => $custom
         ));
     }
 

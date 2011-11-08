@@ -98,10 +98,23 @@ class StepSubmission
      */
     public function getName()
     {
-        if(!isset($this->name))
-            return 'Anonymous';
-        else
-            return $this->name;
+        return $this->name;
+    }
+    
+    public function getNameForDisplay()
+    {
+      if($this->getUser())
+      {
+          return $this->getUser()->getName();
+      }    
+      else if(isset($this->name))
+      {
+        return $this->name;
+      }
+      else
+      {
+        return 'Anonymous';          
+      }
     }
 
     /**
@@ -313,4 +326,5 @@ class StepSubmission
     {
         return $this->longitude;
     }
+
 }

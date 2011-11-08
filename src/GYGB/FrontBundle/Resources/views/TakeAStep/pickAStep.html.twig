@@ -7,8 +7,11 @@
 
 {% block content %}
     {% include 'GYGBFrontBundle:Steps:_takeAStepMenu.html.twig' %}
-    <span class="take-a-step-heading">Once you <a href="{{ path('findAStep') }}">find your step &uarr;</a>, you can find resources <b>here</b> to help you take it.</span>
-    <br/>
-    <span class="take-a-step-heading">If you have already taken a step, <a href="{{ path('shareAStep') }}">share it &rarr;</a>.</span>
-
+    <div class="alert-message block-message info">
+        <h3>Take a step and save money and energy.</h3>
+        <a href="{{ path('findAStep') }}">&larr; Find your step</a>, and then come <b>here</b> to find resources to help you take it.
+        <br/>
+        If you have already taken a step, <a href="{{ path('shareAStep') }}">share it &rarr;</a>.
+    </div>
+    
 {% endblock content %}

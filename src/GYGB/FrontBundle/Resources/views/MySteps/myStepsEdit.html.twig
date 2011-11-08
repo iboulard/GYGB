@@ -1,0 +1,142 @@
+{% extends '::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/stepList.css') }}" type="text/css">        
+    <link rel="stylesheet" href="{{ asset('styles/mySteps.css') }}" type="text/css">        
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/stepList.js') }}" type="text/javascript"></script>
+    
+    {% if type == 'step' %}
+        <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?sensor=false">
+        </script>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <script src="{{ asset('js/map.js') }}" type="text/javascript"></script>    
+        <script>
+            $(document).ready(function() {
+
+                {% if eventObject.latitude is defined and eventObject.latitude != "" %}
+                    initializeEditMap({{ eventObject.latitude}}, {{eventObject.longitude}});
+                {% else %}
+                    initializeSubmissionMap();
+                {% endif %}
+            });
+        </script>
+    {% endif %}
+        
+    
+{% endblock %}        
+
+{% block content %}
+    <h1>My {{ type|capitalize }}s - edit</h1>
+    
+    <div class="row form-stacked" id="event-form">
+        <div class="span15">
+            <form action="{{ path(urlBase ~ 'Edit', {'id' : eventObject.id, 'type' : type }) }}" method="post" {{ form_enctype(eventForm) }}>
+                {% if form_errors(eventForm) %}
+                    <div class="alert-message error block-message">
+                        {{ form_errors(eventForm) }}
+                    </div>
+                {% endif %}
+        
+                <fieldset>
+                    <div class="span8 offset3">
+                        {% include "GYGBFrontBundle:EventList:_event.html.twig" with {'event' : event, 'first' : false, 'last' : true, 'linkEvent' : true, 'justStory' : true } %}
+                    </div><!-- /clearfix -->
+                </fieldset>
+                
+                {% if includeStepForm %}
+                    <fieldset>
+                        <legend>Custom Step</legend>
+                        <div class="span8">
+                            <div class="clearfix">
+                                {{ form_label(eventForm.title) }}
+                                <div class="input">
+                                    {{ form_widget(eventForm.title, { 'attr': {'class': 'span8'} }) }}
+                                    <span class="help-inline">ex: "Plant a garden."</span>
+                                </div>
+                            </div><!-- /clearfix -->
+                            <div class="clearfix">
+                                {{ form_label(eventForm.commitment) }}
+                                <div class="input">
+                                    {{ form_widget(eventForm.commitment, { 'attr': {'class': 'span8'} }) }}
+                                    <span class="help-inline">ex: "I will plant a garden."</span>
+                                </div>
+                            </div><!-- /clearfix -->
+                            <div class="clearfix">
+                                {{ form_label(eventForm.step) }}
+                                <div class="input">
+                                    {{ form_widget(eventForm.step, { 'attr': {'class': 'span8'} }) }}
+                                    <span class="help-inline">ex: "I planted a garden."</span>
+                                </div>
+                            </div><!-- /clearfix -->
+                            <div class="clearfix">
+                                {{ form_label(eventForm.description) }}
+                                <div class="input">
+                                    {{ form_widget(eventForm.description, { 'attr': {'class': 'span8'} }) }}
+                                    <span class="help-inline">What will help others take this step?</span>
+                                </div>
+                            </div><!-- /clearfix -->
+                            <div class="clearfix">
+                                {{ form_label(eventForm.category) }}
+                                <div class="input">
+                                    {{ form_widget(eventForm.category, { 'attr': {'class': 'span8'} }) }}
+                                </div>
+                            </div><!-- /clearfix -->
+
+                            
+                        </div>
+                    </fieldset>
+                {% endif %}          
+                    
+                {% if type == 'step' %}
+                    <fieldset>
+                        <legend>My Step</legend>
+                        <div class="span8">
+                            <div class="clearfix">
+                                {{ form_label(eventForm.story) }}
+                                <div class="input">
+                                    {{ form_widget(eventForm.story, { 'attr': {'class': 'span8'} }) }}
+                                </div>
+                                <span class="help-inline">What did you do? How did it go?</span>
+                            </div><!-- /clearfix -->
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset>
+                    <div class="span15">
+                        <label>Where did you take the step?</label>
+                        Click anywhere on the map.  Once you place your marker, you can move it by clicking and dragging it.<br/><br/>
+                        <div id="map-canvas" class="span8" style="height: 300px;">
+                        </div>
+                    </div>
+                        </fieldset>
+
+                {% else %}
+                    <fieldset>
+                        <legend>My Commitment</legend>
+                        <div class="span8">                    
+                            <div class="clearfix">
+                                {{ form_label(eventForm.commitment) }}
+                                <div class="input">
+                                    {{ form_widget(eventForm.commitment, { 'attr': {'class': 'span8'} }) }}
+                                </div>
+                                <span class="help-inline">What will you do?</span>
+                            </div><!-- /clearfix -->                    
+                        </div>
+                    </fieldset>
+                {% endif %}
+                    
+                {{ form_rest(eventForm) }}
+                <div class="actions">
+                    <input class="btn success large" value="Save" type="submit" />
+                    <a class="btn error large" href="{{ url(urlBase ~  'Delete', {'id' : eventObject.id }) }}">Delete</a>
+                    <a class="btn large" href="{{ url(urlBase) }}">Cancel</a>
+                </div>
+        </div>
+    </div>
+    
+{% endblock content %}

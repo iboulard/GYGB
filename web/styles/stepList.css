@@ -7,17 +7,17 @@ div.step-list {
     background: white;
     padding: 10px;
     
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;    
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;    
 
-    box-shadow: 0px 1px 9px #666;
-    -moz-box-shadow: 0px 1px 9px #666;
-    -webkit-box-shadow: 0px 1px 9px #666;
+    box-shadow: 0px 1px 2px #ddd;
+    -moz-box-shadow: 0px 2px 9px #ddd;
+    -webkit-box-shadow: 0px 2px 9px #ddd;
 }
 
 div.step-container {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #eee;
     overflow: auto;
     background: white;
 }
@@ -89,12 +89,12 @@ div.step-container div.step span.date {
 }
 
 div.step-list-results {
-    width: 100%; text-align: center; padding: 5px; background: #ffffbb; float: left;
+    width: 100%; text-align: center; padding: 5px; background: #FCEEC1; float: left;
     margin: 5px 0 10px 0;
 }
 
 div.step-container:hover {
-    background-color: #ffffbb; 
+    background-color: #FCEEC1; 
     cursor: pointer;
 }
 
@@ -106,4 +106,3 @@ div.step-container.not-linked:hover {
     background-color: white;
     cursor: auto;
 }
-

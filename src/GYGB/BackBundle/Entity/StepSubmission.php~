@@ -98,10 +98,23 @@ class StepSubmission
      */
     public function getName()
     {
-        if(!isset($this->name))
-            return 'Anonymous';
-        else
-            return $this->name;
+        return $this->name;
+    }
+    
+    public function getNameForDisplay()
+    {
+      if($this->getUser())
+      {
+          return $this->getUser()->getName();
+      }    
+      else if(isset($this->name))
+      {
+        return $this->name;
+      }
+      else
+      {
+        return 'Anonymous';          
+      }
     }
 
     /**
@@ -273,4 +286,45 @@ class StepSubmission
     {
         return $this->user;
     }
+
+    /**
+     * Set latitude
+     *
+     * @param string $latitude
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+    }
+
+    /**
+     * Get latitude
+     *
+     * @return string 
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * Set longitude
+     *
+     * @param string $longitude
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+    }
+
+    /**
+     * Get longitude
+     *
+     * @return string 
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
 }

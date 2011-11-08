@@ -83,6 +83,12 @@ class Resource
      * @ORM\Column(name="approved", type="boolean")
      */
     private $approved;
+    /**
+       * @var string $rank
+       *
+       * @ORM\Column(name="rank", type="integer", nullable="true")
+       */
+      private $rank;
 
    /**
      * @ORM\ManyToMany(targetEntity="Step", mappedBy="featuredResources")

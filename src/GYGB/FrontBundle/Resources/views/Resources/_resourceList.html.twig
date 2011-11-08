@@ -12,7 +12,7 @@
                         {% if resource.website is defined %}</a>{% endif %}
 
                         {% if is_granted('ROLE_ADMIN') %}
-                            <a class="edit" href="{{ admin.generateObjectUrl('edit', resource) }}">edit</a>
+                            <a class="btn" href="{{ resourceAdmin.generateObjectUrl('edit', resource) }}">edit</a>
                         {% endif %}
                     </div>
                     {% if resource.logo is defined and resource.logo != "" %}

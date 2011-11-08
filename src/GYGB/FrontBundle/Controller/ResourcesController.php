@@ -15,7 +15,7 @@ class ResourcesController extends Controller
         $featuredResourceRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:FeaturedResource');
         $categories = array('energy', 'food', 'waste', 'transportation', 'general');
 
-        $admin = $this->get('gygb.back.admin.resource');
+        $resourceAdmin = $this->get('gygb.back.admin.resource');
         
         $categoryOptions = array(
             'food' => array(
@@ -40,6 +40,7 @@ class ResourcesController extends Controller
             ),
             'general' => array(
                 'heading' => 'General Resources',
+                'description' => 'Check out the resources below that offer services to Tompkins County in a wide range of areas.',
                 'foot' => 'right'
             ),
         );
@@ -49,14 +50,7 @@ class ResourcesController extends Controller
 
         if(isset($category))
         {
-            $featuredResources = $featuredResourceRepository->findFeaturedOnTakeAStep($category);
-
-            $allResources = $resourceRepository->findBy(array('category' => $category));
-            
-            foreach($allResources as $r)
-            {
-                if(!in_array($r, $featuredResources)) $resources[] = $r;
-            }            
+            $resources = $resourceRepository->findBy(array('category' => $category, 'approved' => true), array('rank' => 'DESC'));
         }
         else
         {
@@ -69,7 +63,7 @@ class ResourcesController extends Controller
             'categories' => $categories,
             'categoryOptions' => $categoryOptions,
             'category' => $category,
-            'admin' => $admin
+            'resourceAdmin' => $resourceAdmin
         ));
     }
 

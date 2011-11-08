@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function homeAction($highlightStep)
     {
-        $admin = $this->get('gygb.back.admin.resource');        
+        $resourceAdmin = $this->get('gygb.back.admin.resource');        
         
         $featuredResourceRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:FeaturedResource');
         $featuredResources = $featuredResourceRepository->findFeaturedOnHome();
@@ -26,7 +26,7 @@ class HomeController extends Controller
         return $this->render('GYGBFrontBundle:Home:home.html.twig', array(
             'highlightStep' => $highlightStep,
             'featuredResources' => $featuredResources,
-            'admin' => $admin,
+            'resourceAdmin' => $resourceAdmin,
             'usingIE6' => $usingIE6
         ));
     }

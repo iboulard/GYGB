@@ -24,6 +24,7 @@ class ResourceAdmin extends Admin
 //                ->add('email', null, array('label' => 'E-mail'))
                 ->add('approved', null, array('label' => 'Approved'))
                 ->add('category', null, array('label' => 'Category'))
+                ->add('rank', null, array('label' => 'Rank'))
         ;
 
         $showGroups = array(
@@ -34,6 +35,7 @@ class ResourceAdmin extends Admin
 //                    'email',
                     'approved',
                     'category',
+                    'rank'
                 )
             ),
         );
@@ -70,7 +72,8 @@ class ResourceAdmin extends Admin
                 ->add('website', 'string', array('name' => 'Website'))
               //  ->add('email', 'string', array('name' => 'E-mail'))
                 ->add('approved', 'boolean', array('name' => 'Approved'))
-                ->add('category', 'string', array('name' => 'category'))
+                ->add('category', 'string', array('name' => 'Category'))
+                ->add('rank', 'string', array('name' => 'Rank'))
 
                 // add custom action links
                 ->add('_action', 'actions', array(
@@ -107,16 +110,18 @@ class ResourceAdmin extends Admin
             //    ->add('email')
                 ->add('website')
                 ->add('description')
+                ->add('rank')
                 ->add('category', 'choice', array('choices' => Step::getCategoryChoices(), 'expanded' => false, 'multiple' => false))
                 ->add('approved', null, array('required' => false))
                 ->add('file', 'file', array('required' => false))
-                ->add('featuredSteps', null, array('label' => 'Related Steps'))
+                ->add('featuredSteps', null, array('label' => 'Related Steps', 'required' => false))
                 
                 ->setHelps(array(
                     'featured' => 'featured resources show up at the top of their category on the resource guide',
                     'approved' => 'only approved resources will appear on the website',
                     'featuredSteps' => 'CTRL + click to select mutliple steps',
                     'approved' => 'only approved resources will appear on the website',
+                    'rank' => 'determines how high on the resource list this resource appears (the higher the number, the higher on the list)'
                 ));
 
         ;

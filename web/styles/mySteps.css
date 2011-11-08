@@ -1,0 +1,8 @@
+div.step-list#my-steps {
+    width: 60%;
+    margin: 15px auto;
+    overflow: auto;
+}
+
+div#event-form .step-container {
+}

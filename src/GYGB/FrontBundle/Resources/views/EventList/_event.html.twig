@@ -1,0 +1,29 @@
+<div class="step-container {% if not linkEvent%}not-linked{% endif %} {% if first %}first {% endif %}{% if last %}last {% endif %}">
+    <div class="step {{ event.category }}">
+        {% if justStory is defined and justStory %}
+            <span class="story">
+                {% if linkEvent %}<a class="step-link" href="{{ path('takeAStep', {'id': event.stepId }) }}">{% endif %}
+                    {{ event.story }}
+                {% if linkEvent %}</a>{% endif %}
+            </span>
+        {% else %}
+            <span class="name">{{ event.name }} 
+            </span>
+            <span class="story">
+                {% if linkEvent %}<a class="step-link" href="{{ path('takeAStep', {'id': event.stepId }) }}">{% endif %}
+                    {{ event.text }}
+                {% if linkEvent %}</a>{% endif %}
+            </span>
+        {% endif %}
+        {% if edit is defined %}
+            <span>
+                <a class="btn pull-right" style="margin-left: 10px;" href="{{ url(edit, {'id': event.eventId}) }}">edit</a>
+            </span>
+        {% endif %}
+        {% if not event.step.approved %}<span class="label important">unapproved</span>{% endif %}
+        {% if showCustomLabel is defined and showCustomLabel and event.step.parentSubmission is defined and event.step.parentSubmission != "" and event.eventObject == event.step.parentSubmission %}
+            <span class="label success">custom step</span>
+        {% endif %}
+        <span class="date">{{ event.datetime|date("F j, Y g:i a") }}</span>
+    </div>
+</div>

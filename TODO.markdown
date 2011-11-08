@@ -1,34 +1,46 @@
 Get Your Greenback - TODO
 ======================================
 
+when rolling out:
+	-	Upload site map
 
-URGENT
+	-	Update db
+	
+		- manually change Organization -> Resource where you can
+
+		- set resource ranks
+
+	-	transfer ranks
+	
+	-	merge git branch
+	
+	
+	
+URGENT issues - fix before next release
 ===============
-
-	- use real smtp server
 
 	- step model problem
 	
 		- add m2m field on admin
 
-		
+	- <p> problem on step description
+	
+		- remove tinymce on admin end
+			
 
 Issues
 ==============
 	
 	- fix remember me
 
+	- fill out registration form after submission
+	
+	- what to do with filters when searching?
+		
 
 Ideas
 ===========
 
-	- Find a Step	
-		
-		- "I don’t find it helpful to differentiate between a step and a commitment.
-		If you do include both, then it needs to be explained somewhere what the difference is."
-			- katie B
-	
-		
 	- Tell a story
 			I think it would be more effective to ask more detailed questions to help them tell
 			the story.  Ask a question and then give them a text box to respond.
@@ -37,104 +49,18 @@ Ideas
 	
 			- optional after submission
 	
-	- let admins sort resources
-
-
-	- user/submission/commitment
 	
-		- who are you
-		
-		- where are you (map)
-		
-			=>
-				community
-				
-				- filter by who and where
-			
+	- Featured individuals / organizations
 	
-
-1.1
-=============================
-
-#	0.	Upload site map
-
-	00.	Update db when rolling out
-	
-		- manually change Organization -> Resource where you can
-
-
-
-//	1.	Share Buttons
-
-//		- use on form and notice after
+		- will come when coalition figures this piece out
 		
-#	2.	Google Map
-	
-//		- community
-	
-//			- center map
-
-//			- click markers
-	
-//			- load from DB
-
-			- clean up look
+		highlight photos, videos, text of community member doing it right
 		
-		- share a step
+		- add to community page
 		
-//			- map
-			
-			- place marker
-			
-//				- move
-	
-				- ignore double click
-				
-//				- only one
-	
-				- close
-				
-//				- store in DB
-				
-
-	
-
-#	3.	My Steps		
+		- add to home page
 
 
-#	4.	Audience
-
-		- homeowner, renter, landlord, school, students, congregations
-
-		- add to step form
-		
-						
-#	5.	Share a Step
-	
-		- cancel selected step
-		
-		- better step selection dropdown
-		
-		- custom step
-		
-			- organization drop down
-
-				- featured step
-		
-		
-#	10.	Misc
-
-		- improve take a step
-		
-		- fill out registration form after submission
-		
-		- what to do with filters when searching?
-		
-		- remove repeat step
-		
-			- don't allow repeat steps
-			
-		- use user name if available
 		
 1.2
 =========================
@@ -169,10 +95,156 @@ Ideas
 
 		- for commitments
 		
+		
+#	5.	Audience
+
+		- homeowner, renter, landlord, school, students, congregations
+
+		- add to step form
+		
+		- add who/where filters to community page						
+
+			- user/submission/commitment
+			
+				- who are you
+				
+				- where are you (map)
+				
+					=>g
+						community
+						
+						- filter by who and where
+			
+
+						
+#	6.	Share a Step
+	
+		- cancel selected step
+		
+		- better step selection dropdown
+		
+		- custom step
+		
+			- organization drop down
+
+				- featured step
+
+
+#	20.	Cleanup
+
+		a.	Merge Organizations and Commitments
+		
+			- type
+			- name
+			- date
+			- text
+			- step
+			
+			- simplifies sorting, mysteps, ugly Step repo code
+			
+			- switch to eventList controller
+			
+				- add edit buttons
+			
 
 
 
 == Finished =========================
+
+1.1
+=============================
+
+//	1.	Share Buttons
+
+//		- use on form and notice after
+		
+//	2.	Google Map
+	
+//		- community
+	
+//			- center map
+
+//			- click markers
+	
+//			- load from DB
+
+//			- clean up look
+		
+//		- share a step
+		
+//			- map
+			
+//			- place marker
+			
+//				- move
+	
+//				- ignore double click
+				
+//				- only one
+	
+//				- close
+				
+//				- store in DB
+				
+//				- ignore scroll
+	
+
+//	3.	My Steps		
+	
+//		- better login page
+		
+//			- redirects?
+	
+//		- counts
+
+//		- view steps
+		
+//			- keep links
+		
+//		- edit steps
+		
+//			- map
+			
+//			- step name
+			
+//		- delete steps
+		
+//			- actually delete	
+		
+//		- unapproved steps + steps!!
+	
+//			- add appropriate fields to step edit form
+			
+//			- show status in unapproved somewhere
+	
+//		- add commitments
+		
+		
+//	4.	Find a Step	
+		
+//		- explain process better	
+
+//		- make menu and headings less in the way...
+
+//			- use tabs from elsewhere for smaller menu
+
+//		- highlight share your own!
+
+		
+//	10.	Misc
+
+//		- remove repeat step
+		
+//			- don't allow repeat steps
+			
+//		- use user name if available
+	
+//		- let admins sort resources
+
+//		- edit buttons on other content for admins
+
+//		- custom step label
+		
 Bootstrap Transition
 ================
 //		- buttons

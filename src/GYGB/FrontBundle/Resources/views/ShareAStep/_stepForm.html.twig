@@ -1,24 +1,31 @@
 <div id="step-form" class="span15 form-stacked">
     <form action="{{ path('shareAStep') }}" method="post" {{ form_enctype(stepForm) }}>
-        {{ form_errors(stepForm) }}
-
+        {% if form_errors(stepForm) %}
+            <div class="alert-message error block-message">
+                {{ form_errors(stepForm) }}
+            </div>
+        {% endif %}
+                    
         {% if selectedStep.title is defined %}
             <fieldset>
                 <legend>Your Step</legend>
-           {% include "GYGBFrontBundle:StepList:_step.html.twig" with {
-                'step' : selectedStep,
-                'id' : selectedStep.id,
-                'displayCounts' : false,
-                'first' : false,
-                'last' : true,
-                'linkStep' : false,
-                'highlight' : true
-           }%}
-                </fieldset>
+                    <div class="span8">
+                       {% include "GYGBFrontBundle:StepList:_step.html.twig" with {
+                            'step' : selectedStep,
+                            'id' : selectedStep.id,
+                            'displayCounts' : false,
+                            'first' : false,
+                            'last' : true,
+                            'linkStep' : false,
+                            'highlight' : true
+                       }%}
+                    </div>
+            </fieldset>
         {% endif %}
 
-        <fieldset id="select-a-step" style="{% if selectedStep.title is defined %}display: none;{% endif %}">
+        <fieldset id="select-a-step" style="{% if selectedStep.title is defined or custom is defined and custom %}display: none;{% endif %}">
             <legend>What step did you take?</legend>
+                <div class="span8">
                 <div class="clearfix">
                     {{ form_label(stepForm.stepDropdown) }}
                     <div class="input">
@@ -28,94 +35,99 @@
                 <div class="span8">
                     <a href="#" class="share-your-own pull-right">or share your own step</a>    
                 </div>
+                </div>
         </fieldset>
         
-        <fieldset id="share-your-own" style="display: none;">
+        <fieldset id="share-your-own" style="{% if custom is not defined or (custom is defined and not custom) %}display: none;{% endif %}">
             <legend>Share your own step</legend>
                 <div class="span8">
-                <div class="clearfix">
-                    {{ form_label(stepForm.title) }}
-                    <div class="input">
-                        {{ form_widget(stepForm.title, { 'attr': {'class': 'span8'} }) }}
-                        <span class="help-inline">ex: "Plant a garden."</span>
-                    </div>
-                </div><!-- /clearfix -->
-                <div class="clearfix">
-                    {{ form_label(stepForm.commitment) }}
-                    <div class="input">
-                        {{ form_widget(stepForm.commitment, { 'attr': {'class': 'span8'} }) }}
-                        <span class="help-inline">ex: "I will plant a garden."</span>
-                    </div>
-                </div><!-- /clearfix -->
-                <div class="clearfix">
-                    {{ form_label(stepForm.step) }}
-                    <div class="input">
-                        {{ form_widget(stepForm.step, { 'attr': {'class': 'span8'} }) }}
-                        <span class="help-inline">ex: "I planted a garden."</span>
-                    </div>
-                </div><!-- /clearfix -->
-                <div class="clearfix">
-                    {{ form_label(stepForm.description) }}
-                    <div class="input">
-                        {{ form_widget(stepForm.description, { 'attr': {'class': 'span8'} }) }}
-                        <span class="help-inline">What will help others take this step?</span>
-                    </div>
-                </div><!-- /clearfix -->
-                
-                <label>What area was your step in?</label>
+                    <div class="clearfix">
+                        {{ form_label(stepForm.title) }}
+                        <div class="input">
+                            {{ form_widget(stepForm.title, { 'attr': {'class': 'span8'} }) }}
+                            <span class="help-inline">ex: "Plant a garden."</span>
+                        </div>
+                    </div><!-- /clearfix -->
+                    <div class="clearfix">
+                        {{ form_label(stepForm.commitment) }}
+                        <div class="input">
+                            {{ form_widget(stepForm.commitment, { 'attr': {'class': 'span8'} }) }}
+                            <span class="help-inline">ex: "I will plant a garden."</span>
+                        </div>
+                    </div><!-- /clearfix -->
+                    <div class="clearfix">
+                        {{ form_label(stepForm.step) }}
+                        <div class="input">
+                            {{ form_widget(stepForm.step, { 'attr': {'class': 'span8'} }) }}
+                            <span class="help-inline">ex: "I planted a garden."</span>
+                        </div>
+                    </div><!-- /clearfix -->
+                    <div class="clearfix">
+                        {{ form_label(stepForm.description) }}
+                        <div class="input">
+                            {{ form_widget(stepForm.description, { 'attr': {'class': 'span8'} }) }}
+                            <span class="help-inline">What will help others take this step?</span>
+                        </div>
+                    </div><!-- /clearfix -->
 
-                <div class="category-selections" id="step">
-                    {% for category in categoryNames %}
-                        <a href="#" title="{{ category|capitalize }}">
-                            <div class="category-selection" id="{{ category }}">
-                                <img src="{{ asset('images/' ~ category ~ '.png') }}" />
-                                <span class="category-name">{{ category|capitalize }}</span>
-                            </div>
-                       </a>
-                    {% endfor %}
-                </div>
+                    <label>What area was your step in?</label>
 
-                    <a href="#" class="share-your-own-cancel">cancel</a>
+                    <div class="category-selections" id="step">
+                        {% for category in categoryNames %}
+                            <a href="#" title="{{ category|capitalize }}">
+                                <div class="category-selection" id="{{ category }}">
+                                    <img src="{{ asset('images/' ~ category ~ '.png') }}" />
+                                    <span class="category-name">{{ category|capitalize }}</span>
+                                </div>
+                           </a>
+                        {% endfor %}
+                    </div>
+
+                        <a href="#" class="share-your-own-cancel">cancel</a>
                 </div>
            </fieldset>
         
         <fieldset>
             <legend>Tell a story.</legend>
-
+            <div class="span8">
             <div class="clearfix">
                 {{ form_label(stepForm.story) }}
                 <div class="input">
                     {{ form_widget(stepForm.story, { 'attr': {'class': 'span8'} }) }}
                 </div>
             </div><!-- /clearfix -->
-
+            </div>
         </fieldset>
             
         <fieldset>
             <legend>Where did you take your step?</legend>
-            Click anywhere on the map.  Once you place your marker, you can move it by clicking and dragging it.<br/><br/>
+            <div class="span15">
+            Click anywhere on the map.  Once you place your marker, you can move it by clicking and dragging it. Click again to delete.<br/><br/>
             <div id="map-canvas" style="width: 100%; height: 600px;">
             </div>
+            </div>
+            <div>&nbsp;</div>
         </fieldset>
             
         {% if not is_granted('ROLE_USER') %}
             <fieldset>
         
               <legend>Who are you?</legend>
-                    <div class="clearfix">
-                        {{ form_label(stepForm.name) }}
-                        <div class="input">
-                            {{ form_widget(stepForm.name, { 'attr': {'class': 'span8'} }) }}
-                        </div>
-                    </div><!-- /clearfix -->
-                    <div class="clearfix">
-                        {{ form_label(stepForm.email) }}
-                        <div class="input">
-                            {{ form_widget(stepForm.email, { 'attr': {'class': 'span8'} }) }}
-                            <span class="help-inline">used to enter you into our raffle - your e-mail will not be displayed or shared with anyone</span>
-                        </div>
-                    </div><!-- /clearfix -->
-
+                    <div class="span8">
+                        <div class="clearfix">
+                            {{ form_label(stepForm.name) }}
+                            <div class="input">
+                                {{ form_widget(stepForm.name, { 'attr': {'class': 'span8'} }) }}
+                            </div>
+                        </div><!-- /clearfix -->
+                        <div class="clearfix">
+                            {{ form_label(stepForm.email) }}
+                            <div class="input">
+                                {{ form_widget(stepForm.email, { 'attr': {'class': 'span8'} }) }}
+                                <span class="help-inline">used to enter you into our raffle - your e-mail will not be displayed or shared with anyone</span>
+                            </div>
+                        </div><!-- /clearfix -->
+                    </div>
             </fieldset>
         
         {% endif %}

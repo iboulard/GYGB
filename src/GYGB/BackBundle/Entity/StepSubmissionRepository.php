@@ -12,17 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class StepSubmissionRepository extends EntityRepository
 {
-
-    public function getRecentStepSubmissions($numberToGet, $em)
+    public function findAllApproved($em)
     {
         $query = $this->createQueryBuilder('ss')
-                ->join("ss.Step", "s")
+                ->join("ss.step", "s")
                 ->andWhere('s.approved = true')
-                ->orderBy('ss.datetimeSubmitted', 'DESC')
                 ->getQuery();
-        $query->setMaxResults($numberToGet);
-
+        
         return $query->getResult();
     }
-
 }

@@ -16,8 +16,11 @@
     
 {% block content %}
     {% include 'GYGBFrontBundle:Steps:_takeAStepMenu.html.twig' %}
-    <span class="take-a-step-heading">Find a step that you can take to save money and energy.</span>
-
+    <div class="alert-message block-message info">
+        <h3>Find a step that you can take to save money and energy.</h3>
+        Browse or search for a step that interests you and click it to learn more.
+    </div>
+    
     <div id="step-page-container">
         <div id="step-option-container">
             <div id="search-steps">
@@ -57,5 +60,11 @@
 
         {% render "GYGBFrontBundle:StepList:stepList" with {'terms' : terms, 'displayCounts' : true, 'id' : 'all-step-list', 'linkSteps' : true } %}   
 
+        <div class="row" style="margin-top: 10px;">
+            <div class="pull-right">
+                <h3>Have you taken a step that isn't listed here?</h3> <a href="{{ url('shareAStepCustom') }}" class="btn success large pull-right">Share it! &rarr;</a>
+            </div>
+        </div>
+        
     </div>
 {% endblock %}

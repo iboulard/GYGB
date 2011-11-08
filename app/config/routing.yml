@@ -24,6 +24,32 @@ resources:
   requirements:
         category: food|waste|transportation|energy|general
 
+
+mySteps:
+  pattern: /my-steps
+  defaults: { _controller: GYGBFrontBundle:MySteps:myStepsList }
+
+myStepsEdit:
+  pattern: /my-steps/edit/{id}
+  defaults: { _controller: GYGBFrontBundle:MySteps:myStepsEdit }
+
+myStepsDelete:
+  pattern: /my-steps/delete/{id}
+  defaults: { _controller: GYGBFrontBundle:MySteps:myStepsDelete }
+
+myCommitments:
+  pattern: /my-commitments
+  defaults: { _controller: GYGBFrontBundle:MySteps:myStepsList, type: commitment }
+
+myCommitmentsEdit:
+  pattern: /my-commitments/edit/{id}
+  defaults: { _controller: GYGBFrontBundle:MySteps:myStepsEdit, type: commitment }
+
+myCommitmentsDelete:
+  pattern: /my-commitments/delete/{id}
+  defaults: { _controller: GYGBFrontBundle:MySteps:myStepsDelete, type: commitment }
+
+
 # find a step -----------------------------------------------------------------
 findAStep:
   pattern: /find-a-step
@@ -38,6 +64,12 @@ takeAStep:
 shareAStep:
   pattern: /share-a-step/{id}
   defaults: { _controller: GYGBFrontBundle:ShareAStep:ShareAStep, id: null }
+  requirements:
+        id:  \d+
+
+shareAStepCustom:
+  pattern: /share-a-step/custom
+  defaults: { _controller: GYGBFrontBundle:ShareAStep:ShareAStep, custom: true }
   
 # ------------------------------------------------------------------------------
 

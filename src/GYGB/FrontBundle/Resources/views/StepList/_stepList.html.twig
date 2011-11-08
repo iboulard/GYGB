@@ -1,6 +1,6 @@
 <div class="step-list" id="{{ id }}">
     {% if terms is defined and terms != "" %}
-        <div class="step-list-results">Your search for <i>{{ terms }}</i> returned {{ steps|length }} {{ resultNoun }}.</div>
+        <div class="alert-message">Your search for <i>{{ terms }}</i> returned {{ steps|length }} {{ resultNoun }}.</div>
     {% endif %}
     <div class="step-list-container">
         {% if steps|length == 0 and (terms is not defined or terms == "") %}

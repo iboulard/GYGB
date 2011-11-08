@@ -86,6 +86,22 @@ class Commitment
     {
         return $this->name;
     }
+    
+    public function getNameForDisplay()
+    {
+      if($this->getUser())
+      {
+          return $this->getUser()->getName();
+      }    
+      else if(isset($this->name))
+      {
+        return $this->name;
+      }
+      else
+      {
+        return 'Anonymous';          
+      }
+    }
 
     /**
      * Set email

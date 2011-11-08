@@ -20,6 +20,10 @@ class TakeAStepController extends Controller
             {
                  throw new NotFoundHttpException("This step could not be found");
             }
+            else if(!$step->getApproved())
+            {
+                return $this->render('GYGBFrontBundle:TakeAStep:unapprovedStep.html.twig', array('id' => $id, 'step' => $step));                                
+            }
             else
             {
                 return $this->forward('GYGBFrontBundle:TakeAStep:stepPage', array('id' => $id, 'step' => $step));                
@@ -40,7 +44,8 @@ class TakeAStepController extends Controller
         $request = $this->getRequest();
         $session = $request->getSession();
         $em = $this->getDoctrine()->getEntityManager();
-        $admin = $this->get('gygb.back.admin.resource');
+        $resourceAdmin = $this->get('gygb.back.admin.resource');
+        $stepAdmin = $this->get('gygb.back.admin.step');
 
         
         
@@ -80,7 +85,7 @@ class TakeAStepController extends Controller
 
                 $step->setCommitmentCount($step->getCommitmentCount() + 1);
 
-                $this->getRequest()->getSession()->setFlash('template-flash', '::_shareYourStep.html.twig');
+                $this->getRequest()->getSession()->setFlash('template-flash', '::_thanks.html.twig');
 
                 $commitment = new \GYGB\BackBundle\Entity\Commitment();
 
@@ -160,7 +165,8 @@ class TakeAStepController extends Controller
             'events' => $events,
             'commited' => $commited,
             'taken' => $taken,
-            'admin' => $admin
+            'resourceAdmin' => $resourceAdmin,
+            'stepAdmin' => $stepAdmin,
         ));
     }
 

@@ -16,6 +16,9 @@ security:
             pattern:      ^/
             form_login:
                 provider:       fos_userbundle
+                use_forward: true
+                always_use_default_target_path: false
+                default_target_path: /my-steps
             logout:       true
             anonymous:    true
 

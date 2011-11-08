@@ -1,0 +1,13 @@
+{% extends '::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/steps.css') }}" type="text/css">        
+{% endblock %}
+
+{% block content %}
+    {% include 'GYGBFrontBundle:Steps:_takeAStepMenu.html.twig' %}
+    <h1>This step has not been approved yet.</h1>
+    <h3>New steps submitted by community members must be approved by our team before they show up here.</h3>
+    
+{% endblock content %}

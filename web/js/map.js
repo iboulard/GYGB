@@ -15,7 +15,6 @@ function initializeCommunityMap() {
         
     for(var step in stepSubmissionData)
     {
-        var story = stepSubmissionData[step].story;
         var latitude = stepSubmissionData[step].latitude;
         var longitude = stepSubmissionData[step].longitude;
         var markerLatLng = new google.maps.LatLng(latitude, longitude);
@@ -29,7 +28,7 @@ function initializeCommunityMap() {
 
         google.maps.event.addListener(marker, 'click', (function(marker, step) {
             return function() {
-              infowindow.setContent(stepSubmissionData[step].story);
+              infowindow.setContent('<a href="' + stepSubmissionData[step].stepUrl + '">' + stepSubmissionData[step].title + "</a>");
               infowindow.open(map, marker);
             }
         })(marker, step));
@@ -50,12 +49,52 @@ function initializeSubmissionMap() {
     map = new google.maps.Map(document.getElementById("map-canvas"),
         myOptions);
         
-    google.maps.event.addListener(map, 'dblclick', function(event) {
+    google.maps.event.addListener(map, 'click', function(event) {            
+        singleClick = true;
+        setTimeout(function(){runIfNotDblClick(event);}, 500);
     });
-    google.maps.event.addListener(map, 'click', function(event) {
-        placeMarker(event.latLng);
+    
+    google.maps.event.addListener(map, 'dblclick', function(event) {
+        clearSingleClick();
     });
 }
+
+function runIfNotDblClick(event) {
+    if(singleClick){
+        placeMarker(event.latLng);
+    }
+}
+
+function clearSingleClick(){
+    singleClick = false;
+};
+
+singleClick = false;
+
+function initializeEditMap(lat, lng) {
+    var latlng = new google.maps.LatLng(lat, lng);
+    var myOptions = {
+        zoom: 11,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.TERRAIN,
+        scrollwheel: false
+    };
+    map = new google.maps.Map(document.getElementById("map-canvas"),
+        myOptions);
+    placeMarker(latlng);
+    markerPlaced = true;
+    
+    
+    google.maps.event.addListener(map, 'click', function(event) {            
+        singleClick = true;
+        setTimeout(function(){runIfNotDblClick(event);}, 500);
+    });
+    
+    google.maps.event.addListener(map, 'dblclick', function(event) {
+        clearSingleClick();
+    });
+}
+
 
 function placeMarker(location) {
     if(!markerPlaced)
@@ -63,16 +102,24 @@ function placeMarker(location) {
         submittedMarker = new google.maps.Marker({
             position: location, 
             map: map,
-            title: "Test",
             draggable: true
         });
+        
         google.maps.event.addListener(submittedMarker, "dragend", function() {
-            $('#form_latitude').attr('value', submittedMarker.position.Na);
-            $('#form_longitude').attr('value', submittedMarker.position.Oa);
+            $('#form_latitude').attr('value', submittedMarker.position.Oa);
+            $('#form_longitude').attr('value', submittedMarker.position.Pa);
+        });
+        google.maps.event.addListener(submittedMarker, 'click', function(point, source, overlay) {
+            submittedMarker.setMap(null);
+            markerPlaced = false;
+            $('#form_latitude').attr('value', '');
+            $('#form_longitude').attr('value', '');            
         });
         
-        $('#form_latitude').attr('value', location.Na);
-        $('#form_longitude').attr('value', location.Oa);
+  
+
+        $('#form_latitude').attr('value', location.Oa);
+        $('#form_longitude').attr('value', location.Pa);
     }
     
     markerPlaced = true;

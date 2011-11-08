@@ -16,23 +16,33 @@
     
 {% block content %}
     {% include 'GYGBFrontBundle:Steps:_takeAStepMenu.html.twig' %}
+    <div class="alert-message block-message info">
+        <h3>Take a step and save money and energy.</h3>
+        Commit to taking a step and find resources to help you take it.
+    </div>
     
-    <span class="take-a-step-heading">Commit to taking a step and find resources to help you take it.</span>
-    
+
     <div id="take-a-step-page-container">
         <div class="take-a-step-box">
             {% include "GYGBFrontBundle:StepList:_step.html.twig" with {'step' : step, 'id' : step.id, 'displayCounts' : true, 'linkStep' : false, 'first' : false, 'last' : true } %}
 
-            <span class="description">{{ step.description|raw }}</a>
+            <span class="description"><p>{{ step.description|raw }}</p></a>
         </div>
 
         {% if events|length > 0 %}
-            {% include "GYGBFrontBundle:EventList:_eventList.html.twig" with {'events' : events, 'id' : 'step-events', 'noEventsText' : 'No one has taken this step! Be the first.', 'linkEvents' : false } %}
+            {% include "GYGBFrontBundle:EventList:_eventList.html.twig" with {
+                'events' : events,
+                'id' : 'step-events',
+                'noEventsText' : 'No one has taken this step! Be the first.',
+                'linkEvents' : false,
+                'justStory' : false,
+                'showCustomLabel' : false
+            } %}
         {% endif %}
             
         <div id="step-buttons-container" class="row">
                 <div class="commit-to-this-step span7">
-                    {% if not commited %}
+                    {% if not commited and not taken %}
                         <a class="btn large success" href="#step-buttons-container" id="commit-to-this-step">Commit to taking this step</a>
                     {% elseif not taken %}
                         <div style="font-size: 20px; float: left; margin: 0 0 10px 0;">

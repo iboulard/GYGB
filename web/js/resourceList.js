@@ -6,6 +6,7 @@ $(document).ready(function() {
        {
            return;
        }
+       if($(e.target).hasClass('btn')) return;
 
        e.preventDefault();
 

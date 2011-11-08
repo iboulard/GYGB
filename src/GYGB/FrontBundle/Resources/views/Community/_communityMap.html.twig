@@ -10,12 +10,19 @@
         var stepSubmissionData = new Object;
 
         {% for s in stepSubmissions %}
-            var step={latitude:"{{ s.latitude }}",longitude:"{{ s.longitude }}",story:"{{ s.step.story }}"}; 
-            
+            var step={
+                latitude:"{{ s.latitude }}",
+                longitude:"{{ s.longitude }}",
+                story:"{{ s.step.story }}",
+                title:"{{ s.step.title }}",
+                stepId:"{{ s.step.id }}",
+                stepUrl:"{{ url('takeAStep', {'id': s.step.id }) }}"
+            }; 
             stepSubmissionData["{{s.id}}"] = step;
         {% endfor %}    
     </script>
     <script src="{{ asset('js/map.js') }}" type="text/javascript"></script>    
+    <script src="{{ asset('js/communityMap.js') }}" type="text/javascript"></script>
 {% endblock %}        
     
 {% block content %}

@@ -131,7 +131,8 @@ class Step
     /** @ORM\OneToMany(targetEntity="FeaturedStep", mappedBy="step", cascade={"persist", "remove"})
    */
   protected $features;
-
+    /** @ORM\OneToOne(targetEntity="StepSubmission") */
+    private $parentSubmission;
    
     /**
      * @ORM\prePersist
@@ -617,5 +618,25 @@ class Step
     public function setFeaturedResources($resources)
     {
         $this->featuredResources = $resources;
+    }
+
+    /**
+     * Set parentSubmission
+     *
+     * @param GYGB\BackBundle\Entity\StepSubmission $parentSubmission
+     */
+    public function setParentSubmission(\GYGB\BackBundle\Entity\StepSubmission $parentSubmission)
+    {
+        $this->parentSubmission = $parentSubmission;
+    }
+
+    /**
+     * Get parentSubmission
+     *
+     * @return GYGB\BackBundle\Entity\StepSubmission 
+     */
+    public function getParentSubmission()
+    {
+        return $this->parentSubmission;
     }
 }

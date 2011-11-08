@@ -59,6 +59,7 @@ class StepRepository extends EntityRepository
     {
         $query = $this->createQueryBuilder('s');
         $query->andWhere('s.title LIKE :title');
+        $query->andWhere('s.approved = 1');
         $query->setParameter('title', '%' . $terms . '%');
 
         return $query->getQuery()->getResult();
@@ -67,21 +68,20 @@ class StepRepository extends EntityRepository
     public function findRecentlyTaken($em)
     {
         $query = $this->createQueryBuilder('s');
-        $query->join('s.stepSubmissions', 'ss');
+        $query->leftJoin('s.stepSubmissions', 'ss');
         $query->orderBy('ss.datetimeSubmitted', 'DESC');
-        $query->andWhere('s.approved = true');
-        $resultsA = $query->getQuery()->getResult();
+        $query->andWhere('s.approved = 1');
+        $results = $query->getQuery()->getResult();
         
-        $queryB = $this->createQueryBuilder('sb');
-        $queryB->andWhere('sb.stepCount = 0');
-        $resultsB = $queryB->getQuery()->getResult();
-        
-        return array_merge($resultsA, $resultsB);
+        return $results;
     }
     
-    public function findAllEvents($stepSubmissionRepository, $commitmentRepository)
+    
+    
+    /* EVENTS ================================================================== */
+    public function findAllEvents($stepSubmissionRepository, $commitmentRepository, $em)
     {
-        $submissions = $stepSubmissionRepository->findAll();
+        $submissions = $stepSubmissionRepository->findAllApproved($em);
         $commitments = $commitmentRepository->findAll();
         
         $submissionEvents = $this->turnStepsSubmissionsIntoEvents($submissions);
@@ -114,53 +114,50 @@ class StepRepository extends EntityRepository
         return $events;
     }
     
-    protected function turnStepsSubmissionsIntoEvents($submissions)
+    public function turnStepsSubmissionsIntoEvents($submissions)
     {
         $events = array();
         
         foreach($submissions as $s)
         {
-            $e = array();
-            if($s->storyCanBeAbbreviated())
-            {
-                $e['name'] = $s->getName();
-                $e['text'] = $s->getAbbreviatedStory();
-            }
-            else
-            {
-                $e['name'] = $s->getName().': ';
-                $e['text'] = '"'.$s->getAbbreviatedStory().'"';
-            }
-            $e['datetime'] = $s->getDatetimeSubmitted();                
-            $e['category'] = $s->getStep()->getCategory();
-            $e['stepId'] = $s->getStep()->getId();
-            
+            $e = $this->turnStepSubmissionIntoEvent($s);
             $events[] = $e;
         }
         
         return $events;
     }
 
+    public function turnStepSubmissionIntoEvent($s)
+    {
+        $e = array();
+        if($s->storyCanBeAbbreviated())
+        {
+            $e['name'] = $s->getNameForDisplay();
+            $e['text'] = $s->getAbbreviatedStory();
+        }
+        else
+        {
+            $e['name'] = $s->getNameForDisplay().': ';
+            $e['text'] = '"'.$s->getAbbreviatedStory().'"';
+        }
+        $e['datetime'] = $s->getDatetimeSubmitted();                
+        $e['category'] = $s->getStep()->getCategory();
+        $e['stepId'] = $s->getStep()->getId();
+        $e['eventId'] = $s->getId();
+        $e['story'] = $s->getStory();
+        $e['step'] = $s->getStep();
+        $e['eventObject'] = $s;
+        
+        return $e;
+    }
+    
     public function turnCommitmentsIntoEvents($commitments)
     {
         $events = array();
         
         foreach($commitments as $c)
         {
-            $e = array();
-            if($c->commitmentCanBeAbbreviated())
-            {
-                $e['name'] = $c->getName();
-                $e['text'] = $c->getAbbreviatedCommitment();
-            }
-            else
-            {
-                $e['name'] = $c->getName().': ';
-                $e['text'] = '"'.$c->getAbbreviatedCommitment().'"';
-            }
-            $e['datetime'] = $c->getDatetimeSubmitted();                
-            $e['category'] = $c->getStep()->getCategory();
-            $e['stepId'] = $c->getStep()->getId();
+            $e = $this->turnCommitmentIntoEvent($c);
             
             $events[] = $e;
         }
@@ -168,6 +165,29 @@ class StepRepository extends EntityRepository
         return $events;
     }
 
+    public function turnCommitmentIntoEvent($c)
+    {
+        $e = array();
+        if($c->commitmentCanBeAbbreviated())
+        {
+            $e['name'] = $c->getNameForDisplay();
+            $e['text'] = $c->getAbbreviatedCommitment();
+        }
+        else
+        {
+            $e['name'] = $c->getNameForDisplay().': ';
+            $e['text'] = '"'.$c->getAbbreviatedCommitment().'"';
+        }
+        $e['datetime'] = $c->getDatetimeSubmitted();                
+        $e['category'] = $c->getStep()->getCategory();
+        $e['stepId'] = $c->getStep()->getId();
+        $e['eventId'] = $c->getId();
+        $e['story'] = $c->getCommitment();
+        $e['step'] = $c->getStep();
+        $e['eventObject'] = $c;
+
+        return $e;
+    }
 
 
     static function compareEvent($a, $b) {

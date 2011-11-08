@@ -11,5 +11,8 @@
                 {{ step.title }}
             {% if linkStep %}</a>{% endif %}
         </span>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn small pull-right" href="{{ stepAdmin.generateObjectUrl('edit', step) }}">edit</a>
+        {% endif %}
     </div>
 </div>                

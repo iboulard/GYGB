@@ -83,6 +83,12 @@ class Resource
      * @ORM\Column(name="approved", type="boolean")
      */
     private $approved;
+    /**
+       * @var string $rank
+       *
+       * @ORM\Column(name="rank", type="integer", nullable="true")
+       */
+      private $rank = 0;
 
    /**
      * @ORM\ManyToMany(targetEntity="Step", mappedBy="featuredResources")
@@ -94,12 +100,6 @@ class Resource
       protected $features;
 
     
-    /**
-     * @ORM\prePersist
-     */
-    public function setDefaultValues()
-    {
-    }
     
     /**
      * Get id
@@ -373,5 +373,25 @@ class Resource
     public function getWidth()
     {
         return $this->width;
+    }
+
+    /**
+     * Set rank
+     *
+     * @param integer $rank
+     */
+    public function setRank($rank)
+    {
+        $this->rank = $rank;
+    }
+
+    /**
+     * Get rank
+     *
+     * @return integer 
+     */
+    public function getRank()
+    {
+        return $this->rank;
     }
 }
