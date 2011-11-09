@@ -27,3 +27,8 @@ html, body {
 #have-you-taken div {
     float: none !important;
 }
+
+#have-you-taken h3,
+#have-you-taken a {
+    float: right;
+}
