@@ -1,5 +1,5 @@
 div#home-columns-container {
-    padding: 0 20px 45px 20px;
+    padding: 0 20px 45px 20px !important;
 }
 
 #menu {
@@ -7,11 +7,14 @@ div#home-columns-container {
 }
 
 div#enter-raffle {
-    float: none;
+    float: none !important;
     text-align: right;
 }
 
 #filters div.filter-group div.filter-group-heading a {
-    float: none;
+    float: none !important;
 }
 
+div.counter {
+    float: none !important;
+}
