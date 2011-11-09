@@ -10,7 +10,7 @@
 
 /* Tags ----------------------------------------------------------------------*/
 html, body {
-    background: #eeeeee;
+    background: #eeeeee !important;
 }
 
 #header {

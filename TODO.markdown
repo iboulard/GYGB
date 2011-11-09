@@ -46,9 +46,9 @@ when rolling out:
 //		raffle
 		
 //		see all link
-		share it
+//		share it
 		
-		background color
+//		background color
 //		digitsheight
 			
 
