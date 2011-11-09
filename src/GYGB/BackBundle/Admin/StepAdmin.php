@@ -99,7 +99,7 @@ class StepAdmin extends Admin
                 //->add('savings', 'choice', array('choices' => Step::getSavingsChoices(), 'expanded' => false, 'multiple' => false))
                 ->add('commitment', null, array('required' => false, 'label' => 'Default Commitment')) 
                 ->add('story', null, array('required' => false, 'label' => 'Default Story')) 
-                ->add('description')
+                ->add('description', null, array('attr' => array('class' => 'tinymce')))
                 ->add('approved')
                 //->add('stepCount', null, array('required' => false, 'label' => 'Step Count'))
                 //->add('commitmentCount', null, array('required' => false, 'label' => 'Commitment Count'))
