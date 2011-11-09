@@ -8,6 +8,8 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/stepList.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/libraries/tiny_mce/tiny_mce.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/mySteps.js') }}" type="text/javascript"></script>
     
     {% if type == 'step' %}
         <script type="text/javascript"
@@ -76,7 +78,7 @@
                             <div class="clearfix">
                                 {{ form_label(eventForm.description) }}
                                 <div class="input">
-                                    {{ form_widget(eventForm.description, { 'attr': {'class': 'span8'} }) }}
+                                    {{ form_widget(eventForm.description, { 'attr': {'class': 'span8 tinymce'} }) }}
                                     <span class="help-inline">What will help others take this step?</span>
                                 </div>
                             </div><!-- /clearfix -->
