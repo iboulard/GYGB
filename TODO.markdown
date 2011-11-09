@@ -41,12 +41,15 @@ when rolling out:
 
 	c.	ie Testing
 	
-		home columns
-		menu
-		raffle
+//		home columns
+//		menu
+//		raffle
 		
-		see all link
+//		see all link
 		share it
+		
+		background color
+//		digitsheight
 			
 
 	d. not urgent

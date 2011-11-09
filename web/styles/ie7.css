@@ -18,3 +18,12 @@ div#enter-raffle {
 div.counter {
     float: none !important;
 }
+
+html, body {
+    background: #eeeeee;
+    background-color: #eeeeee !important;
+}
+
+#have-you-taken div {
+    float: none !important;
+}

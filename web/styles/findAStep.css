@@ -172,3 +172,11 @@ div.step-list#all-step-list {
 div.step-container:hover a.take-this-step {
     display: inline;
 }*/
+
+#have-you-taken {
+    margin-top: 10px;
+}
+
+#have-you-taken div {
+    float: right;
+}
