@@ -2,7 +2,7 @@ Get Your Greenback - TODO
 ======================================
 
 when rolling out:
-	a.	Locally
+//	a.	Locally
 //		-	push bundles
 	
 //			- error
@@ -17,18 +17,26 @@ when rolling out:
 	
 //		-	push branch
 	
-		-	merge git branch
+//		-	merge git branch
 
-	b.	server
-		-	git update GYGB
+//	b.	server
+//		-	git update GYGB
 		
-		-	update error/admin/user/admin2
+//		-	bundles
+		
+//			- user, admin, eroor, useradmin
 	
-		-	backup DB
+//			- load new admindoctrine
+			
+//			- load bootstrap
+			
+//		-	update vendors
+	
+//		-	backup DB
 		
-		-	Update db
+//		-	Update db
 		
-			- manually change Organization -> Resource where you can
+//			- manually change Organization -> Resource where you can
 
 
 	c.	ie Testing
