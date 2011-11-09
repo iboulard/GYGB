@@ -31,4 +31,5 @@ html, body {
 #have-you-taken h3,
 #have-you-taken a {
     float: right;
+    clear: both;
 }
