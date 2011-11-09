@@ -13,9 +13,9 @@ when rolling out:
 			
 //			- user
 	
-		-	create bootstrap bundle
+//		-	create bootstrap bundle
 	
-		-	push branch
+//		-	push branch
 	
 		-	merge git branch
 
