@@ -60,7 +60,9 @@
 
         {% render "GYGBFrontBundle:StepList:stepList" with {'terms' : terms, 'displayCounts' : true, 'id' : 'all-step-list', 'linkSteps' : true } %}   
 
-        <div class="row" style="margin-top: 10px;">
+        <div style="clear: both;">&nbsp;</div>
+        
+        <div style="margin-top: 10px;">
             <div class="pull-right">
                 <h3>Have you taken a step that isn't listed here?</h3> <a href="{{ url('shareAStepCustom') }}" class="btn success large pull-right">Share it! &rarr;</a>
             </div>

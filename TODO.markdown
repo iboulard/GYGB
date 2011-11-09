@@ -40,13 +40,20 @@ when rolling out:
 
 
 	c.	ie Testing
+	
+		home columns
+		menu
+		raffle
+		
+		see all link
+		share it
+			
 
 	d. not urgent
-		-	remove <p> from step descriptions
 	
-		-	set resource ranks
+//		-	set resource ranks
 
-		-	transfer ranks
+//		-	transfer ranks
 	
 		-	Upload site map
 

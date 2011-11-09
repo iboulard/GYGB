@@ -1,24 +1,17 @@
-div.box-form .category-selection{
-        width: 150px;
-        height: 30px;
-}
-
-div.box-form img {
-        float: left;
-}
-
-div.box-form {
-        overflow: hidden;
-}
-
-div.home-columns-container {
+div#home-columns-container {
     padding: 0 20px 45px 20px;
 }
 
 #menu {
-    width: 450px;
+    width: 500px;
+}
+
+div#enter-raffle {
+    float: none;
+    text-align: right;
 }
 
 #filters div.filter-group div.filter-group-heading a {
     float: none;
 }
+
