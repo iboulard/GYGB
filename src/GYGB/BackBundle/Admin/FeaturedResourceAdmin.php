@@ -37,8 +37,8 @@ class FeaturedResourceAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-                ->add('type', 'string', array('name' => 'Page'))
-                ->add('resource', 'string', array('name' => 'Resource'))
+                ->add('type', 'string', array('label' => 'Page'))
+                ->add('resource', 'string', array('label' => 'Resource'))
 
                 // add custom action links
                 ->add('_action', 'actions', array(
@@ -46,7 +46,9 @@ class FeaturedResourceAdmin extends Admin
 //                        'view' => array(),
                         'edit' => array(),
                         'delete' => array(),
-                    )
+                    ),
+                    'label' => 'Actions'
+                    
                 ))
         ;
     }

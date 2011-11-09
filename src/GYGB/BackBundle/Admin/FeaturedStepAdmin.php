@@ -37,8 +37,8 @@ class FeaturedStepAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-                ->add('type', 'string', array('name' => 'Page'))
-                ->add('step', 'string', array('name' => 'Step'))
+                ->add('type', 'string', array('label' => 'Page'))
+                ->add('step', 'string', array('label' => 'Step'))
 
                 // add custom action links
                 ->add('_action', 'actions', array(
@@ -46,7 +46,8 @@ class FeaturedStepAdmin extends Admin
 //                        'view' => array(),
                         'edit' => array(),
                         'delete' => array(),
-                    )
+                    ),
+                    'label' => 'Actions'                    
                 ))
         ;
     }

@@ -68,12 +68,12 @@ class ResourceAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-                ->add('name', 'string', array('name' => 'Name'))
-                ->add('website', 'string', array('name' => 'Website'))
-              //  ->add('email', 'string', array('name' => 'E-mail'))
-                ->add('approved', 'boolean', array('name' => 'Approved'))
-                ->add('category', 'string', array('name' => 'Category'))
-                ->add('rank', 'string', array('name' => 'Rank'))
+                ->add('name', 'string', array('label' => 'Name'))
+                ->add('website', 'string', array('label' => 'Website'))
+              //  ->add('email', 'string', array('label' => 'E-mail'))
+                ->add('approved', 'boolean', array('label' => 'Approved'))
+                ->add('category', 'string', array('label' => 'Category'))
+                ->add('rank', 'string', array('label' => 'Rank'))
 
                 // add custom action links
                 ->add('_action', 'actions', array(
@@ -83,7 +83,8 @@ class ResourceAdmin extends Admin
                         'delete' => array(),
                         'approve' => array(),
                         'unapprove' => array()
-                    )
+                    ),
+                    'label' => 'Actions'                    
                 ))
         ;
     }
@@ -109,12 +110,12 @@ class ResourceAdmin extends Admin
                 ->add('name', null, array('label' => 'Title'))
             //    ->add('email')
                 ->add('website')
-                ->add('description')
+                ->add('description', null, array('attr' => array('class' => 'tinymce')))
                 ->add('rank')
                 ->add('category', 'choice', array('choices' => Step::getCategoryChoices(), 'expanded' => false, 'multiple' => false))
                 ->add('approved', null, array('required' => false))
-                ->add('file', 'file', array('required' => false))
-                ->add('featuredSteps', null, array('label' => 'Related Steps', 'required' => false))
+                ->add('file', 'file', array('required' => false, 'label' => 'Logo'))
+//                ->add('featuredSteps', 'sonata_type_model', array('label' => 'Related Steps', 'required' => false))
                 
                 ->setHelps(array(
                     'featured' => 'featured resources show up at the top of their category on the resource guide',

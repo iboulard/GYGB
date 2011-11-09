@@ -50,8 +50,8 @@ class CoalitionMemberAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-                ->add('name', 'string', array('name' => 'Name'))
-                ->add('url', 'string', array('name' => 'Website'))
+                ->add('name', 'string', array('label' => 'Name'))
+                ->add('url', 'string', array('label' => 'Website'))
 
                 // add custom action links
                 ->add('_action', 'actions', array(
@@ -59,7 +59,9 @@ class CoalitionMemberAdmin extends Admin
 //                        'view' => array(),
                         'edit' => array(),
                         'delete' => array(),
-                    )
+                    ),
+                    'label' => 'Actions'
+                    
                 ))
         ;
     }

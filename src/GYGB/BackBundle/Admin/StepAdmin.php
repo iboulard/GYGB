@@ -57,12 +57,11 @@ class StepAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-                ->add('title', 'string', array('name' => 'Step'))
-                ->add('category', 'string', array('name' => 'Category'))
-//                ->add('savings', 'string', array('name' => 'Savings'))
-                ->add('approved', 'boolean', array('name' => 'Approved'))
-                ->add('stepCount', 'integer', array('name' => 'Step Count'))
-                ->add('commitmentCount', 'integer', array('name' => 'Commitment Count'))
+                ->add('title', 'string', array('label' => 'Step'))
+                ->add('category', 'string', array('label' => 'Category'))
+                ->add('approved', 'boolean', array('label' => 'Approved'))
+                ->add('stepCount', 'integer', array('label' => 'Step Count'))
+                ->add('commitmentCount', 'integer', array('label' => 'Commitment Count'))
 
                 // add custom action links
                 ->add('_action', 'actions', array(
@@ -72,7 +71,8 @@ class StepAdmin extends Admin
                         'delete' => array(),
                         'approve' => array(),
                         'unapprove' => array()
-                    )
+                    ),
+                    'label' => 'Actions'
                 ))
         ;
     }

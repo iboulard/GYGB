@@ -2,32 +2,49 @@ Get Your Greenback - TODO
 ======================================
 
 when rolling out:
-	-	Upload site map
-
-	-	Update db
+	a.	Locally
+//		-	push bundles
 	
-		- manually change Organization -> Resource where you can
-
-		- set resource ranks
-
-	-	transfer ranks
+//			- error
+		
+//			- useradmin
 	
-	-	merge git branch
-	
-	
-	
-URGENT issues - fix before next release
-===============
-
-	- step model problem
-	
-		- add m2m field on admin
-
-	- <p> problem on step description
-	
-		- remove tinymce on admin end
+/			- admin
 			
+//			- user
+	
+		-	create bootstrap bundle
+	
+		-	push branch
+	
+		-	merge git branch
 
+	b.	server
+		-	git update GYGB
+		
+		-	update error/admin/user/admin2
+	
+		-	backup DB
+		
+		-	Update db
+		
+			- manually change Organization -> Resource where you can
+
+
+	c.	ie Testing
+
+	d. not urgent
+		-	remove <p> from step descriptions
+	
+		-	set resource ranks
+
+		-	transfer ranks
+	
+		-	Upload site map
+
+		-	test logo uploads	
+	
+	
 Issues
 ==============
 	
@@ -36,8 +53,16 @@ Issues
 	- fill out registration form after submission
 	
 	- what to do with filters when searching?
-		
 
+	- step model problem
+	
+		- add m2m field on admin
+		
+	- remove or fix + button on M2M tool
+	
+		- likely need a branch of SonataDoctrineOrm
+			
+		
 Ideas
 ===========
 

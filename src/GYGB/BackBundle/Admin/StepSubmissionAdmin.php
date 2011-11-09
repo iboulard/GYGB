@@ -28,9 +28,9 @@ class StepSubmissionAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-                ->add('name', 'string', array('name' => 'Submitted By'))
-                ->add('datetimeSubmitted', 'datetime', array('name' => 'Date Submitted'))
-                ->add('step', null, array('name' => 'Step'))
+                ->add('name', 'string', array('label' => 'Submitted By'))
+                ->add('datetimeSubmitted', 'datetime', array('label' => 'Date Submitted'))
+                ->add('step', null, array('label' => 'Step'))
 
                 // add custom action links
                 ->add('_action', 'actions', array(
@@ -38,7 +38,9 @@ class StepSubmissionAdmin extends Admin
                         'view' => array(),
                         'edit' => array(),
                         'delete' => array()
-                    )
+                    ),
+                    'label' => 'Actions'
+                    
                 ))
         ;
     }

@@ -1,4 +1,6 @@
+<div style="margin: 5px 0 20px 150px;">
 {% if object.logo is defined and object.logo != "" %}
-    Current Logo:<br/>
-    <img src="{{ asset('files/logos/' ~ object.logo) }}" />
+    Current Logo:
+    <img style="width: 200px; margin: 0 0 0 10px;" src="{{ asset('files/logos/' ~ object.logo) }}" />
 {% endif %}
+</div>

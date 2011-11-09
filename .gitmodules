@@ -31,3 +31,6 @@
 [submodule "vendor/bundles/Sonata/DoctrineORMAdminBundle"]
 	path = vendor/Sonata/DoctrineORMAdminBundle
 	url = https://github.com/sonata-project/SonataDoctrineORMAdminBundle
+[submodule "vendor/bundles/CCETC/BootstrapBundle"]
+	path = vendor/bundles/CCETC/BootstrapBundle
+	url = git@github.com:CCETC/CCETCBootstrapBundle.git
