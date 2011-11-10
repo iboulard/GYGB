@@ -1,73 +1,11 @@
 Get Your Greenback - TODO
 ======================================
-
-when rolling out:
-//	a.	Locally
-//		-	push bundles
-	
-//			- error
-		
-//			- useradmin
-	
-/			- admin
-			
-//			- user
-	
-//		-	create bootstrap bundle
-	
-//		-	push branch
-	
-//		-	merge git branch
-
-//	b.	server
-//		-	git update GYGB
-		
-//		-	bundles
-		
-//			- user, admin, eroor, useradmin
-	
-//			- load new admindoctrine
-			
-//			- load bootstrap
-			
-//		-	update vendors
-	
-//		-	backup DB
-		
-//		-	Update db
-		
-//			- manually change Organization -> Resource where you can
-
-
-	c.	ie Testing
-	
-//		home columns
-//		menu
-//		raffle
-		
-//		see all link
-//		share it
-		
-//		background color
-//		digitsheight
-			
-
-	d. not urgent
-	
-//		-	set resource ranks
-
-//		-	transfer ranks
-	
-		-	Upload site map
-
-		-	test logo uploads	
-	
 	
 Issues
 ==============
 	
 	- fix remember me
-
+		
 	- fill out registration form after submission
 	
 	- what to do with filters when searching?
@@ -80,6 +18,10 @@ Issues
 	
 		- likely need a branch of SonataDoctrineOrm
 			
+	- step submission deletion
+	
+		- cascade properly
+		
 		
 Ideas
 ===========

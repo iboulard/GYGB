@@ -131,7 +131,10 @@ class Step
     /** @ORM\OneToMany(targetEntity="FeaturedStep", mappedBy="step", cascade={"persist", "remove"})
    */
   protected $features;
-    /** @ORM\OneToOne(targetEntity="StepSubmission") */
+  
+    /** @ORM\OneToOne(targetEntity="StepSubmission")
+        @ORM\JoinColumn(name="parentSubmission_id", referencedColumnName="id", onDelete="SET NULL")
+    */
     private $parentSubmission;
    
     /**
