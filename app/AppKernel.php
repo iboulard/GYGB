@@ -21,7 +21,6 @@ class AppKernel extends Kernel
             new GYGB\BackBundle\GYGBBackBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
-            new Sonata\BluePrintBundle\SonataBluePrintBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new CCETC\ErrorReportBundle\CCETCErrorReportBundle(),
