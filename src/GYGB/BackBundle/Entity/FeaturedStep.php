@@ -15,7 +15,10 @@ class FeaturedStep
 
     public function __toString()
     {
-        return $this->getStep() . ' featured on the '. $this->getType(). ' page';
+        if($this->getStep())
+            return $this->getStep() . ' featured on the '. $this->getType(). ' page';
+        else
+            return false;
     }
 
     /**

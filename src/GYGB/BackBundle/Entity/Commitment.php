@@ -57,6 +57,14 @@ class Commitment
         $this->Users = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
+        public function __toString()
+    {
+        if($this->getStep())
+            return $this->getName() . ' - ' . $this->getStep();
+        else
+            return false;
+    }
+
     /**
      * Get id
      *

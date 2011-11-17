@@ -65,6 +65,7 @@ class StepSubmission
      * @ORM\Column(name="datetimeSubmitted", type="datetime")
      */
     private $datetimeSubmitted;
+    
     /** @ORM\ManyToOne(targetEntity="Step", inversedBy="stepSubmissions") */
     protected $step;
     
@@ -139,7 +140,10 @@ class StepSubmission
 
     public function __toString()
     {
-        return $this->getName() . ' - ' . $this->getStep();
+        if($this->getStep())
+            return $this->getName() . ' - ' . $this->getStep();
+        else
+            return false;
     }
 
     /**

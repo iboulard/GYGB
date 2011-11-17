@@ -7,12 +7,14 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Spreadsheet\SpreadsheetMapper;
+use Sonata\AdminBundle\Summary\SummaryMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use GYGB\BackBundle\Entity\Step;
 
 class StepAdmin extends Admin
 {
-
+    protected $maxPerPage = '5';
     protected $entityLabelPlural = "Steps";
 
     protected function configureShowField(ShowMapper $showMapper)
@@ -88,9 +90,10 @@ class StepAdmin extends Admin
                     ),
                     'field_type' => 'choice'
                 ))
+               
         ;
     }
-
+    
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper

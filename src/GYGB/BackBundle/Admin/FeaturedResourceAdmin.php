@@ -20,18 +20,9 @@ class FeaturedResourceAdmin extends Admin
     {
         $showMapper
                 ->add('type', null, array('label' => 'Page'))
-                ->add('resource', null, array('label' => 'Resource'))
+                ->add('resource')
         ;
 
-        $showGroups = array(
-            'Featured Resource' => array(
-                'fields' => array(
-                    'type',
-                    'resource',
-                )
-            ),
-        );
-        $this->setShowGroups($showGroups);
     }
 
     protected function configureListFields(ListMapper $listMapper)
@@ -43,7 +34,7 @@ class FeaturedResourceAdmin extends Admin
                 // add custom action links
                 ->add('_action', 'actions', array(
                     'actions' => array(
-//                        'view' => array(),
+                        'view' => array(),
                         'edit' => array(),
                         'delete' => array(),
                     ),

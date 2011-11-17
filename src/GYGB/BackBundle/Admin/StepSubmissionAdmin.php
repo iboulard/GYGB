@@ -7,6 +7,9 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Summary\SummaryMapper;
+use Sonata\AdminBundle\Spreadsheet\SpreadsheetMapper;
+
 use GYGB\FrontBundle\Entity\StepSubmission;
 
 class StepSubmissionAdmin extends Admin
@@ -20,7 +23,9 @@ class StepSubmissionAdmin extends Admin
                 ->add('name', null, array('label' => 'Name'))
                 ->add('email', null, array('label' => 'Email'))
                 ->add('datetimeSubmitted', null, array('label' => 'Submitted'))
-                ->add('step', null, array('label' => 'Step'))
+                // doesn't work vvvv
+                //->add('step')
+                // ^^^^ works as ->add('Step')
                 ->add('story', null, array('label' => 'Story'))                
         ;
     }
@@ -44,12 +49,12 @@ class StepSubmissionAdmin extends Admin
                 ))
         ;
     }
-
+    
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
                 ->add('name', null, array('label' => 'Name'))
-                ->add('step')
+                ->add('step', null, array('label' => 'Step'))
         ;
     }
 

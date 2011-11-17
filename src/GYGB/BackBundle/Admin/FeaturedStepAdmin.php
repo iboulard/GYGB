@@ -20,7 +20,7 @@ class FeaturedStepAdmin extends Admin
     {
         $showMapper
                 ->add('type', null, array('label' => 'Page'))
-                ->add('step', null, array('label' => 'Step'))
+                ->add('Step')
         ;
 
         $showGroups = array(
@@ -43,7 +43,7 @@ class FeaturedStepAdmin extends Admin
                 // add custom action links
                 ->add('_action', 'actions', array(
                     'actions' => array(
-//                        'view' => array(),
+                        'view' => array(),
                         'edit' => array(),
                         'delete' => array(),
                     ),

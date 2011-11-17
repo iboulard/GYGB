@@ -26,22 +26,9 @@ class FeaturedResourceRepository extends EntityRepository
         return $resources;
     }
     
-    public function findFeaturedOnTakeAStep($category)
+    public function findAllFeaturedOnResourceGuide()
     {
-        $featured = $this->findBy(array('type' => 'take a step'));
-        
-        $resources = array();
-        foreach($featured as $f)
-        {
-            if($f->getResource()->getCategory() == $category) $resources[] = $f->getResource();
-        }
-        
-        return $resources;
-    }
-
-    public function findAllFeaturedOnTakeAStep()
-    {
-        $featured = $this->findBy(array('type' => 'take a step'));
+        $featured = $this->findBy(array('type' => 'resource guide'));
         
         $resources = array();
         foreach($featured as $f)

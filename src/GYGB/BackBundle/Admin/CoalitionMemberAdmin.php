@@ -8,19 +8,18 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
-
 use GYGB\BackBundle\Entity\CoalitionMember;
 
 class CoalitionMemberAdmin extends Admin
 {
-
     protected $entityLabelPlural = "Coalition Members";
 
     public function __construct($code, $class, $baseControllerName)
     {
         parent::__construct($code, $class, $baseControllerName);
 
-        if (!$this->hasRequest()) {
+        if(!$this->hasRequest())
+        {
             $this->datagridValues = array(
                 '_page' => 1,
                 '_sort_order' => 'ASC', // sort direction
@@ -28,7 +27,48 @@ class CoalitionMemberAdmin extends Admin
             );
         }
     }
+
     
+    /* LIST --------------------------------------------- */
+    protected function configureListFields(ListMapper $listMapper)
+    {
+        $listMapper
+                ->add('name', 'string', array('label' => 'Name'))
+                ->add('url', 'string', array('label' => 'Website'))
+
+                // add custom action links
+                ->add('_action', 'actions', array(
+                    'actions' => array(
+                        'view' => array(),
+                        'edit' => array(),
+                        'delete' => array(),
+                    ),
+                    'label' => 'Actions'
+                ))
+        ;
+    }
+
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+        
+    }
+    
+
+    
+    /* Form --------------------------------------------- */
+    protected function configureFormFields(FormMapper $formMapper)
+    {
+        $formMapper
+                ->add('name', null, array('label' => 'Name'))
+                ->add('url', null, array('label' => 'Website', 'required' => false))
+                ->setHelps(array(
+                ));
+
+        ;
+    }
+
+    
+    /* Show --------------------------------------------- */
     protected function configureShowField(ShowMapper $showMapper)
     {
         $showMapper
@@ -46,41 +86,5 @@ class CoalitionMemberAdmin extends Admin
         );
         $this->setShowGroups($showGroups);
     }
-
-    protected function configureListFields(ListMapper $listMapper)
-    {
-        $listMapper
-                ->add('name', 'string', array('label' => 'Name'))
-                ->add('url', 'string', array('label' => 'Website'))
-
-                // add custom action links
-                ->add('_action', 'actions', array(
-                    'actions' => array(
-//                        'view' => array(),
-                        'edit' => array(),
-                        'delete' => array(),
-                    ),
-                    'label' => 'Actions'
-                    
-                ))
-        ;
-    }
-
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
-    {
-    }
-
-    protected function configureFormFields(FormMapper $formMapper)
-    {
-        $formMapper
-                ->add('name', null, array('label' => 'Name'))
-                ->add('url', null, array('label' => 'Website', 'required' => false))
-                
-                ->setHelps(array(
-                ));
-
-        ;
-    }
-    
 
 }
