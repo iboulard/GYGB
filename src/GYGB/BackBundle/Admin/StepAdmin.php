@@ -14,7 +14,6 @@ use GYGB\BackBundle\Entity\Step;
 
 class StepAdmin extends Admin
 {
-    protected $maxPerPage = '5';
     protected $entityLabelPlural = "Steps";
 
     protected function configureShowField(ShowMapper $showMapper)

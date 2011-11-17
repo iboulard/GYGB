@@ -54,7 +54,7 @@ class ResourcesController extends Controller
         }
         else
         {
-            $featuredResources = $featuredResourceRepository->findAllFeaturedOnTakeAStep();
+            $featuredResources = $featuredResourceRepository->findAllFeaturedOnResourceGuide();
         }
         
         return $this->render('GYGBFrontBundle:Resources:resources.html.twig', array(

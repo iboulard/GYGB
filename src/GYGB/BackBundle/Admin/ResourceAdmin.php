@@ -13,8 +13,6 @@ use GYGB\BackBundle\Entity\Resource;
 
 class ResourceAdmin extends Admin
 {
-    protected $maxPerPage = 5;
-
     protected $entityLabelPlural = "Resources";
 
     protected function configureShowField(ShowMapper $showMapper)
