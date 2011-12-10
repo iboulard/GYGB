@@ -25,6 +25,12 @@ class CommunityController extends Controller
         ));
     }
     
+    public function communityVideosAction()
+    {                
+        return $this->render('GYGBFrontBundle:Community:_communityVideos.html.twig', array(
+        ));
+    }
+    
     public function communityStepsAction()
     {
         $em = $this->getDoctrine()->getEntityManager();

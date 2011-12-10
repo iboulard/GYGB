@@ -209,6 +209,9 @@ class ShareAStepController extends Controller
                 }
             }
         }
+        
+        $stepAdmin = $this->get('gygb.back.admin.step');
+
 
         return $this->render('GYGBFrontBundle:ShareAStep:shareAStep.html.twig', array(
             'stepForm' => $stepForm->createView(),
@@ -218,7 +221,8 @@ class ShareAStepController extends Controller
             'stepObjects' => $stepObjects,
             'id' => $id,
             'selectedStep' => $selectedStep,
-            'custom' => $custom
+            'custom' => $custom,
+            'stepAdmin' => $stepAdmin
         ));
     }
 

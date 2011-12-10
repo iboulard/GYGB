@@ -14,6 +14,10 @@ communitySteps:
   pattern: /community/steps
   defaults: { _controller: GYGBFrontBundle:Community:communitySteps }
 
+communityVideos:
+  pattern: /community/videos
+  defaults: { _controller: GYGBFrontBundle:Community:communityVideos }
+
 communityMap:
   pattern: /community/map
   defaults: { _controller: GYGBFrontBundle:Community:communityMap }
@@ -83,12 +87,12 @@ coalition:
   
 help:
   pattern: /help
-  defaults: { _controller: CCETCErrorReportBundle:ErrorReport:errorReport, includeBreadcrumb: false, flash: alert-message success, redirect: home, baseLayout: "::layout.html.twig", formRoute: help }
+  defaults: { _controller: CCETCErrorReportBundle:ErrorReport:errorReport, usePageHeader: false, flash: alert-message success, redirect: home, baseLayout: "::layout.html.twig", formRoute: help }
 
 
 adminHelp:
   pattern: /help
-  defaults: { _controller: CCETCErrorReportBundle:ErrorReport:errorReport, includeBreadcrumb: false, flash: alert-message success, redirect: home, baseLayout: "::layout.html.twig", formRoute: help }
+  defaults: { _controller: CCETCErrorReportBundle:ErrorReport:errorReport, usePageHeader: false, flash: alert-message success, redirect: home, baseLayout: "::layout.html.twig", formRoute: help }
   
 adminHome:
   pattern: /admin/dashboard

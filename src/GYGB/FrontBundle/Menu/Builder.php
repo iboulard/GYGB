@@ -38,6 +38,7 @@ class Builder extends ContainerAware
         $this->communityMenu->setAttribute('class', 'tabs');
         
         $this->communityMenu->addChild('communitySteps', array('route' => 'communitySteps', 'label' => 'Steps'));
+        //$this->communityMenu->addChild('communityVideos', array('route' => 'communityVideos', 'label' => 'Videos'));
         $this->communityMenu->addChild('communityMap', array('route' => 'communityMap', 'label' => 'Map'));
 
         $this->correctCommunityStepsCurrent();
