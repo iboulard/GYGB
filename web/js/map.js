@@ -115,7 +115,9 @@ function placeMarker(location) {
             $('#form_latitude').attr('value', '');
             $('#form_longitude').attr('value', '');            
         });
-        
+
+        console.log(location);
+
         $('#form_latitude').attr('value', location.Qa);
         $('#form_longitude').attr('value', location.Ra);
     }
