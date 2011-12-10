@@ -82,7 +82,7 @@ class StepRepository extends EntityRepository
     public function findAllEvents($stepSubmissionRepository, $commitmentRepository, $em)
     {
         $submissions = $stepSubmissionRepository->findAllApproved($em);
-        $commitments = $commitmentRepository->findAll();
+        $commitments = $commitmentRepository->findAllApproved($em);
         
         $submissionEvents = $this->turnStepsSubmissionsIntoEvents($submissions);
         $commitmentEvents = $this->turnCommitmentsIntoEvents($commitments);
@@ -94,16 +94,18 @@ class StepRepository extends EntityRepository
         return $events;        
     }
     
-    public function findEventsByStep($step)
+    public function findEventsByStep($step, $stepSubmissionRepository, $commitmentRepository, $em)
     {
         // build array of commitments and submissions for step.id
         
         // add a ":" to name if commitment/story is abbreviated
         // add quotes around text if commitment/story is abbreviated
         // abbreviate commitment/story if possible
-        $submissions = $step->getStepSubmissions();
-        $commitments = $step->getCommitments();
-        
+//        $submissions = $step->getStepSubmissions();
+//        $commitments = $step->getCommitments();
+        $submissions = $stepSubmissionRepository->findApprovedByStep($em, $step);
+        $commitments = $commitmentRepository->findApprovedByStep($em, $step);
+
         $submissionEvents = $this->turnStepsSubmissionsIntoEvents($submissions);
         $commitmentEvents = $this->turnCommitmentsIntoEvents($commitments);
                 
@@ -147,6 +149,7 @@ class StepRepository extends EntityRepository
         $e['story'] = $s->getStory();
         $e['step'] = $s->getStep();
         $e['eventObject'] = $s;
+        $e['approved'] = $s->getApproved();
         
         return $e;
     }
@@ -185,6 +188,7 @@ class StepRepository extends EntityRepository
         $e['story'] = $c->getCommitment();
         $e['step'] = $c->getStep();
         $e['eventObject'] = $c;
+        $e['approved'] = $c->getApproved();
 
         return $e;
     }

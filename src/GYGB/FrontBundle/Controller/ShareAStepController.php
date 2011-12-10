@@ -171,10 +171,15 @@ class ShareAStepController extends Controller
                 
                 $stepSubmission->setDatetimeSubmitted(new \DateTime());
                 $stepSubmission->setStep($step);
+                $stepSubmission->setSpam(false);
+
                 if(trim($data['story']) != "") $stepSubmission->setStory($data['story']);
                 if(trim($data['latitude']) != "") $stepSubmission->setLatitude($data['latitude']);
                 if(trim($data['longitude']) != "") $stepSubmission->setLongitude($data['longitude']);
 
+                if($stepSubmission->getStory() == $step->getStory()) $stepSubmission->setApproved(true);
+                else $stepSubmission->setApproved(false);
+                
                 $em->persist($stepSubmission);
                 $em->flush();
 
@@ -190,7 +195,7 @@ class ShareAStepController extends Controller
 
                 
                 // unapproved steps and new steps (that are inherently unapproved) should not be highlighted
-                if($newStep)
+                if($newStep || !$stepSubmission->getApproved())
                 {
                     $this->getRequest()->getSession()->setFlash('template-flash', '::_thanksNeedsApproval.html.twig');
                 }

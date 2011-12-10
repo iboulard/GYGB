@@ -15,7 +15,10 @@ class FeaturedResource
 
     public function __toString()
     {
-        return $this->getResource() . ' featured on the '. $this->getType(). ' page';
+        if($this->getResource())
+            return $this->getResource() . ' featured on the '. $this->getType(). ' page';
+        else
+            return false;
     }
 
     /**
@@ -41,7 +44,7 @@ class FeaturedResource
     {
         return array (
             'home' => 'home',
-            'take a step' => 'take a step'
+            'resource guide' => 'resource guide'
         );
     }
     

@@ -12,4 +12,28 @@ use Doctrine\ORM\EntityRepository;
  */
 class CommitmentRepository extends EntityRepository
 {
+    public function findAllApproved($em)
+    {
+        $query = $this->createQueryBuilder('c')
+                ->join("c.step", "s")
+                ->andWhere('s.approved = true')
+                ->andWhere('c.approved = true')
+                ->andWhere('c.spam = false')
+                ->getQuery();
+        
+        return $query->getResult();
+    }
+    
+    public function findApprovedByStep($em, $step)
+    {
+        $query = $this->createQueryBuilder('c')
+                ->join("c.step", "s")
+                ->andWhere('s.approved = true')
+                ->andWhere('c.approved = true')
+                ->andWhere('c.spam = false')
+                ->andWhere('s.id = '.$step->getId())
+                ->getQuery();
+        
+        return $query->getResult();
+    }    
 }

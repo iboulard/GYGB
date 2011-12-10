@@ -119,6 +119,25 @@ Ideas
 
 				- featured step
 
+#	7.	Spam
+
+		- take off of map?
+		
+//		- change message
+		
+///		- approve if text is okay
+		
+//			- check that defaults work
+
+//		- my steps
+		
+//			- unapproved labels
+
+
+		- add batch spam actions
+		
+		- everything working okay?
+
 
 #	20.	Cleanup
 
@@ -135,3 +154,10 @@ Ideas
 			- switch to eventList controller
 			
 				- add edit buttons
+				
+				
+		b.	REVERT to dynamic step counts!
+		
+			- only doing it this way because it made some kind of sorting hard...?
+			
+		

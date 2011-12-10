@@ -45,6 +45,20 @@ class Commitment
      * @ORM\Column(name="datetimeSubmitted", type="datetime")
      */
     private $datetimeSubmitted;
+    /**
+    * @var smallint $approved
+    *
+    * @ORM\Column(name="approved", type="boolean", nullable="true")
+    */
+    private $approved;
+    /**
+    * @var smallint $spam
+    *
+    * @ORM\Column(name="spam", type="boolean", nullable="true")
+    */
+    private $spam;
+
+    
     
     /** @ORM\ManyToOne(targetEntity="Step", inversedBy="commitments") */
     protected $step;
@@ -57,6 +71,14 @@ class Commitment
         $this->Users = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
+        public function __toString()
+    {
+        if($this->getStep())
+            return $this->getName() . ' - ' . $this->getStep();
+        else
+            return false;
+    }
+
     /**
      * Get id
      *

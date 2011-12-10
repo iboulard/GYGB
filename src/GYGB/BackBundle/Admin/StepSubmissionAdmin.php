@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Summary\SummaryMapper;
 use Sonata\AdminBundle\Spreadsheet\SpreadsheetMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 use GYGB\FrontBundle\Entity\StepSubmission;
 
@@ -27,6 +28,8 @@ class StepSubmissionAdmin extends Admin
                 //->add('step')
                 // ^^^^ works as ->add('Step')
                 ->add('story', null, array('label' => 'Story'))                
+                ->add('approved', null, array('label' => 'Approved'))                
+                ->add('spam', null, array('label' => 'Spam'))                                
         ;
     }
 
@@ -34,15 +37,20 @@ class StepSubmissionAdmin extends Admin
     {
         $listMapper
                 ->add('name', 'string', array('label' => 'Submitted By'))
+                ->add('story', null, array('label' => 'Story'))
                 ->add('datetimeSubmitted', 'datetime', array('label' => 'Date Submitted'))
                 ->add('step', null, array('label' => 'Step'))
+                ->add('approved', null, array('label' => 'Approved'))                
+                ->add('spam', null, array('label' => 'Spam'))                
 
                 // add custom action links
                 ->add('_action', 'actions', array(
                     'actions' => array(
                         'view' => array(),
                         'edit' => array(),
-                        'delete' => array()
+                        'delete' => array(),
+                        'approve' => array(),
+                        'unapprove' => array()                        
                     ),
                     'label' => 'Actions'
                     
@@ -50,11 +58,37 @@ class StepSubmissionAdmin extends Admin
         ;
     }
     
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->add('approve', 'approve/{id}');
+        $collection->add('unapprove', 'unapprove/{id}');
+    }
+    
+    public function getBatchActions()
+    {
+        $actions = parent::getBatchActions();
+
+        $actions['approve'] = array(
+            'label' => 'Approve Selected',
+            'ask_confirmation' => false
+        );
+
+        $actions['unapprove'] = array(
+            'label' => 'Un-Approve Selected',
+            'ask_confirmation' => false
+        );
+        
+        return $actions;
+    }
+    
+    
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
                 ->add('name', null, array('label' => 'Name'))
                 ->add('step', null, array('label' => 'Step'))
+                ->add('approved', null, array('label' => 'Approved'))                
+                ->add('spam', null, array('label' => 'Spam'))                
         ;
     }
 
@@ -66,6 +100,8 @@ class StepSubmissionAdmin extends Admin
                 ->add('email')
                 ->add('story')
                 ->add('datetimeSubmitted', null, array('label' => 'Submitted'))
+                ->add('approved', null, array('label' => 'Approved'))                
+                ->add('spam', null, array('label' => 'Spam'))                
         ;
     }
 

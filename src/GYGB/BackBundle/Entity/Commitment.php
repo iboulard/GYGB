@@ -45,6 +45,20 @@ class Commitment
      * @ORM\Column(name="datetimeSubmitted", type="datetime")
      */
     private $datetimeSubmitted;
+    /**
+    * @var smallint $approved
+    *
+    * @ORM\Column(name="approved", type="boolean", nullable="true")
+    */
+    private $approved;
+    /**
+    * @var smallint $spam
+    *
+    * @ORM\Column(name="spam", type="boolean", nullable="true")
+    */
+    private $spam;
+
+    
     
     /** @ORM\ManyToOne(targetEntity="Step", inversedBy="commitments") */
     protected $step;
@@ -55,6 +69,8 @@ class Commitment
     public function __construct()
     {
         $this->Users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->approved = false;
+        $this->spam = false;
     }
     
         public function __toString()
@@ -253,5 +269,45 @@ class Commitment
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set approved
+     *
+     * @param boolean $approved
+     */
+    public function setApproved($approved)
+    {
+        $this->approved = $approved;
+    }
+
+    /**
+     * Get approved
+     *
+     * @return boolean 
+     */
+    public function getApproved()
+    {
+        return $this->approved;
+    }
+
+    /**
+     * Set spam
+     *
+     * @param boolean $spam
+     */
+    public function setSpam($spam)
+    {
+        $this->spam = $spam;
+    }
+
+    /**
+     * Get spam
+     *
+     * @return boolean 
+     */
+    public function getSpam()
+    {
+        return $this->spam;
     }
 }

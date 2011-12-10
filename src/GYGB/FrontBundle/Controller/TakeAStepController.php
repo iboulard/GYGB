@@ -85,8 +85,6 @@ class TakeAStepController extends Controller
 
                 $step->setCommitmentCount($step->getCommitmentCount() + 1);
 
-                $this->getRequest()->getSession()->setFlash('template-flash', '::_thanks.html.twig');
-
                 $commitment = new \GYGB\BackBundle\Entity\Commitment();
 
                 if($this->get('security.context')->isGranted('ROLE_USER'))
@@ -106,7 +104,12 @@ class TakeAStepController extends Controller
                 $commitment->setCommitment($data['commitment']);
                 $commitment->setDatetimeSubmitted(new \DateTime());
                 $commitment->setStep($step);
+                $commitment->setSpam(false);
+                
+                if($commitment->getCommitment() == $step->getCommitment()) $commitment->setApproved(true);
+                else $commitment->setApproved(false);
 
+                
                 $em->persist($commitment);
                 $em->flush();
 
@@ -115,6 +118,14 @@ class TakeAStepController extends Controller
                 $em->persist($step);
                 $em->flush();
 
+                if(!$commitment->getApproved())
+                {
+                    $this->getRequest()->getSession()->setFlash('template-flash', '::_thanksNeedsApproval.html.twig');
+                }
+                else
+                {
+                    $this->getRequest()->getSession()->setFlash('template-flash', '::_thanks.html.twig');
+                }                
 
                 if($this->get('security.context')->isGranted('ROLE_USER'))
                 {
@@ -127,7 +138,7 @@ class TakeAStepController extends Controller
             }
         }
 
-        $events = $stepRepository->findEventsByStep($step);
+        $events = $stepRepository->findEventsByStep($step, $stepSubmissionRepository, $commitmentRepository, $em);
 
         $commited = false;
         $taken = false;

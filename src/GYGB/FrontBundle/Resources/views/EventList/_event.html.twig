@@ -20,7 +20,7 @@
                 <a class="btn pull-right" style="margin-left: 10px;" href="{{ url(edit, {'id': event.eventId}) }}">edit</a>
             </span>
         {% endif %}
-        {% if not event.step.approved %}<span class="label important">unapproved</span>{% endif %}
+        {% if not event.step.approved or not event.approved %}<span class="label important">unapproved</span>{% endif %}
         {% if showCustomLabel is defined and showCustomLabel and event.step.parentSubmission is defined and event.step.parentSubmission != "" and event.eventObject == event.step.parentSubmission %}
             <span class="label success">custom step</span>
         {% endif %}

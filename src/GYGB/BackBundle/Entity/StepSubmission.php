@@ -57,7 +57,18 @@ class StepSubmission
      * @ORM\Column(name="longitude", type="string", length="255", nullable="true")
      */
     private $longitude;
-
+    /**
+    * @var smallint $approved
+    *
+    * @ORM\Column(name="approved", type="boolean", nullable="true")
+    */
+    private $approved;
+    /**
+    * @var smallint $spam
+    *
+    * @ORM\Column(name="spam", type="boolean", nullable="true")
+    */
+    private $spam;
     
     /**
      * @var datetime $datetimeSubmitted
@@ -209,6 +220,8 @@ class StepSubmission
     public function __construct()
     {
         $this->Users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->approved = false;
+        $this->spam = false;
     }
 
     
@@ -331,4 +344,44 @@ class StepSubmission
         return $this->longitude;
     }
 
+
+    /**
+     * Set approved
+     *
+     * @param boolean $approved
+     */
+    public function setApproved($approved)
+    {
+        $this->approved = $approved;
+    }
+
+    /**
+     * Get approved
+     *
+     * @return boolean 
+     */
+    public function getApproved()
+    {
+        return $this->approved;
+    }
+
+    /**
+     * Set spam
+     *
+     * @param boolean $spam
+     */
+    public function setSpam($spam)
+    {
+        $this->spam = $spam;
+    }
+
+    /**
+     * Get spam
+     *
+     * @return boolean 
+     */
+    public function getSpam()
+    {
+        return $this->spam;
+    }
 }

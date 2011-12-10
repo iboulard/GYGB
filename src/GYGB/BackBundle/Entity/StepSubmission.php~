@@ -57,7 +57,18 @@ class StepSubmission
      * @ORM\Column(name="longitude", type="string", length="255", nullable="true")
      */
     private $longitude;
-
+    /**
+    * @var smallint $approved
+    *
+    * @ORM\Column(name="approved", type="boolean", nullable="true")
+    */
+    private $approved;
+    /**
+    * @var smallint $spam
+    *
+    * @ORM\Column(name="spam", type="boolean", nullable="true")
+    */
+    private $spam;
     
     /**
      * @var datetime $datetimeSubmitted
@@ -65,6 +76,7 @@ class StepSubmission
      * @ORM\Column(name="datetimeSubmitted", type="datetime")
      */
     private $datetimeSubmitted;
+    
     /** @ORM\ManyToOne(targetEntity="Step", inversedBy="stepSubmissions") */
     protected $step;
     
@@ -139,7 +151,10 @@ class StepSubmission
 
     public function __toString()
     {
-        return $this->getName() . ' - ' . $this->getStep();
+        if($this->getStep())
+            return $this->getName() . ' - ' . $this->getStep();
+        else
+            return false;
     }
 
     /**
