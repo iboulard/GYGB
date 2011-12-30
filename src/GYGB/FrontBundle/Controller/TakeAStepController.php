@@ -46,8 +46,6 @@ class TakeAStepController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $resourceAdmin = $this->get('gygb.back.admin.resource');
         $stepAdmin = $this->get('gygb.back.admin.step');
-
-        
         
         $featuredResources = $step->getFeaturedResources();
 
@@ -69,8 +67,6 @@ class TakeAStepController extends Controller
             $commitmentForm->add('name', 'text', array('label' => 'Your Name', 'required' => true))
                     ->add('email', 'text', array('label' => 'Your E-mail', 'required' => true));
         }
-
-        $commitmentForm->setData(array('commitment' => $step->getCommitment()));
 
         $commitmentForm = $commitmentForm->getForm();
 
@@ -105,9 +101,7 @@ class TakeAStepController extends Controller
                 $commitment->setDatetimeSubmitted(new \DateTime());
                 $commitment->setStep($step);
                 $commitment->setSpam(false);
-                
-                if($commitment->getCommitment() == $step->getCommitment()) $commitment->setApproved(true);
-                else $commitment->setApproved(false);
+                $commitment->setApproved(false);
 
                 
                 $em->persist($commitment);
@@ -117,15 +111,8 @@ class TakeAStepController extends Controller
 
                 $em->persist($step);
                 $em->flush();
-
-                if(!$commitment->getApproved())
-                {
-                    $this->getRequest()->getSession()->setFlash('template-flash', '::_thanksNeedsApproval.html.twig');
-                }
-                else
-                {
-                    $this->getRequest()->getSession()->setFlash('template-flash', '::_thanks.html.twig');
-                }                
+           
+                $this->getRequest()->getSession()->setFlash('template-flash', '::_thanksNeedsApproval.html.twig');                             
 
                 if($this->get('security.context')->isGranted('ROLE_USER'))
                 {

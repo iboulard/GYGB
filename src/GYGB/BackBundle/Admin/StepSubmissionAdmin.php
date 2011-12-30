@@ -30,6 +30,7 @@ class StepSubmissionAdmin extends Admin
                 ->add('story', null, array('label' => 'Story'))                
                 ->add('approved', null, array('label' => 'Approved'))                
                 ->add('spam', null, array('label' => 'Spam'))                                
+                ->add('featured', null, array('label' => 'Featured'))                
         ;
     }
 
@@ -42,26 +43,19 @@ class StepSubmissionAdmin extends Admin
                 ->add('step', null, array('label' => 'Step'))
                 ->add('approved', null, array('label' => 'Approved'))                
                 ->add('spam', null, array('label' => 'Spam'))                
-
+                ->add('featured', null, array('label' => 'Featured'))
+                
                 // add custom action links
                 ->add('_action', 'actions', array(
                     'actions' => array(
                         'view' => array(),
                         'edit' => array(),
-                        'delete' => array(),
-                        'approve' => array(),
-                        'unapprove' => array()                        
+                        'delete' => array(),                       
                     ),
                     'label' => 'Actions'
                     
                 ))
         ;
-    }
-    
-    protected function configureRoutes(RouteCollection $collection)
-    {
-        $collection->add('approve', 'approve/{id}');
-        $collection->add('unapprove', 'unapprove/{id}');
     }
     
     public function getBatchActions()
@@ -78,9 +72,28 @@ class StepSubmissionAdmin extends Admin
             'ask_confirmation' => false
         );
         
+        $actions['spam'] = array(
+            'label' => 'Mark Selected as Spam',
+            'ask_confirmation' => false
+        );
+
+        $actions['unspam'] = array(
+            'label' => 'Mark Selected as Not Spam',
+            'ask_confirmation' => false
+        );
+        
+        $actions['feature'] = array(
+            'label' => 'Mark Selected as Featured',
+            'ask_confirmation' => false
+        );
+
+        $actions['unfeature'] = array(
+            'label' => 'Mark Selected as Not Featured',
+            'ask_confirmation' => false
+        );
+        
         return $actions;
     }
-    
     
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
@@ -89,7 +102,9 @@ class StepSubmissionAdmin extends Admin
                 ->add('step', null, array('label' => 'Step'))
                 ->add('approved', null, array('label' => 'Approved'))                
                 ->add('spam', null, array('label' => 'Spam'))                
+                ->add('featured', null, array('label' => 'Featured'))                
         ;
+        $this->filterDefaults['spam'] = 2;         
     }
 
     protected function configureFormFields(FormMapper $formMapper)
@@ -102,6 +117,7 @@ class StepSubmissionAdmin extends Admin
                 ->add('datetimeSubmitted', null, array('label' => 'Submitted'))
                 ->add('approved', null, array('label' => 'Approved'))                
                 ->add('spam', null, array('label' => 'Spam'))                
+                ->add('featured', null, array('label' => 'Featured'))                
         ;
     }
 

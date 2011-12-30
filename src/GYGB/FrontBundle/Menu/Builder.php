@@ -37,22 +37,23 @@ class Builder extends ContainerAware
         $this->communityMenu->setCurrentUri($this->container->get('request')->getRequestUri());
         $this->communityMenu->setAttribute('class', 'tabs');
         
-        $this->communityMenu->addChild('communitySteps', array('route' => 'communitySteps', 'label' => 'Steps'));
         //$this->communityMenu->addChild('communityVideos', array('route' => 'communityVideos', 'label' => 'Videos'));
+        $this->communityMenu->addChild('communitySteps', array('route' => 'communitySteps', 'label' => 'Stories'));
         $this->communityMenu->addChild('communityMap', array('route' => 'communityMap', 'label' => 'Map'));
 
-        $this->correctCommunityStepsCurrent();
+        $this->correctCommunityMenuCurrent();
         
         $this->communityMenu->getCurrentItem()->setAttribute('class', 'current active');
         
         return $this->communityMenu;
     }
 
-    protected function correctCommunityStepsCurrent()
+    protected function correctCommunityMenuCurrent()
     {
-        if(isset($this->path[1]) && $this->path[1] == "community" && !isset($this->path[2]))
+        if((isset($this->path[1]) && $this->path[1] == "community" && !isset($this->path[2]))
+            || (isset($this->path[2]) && $this->path[2] == 'videos'))
         {
-            $this->communityMenu->getChild('communitySteps')->setCurrent(true);
+            $this->communityMenu->getChild('communityVideos')->setCurrent(true);
         }
     }    
 
@@ -103,6 +104,7 @@ class Builder extends ContainerAware
         $this->mainMenu->addChild('Resources', array('route' => 'resources'));
 
         $this->path = str_replace($this->container->get('request')->getBaseUrl(), '', $this->container->get('request')->getRequestUri());
+        $this->path = str_replace(strstr($this->path, '?'), "", $this->path); // remove anything after the first ?
         $this->path = explode('/', $this->path);
 
         $this->correctStepCurrent();

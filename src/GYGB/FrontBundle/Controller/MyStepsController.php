@@ -72,8 +72,6 @@ class MyStepsController extends Controller
                     $includeStepForm = true;
                     $eventForm
                         ->add('title', 'text', array('label' => 'Title', 'required' => false))
-                        ->add('commitment', 'text', array('label' => 'Commitment', 'required' => false))
-                        ->add('step', 'text', array('label' => 'Step', 'required' => false))
                         ->add('description', 'textarea', array('label' => 'Description', 'required' => false))
                         ->add('category', 'choice', array('label' => 'What area is the step in?', 'required' => false, 'choices' => array('food' => 'Food', 'waste' => 'Waste', 'transportation' => 'Transportation', 'energy' => 'Heat and Electric')));
                 }
@@ -135,8 +133,6 @@ class MyStepsController extends Controller
                     {
                         $step = $stepRepository->findOneById($eventObject->getStep()->getId());
                         $step->setTitle($data['title']);
-                        $step->setStory($data['step']);
-                        $step->setCommitment($data['commitment']);
                         $step->setDescription($data['description']);
                         $step->setCategory($data['category']);
                         

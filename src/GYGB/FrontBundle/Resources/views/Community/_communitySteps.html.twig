@@ -7,7 +7,7 @@
     
 {% block content %}
     {{ parent() }}
-    
+        
     {% include "GYGBFrontBundle:EventList:_eventList.html.twig" with {
         'events' : events,
         'id' : 'community-steps',

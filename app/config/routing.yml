@@ -1,10 +1,10 @@
 homeDefault:
   pattern:  /
-  defaults: { _controller: GYGBFrontBundle:Home:home, highlightStep: false }
+  defaults: { _controller: GYGBFrontBundle:Home:home }
 
 home:
-  pattern:  /home/{highlightStep}
-  defaults: { _controller: GYGBFrontBundle:Home:home, highlightStep: false }
+  pattern:  /home
+  defaults: { _controller: GYGBFrontBundle:Home:home }
 
 community:
   pattern: /community
@@ -15,8 +15,8 @@ communitySteps:
   defaults: { _controller: GYGBFrontBundle:Community:communitySteps }
 
 communityVideos:
-  pattern: /community/videos
-  defaults: { _controller: GYGBFrontBundle:Community:communityVideos }
+  pattern: /community/videos/{id}
+  defaults: { _controller: GYGBFrontBundle:Community:communityVideos, id: null }
 
 communityMap:
   pattern: /community/map

@@ -21,9 +21,6 @@ class StepAdmin extends Admin
         $showMapper
                 ->add('title', null, array('label' => 'Title'))
                 ->add('category', null, array('label' => 'Category'))
-                ->add('commitment', null, array('label' => 'Default Commitment'))
-                ->add('story', null, array('label' => 'Default Story'))
-                //->add('savings', null, array('label' => 'Savings'))
                 ->add('stepCount', null, array('label' => 'Step Count'))
                 ->add('commitmentCount', null, array('label' => 'Commitment Count'))
                 ->add('approved', null, array('label' => 'Approved'))
@@ -31,13 +28,7 @@ class StepAdmin extends Admin
 
        
     }
-
-    protected function configureRoutes(RouteCollection $collection)
-    {
-        $collection->add('approve', 'approve/{id}');
-        $collection->add('unapprove', 'unapprove/{id}');
-    }
-
+    
     public function getBatchActions()
     {
         $actions = parent::getBatchActions();
@@ -70,8 +61,6 @@ class StepAdmin extends Admin
                         'view' => array(),
                         'edit' => array(),
                         'delete' => array(),
-                        'approve' => array(),
-                        'unapprove' => array()
                     ),
                     'label' => 'Actions'
                 ))
@@ -88,8 +77,7 @@ class StepAdmin extends Admin
                     ),
                     'field_type' => 'choice'
                 ))
-                
-               
+                ->add('approved', null, array('label' => 'Approved'))    
         ;
     }
     
@@ -98,9 +86,6 @@ class StepAdmin extends Admin
         $formMapper
                 ->add('title')
                 ->add('category', 'choice', array('choices' => Step::getCategoryChoices(), 'expanded' => false, 'multiple' => false))
-                //->add('savings', 'choice', array('choices' => Step::getSavingsChoices(), 'expanded' => false, 'multiple' => false))
-                ->add('commitment', null, array('required' => false, 'label' => 'Default Commitment')) 
-                ->add('story', null, array('required' => false, 'label' => 'Default Story')) 
                 ->add('description', null, array('attr' => array('class' => 'tinymce')))
                 ->add('approved')
                 //->add('stepCount', null, array('required' => false, 'label' => 'Step Count'))

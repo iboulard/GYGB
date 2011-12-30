@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class HomeController extends Controller
 {
-    public function homeAction($highlightStep)
+    public function homeAction()
     {
         $resourceAdmin = $this->get('gygb.back.admin.resource');        
         
@@ -24,7 +24,6 @@ class HomeController extends Controller
         }
 
         return $this->render('GYGBFrontBundle:Home:home.html.twig', array(
-            'highlightStep' => $highlightStep,
             'featuredResources' => $featuredResources,
             'resourceAdmin' => $resourceAdmin,
             'usingIE6' => $usingIE6

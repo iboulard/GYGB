@@ -57,6 +57,12 @@ class Commitment
     * @ORM\Column(name="spam", type="boolean", nullable="true")
     */
     private $spam;
+    /**
+    * @var smallint $featured
+    *
+    * @ORM\Column(name="featured", type="boolean", nullable="true")
+    */
+    private $featured;
 
     
     
@@ -71,6 +77,7 @@ class Commitment
         $this->Users = new \Doctrine\Common\Collections\ArrayCollection();
         $this->approved = false;
         $this->spam = false;
+        $this->featured = false;        
     }
     
         public function __toString()
@@ -309,5 +316,25 @@ class Commitment
     public function getSpam()
     {
         return $this->spam;
+    }
+
+    /**
+     * Set featured
+     *
+     * @param boolean $featured
+     */
+    public function setFeatured($featured)
+    {
+        $this->featured = $featured;
+    }
+
+    /**
+     * Get featured
+     *
+     * @return boolean 
+     */
+    public function getFeatured()
+    {
+        return $this->featured;
     }
 }

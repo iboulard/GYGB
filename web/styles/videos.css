@@ -1,0 +1,18 @@
+div.video-player {
+    float: left;
+}
+
+div.video-list {
+    width: 200px;
+    float: right;
+}
+
+div.video-list a {
+}
+
+div.video-list a img {
+    
+}
+
+div.video-list a:hover {
+}

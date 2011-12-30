@@ -1,15 +1,31 @@
 {% extends 'GYGBFrontBundle:Community:community.html.twig' %}
     
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/videos.css') }}" type="text/css">        
+{% endblock %} 
+
 {% block content %}
     {{ parent() }}
     
-    <iframe width="280" height="157" src="http://www.youtube.com/embed/SOM1D0hAevQ" frameborder="0" allowfullscreen></iframe>
-    <iframe width="280" height="157" src="http://www.youtube.com/embed/SOM1D0hAevQ" frameborder="0" allowfullscreen></iframe>
-    <iframe width="280" height="157" src="http://www.youtube.com/embed/SOM1D0hAevQ" frameborder="0" allowfullscreen></iframe>
-    <iframe width="280" height="157" src="http://www.youtube.com/embed/SOM1D0hAevQ" frameborder="0" allowfullscreen></iframe>
-    <iframe width="280" height="157" src="http://www.youtube.com/embed/SOM1D0hAevQ" frameborder="0" allowfullscreen></iframe>
-    <iframe width="280" height="157" src="http://www.youtube.com/embed/SOM1D0hAevQ" frameborder="0" allowfullscreen></iframe>
-    <iframe width="280" height="157" src="http://www.youtube.com/embed/SOM1D0hAevQ" frameborder="0" allowfullscreen></iframe>
-    <iframe width="280" height="157" src="http://www.youtube.com/embed/SOM1D0hAevQ" frameborder="0" allowfullscreen></iframe>
-    <iframe width="280" height="157" src="http://www.youtube.com/embed/SOM1D0hAevQ" frameborder="0" allowfullscreen></iframe>
+    <div class="row">
+        <div class="span11">
+            <div class="video-player span11">
+                <iframe width="640" height="390" src="http://www.youtube.com/embed/{{ currentVideo }}?autoplay=1&rel=0" frameborder="0" allowfullscreen></iframe> 
+            </div>  
+            <div class="span11" style="margin-top: 20px;">
+                <span style="font-size: 26px;">How do you get YOUR greenback?</span><br/>
+                <a href="#" class="btn large success pull-right">Upload Your Video</a>
+            </div>
+        </div>
+                
+        <div class="video-list span5">
+            {% for v in videos %}
+                <a href="{{ url('communityVideos', {'id' : v.id }) }}">
+                   <img style="width: 200px;" src="http://img.youtube.com/vi/{{ v.id }}/hqdefault.jpg" />
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+        
 {% endblock %}

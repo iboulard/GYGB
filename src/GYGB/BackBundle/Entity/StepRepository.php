@@ -94,6 +94,21 @@ class StepRepository extends EntityRepository
         return $events;        
     }
     
+    public function findAllFeaturedEvents($stepSubmissionRepository, $commitmentRepository, $em)
+    {
+        $submissions = $stepSubmissionRepository->findAllApprovedAndFeatured($em);
+        $commitments = $commitmentRepository->findAllApprovedAndFeatured($em);
+        
+        $submissionEvents = $this->turnStepsSubmissionsIntoEvents($submissions);
+        $commitmentEvents = $this->turnCommitmentsIntoEvents($commitments);
+                
+        $events = array_merge($submissionEvents, $commitmentEvents);
+        
+        uasort($events, 'self::compareEvent');
+        
+        return $events;        
+    }
+    
     public function findEventsByStep($step, $stepSubmissionRepository, $commitmentRepository, $em)
     {
         // build array of commitments and submissions for step.id

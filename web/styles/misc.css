@@ -4,3 +4,7 @@ span.take-a-step-heading {
     margin: 8px 0 25px 0;
     display: block;
 }
+
+span.help-inline {
+    font-size: 13px;
+}

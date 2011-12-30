@@ -19,12 +19,13 @@ $loader->registerNamespaces(array(
     'Knp\Bundle' => __DIR__.'/../vendor/bundles',
     'Knp\Menu'   => __DIR__.'/../vendor/knp-menu/src',
     'Sonata'          => __DIR__.'/../vendor/bundles',
-    'FOS'          => __DIR__.'/../vendor/bundles',    
+    'FOS'          => __DIR__.'/../vendor/bundles',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',
     'Twig_'            => __DIR__.'/../vendor/twig/lib',
     'PHPExcel'         => __DIR__.'/../vendor/PHPExcel',
+    'Zend_'           => __DIR__.'/../vendor/Zend/library',
 ));
 
 // intl
@@ -50,3 +51,4 @@ AnnotationRegistry::registerFile(__DIR__.'/../vendor/doctrine/lib/Doctrine/ORM/M
 require_once __DIR__.'/../vendor/swiftmailer/lib/classes/Swift.php';
 Swift::registerAutoload(__DIR__.'/../vendor/swiftmailer/lib/swift_init.php');
 
+set_include_path(__DIR__.'/../vendor/Zend/library'.PATH_SEPARATOR.get_include_path());

@@ -24,6 +24,19 @@ class StepSubmissionRepository extends EntityRepository
         return $query->getResult();
     }
     
+    public function findAllApprovedAndFeatured($em)
+    {
+        $query = $this->createQueryBuilder('ss')
+                ->join("ss.step", "s")
+                ->andWhere('s.approved = true')
+                ->andWhere('ss.approved = true')
+                ->andWhere('ss.spam = false')
+                ->andWhere('ss.featured = true')
+                ->getQuery();
+        
+        return $query->getResult();
+    }
+    
     public function findApprovedByStep($em, $step)
     {
         $query = $this->createQueryBuilder('ss')

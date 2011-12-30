@@ -69,6 +69,12 @@ class StepSubmission
     * @ORM\Column(name="spam", type="boolean", nullable="true")
     */
     private $spam;
+    /**
+    * @var smallint $featured
+    *
+    * @ORM\Column(name="featured", type="boolean", nullable="true")
+    */
+    private $featured;    
     
     /**
      * @var datetime $datetimeSubmitted
@@ -222,6 +228,7 @@ class StepSubmission
         $this->Users = new \Doctrine\Common\Collections\ArrayCollection();
         $this->approved = false;
         $this->spam = false;
+        $this->featured = false;
     }
 
     
@@ -258,7 +265,11 @@ class StepSubmission
 
     public function storyContainsPronoun()
     {
-        return strstr($this->getStory(), " my ");
+        return strstr($this->getStory(), " my ")
+            || strstr($this->getStory(), " I ")
+            || strstr($this->getStory(), " I'")
+            || strstr($this->getStory(), " our ")
+            || strstr($this->getStory(), " we ");
     }
 
 
@@ -383,5 +394,25 @@ class StepSubmission
     public function getSpam()
     {
         return $this->spam;
+    }
+
+    /**
+     * Set featured
+     *
+     * @param boolean $featured
+     */
+    public function setFeatured($featured)
+    {
+        $this->featured = $featured;
+    }
+
+    /**
+     * Get featured
+     *
+     * @return boolean 
+     */
+    public function getFeatured()
+    {
+        return $this->featured;
     }
 }

@@ -25,6 +25,7 @@ class StepCommitmentAdmin extends Admin
                 ->add('commitment', null, array('label' => 'Commitment'))                
                 ->add('approved', null, array('label' => 'Approved'))                
                 ->add('spam', null, array('label' => 'Spam'))                
+                ->add('featured', null, array('label' => 'Featured'))                
         ;
     }
 
@@ -37,6 +38,7 @@ class StepCommitmentAdmin extends Admin
                 ->add('step', null, array('label' => 'Step'))
                 ->add('approved', null, array('label' => 'Approved'))                
                 ->add('spam', null, array('label' => 'Spam'))                
+                ->add('featured', null, array('label' => 'Featured'))                
                 
                 // add custom action links
                 ->add('_action', 'actions', array(
@@ -44,20 +46,12 @@ class StepCommitmentAdmin extends Admin
                         'view' => array(),
                         'edit' => array(),
                         'delete' => array(),
-                        'approve' => array(),
-                        'unapprove' => array()
                     ),
                     'label' => 'Actions'                    
                 ))
         ;
     }
-    
-    protected function configureRoutes(RouteCollection $collection)
-    {
-        $collection->add('approve', 'approve/{id}');
-        $collection->add('unapprove', 'unapprove/{id}');
-    }
-    
+
     public function getBatchActions()
     {
         $actions = parent::getBatchActions();
@@ -72,7 +66,59 @@ class StepCommitmentAdmin extends Admin
             'ask_confirmation' => false
         );
         
+        $actions['spam'] = array(
+            'label' => 'Mark Selected as Spam',
+            'ask_confirmation' => false
+        );
+
+        $actions['unspam'] = array(
+            'label' => 'Mark Selected as Not Spam',
+            'ask_confirmation' => false
+        );
+        
+        $actions['feature'] = array(
+            'label' => 'Mark Selected as Featured',
+            'ask_confirmation' => false
+        );
+
+        $actions['unfeature'] = array(
+            'label' => 'Mark Selected as Not Featured',
+            'ask_confirmation' => false
+        );
+        
         return $actions;
+    }
+    
+    public function batchFeature($query)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        foreach($query->getQuery()->iterate() as $pos => $object) {
+            $object[0]->setFeatured(true);
+        }
+
+        $em->flush();
+        $em->clear();
+
+        $this->getRequest()->getSession()->setFlash('sonata_flash_success', 'The selected items have been marked as featured');
+
+        return new RedirectResponse($this->admin->generateUrl('list', $this->admin->getFilterParameters()));
+    }
+
+    public function batchUnfeature($query)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        foreach($query->getQuery()->iterate() as $pos => $object) {
+            $object[0]->setFeatured(false);
+        }
+
+        $em->flush();
+        $em->clear();
+
+        $this->getRequest()->getSession()->setFlash('sonata_flash_success', 'The selected items have been marked as not featured');
+
+        return new RedirectResponse($this->admin->generateUrl('list', $this->admin->getFilterParameters()));
     }
     
 
@@ -83,8 +129,13 @@ class StepCommitmentAdmin extends Admin
                 ->add('step')
                 ->add('approved', null, array('label' => 'Approved'))                
                 ->add('spam', null, array('label' => 'Spam'))                
+                ->add('featured', null, array('label' => 'Featured'))                
         ;
+        
+        $this->filterDefaults['spam'] = 2; 
     }
+    
+   
 
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -96,6 +147,7 @@ class StepCommitmentAdmin extends Admin
                 ->add('datetimeSubmitted', null, array('label' => 'Submitted'))
                 ->add('approved', null, array('label' => 'Approved'))                
                 ->add('spam', null, array('label' => 'Spam'))                
+                ->add('featured', null, array('label' => 'Featured'))                
         ;
     }
 

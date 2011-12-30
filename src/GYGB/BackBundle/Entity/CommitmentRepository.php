@@ -24,6 +24,19 @@ class CommitmentRepository extends EntityRepository
         return $query->getResult();
     }
     
+    public function findAllApprovedAndFeatured($em)
+    {
+        $query = $this->createQueryBuilder('c')
+                ->join("c.step", "s")
+                ->andWhere('s.approved = true')
+                ->andWhere('c.approved = true')
+                ->andWhere('c.approved = true')
+                ->andWhere('c.featured = true')
+                ->getQuery();
+        
+        return $query->getResult();
+    }
+    
     public function findApprovedByStep($em, $step)
     {
         $query = $this->createQueryBuilder('c')

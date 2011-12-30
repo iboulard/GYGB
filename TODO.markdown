@@ -1,11 +1,6 @@
 Get Your Greenback - TODO
 ======================================
-	
-on rollout
-===============
-	change feature resource page values from "take a step" to "resource guide"
 
-	
 Issues
 ==============
 	
@@ -37,12 +32,12 @@ Ideas
 			What did you do?  What obstacles did you overcome to do it? 
 			Was it worth the effort?  Have you inspired anyone else by your step? - Katie B
 	
-			- optional after submission
+			- optional after submission?
 	
 	
 	- Featured individuals / organizations
 	
-		- will come when coalition figures this piece out
+		- will come when campaign figures this piece out
 		
 		highlight photos, videos, text of community member doing it right
 		
@@ -50,43 +45,87 @@ Ideas
 		
 		- add to home page
 
+	
+	- facebook/twitter api integration?
 
-		
+		- not worth the time right now
+
+	- incorporate organizations?
+	
+		- need help from others to figure out the details
+	
 1.2
-=========================
-	1.	Organizations
+==========================
+
+//	- batch spam
 	
-		- sign up
+//	- batch feature
 	
-			- logo
+//		- remove spam actions
+	
+//	- header changes
+	
+	1.	Steps
+	
+		a. revert to real count
+		
+//		b. only show featured steps on community page
+	
+		c. add new steps
+		
+			- what to use for titles?
 			
-			- description (for ads)
+//		d. no default story
+	
+//			- affects map
+	
+//			- no defaualt commitment
+	
 			
-				- use tinymce
+			
+	
+	2.	Videos
+	
+		- Community
+		
+			- new tab, default tab
+			
+				- where to put step counts?
+			
+			- browse
+			
+			- view video page?
+			
+			- vote on videos?
+			
+			- awards? prizes?
+			
+		- Share
+		
+			- update share process
+			
+				- text OR video
 				
-		- share a step?
-		
-		- include coalition
-
-
-#	2.	JS degradation
-
-		- less sophisticate step filters
-		
-			- save old ones
-		
+			
+			- upload
+			
+				- should host on youtube, but never have users go to youtube
+				
+					- can cover this, except for uploads
+					
+		- highlight on home page
+				
 	
-#	3.	Facebook and Twitter
-
-		- API integration?
-
-
-#	4.	E-mail reminders
+1.3
+=========================
+		
+		
+#	1.	E-mail reminders
 
 		- for commitments
 		
 		
-#	5.	Audience
+#	2.	Audience
 
 		- homeowner, renter, landlord, school, students, congregations
 
@@ -104,10 +143,8 @@ Ideas
 						community
 						
 						- filter by who and where
-			
-
-						
-#	6.	Share a Step
+				
+#	3.	Share a Step
 	
 		- cancel selected step
 		
@@ -118,30 +155,42 @@ Ideas
 			- organization drop down
 
 				- featured step
+				
+				
+				
+#	4.	Revamp "featured content" - resources and steps featured on homepage / resource guide
 
-#	7.	Spam
+		- confusing on admin end, easier to just mark a step or resource as featured
+	
+	
+	
+Nice to Have	
+==============================================
+#	1.	JS degradation
 
-		- take off of map?
+		- less sophisticate step filters
 		
-//		- change message
-		
-///		- approve if text is okay
-		
-//			- check that defaults work
-
-//		- my steps
-		
-//			- unapproved labels
+			- save old ones
 
 
-		- add batch spam actions
-		
-		- everything working okay?
-
-
-#	20.	Cleanup
-
+Cleanup
+=============================
 		a.	Merge Organizations and Commitments
+		
+			- NOTE: wait until it feels like we will stick with commitments
+			
+				- pros of commitments:
+				
+					- engages visitors - most haven't taken a step yet
+					
+					- gives the "take a step" piece of the three step (find/take/share) process some
+						substance
+					
+				- cons:
+				
+					- confusings to manage two ideas, "steps taken", "commitments made"
+					
+						- can make this clearer
 		
 			- type
 			- name
