@@ -27,13 +27,8 @@ services:
     gygb.back.admin.stepsubmission:
       class: GYGB\BackBundle\Admin\StepSubmissionAdmin
       tags:
-        - { name: sonata.admin, manager_type: orm, group: Steps, label: Step Submissions }
+        - { name: sonata.admin, manager_type: orm, group: Steps, label: Submissions }
       arguments: [null, GYGB\BackBundle\Entity\StepSubmission, GYGBBackBundle:StepSubmissionAdmin]
-    gygb.back.admin.stepcommitment:
-      class: GYGB\BackBundle\Admin\StepCommitmentAdmin
-      tags:
-        - { name: sonata.admin, manager_type: orm, group: Steps, label: Step Commitments }
-      arguments: [null, GYGB\BackBundle\Entity\Commitment, GYGBBackBundle:StepCommitmentAdmin]
     gygb.back.admin.resource:
       class: GYGB\BackBundle\Admin\ResourceAdmin
       tags:

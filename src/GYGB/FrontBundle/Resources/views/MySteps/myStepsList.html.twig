@@ -16,6 +16,6 @@
 
     {{ knp_menu_render('GYGBFrontBundle:Builder:myStepsMenu') }}
     
-    {% include "GYGBFrontBundle:EventList:_eventList.html.twig" with {'events' : events, 'id' : 'my-steps', 'noEventsText' : noEventsText, 'linkEvents' : true, 'edit' : 'my' ~ type|capitalize ~ 'sEdit', 'justStory' : true, 'showCustomLabel' : true } %}
+    {% include "GYGBFrontBundle:StepSubmissionList:_stepSubmissionList.html.twig" with {'stepSubmissions' : stepSubmissions, 'id' : 'my-steps', 'noStepSubmissionsText' : noStepSubmissionsText, 'linkStepSubmissions' : true, 'edit' : 'my' ~ type|capitalize ~ 'sEdit', 'justText' : true, 'showCustomLabel' : true } %}
 
 {% endblock content %}

@@ -23,8 +23,8 @@ class Builder extends ContainerAware
         
         $user = $this->container->get('security.context')->getToken()->getUser();
         
-        $this->myStepsMenu->addChild('mySteps', array('route' => 'mySteps', 'label' => 'My Steps ('.count($user->getStepSubmissions()).')'));
-        $this->myStepsMenu->addChild('myCommitments', array('route' => 'myCommitments', 'label' => 'My Commitments ('.count($user->getCommitments()).')'));
+        $this->myStepsMenu->addChild('mySteps', array('route' => 'mySteps', 'label' => 'My Steps ('.count($user->getStepSubmissions('step')).')'));
+        $this->myStepsMenu->addChild('myCommitments', array('route' => 'myCommitments', 'label' => 'My Commitments ('.count($user->getStepSubmissions('commitment')).')'));
 
         $this->myStepsMenu->getCurrentItem()->setAttribute('class', 'current active');
         

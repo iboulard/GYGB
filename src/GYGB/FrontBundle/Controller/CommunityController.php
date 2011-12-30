@@ -18,7 +18,7 @@ class CommunityController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
         $stepSubmissionRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:StepSubmission');
-        $stepSubmissions = $stepSubmissionRepository->findAllApproved($em);
+        $stepSubmissions = $stepSubmissionRepository->findAllApproved();
                 
         return $this->render('GYGBFrontBundle:Community:_communityMap.html.twig', array(
             'stepSubmissions' => $stepSubmissions,
@@ -116,15 +116,11 @@ class CommunityController extends Controller
     
     public function communityStepsAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
         $stepSubmissionRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:StepSubmission');
-        $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
-        $commitmentRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Commitment');
-
-        $events = $stepRepository->findAllFeaturedEvents($stepSubmissionRepository, $commitmentRepository, $em);
+        $stepSubmissions = $stepSubmissionRepository->findApprovedAndFeatured();
         
         return $this->render('GYGBFrontBundle:Community:_communitySteps.html.twig', array(
-            'events' => $events,
+            'stepSubmissions' => $stepSubmissions,
         ));
     }
 

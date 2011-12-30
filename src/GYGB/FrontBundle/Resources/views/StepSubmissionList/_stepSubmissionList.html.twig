@@ -1,0 +1,15 @@
+{% if stepSubmissions|length > 0 %}
+    <div class="step-list" id="{{ id }}">
+        <div class="step-list-container {% if not linkStepSubmissions %}events-not-linked{% endif %}">
+            {% for stepSubmission in stepSubmissions %}
+                {% include "GYGBFrontBundle:StepSubmissionList:_stepSubmission.html.twig" with {'stepSubmission' : stepSubmission, 'first' : loop.first, 'last' : loop.last, 'linkStepSubmission' : linkStepSubmissions, 'justText' : justText, 'showCustomLabel' : showCustomLabel  } %}
+            {% endfor %}
+        </div>
+    </div>
+{% else %}
+    <div class="row">
+        <div class="alert-message block-message span15">
+            {{ noStepSubmissionsText|raw }}
+        </div>
+    </div>
+{% endif %}

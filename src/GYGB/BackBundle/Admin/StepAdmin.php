@@ -21,8 +21,6 @@ class StepAdmin extends Admin
         $showMapper
                 ->add('title', null, array('label' => 'Title'))
                 ->add('category', null, array('label' => 'Category'))
-                ->add('stepCount', null, array('label' => 'Step Count'))
-                ->add('commitmentCount', null, array('label' => 'Commitment Count'))
                 ->add('approved', null, array('label' => 'Approved'))
         ;
 
@@ -52,8 +50,6 @@ class StepAdmin extends Admin
                 ->add('title', 'string', array('label' => 'Step'))
                 ->add('category', 'string', array('label' => 'Category'))
                 ->add('approved', 'boolean', array('label' => 'Approved'))
-                ->add('stepCount', 'integer', array('label' => 'Step Count'))
-                ->add('commitmentCount', 'integer', array('label' => 'Commitment Count'))
 
                 // add custom action links
                 ->add('_action', 'actions', array(
@@ -88,8 +84,6 @@ class StepAdmin extends Admin
                 ->add('category', 'choice', array('choices' => Step::getCategoryChoices(), 'expanded' => false, 'multiple' => false))
                 ->add('description', null, array('attr' => array('class' => 'tinymce')))
                 ->add('approved')
-                //->add('stepCount', null, array('required' => false, 'label' => 'Step Count'))
-                //->add('commitmentCount', null, array('required' => false, 'label' => 'Commitment Count'))
                 ->add('featuredResources', 'sonata_type_model', array('label' => 'Related Resources', 'required' => false))
                 ->setHelps(array(
                     'featuredResources' => 'CTRL + click to select mutliple resources',

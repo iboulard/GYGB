@@ -11,23 +11,24 @@ use Sonata\AdminBundle\Summary\SummaryMapper;
 use Sonata\AdminBundle\Spreadsheet\SpreadsheetMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
-use GYGB\FrontBundle\Entity\StepSubmission;
+use GYGB\BackBundle\Entity\StepSubmission;
 
 class StepSubmissionAdmin extends Admin
 {
 
-    protected $entityLabelPlural = "Step Submissions";
+    protected $entityLabelPlural = "Submissions";
 
     protected function configureShowField(ShowMapper $showMapper)
     {
         $showMapper
+                ->add('type', null, array('label' => 'Type'))
                 ->add('name', null, array('label' => 'Name'))
                 ->add('email', null, array('label' => 'Email'))
                 ->add('datetimeSubmitted', null, array('label' => 'Submitted'))
                 // doesn't work vvvv
                 //->add('step')
                 // ^^^^ works as ->add('Step')
-                ->add('story', null, array('label' => 'Story'))                
+                ->add('text', null, array('label' => 'Text'))                
                 ->add('approved', null, array('label' => 'Approved'))                
                 ->add('spam', null, array('label' => 'Spam'))                                
                 ->add('featured', null, array('label' => 'Featured'))                
@@ -38,7 +39,8 @@ class StepSubmissionAdmin extends Admin
     {
         $listMapper
                 ->add('name', 'string', array('label' => 'Submitted By'))
-                ->add('story', null, array('label' => 'Story'))
+                ->add('type', null, array('label' => 'Type'))
+                ->add('text', null, array('label' => 'Text'))
                 ->add('datetimeSubmitted', 'datetime', array('label' => 'Date Submitted'))
                 ->add('step', null, array('label' => 'Step'))
                 ->add('approved', null, array('label' => 'Approved'))                
@@ -98,6 +100,12 @@ class StepSubmissionAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+                ->add('type', 'doctrine_orm_choice', array(
+                        'field_options' => array(
+                            'choices' => StepSubmission::getTypeChoices()
+                        ),
+                        'field_type' => 'choice'
+                ))
                 ->add('name', null, array('label' => 'Name'))
                 ->add('step', null, array('label' => 'Step'))
                 ->add('approved', null, array('label' => 'Approved'))                
@@ -110,10 +118,11 @@ class StepSubmissionAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+                ->add('type', 'choice', array('choices' => StepSubmission::getTypeChoices()))
                 ->add('step')
                 ->add('name')
                 ->add('email')
-                ->add('story')
+                ->add('text')
                 ->add('datetimeSubmitted', null, array('label' => 'Submitted'))
                 ->add('approved', null, array('label' => 'Approved'))                
                 ->add('spam', null, array('label' => 'Spam'))                

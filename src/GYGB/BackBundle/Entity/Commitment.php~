@@ -317,4 +317,24 @@ class Commitment
     {
         return $this->spam;
     }
+
+    /**
+     * Set featured
+     *
+     * @param boolean $featured
+     */
+    public function setFeatured($featured)
+    {
+        $this->featured = $featured;
+    }
+
+    /**
+     * Get featured
+     *
+     * @return boolean 
+     */
+    public function getFeatured()
+    {
+        return $this->featured;
+    }
 }

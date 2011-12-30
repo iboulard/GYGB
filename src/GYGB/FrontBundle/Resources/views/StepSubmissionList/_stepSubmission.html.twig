@@ -1,0 +1,29 @@
+<div class="step-container {% if not linkStepSubmission %}not-linked{% endif %} {% if first %}first {% endif %}{% if last %}last {% endif %}">
+    <div class="step {{ stepSubmission.step.category }}">
+        {% if justText is defined and justText %}
+            <span class="text">
+                {% if linkStepSubmission %}<a class="step-link" href="{{ path('takeAStep', {'id': stepSubmission.step.id }) }}">{% endif %}
+                    {{ stepSubmission.text }}
+                {% if linkStepSubmission %}</a>{% endif %}
+            </span>
+        {% else %}
+            <span class="name">{{ stepSubmission.name }}{% if not stepSubmission.textCanBeAbbreviated %}:{% endif %}
+            </span>
+            <span class="text">
+                {% if linkStepSubmission %}<a class="step-link" href="{{ path('takeAStep', {'id': stepSubmission.step.id }) }}">{% endif %}
+                    {% if not stepSubmission.textCanBeAbbreviated %}"{% endif %}{{ stepSubmission.abbreviatedText }}{% if not stepSubmission.textCanBeAbbreviated %}"{% endif %}
+                {% if linkStepSubmission %}</a>{% endif %}
+            </span>
+        {% endif %}
+        {% if edit is defined %}
+            <span>
+                <a class="btn pull-right" style="margin-left: 10px;" href="{{ url(edit, {'id': stepSubmission.id}) }}">edit</a>
+            </span>
+        {% endif %}
+        {% if not stepSubmission.step.approved or not stepSubmission.approved %}<span class="label important">unapproved</span>{% endif %}
+        {% if showCustomLabel is defined and showCustomLabel and stepSubmission.step.parentSubmission is defined and stepSubmission.step.parentSubmission != "" and stepSubmission == stepSubmission.step.parentSubmission %}
+            <span class="label success">custom step</span>
+        {% endif %}
+        <span class="date">{{ stepSubmission.datetimesubmitted|date("F j, Y g:i a") }}</span>
+    </div>
+</div>    

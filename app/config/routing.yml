@@ -1,3 +1,11 @@
+fixStepSubmissionTypes:
+  pattern: /fixStepSubmissionTypes
+  defaults: { _controller: GYGBFrontBundle:About:fixStepSubmissionTypes }
+convertCommitments:
+  pattern: /convertCommitments
+  defaults: { _controller: GYGBFrontBundle:About:convertCommitments }
+  
+
 homeDefault:
   pattern:  /
   defaults: { _controller: GYGBFrontBundle:Home:home }

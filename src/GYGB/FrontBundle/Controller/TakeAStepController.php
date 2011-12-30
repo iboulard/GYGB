@@ -38,7 +38,6 @@ class TakeAStepController extends Controller
     public function stepPageAction($id, $step)
     {
         $resourceRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Resource');
-        $commitmentRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Commitment');
         $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
         $stepSubmissionRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:StepSubmission');
         $request = $this->getRequest();
@@ -79,35 +78,33 @@ class TakeAStepController extends Controller
             {
                 $data = $commitmentForm->getData();
 
-                $step->setCommitmentCount($step->getCommitmentCount() + 1);
-
-                $commitment = new \GYGB\BackBundle\Entity\Commitment();
+                $stepSubmission = new \GYGB\BackBundle\Entity\StepSubmission();
 
                 if($this->get('security.context')->isGranted('ROLE_USER'))
                 {
                     $user = $this->get('security.context')->getToken()->getUser();
-                    $commitment->setName($user->getName());
-                    $commitment->setEmail($user->getEmail());
-                    $commitment->setUser($user);
+                    $stepSubmission->setName($user->getName());
+                    $stepSubmission->setEmail($user->getEmail());
+                    $stepSubmission->setUser($user);
                 }
                 else
                 {
-                    $commitment->setName($data['name']);
-                    $commitment->setEmail($data['email']);
+                    $stepSubmission->setName($data['name']);
+                    $stepSubmission->setEmail($data['email']);
                     $session->set('userName', $data['name']);
                     $session->set('userEmail', $data['email']);
                 }
-                $commitment->setCommitment($data['commitment']);
-                $commitment->setDatetimeSubmitted(new \DateTime());
-                $commitment->setStep($step);
-                $commitment->setSpam(false);
-                $commitment->setApproved(false);
+                $stepSubmission->setText($data['commitment']);
+                $stepSubmission->setDatetimeSubmitted(new \DateTime());
+                $stepSubmission->setStep($step);
+                $stepSubmission->setSpam(false);
+                $stepSubmission->setApproved(false);
 
                 
-                $em->persist($commitment);
+                $em->persist($stepSubmission);
                 $em->flush();
 
-                $step->addCommitment($commitment);
+                $step->addStepSubmission($stepSubmission);
 
                 $em->persist($step);
                 $em->flush();
@@ -125,8 +122,8 @@ class TakeAStepController extends Controller
             }
         }
 
-        $events = $stepRepository->findEventsByStep($step, $stepSubmissionRepository, $commitmentRepository, $em);
-
+        $stepSubmissions = $stepSubmissionRepository->findApprovedByStep($step);
+        
         $commited = false;
         $taken = false;
 
@@ -135,23 +132,14 @@ class TakeAStepController extends Controller
 
             $user = $this->get('security.context')->getToken()->getUser();
 
-            $userCommitments = $user->getCommitments();
             $userStepSubmissions = $user->getStepSubmissions();
 
-            foreach($userCommitments as $uc)
-            {
-                if($uc->getStep() == $step)
-                {
-                    $commited = true;
-                    break;
-                }
-            }
             foreach($userStepSubmissions as $us)
             {
                 if($us->getStep() == $step)
                 {
-                    $taken = true;
-                    break;
+                    if($us->getType() == "step") $taken = true;
+                    if($us->getType() == "commitment") $commited = true;
                 }
             }
         }
@@ -160,7 +148,7 @@ class TakeAStepController extends Controller
             'step' => $step,
             'resources' => $resources,
             'commitmentForm' => $commitmentForm->createView(),
-            'events' => $events,
+            'stepSubmissions' => $stepSubmissions,
             'commited' => $commited,
             'taken' => $taken,
             'resourceAdmin' => $resourceAdmin,

@@ -8,12 +8,12 @@
 {% block content %}
     {{ parent() }}
         
-    {% include "GYGBFrontBundle:EventList:_eventList.html.twig" with {
-        'events' : events,
+    {% include "GYGBFrontBundle:StepSubmissionList:_stepSubmissionList.html.twig" with {
+        'stepSubmissions' : stepSubmissions,
         'id' : 'community-steps',
-        'noEventsText' : 'No one has taken a step! Be the first.',
-        'linkEvents' : true,
-        'justStory' : false,
+        'noStepSubmissionsText' : 'No one has taken a step! Be the first.',
+        'linkStepSubmissions' : true,
+        'justText' : false,
         'showCustomLabel' : false
         }
     %}

@@ -15,19 +15,19 @@
     
     <div class="row form-stacked" id="event-form">
         <div class="span10">
-            <form action="{{ path(urlBase ~ 'Delete', {'id' : eventObject.id }) }}" method="post" {{ form_enctype(eventForm) }}>
-                {% if form_errors(eventForm) %}
+            <form action="{{ path(urlBase ~ 'Delete', {'id' : stepSubmission.id }) }}" method="post" {{ form_enctype(stepSubmissionForm) }}>
+                {% if form_errors(stepSubmissionForm) %}
                     <div class="alert-message error block-message">
-                        {{ form_errors(eventForm) }}
+                        {{ form_errors(stepSubmissionForm) }}
                     </div>
                 {% endif %}
         
                 <div class="clearfix">
                     <label>Are your sure you want to delete this {{ type }}?</label>
-                    {% include "GYGBFrontBundle:EventList:_event.html.twig" with {'event' : event, 'first' : false, 'last' : true, 'linkEvent' : true, 'justStory' : true } %}
+                    {% include "GYGBFrontBundle:StepSubmissionList:_stepSubmission.html.twig" with {'stepSubmission' : stepSubmission, 'first' : false, 'last' : true, 'linkStepSubmission' : true, 'justText' : true } %}
                 </div><!-- /clearfix -->
 
-                {{ form_rest(eventForm) }}
+                {{ form_rest(stepSubmissionForm) }}
                 <div class="actions">
                     <input class="btn error large" value="Yes, Delete" type="submit" />
                     <a class="btn large" href="{{ url(urlBase) }}">Cancel</a>

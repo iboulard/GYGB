@@ -12,42 +12,51 @@ use Doctrine\ORM\EntityRepository;
  */
 class StepSubmissionRepository extends EntityRepository
 {
-    public function findAllApproved($em)
+    public function findApproved($type = null)
     {
         $query = $this->createQueryBuilder('ss')
                 ->join("ss.step", "s")
                 ->andWhere('s.approved = true')
                 ->andWhere('ss.approved = true')
-                ->andWhere('ss.spam = false')
-                ->getQuery();
+                ->andWhere('ss.spam = false');
         
-        return $query->getResult();
+        if($type) $query->andWhere('ss.type = '.$type);
+
+        $query->orderBy('ss.datetimeSubmitted', 'DESC');
+                
+        return $query->getQuery()->getResult();
     }
     
-    public function findAllApprovedAndFeatured($em)
+    public function findApprovedAndFeatured($type = null)
     {
         $query = $this->createQueryBuilder('ss')
                 ->join("ss.step", "s")
                 ->andWhere('s.approved = true')
                 ->andWhere('ss.approved = true')
                 ->andWhere('ss.spam = false')
-                ->andWhere('ss.featured = true')
-                ->getQuery();
+                ->andWhere('ss.featured = true');
+
+        if($type) $query->andWhere('ss.type = '.$type);        
+
+        $query->orderBy('ss.datetimeSubmitted', 'DESC');
         
-        return $query->getResult();
+        return $query->getQuery()->getResult();
     }
     
-    public function findApprovedByStep($em, $step)
+    public function findApprovedByStep($step, $type = null)
     {
         $query = $this->createQueryBuilder('ss')
                 ->join("ss.step", "s")
                 ->andWhere('s.approved = true')
                 ->andWhere('ss.approved = true')
                 ->andWhere('ss.spam = false')
-                ->andWhere('s.id = '.$step->getId())
-                ->getQuery();
+                ->andWhere('s.id = '.$step->getId());
+                
+        if(isset($type)) $query->andWhere('ss.type = '.$type);        
+
+        $query->orderBy('ss.datetimeSubmitted', 'DESC');
         
-        return $query->getResult();
+        return $query->getQuery()->getResult();
     }
     
 }

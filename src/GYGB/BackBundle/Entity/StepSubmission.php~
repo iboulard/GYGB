@@ -22,17 +22,17 @@ class StepSubmission
      */
     private $id;
     /**
+     * @var string $type
+     *
+     * @ORM\Column(name="type", type="string", length=255, nullable="true")
+     */
+    private $type;
+    /**
      * @var string $name
      *
      * @ORM\Column(name="name", type="string", length=255, nullable="true")
      */
     private $name;
-    /**
-     * @var integer $website
-     *
-     * @ORM\Column(name="website", type="string", length="255", nullable="true")
-     */
-    private $website;
     /**
      * @var integer $email
      *
@@ -40,11 +40,11 @@ class StepSubmission
      */
     private $email;
     /**
-     * @var text $story
+     * @var text $text
      *
-     * @ORM\Column(name="story", type="string", length=255, nullable="true")
+     * @ORM\Column(name="text", type="string", length=255, nullable="true")
      */
-    private $story;
+    private $text;
     /**
      * @var integer $latitude
      *
@@ -88,6 +88,15 @@ class StepSubmission
     
     /** @ORM\ManyToOne(targetEntity="User", inversedBy="stepSubmissions") */
     protected $user;
+
+    protected $typeChoices = array (
+        'step' => 'step',
+        'commitment' => 'commitment'
+    );
+
+    public function getTypeChoices() {
+        return $this->typeChoices;
+    }
 
     /**
      * Get id
@@ -164,46 +173,6 @@ class StepSubmission
     }
 
     /**
-     * Set website
-     *
-     * @param string $website
-     */
-    public function setWebsite($website)
-    {
-        $this->website = $website;
-    }
-
-    /**
-     * Get website
-     *
-     * @return string 
-     */
-    public function getWebsite()
-    {
-        return $this->website;
-    }
-
-    /**
-     * Set story
-     *
-     * @param text $story
-     */
-    public function setStory($story)
-    {
-        $this->story = $story;
-    }
-
-    /**
-     * Get story
-     *
-     * @return text 
-     */
-    public function getStory()
-    {
-        return $this->story;
-    }
-
-    /**
      * Set email
      *
      * @param string $email
@@ -265,7 +234,11 @@ class StepSubmission
 
     public function storyContainsPronoun()
     {
-        return strstr($this->getStory(), " my ");
+        return strstr($this->getStory(), " my ")
+            || strstr($this->getStory(), " I ")
+            || strstr($this->getStory(), " I'")
+            || strstr($this->getStory(), " our ")
+            || strstr($this->getStory(), " we ");
     }
 
 
@@ -390,5 +363,65 @@ class StepSubmission
     public function getSpam()
     {
         return $this->spam;
+    }
+
+    /**
+     * Set featured
+     *
+     * @param boolean $featured
+     */
+    public function setFeatured($featured)
+    {
+        $this->featured = $featured;
+    }
+
+    /**
+     * Get featured
+     *
+     * @return boolean 
+     */
+    public function getFeatured()
+    {
+        return $this->featured;
+    }
+
+    /**
+     * Set text
+     *
+     * @param string $text
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
+    }
+
+    /**
+     * Get text
+     *
+     * @return string 
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

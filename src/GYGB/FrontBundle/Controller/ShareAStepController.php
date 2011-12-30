@@ -26,7 +26,7 @@ class ShareAStepController extends Controller
         $allStepInfo = array();
         $stepObjects = array();
         foreach($allStepObjects as $step) {
-            $allStepInfo[$step->getTitle()] = array('category' => $step->getCategory(), 'savings' => $step->getSavings(), 'title' => $step->getTitle());
+            $allStepInfo[$step->getTitle()] = array('category' => $step->getCategory(), 'title' => $step->getTitle());
             $allSteps[] = $step->getTitle();
             $stepObjects[] = $step;
         }
@@ -98,15 +98,10 @@ class ShareAStepController extends Controller
                     $step->setApproved(false);
                     $step->setDescription($data['description']);
                     $step->setCategory($data['category']);
-                    $step->setStepCount(1);
-                    $step->setIndividual(true);
 
                     $em->persist($step);
                     $em->flush();
-                } else {
-                    $step->setStepCount($step->getStepCount() + 1);
-                }
-
+                } 
 
                 if($this->get('security.context')->isGranted('ROLE_USER')) {
                     $user = $this->get('security.context')->getToken()->getUser();
@@ -143,9 +138,10 @@ class ShareAStepController extends Controller
                 $stepSubmission->setSpam(false);
                 $stepSubmission->setFeatured(false);
                 $stepSubmission->setApproved(false);
-
+                $stepSubmission->setType('step');
+                
                 if(trim($data['story']) != "")
-                    $stepSubmission->setStory($data['story']);
+                    $stepSubmission->setText($data['story']);
                 if(trim($data['latitude']) != "")
                     $stepSubmission->setLatitude($data['latitude']);
                 if(trim($data['longitude']) != "")

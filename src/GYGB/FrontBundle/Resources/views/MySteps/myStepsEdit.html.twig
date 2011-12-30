@@ -20,8 +20,8 @@
         <script>
             $(document).ready(function() {
 
-                {% if eventObject.latitude is defined and eventObject.latitude != "" %}
-                    initializeEditMap({{ eventObject.latitude}}, {{eventObject.longitude}});
+                {% if stepSubmission.latitude is defined and stepSubmission.latitude != "" %}
+                    initializeEditMap({{ stepSubmission.latitude}}, {{stepSubmission.longitude}});
                 {% else %}
                     initializeSubmissionMap();
                 {% endif %}
@@ -37,16 +37,16 @@
     
     <div class="row form-stacked" id="event-form">
         <div class="span15">
-            <form action="{{ path(urlBase ~ 'Edit', {'id' : eventObject.id, 'type' : type }) }}" method="post" {{ form_enctype(eventForm) }}>
-                {% if form_errors(eventForm) %}
+            <form action="{{ path(urlBase ~ 'Edit', {'id' : stepSubmission.id, 'type' : type }) }}" method="post" {{ form_enctype(stepSubmissionForm) }}>
+                {% if form_errors(stepSubmissionForm) %}
                     <div class="alert-message error block-message">
-                        {{ form_errors(eventForm) }}
+                        {{ form_errors(stepSubmissionForm) }}
                     </div>
                 {% endif %}
         
                 <fieldset>
                     <div class="span8 offset3">
-                        {% include "GYGBFrontBundle:EventList:_event.html.twig" with {'event' : event, 'first' : false, 'last' : true, 'linkEvent' : true, 'justStory' : true } %}
+                        {% include "GYGBFrontBundle:StepSubmissionList:_stepSubmission.html.twig" with {'stepSubmission' : stepSubmission, 'first' : false, 'last' : true, 'linkStepSubmission' : true, 'justText' : true } %}
                     </div><!-- /clearfix -->
                 </fieldset>
                 
@@ -55,23 +55,23 @@
                         <legend>Custom Step</legend>
                         <div class="span8">
                             <div class="clearfix">
-                                {{ form_label(eventForm.title) }}
+                                {{ form_label(stepSubmissionForm.title) }}
                                 <div class="input">
-                                    {{ form_widget(eventForm.title, { 'attr': {'class': 'span8'} }) }}
+                                    {{ form_widget(stepSubmissionForm.title, { 'attr': {'class': 'span8'} }) }}
                                     <span class="help-inline">ex: "Plant a garden."</span>
                                 </div>
                             </div><!-- /clearfix -->
                             <div class="clearfix">
-                                {{ form_label(eventForm.description) }}
+                                {{ form_label(stepSubmissionForm.description) }}
                                 <div class="input">
-                                    {{ form_widget(eventForm.description, { 'attr': {'class': 'span8 tinymce'} }) }}
+                                    {{ form_widget(stepSubmissionForm.description, { 'attr': {'class': 'span8 tinymce'} }) }}
                                     <span class="help-inline">What will help others take this step?</span>
                                 </div>
                             </div><!-- /clearfix -->
                             <div class="clearfix">
-                                {{ form_label(eventForm.category) }}
+                                {{ form_label(stepSubmissionForm.category) }}
                                 <div class="input">
-                                    {{ form_widget(eventForm.category, { 'attr': {'class': 'span8'} }) }}
+                                    {{ form_widget(stepSubmissionForm.category, { 'attr': {'class': 'span8'} }) }}
                                 </div>
                             </div><!-- /clearfix -->
 
@@ -85,9 +85,9 @@
                         <legend>My Step</legend>
                         <div class="span8">
                             <div class="clearfix">
-                                {{ form_label(eventForm.story) }}
+                                {{ form_label(stepSubmissionForm.story) }}
                                 <div class="input">
-                                    {{ form_widget(eventForm.story, { 'attr': {'class': 'span8'} }) }}
+                                    {{ form_widget(stepSubmissionForm.story, { 'attr': {'class': 'span8'} }) }}
                                 </div>
                                 <span class="help-inline">What did you do? How did it go?</span>
                             </div><!-- /clearfix -->
@@ -108,9 +108,9 @@
                         <legend>My Commitment</legend>
                         <div class="span8">                    
                             <div class="clearfix">
-                                {{ form_label(eventForm.commitment) }}
+                                {{ form_label(stepSubmissionForm.commitment) }}
                                 <div class="input">
-                                    {{ form_widget(eventForm.commitment, { 'attr': {'class': 'span8'} }) }}
+                                    {{ form_widget(stepSubmissionForm.commitment, { 'attr': {'class': 'span8'} }) }}
                                 </div>
                                 <span class="help-inline">What will you do?</span>
                             </div><!-- /clearfix -->                    
@@ -118,10 +118,10 @@
                     </fieldset>
                 {% endif %}
                     
-                {{ form_rest(eventForm) }}
+                {{ form_rest(stepSubmissionForm) }}
                 <div class="actions">
                     <input class="btn success large" value="Save" type="submit" />
-                    <a class="btn error large" href="{{ url(urlBase ~  'Delete', {'id' : eventObject.id }) }}">Delete</a>
+                    <a class="btn error large" href="{{ url(urlBase ~  'Delete', {'id' : stepSubmission.id }) }}">Delete</a>
                     <a class="btn large" href="{{ url(urlBase) }}">Cancel</a>
                 </div>
         </div>

@@ -22,17 +22,17 @@ class StepSubmission
      */
     private $id;
     /**
+     * @var string $type
+     *
+     * @ORM\Column(name="type", type="string", length=255, nullable="true")
+     */
+    private $type;
+    /**
      * @var string $name
      *
      * @ORM\Column(name="name", type="string", length=255, nullable="true")
      */
     private $name;
-    /**
-     * @var integer $website
-     *
-     * @ORM\Column(name="website", type="string", length="255", nullable="true")
-     */
-    private $website;
     /**
      * @var integer $email
      *
@@ -40,11 +40,11 @@ class StepSubmission
      */
     private $email;
     /**
-     * @var text $story
+     * @var text $text
      *
-     * @ORM\Column(name="story", type="string", length=255, nullable="true")
+     * @ORM\Column(name="text", type="string", length=255, nullable="true")
      */
-    private $story;
+    private $text;
     /**
      * @var integer $latitude
      *
@@ -88,6 +88,15 @@ class StepSubmission
     
     /** @ORM\ManyToOne(targetEntity="User", inversedBy="stepSubmissions") */
     protected $user;
+
+    protected static $typeChoices = array (
+        'step' => 'step',
+        'commitment' => 'commitment'
+    );
+
+    public static function getTypeChoices() {
+        return self::$typeChoices;
+    }
 
     /**
      * Get id
@@ -164,46 +173,6 @@ class StepSubmission
     }
 
     /**
-     * Set website
-     *
-     * @param string $website
-     */
-    public function setWebsite($website)
-    {
-        $this->website = $website;
-    }
-
-    /**
-     * Get website
-     *
-     * @return string 
-     */
-    public function getWebsite()
-    {
-        return $this->website;
-    }
-
-    /**
-     * Set story
-     *
-     * @param text $story
-     */
-    public function setStory($story)
-    {
-        $this->story = $story;
-    }
-
-    /**
-     * Get story
-     *
-     * @return text 
-     */
-    public function getStory()
-    {
-        return $this->story;
-    }
-
-    /**
      * Set email
      *
      * @param string $email
@@ -234,21 +203,21 @@ class StepSubmission
     
 
     
-    public function getAbbreviatedStory()
+    public function getAbbreviatedText()
     {
-        if($this->storyCanBeAbbreviated())
+        if($this->textCanBeAbbreviated())
         {
-            return substr($this->getStory(), 2);
+            return substr($this->getText(), 2);
         }
         else
         {
-            return $this->getStory();
+            return $this->getText();
         }
     }
 
-    public function storyCanBeAbbreviated()
+    public function textCanBeAbbreviated()
     {
-        if($this->storyStartsWithI() && !$this->storyContainsPronoun())
+        if($this->textStartsWithI() && !$this->textContainsPronoun())
         {
             return true;
         }
@@ -258,18 +227,18 @@ class StepSubmission
         }
     }
 
-    public function storyStartsWithI()
+    public function textStartsWithI()
     {
-        return substr($this->getStory(), 0, 2) === 'I ';
+        return substr($this->getText(), 0, 2) === 'I ';
     }
 
-    public function storyContainsPronoun()
+    public function textContainsPronoun()
     {
-        return strstr($this->getStory(), " my ")
-            || strstr($this->getStory(), " I ")
-            || strstr($this->getStory(), " I'")
-            || strstr($this->getStory(), " our ")
-            || strstr($this->getStory(), " we ");
+        return strstr($this->getText(), " my ")
+            || strstr($this->getText(), " I ")
+            || strstr($this->getText(), " I'")
+            || strstr($this->getText(), " our ")
+            || strstr($this->getText(), " we ");
     }
 
 
@@ -414,5 +383,45 @@ class StepSubmission
     public function getFeatured()
     {
         return $this->featured;
+    }
+
+    /**
+     * Set text
+     *
+     * @param string $text
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
+    }
+
+    /**
+     * Get text
+     *
+     * @return string 
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

@@ -19,15 +19,14 @@ class MyStepsController extends Controller
 
             if($type == 'step')
             {
-                $stepSubmissions = $user->getStepSubmissions();
-                $events = $stepRepository->turnStepsSubmissionsIntoEvents($stepSubmissions);
-                $noEventsText = "You haven't taken any steps yet. <a href='" . $this->generateUrl('findAStep') . "'>Take your first step &rarr;</a>";
+                $stepSubmissions = $user->getStepSubmissions('step');
+                $noStepSubmissionsText = "You haven't taken any steps yet. <a href='" . $this->generateUrl('findAStep') . "'>Take your first step &rarr;</a>";
             }
             else
             {
-                $commitments = $user->getCommitments();
-                $events = $stepRepository->turnCommitmentsIntoEvents($commitments);
-                $noEventsText = "You haven't commited to any steps yet. <a class='btn pull-right primary' href='" . $this->generateUrl('findAStep') . "'>Commit to a step &rarr;</a>";
+                $stepSubmissions = $user->getStepSubmissions('commitment');
+
+                $noStepSubmissionsText = "You haven't commited to any steps yet. <a class='btn pull-right primary' href='" . $this->generateUrl('findAStep') . "'>Commit to a step &rarr;</a>";
             }
         }
         else
@@ -37,15 +36,16 @@ class MyStepsController extends Controller
 
         
         return $this->render('GYGBFrontBundle:MySteps:myStepsList.html.twig', array(
-            'events' => $events,
+            'stepSubmissions' => $stepSubmissions,
             'type' => $type,
-            'noEventsText' => $noEventsText
+            'noStepSubmissionsText' => $noStepSubmissionsText
         ));
     }
 
     public function myStepsEditAction($id, $type = 'step')
     {
         $request = $this->getRequest();
+        $stepSubmissionRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:StepSubmission');
         $em = $this->getDoctrine()->getEntityManager();
         $urlBase = 'my'.ucfirst($type).'s';
         $includeStepForm = false;        
@@ -56,53 +56,47 @@ class MyStepsController extends Controller
             $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
             $user = $this->get('security.context')->getToken()->getUser();
 
-
             if($type == 'step')
             {
-                $stepSubmissionRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:StepSubmission');
-                $eventObject = $stepSubmissionRepository->findOneById($id);
-                $event = $stepRepository->turnStepSubmissionIntoEvent($eventObject);
-                $eventForm = $this->createFormBuilder()
+                $stepSubmission = $stepSubmissionRepository->findOneById($id);
+                $stepSubmissionForm = $this->createFormBuilder()
                         ->add('story', 'text')
                         ->add('latitude', 'hidden', array('required' => false))
                         ->add('longitude', 'hidden', array('required' => false));
                 
-                if($eventObject == $eventObject->getStep()->getParentSubmission())
+                if($stepSubmission == $stepSubmission->getStep()->getParentSubmission())
                 {
                     $includeStepForm = true;
-                    $eventForm
+                    $stepSubmissionForm
                         ->add('title', 'text', array('label' => 'Title', 'required' => false))
                         ->add('description', 'textarea', array('label' => 'Description', 'required' => false))
                         ->add('category', 'choice', array('label' => 'What area is the step in?', 'required' => false, 'choices' => array('food' => 'Food', 'waste' => 'Waste', 'transportation' => 'Transportation', 'energy' => 'Heat and Electric')));
                 }
                         
                         
-                $eventForm = $eventForm->getForm();
+                $stepSubmissionForm = $stepSubmissionForm->getForm();
                 
                 $data = array();
                 
-                $data['story'] = $eventObject->getStory();
+                $data['story'] = $stepSubmission->getText();
                
                 if($includeStepForm)
                 {    
-                    $data['title'] = $eventObject->getStep()->getTitle();
-                    $data['commitment'] = $eventObject->getStep()->getCommitment();
-                    $data['step'] = $eventObject->getStep()->getStory();
-                    $data['description'] = $eventObject->getStep()->getDescription();
-                    $data['category'] = $eventObject->getStep()->getCategory();
+                    $data['title'] = $stepSubmission->getStep()->getTitle();
+                    $data['description'] = $stepSubmission->getStep()->getDescription();
+                    $data['category'] = $stepSubmission->getStep()->getCategory();
                 }
-                $eventForm->setData($data);
+                $stepSubmissionForm->setData($data);
             }
             else
             {
-                $commitmentRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Commitment');
-                $eventObject = $commitmentRepository->findOneById($id);
-                $event = $stepRepository->turnCommitmentIntoEvent($eventObject);
-                $eventForm = $this->createFormBuilder()
+                $stepSubmission = $stepSubmissionRepository->findOneById($id);
+
+                $stepSubmissionForm = $this->createFormBuilder()
                         ->add('commitment', 'text')
                         ->getForm();
 
-                $eventForm->setData(array('commitment' => $eventObject->getCommitment()));
+                $stepSubmissionForm->setData(array('commitment' => $stepSubmission->getText()));
             }
         }
         else
@@ -112,26 +106,26 @@ class MyStepsController extends Controller
 
         if($request->getMethod() == 'POST')
         {
-            $eventForm->bindRequest($request);
+            $stepSubmissionForm->bindRequest($request);
 
-            if($eventForm->isValid())
+            if($stepSubmissionForm->isValid())
             {
                 $session = $this->getRequest()->getSession();
-                $data = $eventForm->getData();
+                $data = $stepSubmissionForm->getData();
 
                 if($type == 'step')
                 {
                     if(trim($data['story']) != "")
-                        $eventObject->setStory($data['story']);
-                        if(trim($data['latitude']) != "") $eventObject->setLatitude($data['latitude']);
-                        if(trim($data['longitude']) != "") $eventObject->setLongitude($data['longitude']);
+                        $stepSubmission->setText($data['story']);
+                        if(trim($data['latitude']) != "") $stepSubmission->setLatitude($data['latitude']);
+                        if(trim($data['longitude']) != "") $stepSubmission->setLongitude($data['longitude']);
 
-                    $em->persist($eventObject);
+                    $em->persist($stepSubmission);
                     $em->flush();
                     
                     if($includeStepForm)
                     {
-                        $step = $stepRepository->findOneById($eventObject->getStep()->getId());
+                        $step = $stepRepository->findOneById($stepSubmission->getStep()->getId());
                         $step->setTitle($data['title']);
                         $step->setDescription($data['description']);
                         $step->setCategory($data['category']);
@@ -143,9 +137,9 @@ class MyStepsController extends Controller
                 else
                 {
                     if(trim($data['commitment']) != "")
-                        $eventObject->setCommitment($data['commitment']);
+                        $stepSubmission->setText($data['commitment']);
 
-                    $em->persist($eventObject);
+                    $em->persist($stepSubmission);
                     $em->flush();                    
                 }
                     
@@ -157,9 +151,8 @@ class MyStepsController extends Controller
 
 
         return $this->render('GYGBFrontBundle:MySteps:myStepsEdit.html.twig', array(
-            'eventObject' => $eventObject,
-            'eventForm' => $eventForm->createView(),
-            'event' => $event,
+            'stepSubmissionForm' => $stepSubmissionForm->createView(),
+            'stepSubmission' => $stepSubmission,
             'type' => $type,
             'urlBase' => $urlBase,
             'includeStepForm' => $includeStepForm,
@@ -178,22 +171,11 @@ class MyStepsController extends Controller
             $stepRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Step');
             $user = $this->get('security.context')->getToken()->getUser();
 
-            if($type == 'step')
-            {
-                $stepSubmissionRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:StepSubmission');
-                $eventObject = $stepSubmissionRepository->findOneById($id);
-                $event = $stepRepository->turnStepSubmissionIntoEvent($eventObject);
-                $step = $eventObject->getStep();
-            }
-            else
-            {
-                $commitmentRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:Commitment');
-                $eventObject = $commitmentRepository->findOneById($id);
-                $event = $stepRepository->turnCommitmentIntoEvent($eventObject);
-                $step = $eventObject->getStep();                
-            }
+            $stepSubmissionRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:StepSubmission');
+            $stepSubmission = $stepSubmissionRepository->findOneById($id);
+            $step = $stepSubmission->getStep();
                 
-            $eventForm = $this->createFormBuilder()
+            $stepSubmissionForm = $this->createFormBuilder()
                     ->getForm();
         }
         else
@@ -203,16 +185,13 @@ class MyStepsController extends Controller
 
         if($request->getMethod() == 'POST')
         {
-            $eventForm->bindRequest($request);
+            $stepSubmissionForm->bindRequest($request);
 
-            if($eventForm->isValid())
+            if($stepSubmissionForm->isValid())
             {
                 $session = $this->getRequest()->getSession();
 
-                $em->remove($eventObject);
-                
-                // decrement step count
-                $step->setStepCount($step->getStepCount() - 1);
+                $em->remove($stepSubmission);
                 $em->flush();                
                 
                 $this->getRequest()->getSession()->setFlash('alert-message success', 'Your '.$type.' has been deleted.');
@@ -223,9 +202,8 @@ class MyStepsController extends Controller
 
 
         return $this->render('GYGBFrontBundle:MySteps:myStepsDelete.html.twig', array(
-                    'eventObject' => $eventObject,
-                    'eventForm' => $eventForm->createView(),
-                    'event' => $event,
+                    'stepSubmission' => $stepSubmission,
+                    'stepSubmissionForm' => $stepSubmissionForm->createView(),
                     'type' => $type,
                     'urlBase' => $urlBase
                 ));

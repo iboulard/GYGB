@@ -32,10 +32,6 @@ class User extends BaseUser
     /** @ORM\OneToMany(targetEntity="StepSubmission", mappedBy="user", cascade={"persist", "remove"}) */
     protected $stepSubmissions;
   
-    /** @ORM\OneToMany(targetEntity="Commitment", mappedBy="user", cascade={"persist", "remove"}) */
-    protected $commitments;
-    
-    
     public function __construct()
     {
         parent::__construct();
@@ -75,11 +71,6 @@ class User extends BaseUser
         return $this->name;
     }
 
-    
-
-    
-    
-
     /**
      * Add stepSubmissions
      *
@@ -95,28 +86,15 @@ class User extends BaseUser
      *
      * @return Doctrine\Common\Collections\Collection 
      */
-    public function getStepSubmissions()
+    public function getStepSubmissions($type = null)
     {
-        return $this->stepSubmissions;
-    }
-
-    /**
-     * Add commitments
-     *
-     * @param GYGB\BackBundle\Entity\Commitment $commitments
-     */
-    public function addCommitment(\GYGB\BackBundle\Entity\Commitment $commitments)
-    {
-        $this->commitments[] = $commitments;
-    }
-
-    /**
-     * Get commitments
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getCommitments()
-    {
-        return $this->commitments;
+        if(isset($type)) {
+            $submissions = array();
+            foreach($this->stepSubmissions as $ss) {
+                if($ss->getType() == $type) $submissions[] = $ss;
+            }
+            return $submissions;
+        }
+        else return $this->stepSubmissions;
     }
 }

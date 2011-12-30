@@ -29,13 +29,13 @@
             <span class="description"><p>{{ step.description|raw }}</p></a>
         </div>
 
-        {% if events|length > 0 %}
-            {% include "GYGBFrontBundle:EventList:_eventList.html.twig" with {
-                'events' : events,
-                'id' : 'step-events',
-                'noEventsText' : 'No one has taken this step! Be the first.',
-                'linkEvents' : false,
-                'justStory' : false,
+        {% if stepSubmissions|length > 0 %}
+            {% include "GYGBFrontBundle:StepSubmissionList:_stepSubmissionList.html.twig" with {
+                'stepSubmissions' : stepSubmissions,
+                'id' : 'step-submissions',
+                'noStepSubmissionsText' : 'No one has taken this step! Be the first.',
+                'linkStepSubmissions' : false,
+                'justText' : false,
                 'showCustomLabel' : false
             } %}
         {% endif %}
