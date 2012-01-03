@@ -1,18 +1,13 @@
 # GYGB - TODO
 
 	
-## 1.2	
+## 1.2.2	
 1. Steps
- - <del>revert to real count
- - <del>only show featured steps on community page
  - add new steps
      - what to use for titles?
      	- Jeff's idea: alliterative catchy titles (Try Out TCAT, Check Out Carshare)
      	- sounds like advertisments, they don't need to be this short
      	- don't need to be exciting - that's what the videos and stories are for!
- - <del>no default story	
-     - <del>affects map
- - <del>no default commitment
 	
 2. Videos	
  - Community
@@ -28,13 +23,6 @@
      - upload		
      - should host on youtube, but never have users go to youtube
  - highlight on home page
-				
-3. Misc
- - <del>merge  commitments and submissions
- - <del>batch spam
- - <del>batch feature
-     - <del>remove spam actions
- - <del>header changes
 
 ## 1.3	
 1.	E-mail reminders

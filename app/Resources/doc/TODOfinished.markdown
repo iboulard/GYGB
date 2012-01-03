@@ -1,5 +1,20 @@
 # GYGB - TODOfinished
 
+## 1.2.1	
+1. Steps
+ - <del>revert to real count
+ - <del>only show featured steps on community page
+ - <del>no default story	
+     - <del>affects map
+ - <del>no default commitment
+				
+2. Misc
+ - <del>merge  commitments and submissions
+ - <del>batch spam
+ - <del>batch feature
+     - <del>remove spam actions
+ - <del>header changes
+
 ## 1.1
 
 1.	Share Buttons
