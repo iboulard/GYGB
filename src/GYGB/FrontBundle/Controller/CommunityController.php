@@ -18,7 +18,7 @@ class CommunityController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
         $stepSubmissionRepository = $this->getDoctrine()->getRepository('GYGBBackBundle:StepSubmission');
-        $stepSubmissions = $stepSubmissionRepository->findAllApproved();
+        $stepSubmissions = $stepSubmissionRepository->findApproved();
                 
         return $this->render('GYGBFrontBundle:Community:_communityMap.html.twig', array(
             'stepSubmissions' => $stepSubmissions,
