@@ -108,8 +108,9 @@ class ShareAStepController extends Controller
 
                     $stepSubmissionArray = array();
                     foreach($user->getStepSubmissions() as $ss) {
-                        $stepSubmissionArray[] = $ss->getStep();
+                        if($ss->getType() == "step") $stepSubmissionArray[] = $ss->getStep();
                     }
+                    
                     if(in_array($step, $stepSubmissionArray)) {
                         $this->getRequest()->getSession()->setFlash('alert-message error', 'You have already taken this step.  Try selecting a different step.');
 

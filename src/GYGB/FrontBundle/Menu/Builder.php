@@ -37,7 +37,6 @@ class Builder extends ContainerAware
         $this->communityMenu->setCurrentUri($this->container->get('request')->getRequestUri());
         $this->communityMenu->setAttribute('class', 'tabs');
         
-        //$this->communityMenu->addChild('communityVideos', array('route' => 'communityVideos', 'label' => 'Videos'));
         $this->communityMenu->addChild('communitySteps', array('route' => 'communitySteps', 'label' => 'Stories'));
         $this->communityMenu->addChild('communityMap', array('route' => 'communityMap', 'label' => 'Map'));
 
@@ -50,10 +49,9 @@ class Builder extends ContainerAware
 
     protected function correctCommunityMenuCurrent()
     {
-        if((isset($this->path[1]) && $this->path[1] == "community" && !isset($this->path[2]))
-            || (isset($this->path[2]) && $this->path[2] == 'videos'))
+        if((isset($this->path[1]) && $this->path[1] == "community") && !isset($this->path[2]))
         {
-            $this->communityMenu->getChild('communityVideos')->setCurrent(true);
+            $this->communityMenu->getChild('communitySteps')->setCurrent(true);
         }
     }    
 
