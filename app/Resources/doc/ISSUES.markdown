@@ -9,3 +9,5 @@
 - step submission deletion
 	
   - does this cascade properly?
+
+- submissions from users should user the user's current name, not their name when submitted
