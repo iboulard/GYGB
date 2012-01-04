@@ -1,7 +1,7 @@
 # GYGB - TODO
 
 	
-## 1.2.2	
+## 1.3	
 1. Steps
  - add new steps
      - what to use for titles?
@@ -24,7 +24,7 @@
      - should host on youtube, but never have users go to youtube
  - highlight on home page
 
-## 1.3	
+## 1.4	
 1.	E-mail reminders
  - for commitments
 		

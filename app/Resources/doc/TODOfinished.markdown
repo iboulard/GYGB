@@ -1,6 +1,6 @@
 # GYGB - TODOfinished
 
-## 1.2.1	
+## 1.2	
 1. Steps
  - <del>revert to real count
  - <del>only show featured steps on community page
