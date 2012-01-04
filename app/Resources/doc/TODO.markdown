@@ -35,3 +35,7 @@
 								
 3.	Revamp "featured content" - resources and steps featured on homepage / resource guide
  - confusing on admin end, easier to just mark a step or resource as featured
+ 
+4. Misc
+ - fill out registration form after submission
+ - what to do with filters when searching?
