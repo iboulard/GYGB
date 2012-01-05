@@ -60,7 +60,7 @@ class MyStepsController extends Controller
             {
                 $stepSubmission = $stepSubmissionRepository->findOneById($id);
                 $stepSubmissionForm = $this->createFormBuilder()
-                        ->add('story', 'text')
+                        ->add('story', 'textarea')
                         ->add('latitude', 'hidden', array('required' => false))
                         ->add('longitude', 'hidden', array('required' => false));
                 
@@ -68,7 +68,7 @@ class MyStepsController extends Controller
                 {
                     $includeStepForm = true;
                     $stepSubmissionForm
-                        ->add('title', 'text', array('label' => 'Title', 'required' => false))
+                        ->add('title', 'textarea', array('label' => 'Title', 'required' => false))
                         ->add('description', 'textarea', array('label' => 'Description', 'required' => false))
                         ->add('category', 'choice', array('label' => 'What area is the step in?', 'required' => false, 'choices' => array('food' => 'Food', 'waste' => 'Waste', 'transportation' => 'Transportation', 'energy' => 'Heat and Electric')));
                 }

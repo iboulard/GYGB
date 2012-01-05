@@ -8,5 +8,7 @@ $(document).ready(function() {
         
         $('div#commit-form-container').hide();                
    });  
-   
+   $('div.input input#form_commitment').live("keyup", function(e) {
+        updateTextareaCharacterCounter('input#form_commitment', '.commitment-char-counter');
+    });     
 });

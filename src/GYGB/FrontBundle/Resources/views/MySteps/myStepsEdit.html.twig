@@ -87,8 +87,10 @@
                             <div class="clearfix">
                                 {{ form_label(stepSubmissionForm.story) }}
                                 <div class="input">
-                                    {{ form_widget(stepSubmissionForm.story, { 'attr': {'class': 'span8'} }) }}
+                                    {{ form_widget(stepSubmissionForm.story, { 'attr': {'class': 'span8', 'maxlength' : '250'} }) }}
                                 </div>
+                                <span class="story-char-counter" style="float: right;">250 characters left</span>
+                                    
                                 <span class="help-inline">What did you do? How did it go?</span>
                             </div><!-- /clearfix -->
                         </div>
@@ -110,8 +112,9 @@
                             <div class="clearfix">
                                 {{ form_label(stepSubmissionForm.commitment) }}
                                 <div class="input">
-                                    {{ form_widget(stepSubmissionForm.commitment, { 'attr': {'class': 'span8'} }) }}
+                                    {{ form_widget(stepSubmissionForm.commitment, { 'attr': {'class': 'span8', 'maxlength' : '140'} }) }}
                                 </div>
+                                <span class="commitment-char-counter" style="float: right;">140 characters left</span>                                    
                                 <span class="help-inline">What will you do?</span>
                             </div><!-- /clearfix -->                    
                         </div>

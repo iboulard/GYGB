@@ -5,7 +5,8 @@
             <div class="clearfix">
                 {{ form_label(commitmentForm.commitment) }}
                 <div class="input">
-                    {{ form_widget(commitmentForm.commitment, { 'attr': {'class': 'span8'} }) }}
+                    {{ form_widget(commitmentForm.commitment, { 'attr': {'class': 'span8', 'maxlength' : '140'} }) }}
+                    <span class="commitment-char-counter" style="float: right;">140 characters left</span>
                     <span class="help-inline">what will you do?</span>
                 </div>
             </div><!-- /clearfix -->

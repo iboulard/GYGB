@@ -40,38 +40,38 @@
         
         <fieldset id="share-your-own" style="{% if custom is not defined or (custom is defined and not custom) %}display: none;{% endif %}">
             <legend>Share your own step</legend>
-                <div class="span8">
-                    <div class="clearfix">
-                        {{ form_label(stepForm.title) }}
-                        <div class="input">
-                            {{ form_widget(stepForm.title, { 'attr': {'class': 'span8'} }) }}
-                            <span class="help-inline">ex: "Plant a garden."</span>
-                        </div>
-                    </div><!-- /clearfix -->
-                    <div class="clearfix">
-                        {{ form_label(stepForm.description) }}
-                        <div class="input">
-                            {{ form_widget(stepForm.description, { 'attr': {'class': 'span8'} }) }}
-                            <span class="help-inline">What will help others take this step?</span>
-                        </div>
-                    </div><!-- /clearfix -->
-
-                    <label>What area was your step in?</label>
-
-                    <div class="category-selections" id="step">
-                        {% for category in categoryNames %}
-                            <a href="#" title="{{ category|capitalize }}">
-                                <div class="category-selection" id="{{ category }}">
-                                    <img src="{{ asset('images/' ~ category ~ '.png') }}" />
-                                    <span class="category-name">{{ category|capitalize }}</span>
-                                </div>
-                           </a>
-                        {% endfor %}
+            <div class="span8">
+                <div class="clearfix">
+                    {{ form_label(stepForm.title) }}
+                    <div class="input">
+                        {{ form_widget(stepForm.title, { 'attr': {'class': 'span8'} }) }}
+                        <span class="help-inline">ex: "Plant a garden."</span>
                     </div>
+                </div><!-- /clearfix -->
+                <div class="clearfix">
+                    {{ form_label(stepForm.description) }}
+                    <div class="input">
+                        {{ form_widget(stepForm.description, { 'attr': {'class': 'span8'} }) }}
+                        <span class="help-inline">What will help others take this step?</span>
+                    </div>
+                </div><!-- /clearfix -->
 
-                        <a href="#" class="share-your-own-cancel">cancel</a>
+                <label>What area was your step in?</label>
+
+                <div class="category-selections" id="step">
+                    {% for category in categoryNames %}
+                        <a href="#" title="{{ category|capitalize }}">
+                            <div class="category-selection" id="{{ category }}">
+                                <img src="{{ asset('images/' ~ category ~ '.png') }}" />
+                                <span class="category-name">{{ category|capitalize }}</span>
+                            </div>
+                       </a>
+                    {% endfor %}
                 </div>
-           </fieldset>
+
+                    <a href="#" class="share-your-own-cancel">cancel</a>
+            </div>
+        </fieldset>
         
         <fieldset>
             <legend>Tell a story.</legend>
@@ -79,8 +79,9 @@
             <div class="clearfix">
                 {{ form_label(stepForm.story) }}
                 <div class="input">
-                    {{ form_widget(stepForm.story, { 'attr': {'class': 'span8'} }) }}
+                    {{ form_widget(stepForm.story, { 'attr': {'class': 'span8', 'maxlength' : '250'} }) }}
                 </div>
+                <span class="story-char-counter" style="float: right;">250 characters left</span>
             </div><!-- /clearfix -->
             </div>
         </fieldset>

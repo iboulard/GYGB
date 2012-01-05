@@ -19,6 +19,22 @@ tinyMCE.init({
   
 });
 
+    if($('div.input textarea#form_story').length > 0) {
+        // listen for keyups to update counter
+        $('div.input textarea#form_story').live("keyup", function(e) {
+            updateTextareaCharacterCounter('textarea#form_story', '.story-char-counter');
+        });     
+        // init counter
+        updateTextareaCharacterCounter('textarea#form_story', '.story-char-counter');
+    } else {
+        // listen for keyups to update counter
+        $('div.input input#form_commitment').live("keyup", function(e) {
+            updateTextareaCharacterCounter('input#form_commitment', '.commitment-char-counter');
+        });     
+        // init counter
+        updateTextareaCharacterCounter('input#form_commitment', '.commitment-char-counter');        
+    }
+        
      
 });
 

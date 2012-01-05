@@ -1,5 +1,4 @@
 # GYGB - TODO
-
 	
 ## 1.3	
 1. Steps
@@ -23,6 +22,10 @@
      - upload		
      - should host on youtube, but never have users go to youtube
  - highlight on home page
+ 
+3.	Misc
+ - <del>check max story length
+ 	- <del>add character counter
 
 ## 1.4	
 1.	E-mail reminders

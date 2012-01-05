@@ -15,7 +15,11 @@ $(document).ready(function() {
         
         $('input#form_step').val("");
     });
-    
+        
+    $('div.input textarea#form_story').live("keyup", function(e) {
+        updateTextareaCharacterCounter('textarea#form_story', '.story-char-counter');
+    });     
+  
     $('div.category-selections#step').find('div.category-selection').live("click", function(e){
         e.preventDefault();
         $('div.category-selections#step').find('div.category-selection').removeClass('selected');
@@ -25,6 +29,9 @@ $(document).ready(function() {
     });
     
     initializeSubmissionMap();
+
+    // set the char counter in case the page loads with some text in the story textarea
+    updateTextareaCharacterCounter('textarea#form_story', '.story-char-counter');
 
 
 });

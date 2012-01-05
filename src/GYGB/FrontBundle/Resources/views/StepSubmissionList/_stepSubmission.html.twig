@@ -7,7 +7,7 @@
                 {% if linkStepSubmission %}</a>{% endif %}
             </span>
         {% else %}
-            <span class="name">{{ stepSubmission.name }}{% if not stepSubmission.textCanBeAbbreviated %}:{% endif %}
+            <span class="name">{{ stepSubmission.nameForDisplay }}{% if not stepSubmission.textCanBeAbbreviated %}:{% endif %}
             </span>
             <span class="text">
                 {% if linkStepSubmission %}<a class="step-link" href="{{ path('takeAStep', {'id': stepSubmission.step.id }) }}">{% endif %}
