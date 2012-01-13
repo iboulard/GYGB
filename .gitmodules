@@ -9,10 +9,10 @@
 	url = git://github.com/sonata-project/SonatajQueryBundle.git
 [submodule "vendor/bundles/Knp/Bundle/MenuBundle"]
 	path = vendor/bundles/Knp/Bundle/MenuBundle
-	url = git://github.com/knplabs/KnpMenuBundle.git
+	url = git://github.com/KnpLabs/KnpMenuBundle.git
 [submodule "vendor/knp-menu"]
 	path = vendor/knp-menu
-	url = https://github.com/knplabs/KnpMenu.git
+	url = https://github.com/KnpLabs/KnpMenu.git
 [submodule "vendor/bundles/FOS/UserBundle"]
 	path = vendor/bundles/FOS/UserBundle
 	url = git://github.com/CCETC/FOSUserBundle.git
