@@ -1,5 +1,10 @@
 # GYGB - TODO
 	
+## 1.2.1
+- upgrade SonataAdmin, FOSUser
+- switch to SonataUserBundle
+- upgrade jQuery on frontend	
+	
 ## 1.3	
 1. Steps
  - add new steps
