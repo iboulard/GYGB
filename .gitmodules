@@ -1,6 +1,3 @@
-[submodule "vendor/bundles/CCETC/CCETCAdminExtensionBundle"]
-	path = vendor/bundles/CCETC/CCETCAdminExtensionBundle
-	url = git://github.com/CCETC/CCETCAdminExtensionBundle.git
 [submodule "vendor/bundles/Sonata/AdminBundle"]
 	path = vendor/bundles/Sonata/AdminBundle
 	url = git://github.com/CCETC/SonataAdminBundle.git
