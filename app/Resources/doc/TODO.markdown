@@ -1,9 +1,15 @@
 # GYGB - TODO
 	
 ## 1.2.1
-- upgrade SonataAdmin, FOSUser
+- upgrade SonataJQuery
+	- upgrade jQuery on frontend	
+- upgrade SonataAdmin
+	- new jQuery versions
+	- uses CCETC Bootstrap
+	- check that menu permission changes work okay without acl
+- upgrade FOSUser	
 - switch to SonataUserBundle
-- upgrade jQuery on frontend	
+	
 	
 ## 1.3	
 1. Steps
