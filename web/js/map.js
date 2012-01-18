@@ -106,8 +106,8 @@ function placeMarker(location) {
         });
         
         google.maps.event.addListener(submittedMarker, "dragend", function() {
-            $('#form_latitude').attr('value', submittedMarker.position.Qa);
-            $('#form_longitude').attr('value', submittedMarker.position.Ra);
+            $('#form_latitude').attr('value', submittedMarker.position.lat());
+            $('#form_longitude').attr('value', submittedMarker.position.lng());
         });
         google.maps.event.addListener(submittedMarker, 'click', function(point, source, overlay) {
             submittedMarker.setMap(null);
@@ -116,8 +116,8 @@ function placeMarker(location) {
             $('#form_longitude').attr('value', '');            
         });
 
-        $('#form_latitude').attr('value', location.Qa);
-        $('#form_longitude').attr('value', location.Ra);
+        $('#form_latitude').attr('value', location.lat());
+        $('#form_longitude').attr('value', location.lng());
     }
     
     markerPlaced = true;
