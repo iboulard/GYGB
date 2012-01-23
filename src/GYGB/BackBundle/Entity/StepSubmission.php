@@ -200,50 +200,6 @@ class StepSubmission
         $this->featured = false;
     }
 
-    
-
-    
-    public function getAbbreviatedText()
-    {
-        if($this->textCanBeAbbreviated())
-        {
-            return substr($this->getText(), 2);
-        }
-        else
-        {
-            return $this->getText();
-        }
-    }
-
-    public function textCanBeAbbreviated()
-    {
-        if($this->textStartsWithI() && !$this->textContainsPronoun())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public function textStartsWithI()
-    {
-        return substr($this->getText(), 0, 2) === 'I ';
-    }
-
-    public function textContainsPronoun()
-    {
-        return strstr($this->getText(), " my ")
-            || strstr($this->getText(), " I ")
-            || strstr($this->getText(), " I'")
-            || strstr($this->getText(), " our ")
-            || strstr($this->getText(), " we ");
-    }
-
-
-    
-
     /**
      * Set step
      *
