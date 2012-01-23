@@ -99,7 +99,8 @@ class TakeAStepController extends Controller
                 $stepSubmission->setStep($step);
                 $stepSubmission->setSpam(false);
                 $stepSubmission->setApproved(false);
-
+                $stepSubmission->setType('commitment');
+                
                 
                 $em->persist($stepSubmission);
                 $em->flush();

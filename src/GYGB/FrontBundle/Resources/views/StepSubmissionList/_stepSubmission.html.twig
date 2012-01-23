@@ -7,11 +7,9 @@
                 {% if linkStepSubmission %}</a>{% endif %}
             </span>
         {% else %}
-            <span class="name">{{ stepSubmission.nameForDisplay }}{% if not stepSubmission.textCanBeAbbreviated %}:{% endif %}
-            </span>
             <span class="text">
                 {% if linkStepSubmission %}<a class="step-link" href="{{ path('takeAStep', {'id': stepSubmission.step.id }) }}">{% endif %}
-                    {% if not stepSubmission.textCanBeAbbreviated %}"{% endif %}{{ stepSubmission.abbreviatedText }}{% if not stepSubmission.textCanBeAbbreviated %}"{% endif %}
+                    "{{ stepSubmission.text }}"
                 {% if linkStepSubmission %}</a>{% endif %}
             </span>
         {% endif %}
@@ -24,6 +22,10 @@
         {% if showCustomLabel is defined and showCustomLabel and stepSubmission.step.parentSubmission is defined and stepSubmission.step.parentSubmission != "" and stepSubmission == stepSubmission.step.parentSubmission %}
             <span class="label success">custom step</span>
         {% endif %}
-        <span class="date">{{ stepSubmission.datetimesubmitted|date("F j, Y g:i a") }}</span>
+           
+        <span class="date">
+            {{ stepSubmission.nameForDisplay }} - 
+            {{ stepSubmission.datetimesubmitted|date("F j, Y g:i a") }}
+        </span>
     </div>
 </div>    
