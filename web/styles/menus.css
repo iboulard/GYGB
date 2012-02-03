@@ -100,3 +100,12 @@ div.take-a-step-menu li.shareAStep  {
     padding: 0 0 80px;
     background-position: center;
 }
+
+#footer-menu a.facebook {
+    background: url("../images/facebook.png") no-repeat scroll 0px 50% transparent;
+    padding: 1px 0 0 20px;
+}
+#footer-menu a.email {
+    background: url("../images/email.png") no-repeat scroll 0px 50% transparent;
+    padding: 1px 0 0 20px;
+}
